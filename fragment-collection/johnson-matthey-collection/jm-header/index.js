@@ -744,6 +744,16 @@
     }
     
     function initializeModals() {
+        console.log('Initializing modals...');
+        console.log('Fragment element:', fragmentElement);
+        
+        // Debug: List all buttons in fragment
+        const allButtons = fragmentElement.querySelectorAll('button');
+        console.log('All buttons found:', allButtons);
+        allButtons.forEach((btn, index) => {
+            console.log(`Button ${index}:`, btn.className, btn.textContent?.trim());
+        });
+        
         initializeSearchModal();
         initializeLoginModal();
     }
@@ -755,6 +765,7 @@
         
         if (!searchBtn || !searchOverlay) {
             console.log('Search elements not found - searchBtn:', !!searchBtn, 'searchOverlay:', !!searchOverlay);
+            console.log('Available search-related elements:', fragmentElement.querySelectorAll('[class*="search"], [id*="search"]'));
             return;
         }
         
@@ -764,6 +775,7 @@
         searchBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
+            console.log('Search button clicked');
             openSearchModal();
         });
         
@@ -799,8 +811,11 @@
         
         if (!loginOverlay) {
             console.log('Login overlay not found');
+            console.log('Available login-related elements:', fragmentElement.querySelectorAll('[class*="login"], [id*="login"]'));
             return;
         }
+        
+        console.log('Login elements found - loginBtn:', !!loginBtn, 'mobileLoginBtn:', !!mobileLoginBtn, 'loginOverlay:', !!loginOverlay);
         
         console.log('Login modal initialized successfully');
         
@@ -809,6 +824,7 @@
             loginBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
+                console.log('Login button clicked');
                 openLoginModal();
             });
         }
@@ -817,6 +833,7 @@
             mobileLoginBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
+                console.log('Mobile login button clicked');
                 
                 // Close mobile menu first
                 const mobileNav = fragmentElement.querySelector('.jm-mobile-nav');
