@@ -5,13 +5,11 @@ assemble:
 johnson-matthey-global-css:
   name: Johnson Matthey Global CSS
   type: globalCSS
-  scope: company
   url: global.css
 
 johnson-matthey-global-js:
   name: Johnson Matthey Global JavaScript
   type: globalJS
-  scope: company
   scriptLocation: head
   url: global.js
   scriptElementAttributes:
