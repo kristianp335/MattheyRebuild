@@ -727,20 +727,42 @@
         const mobileToggle = fragmentElement.querySelector('.jm-mobile-menu-toggle');
         const mobileNav = fragmentElement.querySelector('.jm-mobile-nav');
         
+        console.log('=== MOBILE MENU INITIALIZATION DEBUG ===');
+        console.log('Mobile toggle found:', !!mobileToggle);
+        console.log('Mobile nav found:', !!mobileNav);
+        if (mobileNav) {
+            console.log('Initial mobile nav classes:', mobileNav.classList.toString());
+            console.log('Initial mobile nav display:', getComputedStyle(mobileNav).display);
+        }
+        console.log('=== END MOBILE MENU INIT DEBUG ===');
+        
         if (!mobileToggle || !mobileNav) return;
         
-        mobileToggle.addEventListener('click', () => {
+        mobileToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
             const isOpen = mobileNav.classList.contains('show');
+            
+            console.log('=== MOBILE MENU DEBUG ===');
+            console.log('Mobile toggle clicked | Current state:', isOpen ? 'open' : 'closed');
+            console.log('Mobile nav element:', mobileNav);
+            console.log('Current classes:', mobileNav.classList.toString());
             
             if (isOpen) {
                 mobileNav.classList.remove('show');
                 mobileToggle.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
+                console.log('Mobile menu closed | Classes after:', mobileNav.classList.toString());
+                console.log('Computed display after close:', getComputedStyle(mobileNav).display);
             } else {
                 mobileNav.classList.add('show');
                 mobileToggle.setAttribute('aria-expanded', 'true');
                 document.body.style.overflow = 'hidden';
+                console.log('Mobile menu opened | Classes after:', mobileNav.classList.toString());
+                console.log('Computed display after open:', getComputedStyle(mobileNav).display);
             }
+            console.log('=== END MOBILE MENU DEBUG ===');
         });
         
         // Mobile dropdown functionality
