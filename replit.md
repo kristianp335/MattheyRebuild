@@ -140,6 +140,31 @@ Scroll-triggered animations and interactive elements use CSS transitions and tra
 - **Affected Fragments**: All fragments with select fields (JM Header, Hero, News Carousel, Share Price, Company Overview, Footer)
 - **ZIP Files Updated**: All individual fragment ZIPs and collection ZIP regenerated with corrected configurations
 
+### Liferay Fragment Configuration Schema Requirements
+- **Select Field Structure**: Must use `typeOptions.validValues` array instead of deprecated `options` array
+- **Correct Format**:
+  ```json
+  {
+    "type": "select",
+    "typeOptions": {
+      "validValues": [
+        {"label": "Option 1", "value": "option1"},
+        {"label": "Option 2", "value": "option2"}
+      ]
+    }
+  }
+  ```
+- **Deprecated Format** (causes validation errors):
+  ```json
+  {
+    "type": "select", 
+    "options": [
+      {"label": "Option 1", "value": "option1"}
+    ]
+  }
+  ```
+- **Error Message**: `/fieldSets/0/fields/X: extraneous key [options] is not permitted /fieldSets/0/fields/X: required key [typeOptions] not found`
+
 ## External Dependencies
 
 ### Liferay Platform
