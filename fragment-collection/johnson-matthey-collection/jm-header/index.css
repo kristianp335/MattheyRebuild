@@ -14,10 +14,11 @@
 #wrapper .jm-header {
   background: var(--jm-white);
   border-bottom: 1px solid var(--jm-gray-300);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 100;
-  transition: var(--jm-transition);
+  /* Remove box-shadow and transition for faster initial render */
+  /* Optimize for LCP by reducing paint complexity */
+  contain: layout style;
 }
 
 /* Sticky header functionality removed for performance optimization */

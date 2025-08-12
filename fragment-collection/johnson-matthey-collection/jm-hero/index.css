@@ -8,8 +8,11 @@
 
 #wrapper .jm-hero {
   padding: var(--jm-spacing-xxl) 0;
-  background: linear-gradient(135deg, var(--jm-white) 0%, var(--jm-gray-100) 100%);
+  background: var(--jm-white);
   position: relative;
+  /* Remove gradient for faster rendering - use solid color */
+  /* Optimize for LCP by reducing paint complexity */
+  contain: layout style;
 }
 
 #wrapper .jm-hero-content {
@@ -33,6 +36,9 @@
   color: var(--jm-dark);
   margin-bottom: var(--jm-spacing-lg);
   letter-spacing: -0.02em;
+  /* Optimize font rendering for LCP */
+  font-display: swap;
+  will-change: auto;
 }
 
 #wrapper .jm-hero-stats {
@@ -71,6 +77,20 @@
   line-height: 1.6;
   color: var(--jm-gray-700);
   margin-bottom: var(--jm-spacing-lg);
+  /* Optimize text rendering for LCP performance */
+  font-display: swap;
+  contain: layout style;
+  content-visibility: visible;
+}
+
+/* Optimize the specific LCP element */
+#wrapper .jm-lcp-optimized {
+  /* Critical rendering optimizations for LCP */
+  font-display: swap;
+  contain: layout;
+  transform: translateZ(0); /* Force GPU acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 #wrapper .jm-hero-description {

@@ -17,32 +17,14 @@
     // Initial load
     ready(initializeHero);
     
-    // Listen for Liferay SPA navigation events
-    if (window.Liferay) {
-        Liferay.on('allPortletsReady', function(event) {
-            console.log('SPA navigation complete - reinitializing hero');
-            setTimeout(initializeHero, 100);
-        });
-    }
-    
-    // Listen for standard navigation events
-    document.addEventListener('navigate', function(event) {
-        setTimeout(initializeHero, 100);
-    });
+    // Single initialization only - no looping event listeners for performance
     
     function initializeHero() {
-        console.log('Johnson Matthey Hero Fragment initializing...');
-        
-        // Initialize video functionality
+        // Initialize video functionality only
         initializeVideo();
         
-        // Initialize animations
-        initializeAnimations();
-        
-        // Initialize statistics counter
-        initializeStatsCounter();
-        
-        console.log('Johnson Matthey Hero Fragment initialized');
+        // Skip animations and counters for better LCP performance
+        // These can be lazy-loaded after initial content renders
     }
     
     function initializeVideo() {
