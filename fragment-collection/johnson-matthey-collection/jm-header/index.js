@@ -769,7 +769,7 @@
     function openSearchModal() {
         const searchOverlay = document.querySelector('#jm-search-overlay');
         if (searchOverlay) {
-            searchOverlay.style.display = 'block';
+            searchOverlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
     }
@@ -785,7 +785,7 @@
     function openLoginModal() {
         const loginOverlay = document.querySelector('#jm-login-overlay');
         if (loginOverlay) {
-            loginOverlay.style.display = 'block';
+            loginOverlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
     }

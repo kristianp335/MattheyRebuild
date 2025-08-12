@@ -436,7 +436,7 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   height: 100vh !important;
   background: rgba(0, 0, 0, 0.5) !important;
   z-index: 1050 !important;
-  display: flex !important;
+  display: none !important;
   align-items: center !important;
   justify-content: center !important;
   margin: 0 !important;
