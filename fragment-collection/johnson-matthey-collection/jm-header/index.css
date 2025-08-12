@@ -1,5 +1,10 @@
 /* Johnson Matthey Header Fragment Styles */
 
+/* CSS Variables */
+:root {
+  --jm-header-height: 80px; /* Default header height */
+}
+
 /* Header Layout */
 #wrapper .jm-header-fragment {
   position: relative;
@@ -35,6 +40,30 @@ body:has(.control-menu) #wrapper .jm-header.jm-sticky {
 /* Fallback for browsers without :has() support */
 .liferay-control-menu-present #wrapper .jm-header.jm-sticky {
   top: 56px !important;
+}
+
+/* Push main content down when both admin menu and sticky header are present */
+body:has(.control-menu) #wrapper .jm-header.jm-sticky ~ * {
+  margin-top: calc(var(--jm-header-height, 80px) + 56px) !important;
+  transition: margin-top 0.3s ease !important;
+}
+
+/* Fallback for browsers without :has() support */
+.liferay-control-menu-present #wrapper .jm-header.jm-sticky ~ * {
+  margin-top: calc(var(--jm-header-height, 80px) + 56px) !important;
+  transition: margin-top 0.3s ease !important;
+}
+
+/* Normal sticky header content adjustment (no admin menu) */
+body:not(:has(.control-menu)) #wrapper .jm-header.jm-sticky ~ * {
+  margin-top: var(--jm-header-height, 80px) !important;
+  transition: margin-top 0.3s ease !important;
+}
+
+/* Fallback for browsers without :has() support - normal sticky */
+body:not(.liferay-control-menu-present) #wrapper .jm-header.jm-sticky ~ * {
+  margin-top: var(--jm-header-height, 80px) !important;
+  transition: margin-top 0.3s ease !important;
 }
 
 /* Header Style Variants */
