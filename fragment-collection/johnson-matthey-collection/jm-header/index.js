@@ -797,7 +797,7 @@
         
         // Close on escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && searchOverlay.style.display !== 'none') {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('show')) {
                 closeSearchModal();
             }
         });
@@ -866,7 +866,7 @@
         
         // Close on escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && loginOverlay.style.display !== 'none') {
+            if (e.key === 'Escape' && loginOverlay.classList.contains('show')) {
                 closeLoginModal();
             }
         });
@@ -875,9 +875,13 @@
     function openSearchModal() {
         const searchOverlay = fragmentElement.querySelector('#jm-search-overlay');
         if (searchOverlay) {
-            searchOverlay.style.display = 'flex';
+            console.log('Opening search modal - current classes:', searchOverlay.classList.toString());
+            
+            searchOverlay.classList.add('show');
             document.body.style.overflow = 'hidden';
-            console.log('Search modal opened');
+            
+            console.log('Search modal opened - updated classes:', searchOverlay.classList.toString());
+            console.log('Search modal opened - computed display:', getComputedStyle(searchOverlay).display);
         } else {
             console.log('Search overlay not found');
         }
@@ -886,7 +890,7 @@
     function closeSearchModal() {
         const searchOverlay = fragmentElement.querySelector('#jm-search-overlay');
         if (searchOverlay) {
-            searchOverlay.style.display = 'none';
+            searchOverlay.classList.remove('show');
             document.body.style.overflow = '';
             console.log('Search modal closed');
         }
@@ -895,9 +899,13 @@
     function openLoginModal() {
         const loginOverlay = fragmentElement.querySelector('#jm-login-overlay');
         if (loginOverlay) {
-            loginOverlay.style.display = 'flex';
+            console.log('Opening login modal - current classes:', loginOverlay.classList.toString());
+            
+            loginOverlay.classList.add('show');
             document.body.style.overflow = 'hidden';
-            console.log('Login modal opened');
+            
+            console.log('Login modal opened - updated classes:', loginOverlay.classList.toString());
+            console.log('Login modal opened - computed display:', getComputedStyle(loginOverlay).display);
         } else {
             console.log('Login overlay not found');
         }
@@ -906,7 +914,7 @@
     function closeLoginModal() {
         const loginOverlay = fragmentElement.querySelector('#jm-login-overlay');
         if (loginOverlay) {
-            loginOverlay.style.display = 'none';
+            loginOverlay.classList.remove('show');
             document.body.style.overflow = '';
             console.log('Login modal closed');
         }

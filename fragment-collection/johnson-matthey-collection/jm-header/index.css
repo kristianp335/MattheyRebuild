@@ -498,6 +498,11 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   padding: 0 !important;
 }
 
+#wrapper .jm-search-overlay.show,
+#wrapper .jm-login-overlay.show {
+  display: flex !important;
+}
+
 #wrapper .jm-search-modal,
 #wrapper .jm-login-modal {
   background: var(--jm-white) !important;
