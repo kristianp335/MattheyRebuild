@@ -30,7 +30,7 @@ Located in `jm-frontend-client-extension/` directory:
 1. Navigate to Liferay's **Client Extensions** area in the admin interface
 2. Upload or deploy the `jm-frontend-client-extension/` folder
 3. Ensure both CSS and JavaScript client extensions are activated
-4. Verify they are scoped to "company" level
+4. Client extensions will use Liferay's default scoping behavior (no explicit scope configuration required)
 
 ### Step 2: Deploy Fragment Collection (Option A - Complete Collection)
 1. Go to **Site Builder** > **Page Fragments**

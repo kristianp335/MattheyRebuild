@@ -12,7 +12,7 @@ This folder contains the global CSS and JavaScript client extension for the John
 
 1. Deploy this entire folder as a client extension to your Liferay environment
 2. The client extension provides site-wide CSS and JavaScript functionality
-3. Scope is set to "company" level for availability across all sites
+3. Uses Liferay's default scoping behavior (no explicit scope configuration required)
 
 ## Features
 

@@ -106,6 +106,11 @@ The project follows a dual-deployment architecture with organized holding folder
 - **Client Extension**: Located in `jm-frontend-client-extension/` folder - Global CSS and JavaScript assets deployed via `client-extension.yaml`
 - **Fragment Collection**: Located in `fragment-collection/` folder - Complete fragment library deployed separately to Liferay's fragment system
 
+### Client Extension Configuration Notes
+- **Scope Option**: Not required in client-extension.yaml - Liferay uses default scoping behavior
+- **Global CSS/JS**: Deployed without explicit scope declaration for maximum deployment flexibility
+- **Default Behavior**: Client extensions will be available according to Liferay's standard scoping rules
+
 ### Fragment Architecture
 The implementation follows a modular fragment-based architecture where each component is a self-contained Liferay fragment with its own HTML, CSS, JavaScript, and configuration. All fragments are scoped under the `#wrapper` CSS selector to ensure compatibility with Liferay's theme system and are located in the `fragment-collection/` directory for independent deployment.
 

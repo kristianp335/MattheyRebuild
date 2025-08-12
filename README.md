@@ -39,7 +39,7 @@ fragment-collection/
 **Client Extensions** (`jm-frontend-client-extension.yaml`):
 - Deploy global CSS and JavaScript assets
 - Provides foundational styling and utilities
-- Scoped to company level for site-wide availability
+- Uses Liferay's default scoping behavior (no explicit scope required)
 
 **Fragment Collection** (separate deployment):
 - Contains all website components as individual fragments
