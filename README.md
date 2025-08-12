@@ -8,21 +8,22 @@ This repository contains a complete Liferay-native recreation of the Johnson Mat
 
 ## Project Structure
 
-### Client Extensions
-The client extensions provide global CSS and JavaScript that support all fragments across the site:
+### Client Extension
+The client extension provides global CSS and JavaScript that support all fragments across the site:
 
 ```
-assets/
-├── global.css           # Global CSS with Johnson Matthey branding using Liferay Classic theme tokens
-├── global.js            # Global JavaScript utilities and shared functionality
-client-extension.yaml    # Client extension configuration (CSS and JS only)
+client-extension/
+├── assets/
+│   ├── global.css           # Global CSS with Johnson Matthey branding using Liferay Classic theme tokens
+│   └── global.js            # Global JavaScript utilities and shared functionality
+└── client-extension.yaml   # Client extension configuration (CSS and JS only)
 ```
 
 ### Fragment Collection
 The fragments are deployed separately and contain the complete Johnson Matthey website components:
 
 ```
-fragments/
+fragment-collection/
 └── johnson-matthey-collection/
     ├── collection.json      # Fragment collection metadata
     ├── jm-header/          # Header with navigation, login/search modals, mobile menu

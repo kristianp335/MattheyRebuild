@@ -51,12 +51,12 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Deployment Architecture
-The project follows a dual-deployment architecture:
-- **Client Extensions**: Global CSS and JavaScript assets deployed via `client-extension.yaml`
-- **Fragment Collection**: Complete fragment library deployed separately to Liferay's fragment system
+The project follows a dual-deployment architecture with organized holding folders:
+- **Client Extension**: Located in `client-extension/` folder - Global CSS and JavaScript assets deployed via `client-extension.yaml`
+- **Fragment Collection**: Located in `fragment-collection/` folder - Complete fragment library deployed separately to Liferay's fragment system
 
 ### Fragment Architecture
-The implementation follows a modular fragment-based architecture where each component is a self-contained Liferay fragment with its own HTML, CSS, JavaScript, and configuration. All fragments are scoped under the `#wrapper` CSS selector to ensure compatibility with Liferay's theme system and are located in the `fragments/` directory for independent deployment.
+The implementation follows a modular fragment-based architecture where each component is a self-contained Liferay fragment with its own HTML, CSS, JavaScript, and configuration. All fragments are scoped under the `#wrapper` CSS selector to ensure compatibility with Liferay's theme system and are located in the `fragment-collection/` directory for independent deployment.
 
 ### Color System Integration
 The design system leverages Liferay Classic theme frontend tokens exclusively through CSS custom properties. This ensures seamless integration with Liferay's theming system while maintaining Johnson Matthey's brand identity. Primary colors are mapped to `--jm-primary` (brand-color-1), `--jm-secondary` (brand-color-2), etc.

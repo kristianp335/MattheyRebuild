@@ -153,14 +153,15 @@
         <div class="section">
             <h2>📁 Project Structure</h2>
             <div class="file-tree">
-<strong>Client Extensions (client-extension.yaml)</strong>
-assets/
-├── global.css           <span class="highlight"># Johnson Matthey branding with Liferay Classic theme tokens</span>
-├── global.js            <span class="highlight"># Shared utilities and modal management</span>
-client-extension.yaml    <span class="highlight"># CSS and JS deployment configuration</span>
+<strong>Client Extension (global assets)</strong>
+client-extension/
+├── assets/
+│   ├── global.css           <span class="highlight"># Johnson Matthey branding with Liferay Classic theme tokens</span>
+│   └── global.js            <span class="highlight"># Shared utilities and modal management</span>
+└── client-extension.yaml   <span class="highlight"># CSS and JS deployment configuration</span>
 
 <strong>Fragment Collection (separate deployment)</strong>
-fragments/
+fragment-collection/
 └── johnson-matthey-collection/
     ├── collection.json      <span class="highlight"># Fragment collection metadata</span>
     ├── jm-header/          <span class="highlight"># Navigation, login/search modals, mobile menu</span>
