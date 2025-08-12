@@ -132,6 +132,14 @@ A centralized modal system handles overlays for login, search, and video content
 ### Animation System
 Scroll-triggered animations and interactive elements use CSS transitions and transforms for optimal performance. JavaScript intersection observers detect when elements enter the viewport to trigger animations, providing smooth user experiences without performance impact.
 
+## Configuration Fixes and Updates
+
+### Fragment Configuration Schema Corrections (August 2025)
+- **Fixed Configuration Validation Errors**: All fragments now use correct `typeOptions.validValues` structure instead of deprecated `options` 
+- **Fixed FreeMarker Syntax Error**: Header fragment now uses `themeDisplay.getUser().getFullName()` instead of `themeDisplay.getUserName()`
+- **Affected Fragments**: All fragments with select fields (JM Header, Hero, News Carousel, Share Price, Company Overview, Footer)
+- **ZIP Files Updated**: All individual fragment ZIPs and collection ZIP regenerated with corrected configurations
+
 ## External Dependencies
 
 ### Liferay Platform

@@ -43,20 +43,22 @@
           "description": "Choose the overview section layout",
           "type": "select",
           "defaultValue": "side-by-side",
-          "options": [
-            {
-              "label": "Side by Side",
-              "value": "side-by-side"
-            },
-            {
-              "label": "Stacked Layout",
-              "value": "stacked"
-            },
-            {
-              "label": "Media First",
-              "value": "media-first"
-            }
-          ]
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Side by Side",
+                "value": "side-by-side"
+              },
+              {
+                "label": "Stacked Layout",
+                "value": "stacked"
+              },
+              {
+                "label": "Media First",
+                "value": "media-first"
+              }
+            ]
+          }
         },
         {
           "name": "colorScheme",
@@ -64,20 +66,22 @@
           "description": "Choose the color scheme for the section",
           "type": "select",
           "defaultValue": "primary",
-          "options": [
-            {
-              "label": "Primary Colors",
-              "value": "primary"
-            },
-            {
-              "label": "Secondary Colors",
-              "value": "secondary"
-            },
-            {
-              "label": "Neutral Tones",
-              "value": "neutral"
-            }
-          ]
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Primary Colors",
+                "value": "primary"
+              },
+              {
+                "label": "Secondary Colors",
+                "value": "secondary"
+              },
+              {
+                "label": "Neutral Tones",
+                "value": "neutral"
+              }
+            ]
+          }
         },
         {
           "name": "compactMode",

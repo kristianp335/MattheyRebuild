@@ -57,20 +57,22 @@
           "description": "Choose the visual theme for the widget",
           "type": "select",
           "defaultValue": "standard",
-          "options": [
-            {
-              "label": "Standard Theme",
-              "value": "standard"
-            },
-            {
-              "label": "Dark Theme",
-              "value": "dark"
-            },
-            {
-              "label": "Minimal Theme",
-              "value": "minimal"
-            }
-          ]
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Standard Theme",
+                "value": "standard"
+              },
+              {
+                "label": "Dark Theme",
+                "value": "dark"
+              },
+              {
+                "label": "Minimal Theme",
+                "value": "minimal"
+              }
+            ]
+          }
         }
       ]
     }

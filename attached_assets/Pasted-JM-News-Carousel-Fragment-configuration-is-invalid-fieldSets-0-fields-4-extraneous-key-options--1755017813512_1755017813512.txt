@@ -1,0 +1,12 @@
+JM News Carousel
+Fragment configuration is invalid. /fieldSets/0/fields/4: extraneous key [options] is not permitted /fieldSets/0/fields/4: required key [typeOptions] not found /fieldSets/0/fields/5: extraneous key [options] is not permitted /fieldSets/0/fields/5: required key [typeOptions] not found
+JM Header
+FreeMarker syntax is invalid. The following has evaluated to null or missing: ==> themeDisplay.getUserName [in template "template_id" at line 40, column 46] ---- Tip: It's the step after the last dot that caused this error, not those before it. ---- Tip: If the failing expression is known to legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use [#if myOptionalVar??]when-present[#else]when-missing[/#if]. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)?? ---- ---- FTL stack trace ("~" means nesting-related): - Failed at: ${themeDisplay.getUserName()} [in template "template_id" at line 40, column 44] ----
+JM Footer
+Fragment configuration is invalid. /fieldSets/0/fields/4: extraneous key [options] is not permitted /fieldSets/0/fields/4: required key [typeOptions] not found /fieldSets/0/fields/5: extraneous key [options] is not permitted /fieldSets/0/fields/5: required key [typeOptions] not found /fieldSets/0/fields/7: extraneous key [options] is not permitted /fieldSets/0/fields/7: required key [typeOptions] not found
+JM Hero
+Fragment configuration is invalid. /fieldSets/0/fields/4: extraneous key [options] is not permitted /fieldSets/0/fields/4: required key [typeOptions] not found /fieldSets/0/fields/5: extraneous key [options] is not permitted /fieldSets/0/fields/5: required key [typeOptions] not found
+JM Company Overview
+Fragment configuration is invalid. /fieldSets/0/fields/5: extraneous key [options] is not permitted /fieldSets/0/fields/5: required key [typeOptions] not found /fieldSets/0/fields/6: extraneous key [options] is not permitted /fieldSets/0/fields/6: required key [typeOptions] not found
+JM Share Price
+Fragment configuration is invalid. /fieldSets/0/fields/7: extraneous key [options] is not permitted /fieldSets/0/fields/7: required key [typeOptions] not found

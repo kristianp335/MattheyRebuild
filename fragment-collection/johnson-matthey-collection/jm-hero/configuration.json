@@ -36,20 +36,22 @@
           "description": "Choose the hero section layout",
           "type": "select",
           "defaultValue": "text-left",
-          "options": [
-            {
-              "label": "Text Left, Image Right",
-              "value": "text-left"
-            },
-            {
-              "label": "Text Right, Image Left",
-              "value": "text-right"
-            },
-            {
-              "label": "Centered Layout",
-              "value": "centered"
-            }
-          ]
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Text Left, Image Right",
+                "value": "text-left"
+              },
+              {
+                "label": "Text Right, Image Left",
+                "value": "text-right"
+              },
+              {
+                "label": "Centered Layout",
+                "value": "centered"
+              }
+            ]
+          }
         },
         {
           "name": "backgroundStyle",
@@ -57,20 +59,22 @@
           "description": "Choose background appearance",
           "type": "select",
           "defaultValue": "gradient",
-          "options": [
-            {
-              "label": "Gradient Background",
-              "value": "gradient"
-            },
-            {
-              "label": "Solid Color",
-              "value": "solid"
-            },
-            {
-              "label": "Image Background",
-              "value": "image"
-            }
-          ]
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Gradient Background",
+                "value": "gradient"
+              },
+              {
+                "label": "Solid Color",
+                "value": "solid"
+              },
+              {
+                "label": "Image Background",
+                "value": "image"
+              }
+            ]
+          }
         }
       ]
     }

@@ -36,24 +36,26 @@
           "description": "Number of slides visible on desktop screens",
           "type": "select",
           "defaultValue": "3",
-          "options": [
-            {
-              "label": "1 Slide",
-              "value": "1"
-            },
-            {
-              "label": "2 Slides",
-              "value": "2"
-            },
-            {
-              "label": "3 Slides",
-              "value": "3"
-            },
-            {
-              "label": "4 Slides",
-              "value": "4"
-            }
-          ]
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "1 Slide",
+                "value": "1"
+              },
+              {
+                "label": "2 Slides",
+                "value": "2"
+              },
+              {
+                "label": "3 Slides",
+                "value": "3"
+              },
+              {
+                "label": "4 Slides",
+                "value": "4"
+              }
+            ]
+          }
         },
         {
           "name": "carouselStyle",
@@ -61,20 +63,22 @@
           "description": "Choose the visual style for the carousel",
           "type": "select",
           "defaultValue": "standard",
-          "options": [
-            {
-              "label": "Standard Cards",
-              "value": "standard"
-            },
-            {
-              "label": "Compact Cards",
-              "value": "compact"
-            },
-            {
-              "label": "Featured Layout",
-              "value": "featured"
-            }
-          ]
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Standard Cards",
+                "value": "standard"
+              },
+              {
+                "label": "Compact Cards",
+                "value": "compact"
+              },
+              {
+                "label": "Featured Layout",
+                "value": "featured"
+              }
+            ]
+          }
         }
       ]
     }
