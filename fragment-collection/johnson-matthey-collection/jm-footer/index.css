@@ -12,12 +12,57 @@
   padding-top: var(--jm-spacing-xxl);
 }
 
+/* Footer Style Variants */
+#wrapper .jm-footer[data-style="dark"] {
+  background: var(--jm-dark) !important;
+  color: var(--jm-white) !important;
+}
+
+#wrapper .jm-footer[data-style="light"] {
+  background: var(--jm-gray-100) !important;
+  color: var(--jm-gray-800) !important;
+}
+
+#wrapper .jm-footer[data-style="light"] .jm-footer-description {
+  color: var(--jm-gray-600) !important;
+}
+
+#wrapper .jm-footer[data-style="light"] .jm-footer-title {
+  color: var(--jm-gray-800) !important;
+}
+
+#wrapper .jm-footer[data-style="light"] .jm-footer-links a {
+  color: var(--jm-gray-600) !important;
+}
+
+#wrapper .jm-footer[data-style="light"] .jm-footer-links a:hover {
+  color: var(--jm-primary) !important;
+}
+
+#wrapper .jm-footer[data-style="primary"] {
+  background: var(--jm-primary) !important;
+  color: var(--jm-white) !important;
+}
+
 /* Main Footer Content */
 #wrapper .jm-footer-main {
   display: grid;
   grid-template-columns: 2fr repeat(4, 1fr);
   gap: var(--jm-spacing-xl);
   margin-bottom: var(--jm-spacing-xl);
+}
+
+/* Footer Column Layout Variants */
+#wrapper .jm-footer-main[data-layout="5-column"] {
+  grid-template-columns: 2fr repeat(4, 1fr);
+}
+
+#wrapper .jm-footer-main[data-layout="4-column"] {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#wrapper .jm-footer-main[data-layout="3-column"] {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 /* Company Section */

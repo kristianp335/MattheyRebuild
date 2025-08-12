@@ -33,6 +33,10 @@
     function initializeFooter() {
         console.log('Johnson Matthey Footer Fragment initializing...');
         
+        // Get and apply configuration
+        const config = getFragmentConfiguration();
+        applyConfiguration(config);
+        
         // Initialize back to top functionality
         initializeBackToTop();
         
@@ -45,7 +49,89 @@
         // Initialize social media tracking (if needed)
         initializeSocialTracking();
         
-        console.log('Johnson Matthey Footer Fragment initialized');
+        console.log('Johnson Matthey Footer Fragment initialized with config:', config);
+    }
+    
+    /**
+     * Get fragment configuration from Liferay
+     */
+    function getFragmentConfiguration() {
+        // Try to get configuration from Liferay's fragment configuration system
+        if (typeof configuration !== 'undefined') {
+            return {
+                showNewsletter: configuration.showNewsletter !== undefined ? configuration.showNewsletter : false,
+                showSocialMedia: configuration.showSocialMedia !== undefined ? configuration.showSocialMedia : true,
+                showBackToTop: configuration.showBackToTop !== undefined ? configuration.showBackToTop : true,
+                companyName: configuration.companyName || 'Johnson Matthey',
+                footerStyle: configuration.footerStyle || 'dark',
+                columnLayout: configuration.columnLayout || '5-column',
+                enableTracking: configuration.enableTracking !== undefined ? configuration.enableTracking : true,
+                newsletterService: configuration.newsletterService || 'custom'
+            };
+        }
+        
+        // Fallback default values if configuration is not available
+        return {
+            showNewsletter: false,
+            showSocialMedia: true,
+            showBackToTop: true,
+            companyName: 'Johnson Matthey',
+            footerStyle: 'dark',
+            columnLayout: '5-column',
+            enableTracking: true,
+            newsletterService: 'custom'
+        };
+    }
+    
+    /**
+     * Apply configuration settings to the footer
+     */
+    function applyConfiguration(config) {
+        const footer = fragmentElement.querySelector('.jm-footer');
+        const newsletterSection = fragmentElement.querySelector('#jm-newsletter-section');
+        const socialMediaSection = fragmentElement.querySelector('.jm-footer-social');
+        const backToTopBtn = fragmentElement.querySelector('.jm-back-to-top-btn');
+        const companyNameElements = fragmentElement.querySelectorAll('.jm-company-name');
+        const footerColumns = fragmentElement.querySelector('.jm-footer-main');
+        
+        // Apply footer style
+        if (footer) {
+            footer.setAttribute('data-style', config.footerStyle);
+            console.log('Footer style applied:', config.footerStyle);
+        }
+        
+        // Apply column layout
+        if (footerColumns) {
+            footerColumns.setAttribute('data-layout', config.columnLayout);
+            console.log('Footer layout applied:', config.columnLayout);
+        }
+        
+        // Show/hide newsletter section
+        if (newsletterSection) {
+            newsletterSection.style.display = config.showNewsletter ? 'block' : 'none';
+            console.log('Newsletter section:', config.showNewsletter ? 'shown' : 'hidden');
+        }
+        
+        // Show/hide social media section
+        if (socialMediaSection) {
+            socialMediaSection.style.display = config.showSocialMedia ? 'flex' : 'none';
+            console.log('Social media section:', config.showSocialMedia ? 'shown' : 'hidden');
+        }
+        
+        // Show/hide back to top button
+        if (backToTopBtn) {
+            backToTopBtn.style.display = config.showBackToTop ? 'block' : 'none';
+            console.log('Back to top button:', config.showBackToTop ? 'shown' : 'hidden');
+        }
+        
+        // Update company name
+        companyNameElements.forEach(element => {
+            if (element) {
+                element.textContent = config.companyName;
+            }
+        });
+        
+        console.log('Configuration applied:', config);
     }
     
     function initializeBackToTop() {
