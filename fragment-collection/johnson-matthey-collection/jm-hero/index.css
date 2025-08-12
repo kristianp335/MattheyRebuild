@@ -38,7 +38,6 @@
 #wrapper .jm-hero-stats {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
   gap: var(--jm-spacing-lg);
   margin-bottom: var(--jm-spacing-xl);
 }
@@ -269,6 +268,7 @@
     flex-direction: row;
     gap: var(--jm-spacing-sm);
     align-items: center;
+    margin: auto;
   }
 }
 
