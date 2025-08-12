@@ -5,12 +5,30 @@
     const fragmentElement = document.currentScript.closest('.jm-footer-fragment');
     if (!fragmentElement) return;
     
-    // Initialize footer functionality
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeFooter);
-    } else {
-        initializeFooter();
+    // Initialize on DOM ready and SPA navigation events
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
     }
+    
+    // Initial load
+    ready(initializeFooter);
+    
+    // Listen for Liferay SPA navigation events
+    if (window.Liferay) {
+        Liferay.on('allPortletsReady', function(event) {
+            console.log('SPA navigation complete - reinitializing footer');
+            setTimeout(initializeFooter, 100);
+        });
+    }
+    
+    // Listen for standard navigation events
+    document.addEventListener('navigate', function(event) {
+        setTimeout(initializeFooter, 100);
+    });
     
     function initializeFooter() {
         console.log('Johnson Matthey Footer Fragment initializing...');

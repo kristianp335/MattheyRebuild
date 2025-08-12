@@ -8,12 +8,30 @@
     let priceUpdateInterval = null;
     let currentTimeframe = '1D';
     
-    // Initialize share price widget
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeSharePrice);
-    } else {
-        initializeSharePrice();
+    // Initialize on DOM ready and SPA navigation events
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
     }
+    
+    // Initial load
+    ready(initializeSharePrice);
+    
+    // Listen for Liferay SPA navigation events
+    if (window.Liferay) {
+        Liferay.on('allPortletsReady', function(event) {
+            console.log('SPA navigation complete - reinitializing share price');
+            setTimeout(initializeSharePrice, 100);
+        });
+    }
+    
+    // Listen for standard navigation events
+    document.addEventListener('navigate', function(event) {
+        setTimeout(initializeSharePrice, 100);
+    });
     
     function initializeSharePrice() {
         console.log('Johnson Matthey Share Price Fragment initializing...');

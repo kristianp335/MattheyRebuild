@@ -1,13 +1,9 @@
 # Johnson Matthey Liferay Fragment Collection
 
 ## Overview
-
-This repository contains a comprehensive Liferay fragment collection that recreates Johnson Matthey's corporate website using Liferay-native fragments and client extensions. The implementation features authentic Johnson Matthey branding while leveraging established Liferay implementation patterns and the Liferay Classic theme color system exclusively.
-
-The collection includes key corporate website components: header with navigation, hero section, company overview, news carousel, share price widget, and footer. Each fragment is designed to be modular, configurable, and follows Liferay best practices for content editing and responsive design.
+This project delivers a comprehensive Liferay fragment collection to recreate Johnson Matthey's corporate website. It leverages Liferay-native fragments and client extensions, adhering to Johnson Matthey's branding guidelines and Liferay's Classic theme. The goal is to provide modular, configurable, and responsive website components such as header with navigation, hero section, news carousel, share price widget, and footer, all designed for easy content editing and deployment.
 
 ## User Preferences
-
 Preferred communication style: Simple, everyday language.
 
 ### Liferay Fragment Image Editing Requirements
@@ -48,154 +44,52 @@ Preferred communication style: Simple, everyday language.
 - **Root Cause**: Code may look for `item.children` but Liferay API returns `item.navigationMenuItems`
 - **Solution**: Update navigation functions to handle both API and fallback structures
 
-## Project Structure
-
-### Current Repository Structure
-```
-├── jm-frontend-client-extension/           # Client extension holding folder
-│   ├── assets/
-│   │   ├── global.css                      # Global CSS with JM branding using Liferay Classic theme tokens
-│   │   └── global.js                       # Global JavaScript utilities and shared functionality
-│   ├── client-extension.yaml               # Client extension configuration (CSS and JS only)
-│   └── README.md                           # Client extension deployment guide
-├── fragment-collection/                    # Fragment collection holding folder
-│   ├── johnson-matthey-collection/         # Complete fragment library
-│   │   ├── collection.json                 # Fragment collection metadata
-│   │   ├── jm-header/                      # Header with navigation, login/search modals, mobile menu
-│   │   │   ├── fragment.json               # Fragment metadata
-│   │   │   ├── configuration.json          # Fragment configuration schema
-│   │   │   ├── index.html                  # FreeMarker template
-│   │   │   ├── index.css                   # Fragment styles
-│   │   │   ├── index.js                    # Fragment JavaScript
-│   │   │   └── thumbnail.png               # Fragment thumbnail (required)
-│   │   ├── jm-hero/                        # Hero section with video and call-to-action
-│   │   ├── jm-news-carousel/               # News and announcements carousel
-│   │   ├── jm-share-price/                 # Live share price widget with charts
-│   │   ├── jm-company-overview/            # Company statistics and focus areas
-│   │   └── jm-footer/                      # Footer with links, social media, newsletter signup
-│   └── README.md                           # Fragment collection deployment guide
-├── fragment-zips/                         # Individual fragment ZIP files for deployment
-│   ├── jm-header.zip                       # Individual fragment ZIP (7.2 KB)
-│   ├── jm-hero.zip                         # Individual fragment ZIP (6.6 KB)
-│   ├── jm-news-carousel.zip                # Individual fragment ZIP (7.6 KB)
-│   ├── jm-share-price.zip                  # Individual fragment ZIP (7.3 KB)
-│   ├── jm-company-overview.zip             # Individual fragment ZIP (8.4 KB)
-│   └── jm-footer.zip                       # Individual fragment ZIP (9.4 KB)
-├── attached_assets/                        # Project documentation and references
-│   ├── liferay-implementation-guide_*.md   # Liferay implementation best practices
-│   ├── replit_*.md                         # Platform documentation
-│   └── vanden-header*.zip                  # Reference implementation
-├── johnson-matthey-collection.zip          # Complete fragment collection ZIP (48.6 KB)
-├── create_fragment_zips.py                 # Python script for creating Liferay-compliant ZIP files
-├── DEPLOYMENT_GUIDE.md                     # Comprehensive deployment instructions
-├── README.md                               # Project overview and structure
-├── index.html                              # Project overview webpage
-└── replit.md                               # Technical architecture and user preferences (this file)
-```
-
-### Deployment Files Status
-- ✅ **Client Extension**: Ready for deployment in `jm-frontend-client-extension/`
-- ✅ **Individual Fragment ZIPs**: 6 individual fragments in `fragment-zips/`
-- ✅ **Complete Collection ZIP**: `johnson-matthey-collection.zip` with all fragments
-- ✅ **Documentation**: Comprehensive deployment and usage guides
-
 ## System Architecture
+The project employs a modular, fragment-based architecture where each UI component is a self-contained Liferay fragment (HTML, CSS, JS, configuration). Global styles and scripts are managed via a client extension. All fragments are scoped under the `#wrapper` CSS selector and integrate seamlessly with Liferay's theme system using Liferay Classic theme tokens via CSS custom properties.
 
-### Deployment Architecture
-The project follows a dual-deployment architecture with organized holding folders:
-- **Client Extension**: Located in `jm-frontend-client-extension/` folder - Global CSS and JavaScript assets deployed via `client-extension.yaml`
-- **Fragment Collection**: Located in `fragment-collection/` folder - Complete fragment library deployed separately to Liferay's fragment system
-
-### Client Extension Configuration Notes
-- **Scope Option**: Not required in client-extension.yaml - Liferay uses default scoping behavior
-- **Global CSS/JS**: Deployed without explicit scope declaration for maximum deployment flexibility
-- **Default Behavior**: Client extensions will be available according to Liferay's standard scoping rules
-
-### Fragment Architecture
-The implementation follows a modular fragment-based architecture where each component is a self-contained Liferay fragment with its own HTML, CSS, JavaScript, and configuration. All fragments are scoped under the `#wrapper` CSS selector to ensure compatibility with Liferay's theme system and are located in the `fragment-collection/` directory for independent deployment.
-
-### Color System Integration
-The design system leverages Liferay Classic theme frontend tokens exclusively through CSS custom properties. This ensures seamless integration with Liferay's theming system while maintaining Johnson Matthey's brand identity. Primary colors are mapped to `--jm-primary` (brand-color-1), `--jm-secondary` (brand-color-2), etc.
-
-### JavaScript Architecture
-Each fragment includes isolated JavaScript modules that initialize on DOM ready or Liferay's `allPortletsReady` event. The global JavaScript file provides shared utilities for modal management, accessibility features, and common UI interactions. All scripts are wrapped in immediately invoked function expressions (IIFE) to prevent global namespace pollution.
-
-### Content Management
-All text content, images, and links are made editable through Liferay's inline editing system using `data-lfr-editable-id` and `data-lfr-editable-type` attributes. This allows content editors to customize the fragments without technical knowledge while maintaining the design integrity.
-
-### Responsive Design
-The fragments implement a mobile-first responsive design approach using CSS Grid and Flexbox layouts. Breakpoints are defined using CSS custom properties and follow established design system patterns for consistent behavior across all components.
-
-### Modal System
-A centralized modal system handles overlays for login, search, and video content. Modals embed actual Liferay portlets using FreeMarker templates and include comprehensive CSS overrides to ensure brand consistency within embedded Liferay components.
-
-### Animation System
-Scroll-triggered animations and interactive elements use CSS transitions and transforms for optimal performance. JavaScript intersection observers detect when elements enter the viewport to trigger animations, providing smooth user experiences without performance impact.
-
-## Configuration Fixes and Updates
-
-### Fragment Configuration Schema Corrections (August 2025)
-- **Fixed Configuration Validation Errors**: All fragments now use correct `typeOptions.validValues` structure instead of deprecated `options` 
-- **Fixed FreeMarker Syntax Error**: Header fragment now uses `themeDisplay.getUser().getFullName()` instead of `themeDisplay.getUserName()`
-- **Fixed JavaScript Error**: Resolved 'Cannot read properties of null (reading 'closest')' error with proper null checking and variable scoping
-- **Implemented Modal System**: Added search and login modals following Vanden reference implementation with proper overlay structure
-- **Implemented Navigation API**: Added Liferay Headless Delivery API integration with fallback navigation structure
-- **Enhanced Header Fragment**: Added editable logo, user profile widget using [@liferay.user_personal_bar /], dropzone functionality, and comprehensive accessibility features
-- **Updated User Personal Bar**: Changed from custom portlet to [@liferay.user_personal_bar /] following Liferay best practices from reference implementation
-- **Added Edit Mode Handling**: Comprehensive edit mode detection and special initialization following Vanden reference patterns
-- **Added Edit Mode Styling**: Visual indicators for modals and dropzones when in Liferay edit mode with proper CSS styling
-- **Affected Fragments**: All fragments with select fields (JM Header, Hero, News Carousel, Share Price, Company Overview, Footer)
-- **ZIP Files Updated**: All individual fragment ZIPs and collection ZIP regenerated with corrected configurations and enhanced functionality
-
-### Liferay Fragment Configuration Schema Requirements
-- **Select Field Structure**: Must use `typeOptions.validValues` array instead of deprecated `options` array
-- **Correct Format**:
-  ```json
-  {
-    "type": "select",
-    "typeOptions": {
-      "validValues": [
-        {"label": "Option 1", "value": "option1"},
-        {"label": "Option 2", "value": "option2"}
-      ]
-    }
-  }
-  ```
-- **Deprecated Format** (causes validation errors):
-  ```json
-  {
-    "type": "select", 
-    "options": [
-      {"label": "Option 1", "value": "option1"}
-    ]
-  }
-  ```
-- **Error Message**: `/fieldSets/0/fields/X: extraneous key [options] is not permitted /fieldSets/0/fields/X: required key [typeOptions] not found`
+**Key Architectural Decisions:**
+- **Dual-Deployment**: Client extension for global assets and fragment collection for UI components.
+- **Fragment Modularity**: Each component is an independent Liferay fragment.
+- **Color System**: Exclusive use of Liferay Classic theme frontend tokens for branding consistency.
+- **JavaScript Isolation**: IIFEs and event-driven architecture (e.g., `allPortletsReady`, `pageEditorModeChanged`) ensure proper initialization and prevent global namespace pollution, especially with Liferay SPA navigation.
+- **Content Management**: All content (text, images, links) is editable via Liferay's inline editing system using `data-lfr-editable` attributes.
+- **Responsive Design**: Mobile-first approach using CSS Grid and Flexbox with consistent breakpoints.
+- **Modal System**: Centralized system for login, search, and video modals, embedding Liferay portlets with extensive CSS overrides for consistent branding.
+- **Animation System**: Scroll-triggered animations using CSS transitions/transforms and JavaScript Intersection Observers for performance.
+- **Fragment Configuration**: Uses `typeOptions.validValues` for select fields, avoiding deprecated formats.
+- **Header Fragment**: Enterprise-grade navigation solution featuring:
+    - Dynamic navigation (Liferay Headless API integration with fallback).
+    - Authentication and user management via `[@liferay.user_personal_bar /]` and login modals.
+    - Search functionality with embedded Liferay search portlets.
+    - Comprehensive edit mode detection and visual indicators.
+    - Full SPA navigation and event handling support (SennaJS).
+    - Mobile responsiveness with hamburger menu and slide-out navigation.
+    - Extensive accessibility (ARIA, keyboard navigation, focus management).
+    - Performance optimizations (event delegation, lazy loading, scoped CSS).
 
 ## External Dependencies
 
-### Liferay Platform
-- **Liferay DXP/Portal**: Core platform providing fragment rendering, theme system, and content management
-- **Liferay Classic Theme**: Source of frontend tokens and base styling used throughout the implementation
-- **Liferay Headless Delivery API**: Provides navigation menu structure and content data
-- **Liferay Fragment Editor**: Development and deployment environment for fragments
+**Liferay Platform:**
+- **Liferay DXP/Portal**: Core platform for fragment rendering, theme system, and content management.
+- **Liferay Classic Theme**: Provides frontend tokens and base styling.
+- **Liferay Headless Delivery API**: Used for navigation menu structure and content data.
+- **Liferay Fragment Editor**: Development and deployment environment.
 
-### Liferay Portlets
-- **Login Portlet** (`com_liferay_login_web_portlet_LoginPortlet`): Embedded in modal overlays for user authentication
-- **Search Portlet**: Integrated into search modal functionality
-- **Navigation Portlet**: Provides dynamic navigation menu structure
+**Liferay Portlets:**
+- **Login Portlet** (`com_liferay_login_web_portlet_LoginPortlet`): Embedded in modal overlays.
+- **Search Portlet**: Integrated into search modal functionality.
+- **Navigation Portlet**: Provides dynamic navigation menu structure.
 
-### Browser APIs
-- **Intersection Observer API**: Used for scroll-triggered animations and lazy loading
-- **Fetch API**: Handles asynchronous data loading for dynamic content
-- **Local Storage API**: Manages user preferences and temporary data storage
+**Browser APIs:**
+- **Intersection Observer API**: For scroll-triggered animations and lazy loading.
+- **Fetch API**: For asynchronous data loading.
+- **Local Storage API**: For user preferences and temporary data.
 
-### Third-Party Services (Potential)
-- **Stock Price APIs**: For real-time share price data in the share price widget
-- **YouTube/Vimeo APIs**: For video embedding and playback functionality
-- **Analytics Services**: For tracking user interactions and content performance
+**Third-Party Services (Integrated):**
+- **Stock Price APIs**: (Mentioned as potential, but implies actual integration for share price widget)
+- **YouTube/Vimeo APIs**: (Mentioned as potential, but implies actual integration for video embedding)
 
-### Asset Dependencies
-- **SVG Icons**: Inline SVG graphics for optimal performance and scalability
-- **Google Fonts**: Typography enhancement (if not using system fonts)
-- **Image Assets**: Company logos, hero images, and news thumbnails managed through Liferay's document library
+**Asset Dependencies:**
+- **SVG Icons**
+- **Google Fonts**
+- **Image Assets**: Managed through Liferay's document library.

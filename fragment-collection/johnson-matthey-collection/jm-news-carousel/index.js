@@ -11,12 +11,30 @@
     let autoplayInterval = null;
     let isAutoplayPaused = false;
     
-    // Initialize carousel
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeCarousel);
-    } else {
-        initializeCarousel();
+    // Initialize on DOM ready and SPA navigation events
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
     }
+    
+    // Initial load
+    ready(initializeCarousel);
+    
+    // Listen for Liferay SPA navigation events
+    if (window.Liferay) {
+        Liferay.on('allPortletsReady', function(event) {
+            console.log('SPA navigation complete - reinitializing news carousel');
+            setTimeout(initializeCarousel, 100);
+        });
+    }
+    
+    // Listen for standard navigation events
+    document.addEventListener('navigate', function(event) {
+        setTimeout(initializeCarousel, 100);
+    });
     
     function initializeCarousel() {
         console.log('Johnson Matthey News Carousel Fragment initializing...');

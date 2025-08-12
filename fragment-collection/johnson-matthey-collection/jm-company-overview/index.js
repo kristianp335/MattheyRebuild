@@ -5,12 +5,30 @@
     const fragmentElement = document.currentScript.closest('.jm-company-overview-fragment');
     if (!fragmentElement) return;
     
-    // Initialize company overview functionality
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeCompanyOverview);
-    } else {
-        initializeCompanyOverview();
+    // Initialize on DOM ready and SPA navigation events
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
     }
+    
+    // Initial load
+    ready(initializeCompanyOverview);
+    
+    // Listen for Liferay SPA navigation events
+    if (window.Liferay) {
+        Liferay.on('allPortletsReady', function(event) {
+            console.log('SPA navigation complete - reinitializing company overview');
+            setTimeout(initializeCompanyOverview, 100);
+        });
+    }
+    
+    // Listen for standard navigation events
+    document.addEventListener('navigate', function(event) {
+        setTimeout(initializeCompanyOverview, 100);
+    });
     
     function initializeCompanyOverview() {
         console.log('Johnson Matthey Company Overview Fragment initializing...');

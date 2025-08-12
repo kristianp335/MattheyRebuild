@@ -5,12 +5,30 @@
     const fragmentElement = document.currentScript.closest('.jm-hero-fragment');
     if (!fragmentElement) return;
     
-    // Initialize hero functionality
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeHero);
-    } else {
-        initializeHero();
+    // Initialize on DOM ready and SPA navigation events
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
     }
+    
+    // Initial load
+    ready(initializeHero);
+    
+    // Listen for Liferay SPA navigation events
+    if (window.Liferay) {
+        Liferay.on('allPortletsReady', function(event) {
+            console.log('SPA navigation complete - reinitializing hero');
+            setTimeout(initializeHero, 100);
+        });
+    }
+    
+    // Listen for standard navigation events
+    document.addEventListener('navigate', function(event) {
+        setTimeout(initializeHero, 100);
+    });
     
     function initializeHero() {
         console.log('Johnson Matthey Hero Fragment initializing...');

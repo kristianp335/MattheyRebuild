@@ -10,12 +10,60 @@
         fragmentElement = headerFragments[headerFragments.length - 1]; // Use the last one as fallback
     }
     
-    // Wait for DOM to be ready before initializing
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeHeader);
-    } else {
-        initializeHeader();
+    // Initialize on DOM ready and SPA navigation events
+    function ready(fn) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fn);
+        } else {
+            fn();
+        }
     }
+    
+    // Initial load
+    ready(initializeHeader);
+    
+    // Listen for Liferay SPA navigation events
+    if (window.Liferay) {
+        // Listen for all portlets ready (SennaJS navigation complete)
+        Liferay.on('allPortletsReady', function(event) {
+            console.log('SPA navigation complete - reinitializing header');
+            setTimeout(initializeHeader, 100);
+        });
+        
+        // Listen for page editor events
+        Liferay.on('pageEditorModeChanged', function(event) {
+            console.log('Page editor mode changed:', event);
+            setTimeout(initializeHeader, 100);
+        });
+    }
+    
+    // Listen for standard navigation events
+    document.addEventListener('navigate', function(event) {
+        setTimeout(initializeHeader, 100);
+    });
+    
+    // Listen for hash changes
+    window.addEventListener('hashchange', function(event) {
+        console.log('Hash changed, reinitializing header');
+        setTimeout(initializeHeader, 200);
+    });
+    
+    // Listen for body class changes (edit mode detection)
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && 
+                mutation.target === document.body && 
+                mutation.attributeName === 'class') {
+                console.log('Body class changed, reinitializing header');
+                setTimeout(initializeHeader, 100);
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
     
     function initializeHeader() {
         console.log('Johnson Matthey Header Fragment initializing...');
