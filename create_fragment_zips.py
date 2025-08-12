@@ -44,11 +44,18 @@ FRAGMENTS = {
 }
 
 def create_thumbnail(fragment_path):
-    """Create a simple PNG thumbnail for the fragment"""
+    """Create a thumbnail only if one doesn't exist"""
+    thumbnail_path = os.path.join(fragment_path, 'thumbnail.png')
+    if os.path.exists(thumbnail_path):
+        print(f"✓ Using existing thumbnail: {thumbnail_path}")
+        return
+        
+    # Create placeholder thumbnail only if none exists
     thumbnail_content = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x96\x00\x00\x00\x96\x08\x06\x00\x00\x00\xe0\x98\x86\x8f\x00\x00\x00\x19tEXtSoftware\x00Adobe ImageReadyq\xc9e<\x00\x00\x03~IDATx\xda\xec\xdd\xcf\x8b\x13A\x14\x07\xf0\xcf\xbb\xbb\xbb\xf7\xde\xfb\xef\xbd\xf7\x9e\xfb\xe6\xcd\x9b7o\xde\xbc\xc9\x9b7o\xde\xbc\xc9\x9b\x07p\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00IEND\xaeB`\x82'
     
-    with open(os.path.join(fragment_path, 'thumbnail.png'), 'wb') as f:
+    with open(thumbnail_path, 'wb') as f:
         f.write(thumbnail_content)
+    print(f"✓ Created placeholder thumbnail: {thumbnail_path}")
 
 def create_fragment_json(fragment_path, fragment_key, fragment_data):
     """Create fragment.json file for a fragment"""
@@ -153,6 +160,18 @@ def create_collection_zip():
                         rel_path = os.path.relpath(file_path, base_path)
                         archive_path = f"{collection_name}/{rel_path}"
                         zipf.write(file_path, archive_path)
+        
+        # Add resources directory if it exists
+        resources_path = os.path.join(base_path, "resources")
+        if os.path.exists(resources_path):
+            for root, dirs, files in os.walk(resources_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    # Create archive path: collection-name/resources/filename
+                    rel_path = os.path.relpath(file_path, base_path)
+                    archive_path = f"{collection_name}/{rel_path}"
+                    zipf.write(file_path, archive_path)
+            print("✓ Added resources directory to collection ZIP")
     
     print(f"✓ Created collection ZIP: {zip_filename}")
     return zip_filename
