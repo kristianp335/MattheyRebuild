@@ -20,7 +20,7 @@ Located in `fragment-zips/` directory:
 - `jm-footer.zip` (9.4 KB) - Footer with social links and newsletter
 
 ### 🎨 Client Extension
-Located in `client-extension/` directory:
+Located in `jm-frontend-client-extension/` directory:
 - Global CSS and JavaScript for site-wide functionality
 - Johnson Matthey branding using Liferay Classic theme tokens
 
@@ -28,7 +28,7 @@ Located in `client-extension/` directory:
 
 ### Step 1: Deploy Client Extensions
 1. Navigate to Liferay's **Client Extensions** area in the admin interface
-2. Upload or deploy the `client-extension/` folder
+2. Upload or deploy the `jm-frontend-client-extension/` folder
 3. Ensure both CSS and JavaScript client extensions are activated
 4. Verify they are scoped to "company" level
 

@@ -52,7 +52,7 @@ Preferred communication style: Simple, everyday language.
 
 ### Deployment Architecture
 The project follows a dual-deployment architecture with organized holding folders:
-- **Client Extension**: Located in `client-extension/` folder - Global CSS and JavaScript assets deployed via `client-extension.yaml`
+- **Client Extension**: Located in `jm-frontend-client-extension/` folder - Global CSS and JavaScript assets deployed via `client-extension.yaml`
 - **Fragment Collection**: Located in `fragment-collection/` folder - Complete fragment library deployed separately to Liferay's fragment system
 
 ### Fragment Architecture
