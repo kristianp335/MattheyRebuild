@@ -76,6 +76,8 @@
         
         if (editMode) {
             console.log('Edit mode detected - using simplified initialization');
+            // Apply configuration settings even in edit mode
+            applyConfiguration(config);
             // Simplified initialization for edit mode
             renderNavigation(getSampleNavigation());
             // Initialize mobile menu and modals for edit mode
@@ -210,7 +212,12 @@
         }
         
         // Apply header style
-        header.setAttribute('data-style', config.headerStyle);
+        if (header) {
+            header.setAttribute('data-style', config.headerStyle);
+            console.log('Header style applied:', config.headerStyle, 'Element:', header);
+        } else {
+            console.warn('Header element not found for styling');
+        }
         
         // Show/hide search button
         if (searchBtn) {

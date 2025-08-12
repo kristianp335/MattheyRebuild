@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Configuration Test</title>
+    <style>
+        /* Simulate Liferay Classic theme colors */
+        :root {
+            --jm-white: #ffffff;
+            --jm-gray-100: #f8f9fa;
+            --jm-gray-300: #dee2e6;
+            --jm-gray-400: #ced4da;
+            --jm-gray-700: #495057;
+            --jm-gray-800: #343a40;
+            --jm-primary: #007bff;
+            --jm-primary-dark: #0056b3;
+            --jm-spacing-xs: 0.25rem;
+            --jm-spacing-sm: 0.5rem;
+            --jm-spacing-md: 1rem;
+            --jm-spacing-xl: 1.5rem;
+            --jm-font-size-base: 1rem;
+            --jm-font-size-sm: 0.875rem;
+            --jm-font-size-lg: 1.125rem;
+            --jm-border-radius: 0.375rem;
+            --jm-transition: all 0.2s ease;
+            --jm-box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .jm-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .test-controls {
+            background: #f0f0f0;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .test-controls button {
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .test-controls button.active {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="fragment-collection/johnson-matthey-collection/jm-header/index.css">
+</head>
+<body>
+    <div class="test-controls">
+        <h3>Header Style Configuration Test</h3>
+        <button id="white-btn" class="active">White Style</button>
+        <button id="light-btn">Light Style</button>
+        <button id="primary-btn">Primary Style</button>
+        <br><br>
+        <button id="toggle-search">Toggle Search</button>
+        <button id="toggle-user">Toggle User Menu</button>
+        <button id="toggle-sticky">Toggle Sticky</button>
+    </div>
+
+    <div id="wrapper">
+        <div class="jm-header-fragment">
+            <header class="jm-header" data-style="white">
+                <div class="jm-container">
+                    <div class="jm-header-content">
+                        <!-- Logo -->
+                        <div class="jm-header-logo">
+                            <a href="/" class="jm-logo-link">
+                                <img 
+                                    src="fragment-collection/johnson-matthey-collection/resources/johnson-matthey-logo.png"
+                                    alt="Johnson Matthey Logo"
+                                    class="jm-logo"
+                                />
+                                <span class="jm-logo-text">Johnson Matthey</span>
+                            </a>
+                        </div>
+
+                        <!-- Main Navigation -->
+                        <nav class="jm-nav" role="navigation" aria-label="Main navigation">
+                            <ul class="jm-nav-list" id="jm-main-nav">
+                                <li class="jm-nav-item">
+                                    <a href="#" class="jm-nav-link">About Us</a>
+                                </li>
+                                <li class="jm-nav-item">
+                                    <a href="#" class="jm-nav-link">Our Business</a>
+                                </li>
+                                <li class="jm-nav-item">
+                                    <a href="#" class="jm-nav-link">Sustainability</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <!-- Header Actions -->
+                        <div class="jm-header-actions">
+                            <!-- Search Button -->
+                            <button class="jm-header-action-btn jm-search-btn" aria-label="Open search">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                                    <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </button>
+
+                            <!-- Login Button -->
+                            <button class="jm-header-action-btn jm-login-btn" aria-label="Sign in">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke="currentColor" stroke-width="2"/>
+                                    <polyline points="10,17 15,12 10,7" stroke="currentColor" stroke-width="2"/>
+                                    <line x1="15" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span>Sign In</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <div style="height: 1500px; padding: 2rem; background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);">
+        <h2>Scroll to test sticky header</h2>
+        <p>This content is here to test the sticky header functionality when scrolling.</p>
+    </div>
+
+    <script>
+        // Test header style switching
+        const header = document.querySelector('.jm-header');
+        const whiteBtn = document.getElementById('white-btn');
+        const lightBtn = document.getElementById('light-btn');
+        const primaryBtn = document.getElementById('primary-btn');
+
+        function setActiveButton(activeBtn) {
+            [whiteBtn, lightBtn, primaryBtn].forEach(btn => btn.classList.remove('active'));
+            activeBtn.classList.add('active');
+        }
+
+        whiteBtn.addEventListener('click', () => {
+            header.setAttribute('data-style', 'white');
+            setActiveButton(whiteBtn);
+            console.log('Header style set to: white');
+        });
+
+        lightBtn.addEventListener('click', () => {
+            header.setAttribute('data-style', 'light');
+            setActiveButton(lightBtn);
+            console.log('Header style set to: light');
+        });
+
+        primaryBtn.addEventListener('click', () => {
+            header.setAttribute('data-style', 'primary');
+            setActiveButton(primaryBtn);
+            console.log('Header style set to: primary');
+        });
+
+        // Test configuration toggles
+        const searchBtn = document.querySelector('.jm-search-btn');
+        const loginBtn = document.querySelector('.jm-login-btn');
+
+        document.getElementById('toggle-search').addEventListener('click', () => {
+            const isVisible = searchBtn.style.display !== 'none';
+            searchBtn.style.display = isVisible ? 'none' : 'flex';
+            console.log('Search button:', isVisible ? 'hidden' : 'shown');
+        });
+
+        document.getElementById('toggle-user').addEventListener('click', () => {
+            const isVisible = loginBtn.style.display !== 'none';
+            loginBtn.style.display = isVisible ? 'none' : 'flex';
+            console.log('User button:', isVisible ? 'hidden' : 'shown');
+        });
+
+        document.getElementById('toggle-sticky').addEventListener('click', () => {
+            const isSticky = header.classList.contains('jm-sticky');
+            if (isSticky) {
+                header.classList.remove('jm-sticky');
+                console.log('Sticky header: disabled');
+            } else {
+                header.classList.add('jm-sticky');
+                console.log('Sticky header: enabled');
+            }
+        });
+
+        console.log('Header configuration test loaded');
+        console.log('Header element:', header);
+        console.log('Current data-style:', header.getAttribute('data-style'));
+    </script>
+</body>
+</html>

@@ -23,47 +23,49 @@
 
 /* Header Style Variants */
 #wrapper .jm-header[data-style="white"] {
-  background: var(--jm-white);
-  border-bottom: 1px solid var(--jm-gray-300);
+  background: var(--jm-white) !important;
+  border-bottom: 1px solid var(--jm-gray-300) !important;
 }
 
 #wrapper .jm-header[data-style="light"] {
-  background: var(--jm-gray-100);
-  border-bottom: 1px solid var(--jm-gray-400);
+  background: var(--jm-gray-100) !important;
+  border-bottom: 1px solid var(--jm-gray-400) !important;
 }
 
 #wrapper .jm-header[data-style="primary"] {
-  background: var(--jm-primary);
-  border-bottom: 1px solid var(--jm-primary-dark);
-  color: var(--jm-white);
+  background: var(--jm-primary) !important;
+  border-bottom: 1px solid var(--jm-primary-dark) !important;
+  color: var(--jm-white) !important;
 }
 
 /* Header style variants - adjust text colors */
 #wrapper .jm-header[data-style="primary"] .jm-nav-link {
-  color: var(--jm-white);
+  color: var(--jm-white) !important;
 }
 
 #wrapper .jm-header[data-style="primary"] .jm-nav-link:hover,
 #wrapper .jm-header[data-style="primary"] .jm-nav-link:focus {
-  color: var(--jm-white);
-  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--jm-white) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 #wrapper .jm-header[data-style="primary"] .jm-nav-item.active > .jm-nav-link {
-  color: var(--jm-white);
-  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--jm-white) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 #wrapper .jm-header[data-style="primary"] .jm-header-action-btn {
-  color: var(--jm-white);
-  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--jm-white) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 #wrapper .jm-header[data-style="primary"] .jm-header-action-btn:hover,
 #wrapper .jm-header[data-style="primary"] .jm-header-action-btn:focus {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
 }
+
+
 
 #wrapper .jm-header-content {
   display: flex;
@@ -103,7 +105,7 @@
 }
 
 #wrapper .jm-header[data-style="primary"] .jm-logo-text {
-  color: var(--jm-white);
+  color: var(--jm-white) !important;
 }
 
 /* Main Navigation */
