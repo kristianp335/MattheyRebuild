@@ -16,13 +16,7 @@
           "type": "checkbox",
           "defaultValue": true
         },
-        {
-          "name": "stickyHeader",
-          "label": "Sticky Header",
-          "description": "Make header stick to top when scrolling",
-          "type": "checkbox",
-          "defaultValue": true
-        },
+
 
         {
           "name": "navigationMenuId",

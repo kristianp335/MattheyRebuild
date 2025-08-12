@@ -22,48 +22,7 @@
     // Initial load
     ready(initializeHeader);
     
-    // Listen for Liferay SPA navigation events
-    if (window.Liferay) {
-        // Listen for all portlets ready (SennaJS navigation complete)
-        Liferay.on('allPortletsReady', function(event) {
-
-            setTimeout(initializeHeader, 100);
-        });
-        
-        // Listen for page editor events
-        Liferay.on('pageEditorModeChanged', function(event) {
-
-            setTimeout(initializeHeader, 100);
-        });
-    }
-    
-    // Listen for standard navigation events
-    document.addEventListener('navigate', function(event) {
-        setTimeout(initializeHeader, 100);
-    });
-    
-    // Listen for hash changes
-    window.addEventListener('hashchange', function(event) {
-
-        setTimeout(initializeHeader, 200);
-    });
-    
-    // Listen for body class changes (edit mode detection)
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'attributes' && 
-                mutation.target === document.body && 
-                mutation.attributeName === 'class') {
-
-                setTimeout(initializeHeader, 100);
-            }
-        });
-    });
-    
-    observer.observe(document.body, {
-        attributes: true,
-        attributeFilter: ['class']
-    });
+    // Single initialization only - no looping event listeners
     
     function initializeHeader() {
         // Johnson Matthey Header Fragment initializing
@@ -111,8 +70,7 @@
         // Initialize dropdowns immediately - no delay needed
         initializeDropdowns();
         
-        // Initialize sticky header functionality
-        initializeStickyHeader();
+        // Sticky header removed for performance
         
         // Johnson Matthey Header Fragment initialized
     }
@@ -174,7 +132,7 @@
             config = {
                 showSearch: configuration.showSearch !== undefined ? configuration.showSearch : true,
                 showUserMenu: configuration.showUserMenu !== undefined ? configuration.showUserMenu : true,
-                stickyHeader: configuration.stickyHeader !== undefined ? configuration.stickyHeader : true,
+
                 navigationMenuId: configuration.navigationMenuId || 'primary-menu',
                 headerStyle: configuration.headerStyle || 'white'
             };
@@ -185,7 +143,7 @@
             config = {
                 showSearch: true,
                 showUserMenu: true,
-                stickyHeader: true,
+
                 navigationMenuId: 'primary-menu',
                 headerStyle: 'white'
             };
@@ -203,21 +161,7 @@
         const userProfileWidget = fragmentElement.querySelector('.jm-user-profile-widget');
         const loginBtn = fragmentElement.querySelector('.jm-login-btn');
 
-        // Apply sticky header setting
-        if (config.stickyHeader) {
-            header.classList.add('jm-sticky');
-            
-            // Check for Liferay admin control menu and adjust positioning
-            const controlMenu = document.querySelector('.control-menu');
-            if (controlMenu) {
-                document.body.classList.add('liferay-control-menu-present');
-            } else {
-                document.body.classList.remove('liferay-control-menu-present');
-            }
-        } else {
-            header.classList.remove('jm-sticky');
-            document.body.classList.remove('liferay-control-menu-present');
-        }
+        // Sticky header functionality removed for performance
         
         // Apply header style
         if (header) {
@@ -786,12 +730,14 @@
             }
         });
         
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
+        // Escape key handling (single listener)
+        const escapeHandler = function(e) {
             if (e.key === 'Escape' && searchOverlay.classList.contains('show')) {
                 closeSearchModal();
+                document.removeEventListener('keydown', escapeHandler);
             }
-        });
+        };
+        document.addEventListener('keydown', escapeHandler);
     }
     
     function initializeLoginModal() {
@@ -849,12 +795,14 @@
             }
         });
         
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
+        // Escape key handling (single listener)
+        const escapeHandler = function(e) {
             if (e.key === 'Escape' && loginOverlay.classList.contains('show')) {
                 closeLoginModal();
+                document.removeEventListener('keydown', escapeHandler);
             }
-        });
+        };
+        document.addEventListener('keydown', escapeHandler);
     }
     
     function openSearchModal() {
@@ -863,10 +811,10 @@
             searchOverlay.classList.add('show');
             document.body.style.overflow = 'hidden';
             
-            // Focus on search input if available
+            // Focus on search input immediately - no setTimeout delay
             const searchInput = searchOverlay.querySelector('input[type="search"], input[type="text"]');
             if (searchInput) {
-                setTimeout(() => searchInput.focus(), 100);
+                searchInput.focus();
             }
         }
     }
@@ -924,33 +872,6 @@
         }
     }
     
-    function initializeStickyHeader() {
-        const header = fragmentElement.querySelector('.jm-header');
-        if (!header) return;
-
-        // Only add scroll listener if sticky header is enabled
-        const config = getFragmentConfiguration();
-        if (!config.stickyHeader) return;
-
-        // Throttled scroll handler for performance
-        let ticking = false;
-        
-        function handleScroll() {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    const scrollY = window.scrollY;
-                    if (scrollY > 50) {
-                        header.classList.add('jm-scrolled');
-                    } else {
-                        header.classList.remove('jm-scrolled');
-                    }
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-    }
+    // Sticky header functionality removed entirely for performance optimization
     
 })();
