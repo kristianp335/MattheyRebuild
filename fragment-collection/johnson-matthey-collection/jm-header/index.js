@@ -1016,7 +1016,7 @@
             const hasSticky = header.classList.contains('jm-sticky');
             
             if (scrollY > 50) { // Only log after some scrolling to reduce noise
-                console.log('Scroll position:', scrollY, '| Has sticky class:', hasSticky, '| Position:', getComputedStyle(header).position);
+                console.log(`Scroll position: ${scrollY} | Has sticky class: ${hasSticky} | Position: ${getComputedStyle(header).position} | Top: ${getComputedStyle(header).top} | Z-index: ${getComputedStyle(header).zIndex}`);
             }
         });
         
