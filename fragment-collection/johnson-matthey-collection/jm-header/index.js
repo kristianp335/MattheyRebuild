@@ -111,21 +111,14 @@
         // Initialize dropdowns immediately - no delay needed
         initializeDropdowns();
         
-        // Sticky header is handled by CSS - no JavaScript needed
+        // Initialize sticky header functionality
+        initializeStickyHeader();
         
         // Johnson Matthey Header Fragment initialized
     }
     
-    // Cached edit mode detection to avoid repeated DOM queries
-    let cachedEditMode = null;
-    
     function isInEditMode() {
-        // Cache the result to avoid repeated expensive DOM queries
-        if (cachedEditMode !== null) {
-            return cachedEditMode;
-        }
-        
-        // Very strict edit mode detection - only show modals when actually editing
+        // Simplified edit mode detection - check for key indicators
         const body = document.body;
         
         // Check for specific Liferay edit mode indicators
@@ -140,8 +133,6 @@
         // This prevents false positives on live sites that might have control menu but no editing
         const inEditMode = (hasEditModeMenu || isEditMode) && (hasPageEditor || hasEditableElements);
         
-        // Cache the result
-        cachedEditMode = inEditMode;
         return inEditMode;
     }
     
@@ -869,12 +860,14 @@
     function openSearchModal() {
         const searchOverlay = fragmentElement.querySelector('#jm-search-overlay');
         if (searchOverlay) {
-
             searchOverlay.classList.add('show');
             document.body.style.overflow = 'hidden';
-
-        } else {
-
+            
+            // Focus on search input if available
+            const searchInput = searchOverlay.querySelector('input[type="search"], input[type="text"]');
+            if (searchInput) {
+                setTimeout(() => searchInput.focus(), 100);
+            }
         }
     }
     
@@ -883,19 +876,14 @@
         if (searchOverlay) {
             searchOverlay.classList.remove('show');
             document.body.style.overflow = '';
-
         }
     }
     
     function openLoginModal() {
         const loginOverlay = fragmentElement.querySelector('#jm-login-overlay');
         if (loginOverlay) {
-
             loginOverlay.classList.add('show');
             document.body.style.overflow = 'hidden';
-
-        } else {
-
         }
     }
     
@@ -904,7 +892,6 @@
         if (loginOverlay) {
             loginOverlay.classList.remove('show');
             document.body.style.overflow = '';
-
         }
     }
     
@@ -935,10 +922,35 @@
         if (languageDropzone) {
             languageDropzone.classList.add('jm-edit-mode');
         }
-
     }
     
-    // Removed initializeStickyHeaderDebug() - sticky header is handled by CSS
-    // This eliminates unnecessary DOM queries and improves performance
+    function initializeStickyHeader() {
+        const header = fragmentElement.querySelector('.jm-header');
+        if (!header) return;
+
+        // Only add scroll listener if sticky header is enabled
+        const config = getFragmentConfiguration();
+        if (!config.stickyHeader) return;
+
+        // Throttled scroll handler for performance
+        let ticking = false;
+        
+        function handleScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    if (scrollY > 50) {
+                        header.classList.add('jm-scrolled');
+                    } else {
+                        header.classList.remove('jm-scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    }
     
 })();

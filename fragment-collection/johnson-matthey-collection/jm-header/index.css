@@ -32,6 +32,12 @@
   transition: top 0.3s ease !important;
 }
 
+/* Enhanced styling when scrolled */
+#wrapper .jm-header.jm-sticky.jm-scrolled {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(10px);
+}
+
 /* Adjust sticky header when Liferay admin control menu is present */
 body:has(.control-menu) #wrapper .jm-header.jm-sticky {
   top: 56px !important; /* Standard Liferay control menu height */
