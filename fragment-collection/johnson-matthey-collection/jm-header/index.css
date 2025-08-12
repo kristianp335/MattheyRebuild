@@ -654,6 +654,52 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   min-width: 280px;
 }
 
+/* Language Selector Dropzone */
+#wrapper .jm-language-selector-dropzone {
+  display: inline-flex;
+  align-items: center;
+  margin-left: var(--jm-spacing-sm);
+}
+
+#wrapper .jm-language-selector-dropzone lfr-drop-zone {
+  min-width: 120px;
+  min-height: 40px;
+  border: 2px dashed transparent;
+  border-radius: var(--jm-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  background: transparent;
+}
+
+/* Edit Mode Styling for Language Selector Dropzone */
+#wrapper .jm-language-selector-dropzone.jm-edit-mode lfr-drop-zone {
+  border-color: var(--jm-primary) !important;
+  background: rgba(241, 245, 249, 0.95) !important;
+  min-height: 44px;
+}
+
+#wrapper .jm-language-selector-dropzone.jm-edit-mode lfr-drop-zone:before {
+  content: "🌐 Language Selector";
+  color: var(--jm-primary);
+  font-size: var(--jm-font-size-xs);
+  font-weight: 600;
+  text-align: center;
+  padding: var(--jm-spacing-xs);
+  white-space: nowrap;
+}
+
+#wrapper .jm-language-selector-dropzone.jm-edit-mode lfr-drop-zone:not(:empty):before {
+  display: none;
+}
+
+/* Hide language dropzone in normal mode when empty */
+#wrapper .jm-language-selector-dropzone:not(.jm-edit-mode) lfr-drop-zone:empty {
+  display: none;
+}
+
 /* Override Liferay portlet styles in modals */
 #wrapper .jm-modal .portlet,
 #wrapper .jm-modal .portlet-content,

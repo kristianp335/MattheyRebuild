@@ -132,6 +132,7 @@
         // Ensure modals are hidden in live mode
         const searchOverlay = document.querySelector('#jm-search-overlay');
         const loginOverlay = document.querySelector('#jm-login-overlay');
+        const languageDropzone = fragmentElement.querySelector('.jm-language-selector-dropzone');
         
         if (searchOverlay) {
             searchOverlay.classList.remove('jm-edit-mode');
@@ -141,6 +142,10 @@
         if (loginOverlay) {
             loginOverlay.classList.remove('jm-edit-mode');
             loginOverlay.style.display = 'none';
+        }
+        
+        if (languageDropzone) {
+            languageDropzone.classList.remove('jm-edit-mode');
         }
     }
     
@@ -583,6 +588,7 @@
         
         const searchOverlay = document.querySelector('#jm-search-overlay');
         const loginOverlay = document.querySelector('#jm-login-overlay');
+        const languageDropzone = fragmentElement.querySelector('.jm-language-selector-dropzone');
         
         if (searchOverlay) {
             searchOverlay.classList.add('jm-edit-mode');
@@ -592,7 +598,11 @@
             loginOverlay.classList.add('jm-edit-mode');
         }
         
-        console.log('Edit mode display initialized - modals visible for configuration');
+        if (languageDropzone) {
+            languageDropzone.classList.add('jm-edit-mode');
+        }
+        
+        console.log('Edit mode display initialized - modals and dropzones visible for configuration');
     }
     
 })();
