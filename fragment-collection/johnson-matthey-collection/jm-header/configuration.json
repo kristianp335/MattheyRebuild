@@ -36,20 +36,22 @@
           "description": "Choose header background style",
           "type": "select",
           "defaultValue": "white",
-          "options": [
-            {
-              "label": "White Background",
-              "value": "white"
-            },
-            {
-              "label": "Light Gray Background",
-              "value": "light"
-            },
-            {
-              "label": "Primary Color Background",
-              "value": "primary"
-            }
-          ]
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "White Background",
+                "value": "white"
+              },
+              {
+                "label": "Light Gray Background",
+                "value": "light"
+              },
+              {
+                "label": "Primary Color Background",
+                "value": "primary"
+              }
+            ]
+          }
         }
       ]
     }
