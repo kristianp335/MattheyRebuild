@@ -44,6 +44,26 @@ Preferred communication style: Simple, everyday language.
 - **Root Cause**: Code may look for `item.children` but Liferay API returns `item.navigationMenuItems`
 - **Solution**: Update navigation functions to handle both API and fallback structures
 
+### Header Fragment Edit Mode System
+- **Smart Edit Detection**: Enhanced `isInEditMode()` function with multiple detection methods:
+  - `has-edit-mode-menu` and `is-edit-mode` body classes
+  - Control menu + page editor presence validation
+  - Fragment editable elements detection
+  - Real-time MutationObserver for body class changes
+- **State Management**: 
+  - `initializeEditModeDisplay()`: Adds visual indicators only in actual edit mode
+  - `ensureModalsHidden()`: Removes indicators and hides modals in normal viewing mode
+  - Prevents false positives that showed modals in normal browsing mode
+
+### Header Dropzone System Implementation
+- **Search Modal Dropzone**: `data-lfr-drop-zone-id="search"` within modal overlay for search portlets
+- **Login Modal Integration**: Embedded `[@liferay_portlet["runtime"] portletName="com_liferay_login_web_portlet_LoginPortlet" /]`
+- **Language Selector Dropzone**: `data-lfr-drop-zone-id="language-selector"` positioned after user profile widget
+  - **Smart Visibility**: Hidden when empty in normal mode, highlighted with "🌐 Language Selector" in edit mode
+  - **Strategic Placement**: Inline-flex layout next to user profile where users expect language options
+  - **Visual Feedback**: Dashed border with brand primary color and descriptive text indicator
+- **General Header Dropzone**: `data-lfr-drop-zone-id="header-extra"` for additional widgets and actions
+
 ## System Architecture
 The project employs a modular, fragment-based architecture where each UI component is a self-contained Liferay fragment (HTML, CSS, JS, configuration). Global styles and scripts are managed via a client extension. All fragments are scoped under the `#wrapper` CSS selector and integrate seamlessly with Liferay's theme system using Liferay Classic theme tokens via CSS custom properties.
 
@@ -61,7 +81,8 @@ The project employs a modular, fragment-based architecture where each UI compone
     - Dynamic navigation (Liferay Headless API integration with fallback).
     - Authentication and user management via `[@liferay.user_personal_bar /]` and login modals.
     - Search functionality with embedded Liferay search portlets.
-    - Comprehensive edit mode detection and visual indicators.
+    - Comprehensive edit mode detection and visual indicators with smart dropzone system.
+    - Language selector dropzone positioned next to user profile for multilingual widget support.
     - Full SPA navigation and event handling support (SennaJS).
     - Mobile responsiveness with hamburger menu and slide-out navigation.
     - Extensive accessibility (ARIA, keyboard navigation, focus management).
