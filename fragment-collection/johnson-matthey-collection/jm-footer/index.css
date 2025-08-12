@@ -251,6 +251,7 @@
   padding: var(--jm-spacing-xl) 0;
   border-top: 1px solid var(--jm-gray-700);
   margin-top: var(--jm-spacing-xl);
+  display: none; /* Hidden by default, shown via configuration */
 }
 
 #wrapper .jm-newsletter-content {
