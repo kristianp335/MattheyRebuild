@@ -425,3 +425,201 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
     padding: 0 var(--jm-spacing-sm);
   }
 }
+
+/* Modal Styles */
+#wrapper .jm-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#wrapper .jm-modal-backdrop.show {
+  display: flex;
+  opacity: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+#wrapper .jm-modal {
+  background: var(--jm-white);
+  border-radius: var(--jm-border-radius-lg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+#wrapper .jm-modal-backdrop.show .jm-modal {
+  transform: scale(1);
+}
+
+#wrapper .jm-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--jm-spacing-lg);
+  border-bottom: 1px solid var(--jm-gray-200);
+}
+
+#wrapper .jm-modal-title {
+  margin: 0;
+  font-size: var(--jm-font-size-xl);
+  color: var(--jm-gray-900);
+}
+
+#wrapper .jm-modal-close {
+  background: none;
+  border: none;
+  padding: var(--jm-spacing-xs);
+  color: var(--jm-gray-500);
+  cursor: pointer;
+  border-radius: var(--jm-border-radius);
+  transition: var(--jm-transition);
+}
+
+#wrapper .jm-modal-close:hover {
+  background: var(--jm-gray-100);
+  color: var(--jm-gray-700);
+}
+
+#wrapper .jm-modal-body {
+  padding: var(--jm-spacing-lg);
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+/* Search Modal Specific */
+#wrapper .search-content {
+  min-height: 300px;
+}
+
+/* Login Modal Specific */
+#wrapper .login-content {
+  min-height: 400px;
+}
+
+/* Dropzone Styles */
+#wrapper .jm-header-dropzone {
+  display: flex;
+  align-items: center;
+  margin-left: var(--jm-spacing-md);
+}
+
+#wrapper .jm-header-dropzone lfr-drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  min-width: 100px;
+  border: 2px dashed transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+/* Edit Mode Detection and Styling */
+#wrapper .jm-header-dropzone lfr-drop-zone[data-editor-enabled="true"],
+#wrapper .is-edit-mode .jm-header-dropzone lfr-drop-zone,
+body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone {
+  border-color: var(--jm-primary) !important;
+  background-color: rgba(13, 110, 253, 0.05) !important;
+  position: relative;
+  min-width: 120px !important;
+  min-height: 40px !important;
+  width: auto;
+  display: flex !important;
+  visibility: visible !important;
+}
+
+#wrapper .jm-header-dropzone lfr-drop-zone[data-editor-enabled="true"]:before,
+#wrapper .is-edit-mode .jm-header-dropzone lfr-drop-zone:before,
+body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
+  content: "Drop content here";
+  color: var(--jm-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+  display: block !important;
+}
+
+#wrapper .jm-header-dropzone lfr-drop-zone:not(:empty):before {
+  display: none;
+}
+
+/* Modal Dropzone Styles */
+#wrapper .jm-modal-body lfr-drop-zone {
+  min-height: 200px;
+  border: 2px dashed var(--jm-gray-300);
+  border-radius: var(--jm-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#wrapper .jm-modal-body lfr-drop-zone:before {
+  content: "Drop search portlet or content here";
+  color: var(--jm-gray-500);
+  font-size: var(--jm-font-size-sm);
+  text-align: center;
+  padding: var(--jm-spacing-md);
+}
+
+#wrapper .jm-modal-body lfr-drop-zone:not(:empty):before {
+  display: none;
+}
+
+/* User Profile Widget Styling */
+#wrapper .jm-user-profile-widget {
+  min-width: 280px;
+}
+
+/* Override Liferay portlet styles in modals */
+#wrapper .jm-modal .portlet,
+#wrapper .jm-modal .portlet-content,
+#wrapper .jm-modal .portlet-body {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+#wrapper .jm-modal .form-control,
+#wrapper .jm-modal input.field,
+#wrapper .jm-modal .clearable.form-control {
+  border-color: var(--jm-gray-300) !important;
+  border-radius: var(--jm-border-radius) !important;
+  padding: var(--jm-spacing-sm) !important;
+  font-size: var(--jm-font-size-base) !important;
+}
+
+#wrapper .jm-modal .btn-primary {
+  background-color: var(--jm-primary) !important;
+  border-color: var(--jm-primary) !important;
+  color: var(--jm-white) !important;
+  border-radius: var(--jm-border-radius) !important;
+  padding: var(--jm-spacing-sm) var(--jm-spacing-md) !important;
+  font-size: var(--jm-font-size-base) !important;
+}
+
+#wrapper .jm-modal .btn-primary:hover {
+  background-color: var(--jm-primary-dark) !important;
+  border-color: var(--jm-primary-dark) !important;
+}

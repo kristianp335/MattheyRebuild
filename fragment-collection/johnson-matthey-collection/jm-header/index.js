@@ -2,8 +2,13 @@
 (function() {
     'use strict';
     
-    const fragmentElement = document.currentScript.closest('.jm-header-fragment');
-    if (!fragmentElement) return;
+    let fragmentElement = document.currentScript ? document.currentScript.closest('.jm-header-fragment') : null;
+    if (!fragmentElement) {
+        // Fallback for when currentScript is not available
+        const headerFragments = document.querySelectorAll('.jm-header-fragment');
+        if (headerFragments.length === 0) return;
+        fragmentElement = headerFragments[headerFragments.length - 1]; // Use the last one as fallback
+    }
     
     // Wait for DOM to be ready before initializing
     if (document.readyState === 'loading') {
@@ -31,8 +36,44 @@
     }
     
     function initializeNavigation() {
-        // Sample navigation structure - can be replaced with Liferay Navigation API
-        const navigationItems = [
+        // Try to fetch navigation from Liferay Navigation API first
+        if (window.Liferay && window.Liferay.authtoken) {
+            fetchLiferayNavigation();
+        } else {
+            // Fallback to sample navigation structure
+            renderNavigation(getSampleNavigation());
+        }
+    }
+    
+    function fetchLiferayNavigation() {
+        // Attempt to get navigation from Liferay Headless Delivery API
+        const authToken = window.Liferay.authtoken;
+        const apiUrl = '/o/headless-delivery/v1.0/sites/${themeDisplay.getScopeGroupId()}/navigation-menus?nestedFields=navigationMenuItems';
+        
+        fetch(`${apiUrl}&p_auth=${authToken}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Navigation API not available');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.items && data.items.length > 0) {
+                    // Use the first navigation menu found
+                    const navigationItems = data.items[0].navigationMenuItems || [];
+                    renderNavigation(navigationItems);
+                } else {
+                    renderNavigation(getSampleNavigation());
+                }
+            })
+            .catch(error => {
+                console.log('Using fallback navigation structure');
+                renderNavigation(getSampleNavigation());
+            });
+    }
+    
+    function getSampleNavigation() {
+        return [
             {
                 name: 'About Us',
                 url: '/about-us',
@@ -290,15 +331,9 @@
         const searchModal = fragmentElement.querySelector('.jm-search-modal');
         const searchBackdrop = fragmentElement.querySelector('.jm-search-modal-backdrop');
         
-        if (searchBtn && searchModal) {
+        if (searchBtn && searchBackdrop) {
             searchBtn.addEventListener('click', () => {
-                if (window.JohnsonMatthey && window.JohnsonMatthey.openModal) {
-                    window.JohnsonMatthey.openModal(searchModal);
-                } else {
-                    searchBackdrop.classList.add('show');
-                    searchModal.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                }
+                openModal(searchBackdrop);
             });
         }
         
@@ -308,19 +343,13 @@
         const loginModal = fragmentElement.querySelector('.jm-login-modal');
         const loginBackdrop = fragmentElement.querySelector('.jm-login-modal-backdrop');
         
-        if (loginBtn && loginModal) {
+        if (loginBtn && loginBackdrop) {
             loginBtn.addEventListener('click', () => {
-                if (window.JohnsonMatthey && window.JohnsonMatthey.openModal) {
-                    window.JohnsonMatthey.openModal(loginModal);
-                } else {
-                    loginBackdrop.classList.add('show');
-                    loginModal.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                }
+                openModal(loginBackdrop);
             });
         }
         
-        if (mobileLoginBtn && loginModal) {
+        if (mobileLoginBtn && loginBackdrop) {
             mobileLoginBtn.addEventListener('click', () => {
                 // Close mobile menu first
                 const mobileNav = fragmentElement.querySelector('.jm-mobile-nav');
@@ -330,15 +359,59 @@
                     mobileToggle.setAttribute('aria-expanded', 'false');
                 }
                 
-                if (window.JohnsonMatthey && window.JohnsonMatthey.openModal) {
-                    window.JohnsonMatthey.openModal(loginModal);
-                } else {
-                    loginBackdrop.classList.add('show');
-                    loginModal.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                }
+                openModal(loginBackdrop);
             });
         }
+        
+        // Modal close functionality
+        const modalCloseButtons = fragmentElement.querySelectorAll('.jm-modal-close');
+        const modalBackdrops = fragmentElement.querySelectorAll('.jm-modal-backdrop');
+        
+        modalCloseButtons.forEach(closeBtn => {
+            closeBtn.addEventListener('click', () => {
+                const modal = closeBtn.closest('.jm-modal-backdrop');
+                if (modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+        
+        modalBackdrops.forEach(backdrop => {
+            backdrop.addEventListener('click', (e) => {
+                if (e.target === backdrop) {
+                    closeModal(backdrop);
+                }
+            });
+        });
+        
+        // Escape key to close modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const openModal = fragmentElement.querySelector('.jm-modal-backdrop.show');
+                if (openModal) {
+                    closeModal(openModal);
+                }
+            }
+        });
+    }
+    
+    function openModal(modalBackdrop) {
+        modalBackdrop.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus management
+        const modal = modalBackdrop.querySelector('.jm-modal');
+        if (modal) {
+            const firstFocusable = modal.querySelector('input, button, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (firstFocusable) {
+                setTimeout(() => firstFocusable.focus(), 100);
+            }
+        }
+    }
+    
+    function closeModal(modalBackdrop) {
+        modalBackdrop.classList.remove('show');
+        document.body.style.overflow = '';
     }
     
 })();

@@ -5,10 +5,13 @@
         <!-- Logo -->
         <div class="jm-header-logo">
           <a href="/" class="jm-logo-link">
-            <svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" class="jm-logo">
-              <rect x="0" y="0" width="40" height="40" rx="4" fill="var(--jm-primary)"/>
-              <text x="50" y="25" font-family="var(--jm-font-family)" font-size="18" font-weight="600" fill="var(--jm-dark)">Johnson Matthey</text>
-            </svg>
+            <img 
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTgwIDQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcng9IjQiIGZpbGw9InZhcigtLWptLXByaW1hcnkpIi8+PHRleHQgeD0iNTAiIHk9IjI1IiBmb250LWZhbWlseT0idmFyKC0tam0tZm9udC1mYW1pbHkpIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSJ2YXIoLS1qbS1kYXJrKSI+Sm9obnNvbiBNYXR0aGV5PC90ZXh0Pjwvc3ZnPg=="
+              alt="Johnson Matthey Logo"
+              class="jm-logo"
+              data-lfr-editable-id="logo"
+              data-lfr-editable-type="image"
+            />
           </a>
         </div>
 
@@ -40,9 +43,9 @@
                 <span class="jm-user-name">${themeDisplay.getUser().getFullName()}</span>
               </button>
               <div class="jm-dropdown-menu">
-                <a href="/web/guest/profile" class="jm-dropdown-item">Profile</a>
-                <a href="/web/guest/settings" class="jm-dropdown-item">Settings</a>
-                <a href="/c/portal/logout" class="jm-dropdown-item">Sign Out</a>
+                <div class="jm-user-profile-widget">
+                  [@liferay_portlet["runtime"] portletName="com_liferay_my_account_web_portlet_MyAccountPortlet" /]
+                </div>
               </div>
             </div>
           [#else]
