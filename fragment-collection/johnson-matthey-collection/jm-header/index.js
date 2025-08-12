@@ -208,8 +208,10 @@
         // Apply sticky header setting
         if (config.stickyHeader) {
             header.classList.add('jm-sticky');
+            console.log('Sticky header: enabled');
         } else {
             header.classList.remove('jm-sticky');
+            console.log('Sticky header: disabled');
         }
         
         // Apply header style
