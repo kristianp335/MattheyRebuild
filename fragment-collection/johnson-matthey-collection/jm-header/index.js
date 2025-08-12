@@ -111,6 +111,9 @@
         // Initialize dropdowns
         setTimeout(initializeDropdowns, 100);
         
+        // Initialize sticky header debugging
+        initializeStickyHeaderDebug();
+        
         console.log('Johnson Matthey Header Fragment initialized with config:', config);
     }
     
@@ -172,27 +175,35 @@
      * Get fragment configuration values
      */
     function getFragmentConfiguration() {
+        console.log('Configuration object available:', typeof configuration !== 'undefined');
+        
+        let config;
+        
         // Try to get configuration from Liferay's fragment configuration system
         if (typeof configuration !== 'undefined') {
-            return {
+            console.log('Raw configuration object:', configuration);
+            config = {
                 showSearch: configuration.showSearch !== undefined ? configuration.showSearch : true,
                 showUserMenu: configuration.showUserMenu !== undefined ? configuration.showUserMenu : true,
                 stickyHeader: configuration.stickyHeader !== undefined ? configuration.stickyHeader : true,
-
                 navigationMenuId: configuration.navigationMenuId || 'primary-menu',
                 headerStyle: configuration.headerStyle || 'white'
             };
+            console.log('Processed configuration:', config);
+        } else {
+            console.log('Using fallback default configuration');
+            // Fallback default values if configuration is not available
+            config = {
+                showSearch: true,
+                showUserMenu: true,
+                stickyHeader: true,
+                navigationMenuId: 'primary-menu',
+                headerStyle: 'white'
+            };
         }
         
-        // Fallback default values if configuration is not available
-        return {
-            showSearch: true,
-            showUserMenu: true,
-            stickyHeader: true,
-
-            navigationMenuId: 'primary-menu',
-            headerStyle: 'white'
-        };
+        console.log('Final configuration to be applied:', config);
+        return config;
     }
     
     /**
@@ -204,15 +215,30 @@
         const userProfileWidget = fragmentElement.querySelector('.jm-user-profile-widget');
         const loginBtn = fragmentElement.querySelector('.jm-login-btn');
 
+        console.log('=== STICKY HEADER DEBUG ===');
+        console.log('Configuration received:', config);
+        console.log('Sticky header setting:', config.stickyHeader);
+        console.log('Header element found:', !!header);
+        console.log('Header element:', header);
         
         // Apply sticky header setting
         if (config.stickyHeader) {
             header.classList.add('jm-sticky');
-            console.log('Sticky header: enabled');
+            console.log('Sticky header: enabled - class added');
+            console.log('Header classes after adding sticky:', header.classList.toString());
+            
+            // Verify computed styles
+            const computedStyle = getComputedStyle(header);
+            console.log('Header computed styles after sticky:', {
+                position: computedStyle.position,
+                top: computedStyle.top,
+                zIndex: computedStyle.zIndex
+            });
         } else {
             header.classList.remove('jm-sticky');
-            console.log('Sticky header: disabled');
+            console.log('Sticky header: disabled - class removed');
         }
+        console.log('=== END STICKY HEADER DEBUG ===');
         
         // Apply header style
         if (header) {
@@ -949,6 +975,30 @@
         }
         
         console.log('Edit mode display initialized - modals and dropzones visible for configuration');
+    }
+    
+    function initializeStickyHeaderDebug() {
+        const header = fragmentElement.querySelector('.jm-header');
+        if (!header) {
+            console.log('Header not found for sticky debug');
+            return;
+        }
+        
+        console.log('=== STICKY HEADER SCROLL DEBUG ===');
+        console.log('Initial header classes:', header.classList.toString());
+        console.log('Initial header computed position:', getComputedStyle(header).position);
+        
+        // Add scroll event listener to debug sticky behavior
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const hasSticky = header.classList.contains('jm-sticky');
+            
+            if (scrollY > 50) { // Only log after some scrolling to reduce noise
+                console.log('Scroll position:', scrollY, '| Has sticky class:', hasSticky, '| Position:', getComputedStyle(header).position);
+            }
+        });
+        
+        console.log('Sticky header scroll debug initialized');
     }
     
 })();
