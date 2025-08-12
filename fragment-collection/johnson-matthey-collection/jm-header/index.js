@@ -79,7 +79,8 @@
             // Apply configuration settings even in edit mode
             applyConfiguration(config);
             // Simplified initialization for edit mode
-            renderNavigation(getSampleNavigation());
+            const sampleNav = getSampleNavigation();
+            renderNavigation(sampleNav);
             // Initialize mobile menu and modals for edit mode
             initializeMobileMenu();
             initializeModals();
@@ -369,11 +370,14 @@
      * Render navigation menu in both desktop and mobile containers using API data
      */
     function renderNavigationFromAPI(menuItems) {
-        const desktopNav = fragmentElement.querySelector('.jm-nav-menu');
-        const mobileNav = fragmentElement.querySelector('.jm-mobile-nav-menu');
+        const desktopNav = fragmentElement.querySelector('#jm-main-nav');
+        const mobileNav = fragmentElement.querySelector('.jm-mobile-nav-list');
         
         if (!desktopNav || !mobileNav) {
             console.error('Navigation containers not found');
+            console.log('Available elements in fragment:', fragmentElement.querySelectorAll('*'));
+            console.log('Looking for:', '#jm-main-nav', '.jm-mobile-nav-list');
+            console.log('Fragment element:', fragmentElement);
             return;
         }
         
@@ -539,7 +543,7 @@
             }
         ];
         
-        renderNavigation(navigationItems);
+        return navigationItems;
     }
     
     function renderNavigation(items) {
