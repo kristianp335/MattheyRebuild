@@ -1,0 +1,57 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "name": "showSearch",
+          "label": "Show Search Button",
+          "description": "Display the search button in the header",
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        {
+          "name": "showUserMenu",
+          "label": "Show User Menu",
+          "description": "Display user menu for logged in users",
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        {
+          "name": "stickyHeader",
+          "label": "Sticky Header",
+          "description": "Make header stick to top when scrolling",
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        {
+          "name": "logoText",
+          "label": "Logo Text",
+          "description": "Text to display next to logo",
+          "type": "text",
+          "defaultValue": "Johnson Matthey"
+        },
+        {
+          "name": "headerStyle",
+          "label": "Header Style",
+          "description": "Choose header background style",
+          "type": "select",
+          "defaultValue": "white",
+          "options": [
+            {
+              "label": "White Background",
+              "value": "white"
+            },
+            {
+              "label": "Light Gray Background",
+              "value": "light"
+            },
+            {
+              "label": "Primary Color Background",
+              "value": "primary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
