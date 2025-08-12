@@ -175,7 +175,7 @@
                 showSearch: configuration.showSearch !== undefined ? configuration.showSearch : true,
                 showUserMenu: configuration.showUserMenu !== undefined ? configuration.showUserMenu : true,
                 stickyHeader: configuration.stickyHeader !== undefined ? configuration.stickyHeader : true,
-avigationMenuId: configuration.navigationMenuId || 'primary-menu',
+                navigationMenuId: configuration.navigationMenuId || 'primary-menu',
                 headerStyle: configuration.headerStyle || 'white'
             };
 
@@ -186,7 +186,7 @@ avigationMenuId: configuration.navigationMenuId || 'primary-menu',
                 showSearch: true,
                 showUserMenu: true,
                 stickyHeader: true,
-avigationMenuId: 'primary-menu',
+                navigationMenuId: 'primary-menu',
                 headerStyle: 'white'
             };
         }
@@ -246,9 +246,14 @@ avigationMenuId: 'primary-menu',
         const config = getFragmentConfiguration();
         const menuId = config.navigationMenuId;
         
+        // Skip API call if no valid menu ID is provided
+        if (!menuId || menuId === 'primary-menu' || menuId === 'undefined' || menuId === undefined || typeof menuId !== 'string') {
+            loadFallbackNavigation();
+            return;
+        }
+        
         // Check if authentication token is available
         if (typeof Liferay === 'undefined' || !Liferay.authToken) {
-
             loadFallbackNavigation();
             return;
         }
@@ -263,7 +268,6 @@ avigationMenuId: 'primary-menu',
                 return response.json();
             })
             .then(data => {
-
                 renderNavigationFromAPI(data.navigationMenuItems || []);
             })
             .catch(error => {
@@ -278,7 +282,7 @@ avigationMenuId: 'primary-menu',
     function loadFallbackNavigation() {
         const fallbackNav = [
             {
-ame: 'About',
+                name: 'About',
                 url: '/about',
                 children: [
                     { name: 'Our History', url: '/about/history' },
@@ -287,7 +291,7 @@ ame: 'About',
                 ]
             },
             {
-ame: 'Markets',
+                name: 'Markets',
                 url: '/markets',
                 children: [
                     { name: 'Automotive', url: '/markets/automotive' },
@@ -296,7 +300,7 @@ ame: 'Markets',
                 ]
             },
             {
-ame: 'Products',
+                name: 'Products',
                 url: '/products',
                 children: [
                     { name: 'Catalysts', url: '/products/catalysts' },
@@ -305,23 +309,23 @@ ame: 'Products',
                 ]
             },
             {
-ame: 'Innovation',
+                name: 'Innovation',
                 url: '/innovation'
             },
             {
-ame: 'Sustainability',
+                name: 'Sustainability',
                 url: '/sustainability'
             },
             {
-ame: 'Investors',
+                name: 'Investors',
                 url: '/investors'
             },
             {
-ame: 'Careers',
+                name: 'Careers',
                 url: '/careers'
             },
             {
-ame: 'News & Insights',
+                name: 'News & Insights',
                 url: '/news'
             }
         ];
