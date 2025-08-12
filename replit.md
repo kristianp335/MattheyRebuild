@@ -48,6 +48,57 @@ Preferred communication style: Simple, everyday language.
 - **Root Cause**: Code may look for `item.children` but Liferay API returns `item.navigationMenuItems`
 - **Solution**: Update navigation functions to handle both API and fallback structures
 
+## Project Structure
+
+### Current Repository Structure
+```
+├── jm-frontend-client-extension/           # Client extension holding folder
+│   ├── assets/
+│   │   ├── global.css                      # Global CSS with JM branding using Liferay Classic theme tokens
+│   │   └── global.js                       # Global JavaScript utilities and shared functionality
+│   ├── client-extension.yaml               # Client extension configuration (CSS and JS only)
+│   └── README.md                           # Client extension deployment guide
+├── fragment-collection/                    # Fragment collection holding folder
+│   ├── johnson-matthey-collection/         # Complete fragment library
+│   │   ├── collection.json                 # Fragment collection metadata
+│   │   ├── jm-header/                      # Header with navigation, login/search modals, mobile menu
+│   │   │   ├── fragment.json               # Fragment metadata
+│   │   │   ├── configuration.json          # Fragment configuration schema
+│   │   │   ├── index.html                  # FreeMarker template
+│   │   │   ├── index.css                   # Fragment styles
+│   │   │   ├── index.js                    # Fragment JavaScript
+│   │   │   └── thumbnail.png               # Fragment thumbnail (required)
+│   │   ├── jm-hero/                        # Hero section with video and call-to-action
+│   │   ├── jm-news-carousel/               # News and announcements carousel
+│   │   ├── jm-share-price/                 # Live share price widget with charts
+│   │   ├── jm-company-overview/            # Company statistics and focus areas
+│   │   └── jm-footer/                      # Footer with links, social media, newsletter signup
+│   └── README.md                           # Fragment collection deployment guide
+├── fragment-zips/                         # Individual fragment ZIP files for deployment
+│   ├── jm-header.zip                       # Individual fragment ZIP (7.2 KB)
+│   ├── jm-hero.zip                         # Individual fragment ZIP (6.6 KB)
+│   ├── jm-news-carousel.zip                # Individual fragment ZIP (7.6 KB)
+│   ├── jm-share-price.zip                  # Individual fragment ZIP (7.3 KB)
+│   ├── jm-company-overview.zip             # Individual fragment ZIP (8.4 KB)
+│   └── jm-footer.zip                       # Individual fragment ZIP (9.4 KB)
+├── attached_assets/                        # Project documentation and references
+│   ├── liferay-implementation-guide_*.md   # Liferay implementation best practices
+│   ├── replit_*.md                         # Platform documentation
+│   └── vanden-header*.zip                  # Reference implementation
+├── johnson-matthey-collection.zip          # Complete fragment collection ZIP (48.6 KB)
+├── create_fragment_zips.py                 # Python script for creating Liferay-compliant ZIP files
+├── DEPLOYMENT_GUIDE.md                     # Comprehensive deployment instructions
+├── README.md                               # Project overview and structure
+├── index.html                              # Project overview webpage
+└── replit.md                               # Technical architecture and user preferences (this file)
+```
+
+### Deployment Files Status
+- ✅ **Client Extension**: Ready for deployment in `jm-frontend-client-extension/`
+- ✅ **Individual Fragment ZIPs**: 6 individual fragments in `fragment-zips/`
+- ✅ **Complete Collection ZIP**: `johnson-matthey-collection.zip` with all fragments
+- ✅ **Documentation**: Comprehensive deployment and usage guides
+
 ## System Architecture
 
 ### Deployment Architecture
