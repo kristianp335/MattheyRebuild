@@ -63,6 +63,32 @@ Preferred communication style: Simple, everyday language.
   - Supports replacement with any uploaded image through Liferay editor
   - Clean, standalone logo without text elements for professional appearance
 
+### Footer Fragment Configuration System
+- **Show Newsletter Signup**: Configuration option to display newsletter subscription form (`showNewsletter`)
+- **Show Social Media Links**: Configuration option to display social media icons and links (`showSocialMedia`)
+- **Show Back to Top Button**: Configuration option to display floating back to top button (`showBackToTop`)
+- **Company Name**: Configurable company name for copyright notice and branding (`companyName`)
+- **Footer Style Variants**: Three visual themes via `footerStyle` configuration:
+  - **Dark Background**: Default dark footer with white text for professional appearance
+  - **Light Background**: Light gray background with dark text for alternative styling
+  - **Primary Color Background**: Brand primary color with white text for bold branding
+- **Column Layout Options**: Three responsive layout variants via `columnLayout` configuration:
+  - **5 Columns**: Company section (2fr) plus 4 equal link columns (1fr each)
+  - **4 Columns**: Four equal-width columns for balanced content distribution
+  - **3 Columns**: Compact layout for minimal footer content
+- **Enable Link Tracking**: Configuration option for analytics tracking of footer link clicks (`enableTracking`)
+- **Newsletter Service Integration**: Configurable newsletter service provider (`newsletterService`):
+  - Custom Integration, Mailchimp, Campaign Monitor, Constant Contact
+
+### Footer Fragment Editable Elements
+- **Company Description**: Editable footer description text via `data-lfr-editable-id="footerDescription"`
+- **Social Media Links**: All social platform links are Liferay-editable (LinkedIn, YouTube, Instagram)
+- **Footer Section Titles**: All column headers are editable (About Us, Our Business, Investors, News & Media)
+- **Navigation Links**: All footer navigation links are Liferay-editable with proper `data-lfr-editable` attributes
+- **Legal Links**: Privacy policy, terms, cookies, accessibility, and compliance links are editable
+- **Newsletter Content**: Newsletter title and description are fully customizable through Liferay editor
+- **Copyright Text**: Dynamic copyright notice with configurable company name integration
+
 ### Header Fragment Edit Mode System
 - **Smart Edit Detection**: Enhanced `isInEditMode()` function with multiple detection methods:
   - `has-edit-mode-menu` and `is-edit-mode` body classes
@@ -114,6 +140,15 @@ The project employs a modular, fragment-based architecture where each UI compone
     - **Mobile Responsiveness**: Hamburger menu and slide-out navigation with touch-optimized interactions.
     - **Accessibility Features**: Extensive ARIA, keyboard navigation, and focus management.
     - **Performance Optimizations**: Event delegation, lazy loading, and scoped CSS for optimal performance.
+- **Footer Fragment**: Comprehensive footer solution with complete configuration system featuring:
+    - **Eight Configuration Options**: Newsletter signup toggle, social media visibility, back-to-top button, company name customization, footer style variants (dark/light/primary), column layout options (5/4/3 columns), link tracking toggle, and newsletter service integration.
+    - **Dynamic Styling System**: Three footer style variants with complete color scheme adaptation and CSS custom properties integration.
+    - **Flexible Column Layouts**: Responsive grid system supporting 5-column (company + 4 links), 4-column (equal width), and 3-column (compact) layouts.
+    - **Configurable Components**: Show/hide controls for newsletter section, social media links, and back-to-top functionality.
+    - **Company Branding**: Dynamic company name updates across footer elements with Liferay-editable content support.
+    - **Newsletter Integration**: Optional newsletter signup with multiple service provider options (Custom, Mailchimp, Campaign Monitor, Constant Contact).
+    - **Analytics Integration**: Configurable link tracking for footer navigation analytics.
+    - **Accessibility Features**: ARIA support, keyboard navigation, and screen reader optimization.
 
 ## External Dependencies
 
