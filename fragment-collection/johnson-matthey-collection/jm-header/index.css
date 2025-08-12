@@ -709,7 +709,7 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 
 /* User Profile Widget Styling */
 #wrapper .jm-user-profile-widget {
-  min-width: 280px;
+  /* Removed min-width to allow natural growth */
 }
 
 /* Language Selector Dropzone */
