@@ -66,6 +66,11 @@ Preferred communication style: Simple, everyday language.
   - **Strategic Placement**: Inline-flex layout next to user profile where users expect language options
   - **Visual Feedback**: Dashed border with brand primary color and descriptive text indicator
 
+### Fragment Collection Assets
+- **Thumbnail Images**: All fragments include professional thumbnail.png files for Liferay fragment editor
+- **Logo Resource**: Johnson Matthey logo stored in resources/ directory for collection-wide access
+- **Resource Usage**: Header fragment references logo using `[resources:johnson-matthey-logo.png]` syntax
+- **Asset Structure**: Follows Liferay best practices with proper resource management and fragment visualization
 
 ## System Architecture
 The project employs a modular, fragment-based architecture where each UI component is a self-contained Liferay fragment (HTML, CSS, JS, configuration). Global styles and scripts are managed via a client extension. All fragments are scoped under the `#wrapper` CSS selector and integrate seamlessly with Liferay's theme system using Liferay Classic theme tokens via CSS custom properties.
