@@ -564,6 +564,67 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   display: none;
 }
 
+/* Edit Mode Modal Styles */
+#wrapper .jm-search-overlay.jm-edit-mode {
+  display: block !important;
+  position: relative !important;
+  background: rgba(241, 245, 249, 0.95) !important;
+  border: 2px dashed var(--jm-primary) !important;
+  margin: 20px 0 !important;
+  border-radius: var(--jm-border-radius) !important;
+}
+
+#wrapper .jm-search-overlay.jm-edit-mode .jm-search-modal {
+  background: var(--jm-white) !important;
+  box-shadow: none !important;
+  position: relative !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+#wrapper .jm-search-overlay.jm-edit-mode::before {
+  content: "🎯 Edit Mode: Drop Search Portlet Here";
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: var(--jm-primary);
+  color: var(--jm-white);
+  font-weight: 600;
+  border-radius: var(--jm-border-radius) var(--jm-border-radius) 0 0;
+}
+
+#wrapper .jm-login-overlay.jm-edit-mode {
+  display: block !important;
+  position: relative !important;
+  background: rgba(241, 245, 249, 0.95) !important;
+  border: 2px dashed var(--jm-primary) !important;
+  margin: 20px 0 !important;
+  border-radius: var(--jm-border-radius) !important;
+}
+
+#wrapper .jm-login-overlay.jm-edit-mode .jm-login-modal {
+  background: var(--jm-white) !important;
+  box-shadow: none !important;
+  position: relative !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+#wrapper .jm-login-overlay.jm-edit-mode::before {
+  content: "🎯 Edit Mode: Login Modal Configuration";
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: var(--jm-primary);
+  color: var(--jm-white);
+  font-weight: 600;
+  border-radius: var(--jm-border-radius) var(--jm-border-radius) 0 0;
+}
+
 /* Modal Dropzone Styles */
 #wrapper .jm-modal-body lfr-drop-zone {
   min-height: 200px;

@@ -142,6 +142,8 @@ Scroll-triggered animations and interactive elements use CSS transitions and tra
 - **Implemented Navigation API**: Added Liferay Headless Delivery API integration with fallback navigation structure
 - **Enhanced Header Fragment**: Added editable logo, user profile widget using [@liferay.user_personal_bar /], dropzone functionality, and comprehensive accessibility features
 - **Updated User Personal Bar**: Changed from custom portlet to [@liferay.user_personal_bar /] following Liferay best practices from reference implementation
+- **Added Edit Mode Handling**: Comprehensive edit mode detection and special initialization following Vanden reference patterns
+- **Added Edit Mode Styling**: Visual indicators for modals and dropzones when in Liferay edit mode with proper CSS styling
 - **Affected Fragments**: All fragments with select fields (JM Header, Hero, News Carousel, Share Price, Company Overview, Footer)
 - **ZIP Files Updated**: All individual fragment ZIPs and collection ZIP regenerated with corrected configurations and enhanced functionality
 

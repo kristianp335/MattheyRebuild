@@ -20,6 +20,25 @@
     function initializeHeader() {
         console.log('Johnson Matthey Header Fragment initializing...');
         
+        // Check if we're in edit mode
+        const editMode = document.body.classList.contains('has-edit-mode-menu') || 
+                         document.body.classList.contains('is-edit-mode') ||
+                         document.querySelector('.portlet-layout');
+        
+        if (editMode) {
+            console.log('Edit mode detected - using simplified initialization');
+            // Simplified initialization for edit mode
+            renderNavigation(getSampleNavigation());
+            // Initialize mobile menu and modals for edit mode
+            initializeMobileMenu();
+            initializeModals();
+            // Add edit mode classes to modals for visual indication
+            initializeEditModeDisplay();
+            console.log('Johnson Matthey Header Fragment initialized for edit mode');
+            return;
+        }
+        
+        // Full initialization for live mode
         // Initialize navigation
         initializeNavigation();
         
@@ -463,6 +482,22 @@
             loginOverlay.style.display = 'none';
             document.body.style.overflow = '';
         }
+    }
+    
+    function initializeEditModeDisplay() {
+        // Add edit mode classes to modals for visual indication
+        const searchOverlay = document.querySelector('#jm-search-overlay');
+        const loginOverlay = document.querySelector('#jm-login-overlay');
+        
+        if (searchOverlay) {
+            searchOverlay.classList.add('jm-edit-mode');
+        }
+        
+        if (loginOverlay) {
+            loginOverlay.classList.add('jm-edit-mode');
+        }
+        
+        console.log('Edit mode display initialized - modals visible for configuration');
     }
     
 })();
