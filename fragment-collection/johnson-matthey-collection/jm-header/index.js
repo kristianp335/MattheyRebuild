@@ -32,7 +32,7 @@
         
         // Listen for page editor events
         Liferay.on('pageEditorModeChanged', function(event) {
-            console.log('Page editor mode changed:', event);
+
             setTimeout(initializeHeader, 100);
         });
     }
@@ -44,7 +44,7 @@
     
     // Listen for hash changes
     window.addEventListener('hashchange', function(event) {
-        console.log('Hash changed, reinitializing header');
+
         setTimeout(initializeHeader, 200);
     });
     
@@ -54,7 +54,7 @@
             if (mutation.type === 'attributes' && 
                 mutation.target === document.body && 
                 mutation.attributeName === 'class') {
-                console.log('Body class changed, reinitializing header');
+
                 setTimeout(initializeHeader, 100);
             }
         });
@@ -133,16 +133,6 @@
         // This prevents false positives on live sites that might have control menu but no editing
         const inEditMode = (hasEditModeMenu || isEditMode) && (hasPageEditor || hasEditableElements);
         
-        console.log('Edit mode check:', {
-            hasEditModeMenu,
-            isEditMode,
-            hasControlMenu: !!hasControlMenu,
-            hasPageEditor: !!hasPageEditor,
-            hasFragmentEntryProcessorEditable: !!hasFragmentEntryProcessorEditable,
-            hasEditableElements: !!hasEditableElements,
-            inEditMode
-        });
-        
         return inEditMode;
     }
     
@@ -175,29 +165,28 @@
      * Get fragment configuration values
      */
     function getFragmentConfiguration() {
-        console.log('Configuration object available:', typeof configuration !== 'undefined');
-        
+
         let config;
         
         // Try to get configuration from Liferay's fragment configuration system
         if (typeof configuration !== 'undefined') {
-            console.log('Raw configuration object:', configuration);
+
             config = {
                 showSearch: configuration.showSearch !== undefined ? configuration.showSearch : true,
                 showUserMenu: configuration.showUserMenu !== undefined ? configuration.showUserMenu : true,
                 stickyHeader: configuration.stickyHeader !== undefined ? configuration.stickyHeader : true,
-                navigationMenuId: configuration.navigationMenuId || 'primary-menu',
+avigationMenuId: configuration.navigationMenuId || 'primary-menu',
                 headerStyle: configuration.headerStyle || 'white'
             };
-            console.log('Processed configuration:', config);
+
         } else {
-            console.log('Using fallback default configuration');
+
             // Fallback default values if configuration is not available
             config = {
                 showSearch: true,
                 showUserMenu: true,
                 stickyHeader: true,
-                navigationMenuId: 'primary-menu',
+avigationMenuId: 'primary-menu',
                 headerStyle: 'white'
             };
         }
@@ -247,10 +236,7 @@
         if (loginBtn) {
             loginBtn.style.display = config.showUserMenu ? 'flex' : 'none';
         }
-        
 
-        
-        console.log('Configuration applied:', config);
     }
 
     /**
@@ -262,7 +248,7 @@
         
         // Check if authentication token is available
         if (typeof Liferay === 'undefined' || !Liferay.authToken) {
-            console.warn('Liferay authentication not available, loading fallback navigation');
+
             loadFallbackNavigation();
             return;
         }
@@ -277,12 +263,7 @@
                 return response.json();
             })
             .then(data => {
-                console.log('API Navigation Data:', data);
-                console.log('Navigation Menu Items:', data.navigationMenuItems);
-                if (data.navigationMenuItems && data.navigationMenuItems.length > 0) {
-                    console.log('First nav item structure:', data.navigationMenuItems[0]);
-                }
-                
+
                 renderNavigationFromAPI(data.navigationMenuItems || []);
             })
             .catch(error => {
@@ -297,7 +278,7 @@
     function loadFallbackNavigation() {
         const fallbackNav = [
             {
-                name: 'About',
+ame: 'About',
                 url: '/about',
                 children: [
                     { name: 'Our History', url: '/about/history' },
@@ -306,7 +287,7 @@
                 ]
             },
             {
-                name: 'Markets',
+ame: 'Markets',
                 url: '/markets',
                 children: [
                     { name: 'Automotive', url: '/markets/automotive' },
@@ -315,7 +296,7 @@
                 ]
             },
             {
-                name: 'Products',
+ame: 'Products',
                 url: '/products',
                 children: [
                     { name: 'Catalysts', url: '/products/catalysts' },
@@ -324,23 +305,23 @@
                 ]
             },
             {
-                name: 'Innovation',
+ame: 'Innovation',
                 url: '/innovation'
             },
             {
-                name: 'Sustainability',
+ame: 'Sustainability',
                 url: '/sustainability'
             },
             {
-                name: 'Investors',
+ame: 'Investors',
                 url: '/investors'
             },
             {
-                name: 'Careers',
+ame: 'Careers',
                 url: '/careers'
             },
             {
-                name: 'News & Insights',
+ame: 'News & Insights',
                 url: '/news'
             }
         ];
@@ -358,7 +339,7 @@
             const lastSlashIndex = relativeURL.lastIndexOf('/');
             return relativeURL.substring(0, lastSlashIndex + 1);
         } catch (error) {
-            console.warn('Could not get site base path from ThemeDisplay, using fallback');
+
             return '/web/guest/'; // Fallback for guest site
         }
     }
@@ -390,9 +371,7 @@
         
         if (!desktopNav || !mobileNav) {
             console.error('Navigation containers not found');
-            console.log('Available elements in fragment:', fragmentElement.querySelectorAll('*'));
-            console.log('Looking for:', '#jm-main-nav', '.jm-mobile-nav-list');
-            console.log('Fragment element:', fragmentElement);
+
             return;
         }
         
@@ -438,9 +417,7 @@
         const link = document.createElement('a');
         const originalUrl = item.link || item.url || '#';
         const builtUrl = buildPageURL(originalUrl);
-        
-        console.log(`Navigation item "${item.name || item.title}": ${originalUrl} -> ${builtUrl}`);
-        
+
         link.href = builtUrl;
         link.textContent = item.name || item.title;
         link.className = isMobile ? 'jm-mobile-nav-link' : 'jm-nav-link';
@@ -506,9 +483,9 @@
     function getSampleNavigation() {
         return [
             {
-                name: 'About Us',
+ame: 'About Us',
                 url: '/about-us',
-                navigationMenuItems: [
+avigationMenuItems: [
                     { name: 'Our Purpose', url: '/about-us/purpose' },
                     { name: 'History', url: '/about-us/history' },
                     { name: 'Leadership', url: '/about-us/leadership' },
@@ -516,27 +493,27 @@
                 ]
             },
             {
-                name: 'Our Business',
+ame: 'Our Business',
                 url: '/business',
-                navigationMenuItems: [
+avigationMenuItems: [
                     { name: 'Catalyst Technologies', url: '/business/catalyst' },
                     { name: 'Precious Metal Services', url: '/business/precious-metals' },
                     { name: 'Hydrogen Technologies', url: '/business/hydrogen' }
                 ]
             },
             {
-                name: 'Sustainability',
+ame: 'Sustainability',
                 url: '/sustainability',
-                navigationMenuItems: [
+avigationMenuItems: [
                     { name: 'Net Zero Transition', url: '/sustainability/net-zero' },
                     { name: 'Circular Economy', url: '/sustainability/circular-economy' },
                     { name: 'ESG Report', url: '/sustainability/esg-report' }
                 ]
             },
             {
-                name: 'Investors',
+ame: 'Investors',
                 url: '/investors',
-                navigationMenuItems: [
+avigationMenuItems: [
                     { name: 'Financial Results', url: '/investors/results' },
                     { name: 'Share Price', url: '/investors/share-price' },
                     { name: 'Annual Reports', url: '/investors/reports' },
@@ -544,16 +521,16 @@
                 ]
             },
             {
-                name: 'Media',
+ame: 'Media',
                 url: '/media',
-                navigationMenuItems: [
+avigationMenuItems: [
                     { name: 'News & Press', url: '/media/news' },
                     { name: 'PGM Market Report', url: '/media/pgm-report' },
                     { name: 'Events', url: '/media/events' }
                 ]
             },
             {
-                name: 'Careers',
+ame: 'Careers',
                 url: '/careers'
             }
         ];
@@ -633,9 +610,7 @@
     
     function initializeDropdowns() {
         const dropdownTriggers = fragmentElement.querySelectorAll('.jm-nav-item.has-dropdown > .jm-nav-link');
-        
-        console.log(`Found ${dropdownTriggers.length} dropdown triggers`);
-        
+
         dropdownTriggers.forEach(trigger => {
             const parentItem = trigger.parentElement;
             const dropdownMenu = parentItem.querySelector('.jm-dropdown-menu');
@@ -713,16 +688,7 @@
     function initializeMobileMenu() {
         const mobileToggle = fragmentElement.querySelector('.jm-mobile-menu-toggle');
         const mobileNav = fragmentElement.querySelector('.jm-mobile-nav');
-        
-        console.log('=== MOBILE MENU INITIALIZATION DEBUG ===');
-        console.log('Mobile toggle found:', !!mobileToggle);
-        console.log('Mobile nav found:', !!mobileNav);
-        if (mobileNav) {
-            console.log('Initial mobile nav classes:', mobileNav.classList.toString());
-            console.log('Initial mobile nav display:', getComputedStyle(mobileNav).display);
-        }
-        console.log('=== END MOBILE MENU INIT DEBUG ===');
-        
+
         if (!mobileToggle || !mobileNav) return;
         
         mobileToggle.addEventListener('click', (e) => {
@@ -730,26 +696,19 @@
             e.stopPropagation();
             
             const isOpen = mobileNav.classList.contains('show');
-            
-            console.log('=== MOBILE MENU DEBUG ===');
-            console.log('Mobile toggle clicked | Current state:', isOpen ? 'open' : 'closed');
-            console.log('Mobile nav element:', mobileNav);
-            console.log('Current classes:', mobileNav.classList.toString());
-            
+
             if (isOpen) {
                 mobileNav.classList.remove('show');
                 mobileToggle.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
-                console.log('Mobile menu closed | Classes after:', mobileNav.classList.toString());
-                console.log('Computed display after close:', getComputedStyle(mobileNav).display);
+
             } else {
                 mobileNav.classList.add('show');
                 mobileToggle.setAttribute('aria-expanded', 'true');
                 document.body.style.overflow = 'hidden';
-                console.log('Mobile menu opened | Classes after:', mobileNav.classList.toString());
-                console.log('Computed display after open:', getComputedStyle(mobileNav).display);
+
             }
-            console.log('=== END MOBILE MENU DEBUG ===');
+
         });
         
         // Mobile dropdown functionality
@@ -779,14 +738,12 @@
     }
     
     function initializeModals() {
-        console.log('Initializing modals...');
-        console.log('Fragment element:', fragmentElement);
-        
+
         // Debug: List all buttons in fragment
         const allButtons = fragmentElement.querySelectorAll('button');
-        console.log('All buttons found:', allButtons);
+
         allButtons.forEach((btn, index) => {
-            console.log(`Button ${index}:`, btn.className, btn.textContent?.trim());
+
         });
         
         initializeSearchModal();
@@ -799,18 +756,15 @@
         const closeSearch = fragmentElement.querySelector('#jm-close-search');
         
         if (!searchBtn || !searchOverlay) {
-            console.log('Search elements not found - searchBtn:', !!searchBtn, 'searchOverlay:', !!searchOverlay);
-            console.log('Available search-related elements:', fragmentElement.querySelectorAll('[class*="search"], [id*="search"]'));
+
             return;
         }
-        
-        console.log('Search modal initialized successfully');
-        
+
         // Open search modal
         searchBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Search button clicked');
+
             openSearchModal();
         });
         
@@ -845,21 +799,16 @@
         const closeLogin = fragmentElement.querySelector('#jm-close-login');
         
         if (!loginOverlay) {
-            console.log('Login overlay not found');
-            console.log('Available login-related elements:', fragmentElement.querySelectorAll('[class*="login"], [id*="login"]'));
+
             return;
         }
-        
-        console.log('Login elements found - loginBtn:', !!loginBtn, 'mobileLoginBtn:', !!mobileLoginBtn, 'loginOverlay:', !!loginOverlay);
-        
-        console.log('Login modal initialized successfully');
-        
+
         // Open login modal
         if (loginBtn) {
             loginBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Login button clicked');
+
                 openLoginModal();
             });
         }
@@ -868,8 +817,7 @@
             mobileLoginBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Mobile login button clicked');
-                
+
                 // Close mobile menu first
                 const mobileNav = fragmentElement.querySelector('.jm-mobile-nav');
                 const mobileToggle = fragmentElement.querySelector('.jm-mobile-menu-toggle');
@@ -910,15 +858,12 @@
     function openSearchModal() {
         const searchOverlay = fragmentElement.querySelector('#jm-search-overlay');
         if (searchOverlay) {
-            console.log('Opening search modal - current classes:', searchOverlay.classList.toString());
-            
+
             searchOverlay.classList.add('show');
             document.body.style.overflow = 'hidden';
-            
-            console.log('Search modal opened - updated classes:', searchOverlay.classList.toString());
-            console.log('Search modal opened - computed display:', getComputedStyle(searchOverlay).display);
+
         } else {
-            console.log('Search overlay not found');
+
         }
     }
     
@@ -927,22 +872,19 @@
         if (searchOverlay) {
             searchOverlay.classList.remove('show');
             document.body.style.overflow = '';
-            console.log('Search modal closed');
+
         }
     }
     
     function openLoginModal() {
         const loginOverlay = fragmentElement.querySelector('#jm-login-overlay');
         if (loginOverlay) {
-            console.log('Opening login modal - current classes:', loginOverlay.classList.toString());
-            
+
             loginOverlay.classList.add('show');
             document.body.style.overflow = 'hidden';
-            
-            console.log('Login modal opened - updated classes:', loginOverlay.classList.toString());
-            console.log('Login modal opened - computed display:', getComputedStyle(loginOverlay).display);
+
         } else {
-            console.log('Login overlay not found');
+
         }
     }
     
@@ -951,7 +893,7 @@
         if (loginOverlay) {
             loginOverlay.classList.remove('show');
             document.body.style.overflow = '';
-            console.log('Login modal closed');
+
         }
     }
     
@@ -963,7 +905,7 @@
         const isActuallyEditing = hasActivePageEditor || hasEditableElements;
         
         if (!isInEditMode() || !isActuallyEditing) {
-            console.log('Not in active edit mode - skipping edit mode display');
+
             return;
         }
         
@@ -982,30 +924,17 @@
         if (languageDropzone) {
             languageDropzone.classList.add('jm-edit-mode');
         }
-        
-        console.log('Edit mode display initialized - modals and dropzones visible for configuration');
+
     }
     
     function initializeStickyHeaderDebug() {
         const header = fragmentElement.querySelector('.jm-header');
         if (!header) {
-            console.log('Header not found for sticky debug');
             return;
         }
-        
-        console.log('=== STICKY HEADER SCROLL DEBUG ===');
-        console.log('Initial header classes:', header.classList.toString());
-        console.log('Initial header computed position:', getComputedStyle(header).position);
-        
-        // Add scroll event listener to debug sticky behavior
-        window.addEventListener('scroll', function() {
-            const scrollY = window.scrollY;
-            const hasSticky = header.classList.contains('jm-sticky');
-            
 
-        });
-        
-
+        // Sticky header functionality is handled by CSS
+        // This function is kept for potential future debugging needs
     }
     
 })();

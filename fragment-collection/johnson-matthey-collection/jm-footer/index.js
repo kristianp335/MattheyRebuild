@@ -56,14 +56,10 @@
      * Get fragment configuration from Liferay
      */
     function getFragmentConfiguration() {
-        console.log('=== FOOTER CONFIGURATION DEBUG ===');
-        console.log('Configuration object available:', typeof configuration !== 'undefined');
-        
         let config;
         
         // Try to get configuration from Liferay's fragment configuration system
         if (typeof configuration !== 'undefined') {
-            console.log('Raw footer configuration object:', configuration);
             config = {
                 showNewsletter: configuration.showNewsletter !== undefined ? configuration.showNewsletter : false,
                 showSocialMedia: configuration.showSocialMedia !== undefined ? configuration.showSocialMedia : true,
@@ -74,9 +70,7 @@
                 enableTracking: configuration.enableTracking !== undefined ? configuration.enableTracking : true,
                 newsletterService: configuration.newsletterService || 'custom'
             };
-            console.log('Processed footer configuration:', config);
         } else {
-            console.log('Using fallback default footer configuration');
             // Fallback default values if configuration is not available
             config = {
                 showNewsletter: false,
@@ -89,9 +83,6 @@
                 newsletterService: 'custom'
             };
         }
-        
-        console.log('Final footer configuration to be applied:', config);
-        console.log('=== END FOOTER CONFIGURATION DEBUG ===');
         return config;
     }
     
@@ -99,59 +90,38 @@
      * Apply configuration settings to the footer
      */
     function applyConfiguration(config) {
-        console.log('=== APPLYING FOOTER CONFIGURATION ===');
-        console.log('Configuration to apply:', config);
-        
         const footer = fragmentElement.querySelector('.jm-footer');
         const newsletterSection = fragmentElement.querySelector('#jm-newsletter-section');
         const socialMediaSection = fragmentElement.querySelector('.jm-footer-social');
         const backToTopBtn = fragmentElement.querySelector('.jm-back-to-top-btn');
         const companyNameElements = fragmentElement.querySelectorAll('.jm-company-name');
         const footerColumns = fragmentElement.querySelector('.jm-footer-main');
-        
-        console.log('Footer elements found:', {
-            footer: !!footer,
-            newsletterSection: !!newsletterSection,
-            socialMediaSection: !!socialMediaSection,
-            backToTopBtn: !!backToTopBtn,
-            companyNameElements: companyNameElements.length,
-            footerColumns: !!footerColumns
-        });
-        
         // Apply footer style
         if (footer) {
             footer.setAttribute('data-style', config.footerStyle);
-            console.log('Footer style applied:', config.footerStyle, '| Current data-style:', footer.getAttribute('data-style'));
         }
         
         // Apply column layout
         if (footerColumns) {
             footerColumns.setAttribute('data-layout', config.columnLayout);
-            console.log('Footer layout applied:', config.columnLayout, '| Current data-layout:', footerColumns.getAttribute('data-layout'));
         }
         
         // Show/hide newsletter section
         if (newsletterSection) {
             newsletterSection.style.display = config.showNewsletter ? 'block' : 'none';
-            console.log('Newsletter section:', config.showNewsletter ? 'shown' : 'hidden', '| Display style:', newsletterSection.style.display);
         } else {
-            console.log('Newsletter section element not found with selector:', '#jm-newsletter-section');
         }
         
         // Show/hide social media section
         if (socialMediaSection) {
             socialMediaSection.style.display = config.showSocialMedia ? 'flex' : 'none';
-            console.log('Social media section:', config.showSocialMedia ? 'shown' : 'hidden', '| Display style:', socialMediaSection.style.display);
         } else {
-            console.log('Social media section element not found with selector:', '.jm-footer-social');
         }
         
         // Show/hide back to top button
         if (backToTopBtn) {
             backToTopBtn.style.display = config.showBackToTop ? 'block' : 'none';
-            console.log('Back to top button:', config.showBackToTop ? 'shown' : 'hidden', '| Display style:', backToTopBtn.style.display);
         } else {
-            console.log('Back to top button element not found with selector:', '.jm-back-to-top-btn');
         }
         
         // Update company name
@@ -160,14 +130,10 @@
                 if (element) {
                     const oldText = element.textContent;
                     element.textContent = config.companyName;
-                    console.log(`Company name element ${index}:`, oldText, '->', config.companyName);
                 }
             });
         } else {
-            console.log('Company name elements not found with selector:', '.jm-company-name');
         }
-        
-        console.log('=== FOOTER CONFIGURATION APPLIED ===');
     }
     
     function initializeBackToTop() {
