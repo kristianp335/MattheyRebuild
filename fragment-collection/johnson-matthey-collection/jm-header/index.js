@@ -748,13 +748,15 @@
     
     function initializeSearchModal() {
         const searchBtn = fragmentElement.querySelector('.jm-search-btn');
-        const searchOverlay = document.querySelector('#jm-search-overlay');
-        const closeSearch = document.querySelector('#jm-close-search');
+        const searchOverlay = fragmentElement.querySelector('#jm-search-overlay');
+        const closeSearch = fragmentElement.querySelector('#jm-close-search');
         
         if (!searchBtn || !searchOverlay) {
-            console.log('Search elements not found');
+            console.log('Search elements not found - searchBtn:', !!searchBtn, 'searchOverlay:', !!searchOverlay);
             return;
         }
+        
+        console.log('Search modal initialized successfully');
         
         // Open search modal
         searchBtn.addEventListener('click', function(e) {
@@ -790,13 +792,15 @@
     function initializeLoginModal() {
         const loginBtn = fragmentElement.querySelector('.jm-login-btn');
         const mobileLoginBtn = fragmentElement.querySelector('.jm-mobile-login-btn');
-        const loginOverlay = document.querySelector('#jm-login-overlay');
-        const closeLogin = document.querySelector('#jm-close-login');
+        const loginOverlay = fragmentElement.querySelector('#jm-login-overlay');
+        const closeLogin = fragmentElement.querySelector('#jm-close-login');
         
         if (!loginOverlay) {
             console.log('Login overlay not found');
             return;
         }
+        
+        console.log('Login modal initialized successfully');
         
         // Open login modal
         if (loginBtn) {
@@ -850,34 +854,42 @@
     }
     
     function openSearchModal() {
-        const searchOverlay = document.querySelector('#jm-search-overlay');
+        const searchOverlay = fragmentElement.querySelector('#jm-search-overlay');
         if (searchOverlay) {
             searchOverlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            console.log('Search modal opened');
+        } else {
+            console.log('Search overlay not found');
         }
     }
     
     function closeSearchModal() {
-        const searchOverlay = document.querySelector('#jm-search-overlay');
+        const searchOverlay = fragmentElement.querySelector('#jm-search-overlay');
         if (searchOverlay) {
             searchOverlay.style.display = 'none';
             document.body.style.overflow = '';
+            console.log('Search modal closed');
         }
     }
     
     function openLoginModal() {
-        const loginOverlay = document.querySelector('#jm-login-overlay');
+        const loginOverlay = fragmentElement.querySelector('#jm-login-overlay');
         if (loginOverlay) {
             loginOverlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            console.log('Login modal opened');
+        } else {
+            console.log('Login overlay not found');
         }
     }
     
     function closeLoginModal() {
-        const loginOverlay = document.querySelector('#jm-login-overlay');
+        const loginOverlay = fragmentElement.querySelector('#jm-login-overlay');
         if (loginOverlay) {
             loginOverlay.style.display = 'none';
             document.body.style.overflow = '';
+            console.log('Login modal closed');
         }
     }
     
