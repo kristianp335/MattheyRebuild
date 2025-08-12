@@ -1,0 +1,11 @@
+{
+  "fragmentEntryKey": "jm-share-price",
+  "name": "JM Share Price",
+  "type": "component",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "jsPath": "index.js",
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "icon": "analytics"
+}

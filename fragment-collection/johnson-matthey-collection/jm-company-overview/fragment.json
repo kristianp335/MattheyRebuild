@@ -1,0 +1,11 @@
+{
+  "fragmentEntryKey": "jm-company-overview",
+  "name": "JM Company Overview",
+  "type": "section",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "jsPath": "index.js",
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "icon": "info-circle"
+}
