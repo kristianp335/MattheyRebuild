@@ -65,7 +65,7 @@ Preferred communication style: Simple, everyday language.
   - **Smart Visibility**: Hidden when empty in normal mode, highlighted with "🌐 Language Selector" in edit mode
   - **Strategic Placement**: Inline-flex layout next to user profile where users expect language options
   - **Visual Feedback**: Dashed border with brand primary color and descriptive text indicator
-- **General Header Dropzone**: `data-lfr-drop-zone-id="header-extra"` for additional widgets and actions
+
 
 ## System Architecture
 The project employs a modular, fragment-based architecture where each UI component is a self-contained Liferay fragment (HTML, CSS, JS, configuration). Global styles and scripts are managed via a client extension. All fragments are scoped under the `#wrapper` CSS selector and integrate seamlessly with Liferay's theme system using Liferay Classic theme tokens via CSS custom properties.
