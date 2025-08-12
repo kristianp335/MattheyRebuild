@@ -106,18 +106,20 @@
     }
     
     function isInEditMode() {
-        // More specific edit mode detection
+        // Very strict edit mode detection - only show modals when actually editing
         const body = document.body;
         
         // Check for specific Liferay edit mode indicators
         const hasEditModeMenu = body.classList.contains('has-edit-mode-menu');
         const isEditMode = body.classList.contains('is-edit-mode');
         const hasControlMenu = document.querySelector('.control-menu');
-        const hasPageEditor = document.querySelector('.page-editor');
+        const hasPageEditor = document.querySelector('.page-editor__sidebar, .page-editor-sidebar, [data-qa-id="pageEditor"]');
         const hasFragmentEntryProcessorEditable = document.querySelector('.fragment-entry-processor-editable');
+        const hasEditableElements = document.querySelector('[contenteditable="true"], .lfr-editable-field');
         
-        // Only consider in edit mode if we have clear indicators
-        const inEditMode = hasEditModeMenu || isEditMode || (hasControlMenu && (hasPageEditor || hasFragmentEntryProcessorEditable));
+        // Must have both control menu AND active page editor OR actively editable elements
+        // This prevents false positives on live sites that might have control menu but no editing
+        const inEditMode = (hasEditModeMenu || isEditMode) && (hasPageEditor || hasEditableElements);
         
         console.log('Edit mode check:', {
             hasEditModeMenu,
@@ -125,6 +127,7 @@
             hasControlMenu: !!hasControlMenu,
             hasPageEditor: !!hasPageEditor,
             hasFragmentEntryProcessorEditable: !!hasFragmentEntryProcessorEditable,
+            hasEditableElements: !!hasEditableElements,
             inEditMode
         });
         
@@ -797,8 +800,13 @@
     
     function initializeEditModeDisplay() {
         // Add edit mode classes to modals for visual indication ONLY in actual edit mode
-        if (!isInEditMode()) {
-            console.log('Not in edit mode - skipping edit mode display');
+        // Use even stricter detection to prevent false positives
+        const hasActivePageEditor = document.querySelector('.page-editor__sidebar, .page-editor-sidebar, [data-qa-id="pageEditor"]');
+        const hasEditableElements = document.querySelector('[contenteditable="true"], .lfr-editable-field');
+        const isActuallyEditing = hasActivePageEditor || hasEditableElements;
+        
+        if (!isInEditMode() || !isActuallyEditing) {
+            console.log('Not in active edit mode - skipping edit mode display');
             return;
         }
         
