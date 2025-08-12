@@ -108,16 +108,23 @@
         // Initialize modals
         initializeModals();
         
-        // Initialize dropdowns
-        setTimeout(initializeDropdowns, 100);
+        // Initialize dropdowns immediately - no delay needed
+        initializeDropdowns();
         
-        // Initialize sticky header debugging
-        initializeStickyHeaderDebug();
+        // Sticky header is handled by CSS - no JavaScript needed
         
         // Johnson Matthey Header Fragment initialized
     }
     
+    // Cached edit mode detection to avoid repeated DOM queries
+    let cachedEditMode = null;
+    
     function isInEditMode() {
+        // Cache the result to avoid repeated expensive DOM queries
+        if (cachedEditMode !== null) {
+            return cachedEditMode;
+        }
+        
         // Very strict edit mode detection - only show modals when actually editing
         const body = document.body;
         
@@ -133,6 +140,8 @@
         // This prevents false positives on live sites that might have control menu but no editing
         const inEditMode = (hasEditModeMenu || isEditMode) && (hasPageEditor || hasEditableElements);
         
+        // Cache the result
+        cachedEditMode = inEditMode;
         return inEditMode;
     }
     
@@ -487,9 +496,9 @@
     function getSampleNavigation() {
         return [
             {
-ame: 'About Us',
+                name: 'About Us',
                 url: '/about-us',
-avigationMenuItems: [
+                navigationMenuItems: [
                     { name: 'Our Purpose', url: '/about-us/purpose' },
                     { name: 'History', url: '/about-us/history' },
                     { name: 'Leadership', url: '/about-us/leadership' },
@@ -497,27 +506,27 @@ avigationMenuItems: [
                 ]
             },
             {
-ame: 'Our Business',
+                name: 'Our Business',
                 url: '/business',
-avigationMenuItems: [
+                navigationMenuItems: [
                     { name: 'Catalyst Technologies', url: '/business/catalyst' },
                     { name: 'Precious Metal Services', url: '/business/precious-metals' },
                     { name: 'Hydrogen Technologies', url: '/business/hydrogen' }
                 ]
             },
             {
-ame: 'Sustainability',
+                name: 'Sustainability',
                 url: '/sustainability',
-avigationMenuItems: [
+                navigationMenuItems: [
                     { name: 'Net Zero Transition', url: '/sustainability/net-zero' },
                     { name: 'Circular Economy', url: '/sustainability/circular-economy' },
                     { name: 'ESG Report', url: '/sustainability/esg-report' }
                 ]
             },
             {
-ame: 'Investors',
+                name: 'Investors',
                 url: '/investors',
-avigationMenuItems: [
+                navigationMenuItems: [
                     { name: 'Financial Results', url: '/investors/results' },
                     { name: 'Share Price', url: '/investors/share-price' },
                     { name: 'Annual Reports', url: '/investors/reports' },
@@ -525,21 +534,19 @@ avigationMenuItems: [
                 ]
             },
             {
-ame: 'Media',
+                name: 'Media',
                 url: '/media',
-avigationMenuItems: [
+                navigationMenuItems: [
                     { name: 'News & Press', url: '/media/news' },
                     { name: 'PGM Market Report', url: '/media/pgm-report' },
                     { name: 'Events', url: '/media/events' }
                 ]
             },
             {
-ame: 'Careers',
+                name: 'Careers',
                 url: '/careers'
             }
         ];
-        
-        return navigationItems;
     }
     
     function renderNavigation(items) {
@@ -931,14 +938,7 @@ ame: 'Careers',
 
     }
     
-    function initializeStickyHeaderDebug() {
-        const header = fragmentElement.querySelector('.jm-header');
-        if (!header) {
-            return;
-        }
-
-        // Sticky header functionality is handled by CSS
-        // This function is kept for potential future debugging needs
-    }
+    // Removed initializeStickyHeaderDebug() - sticky header is handled by CSS
+    // This eliminates unnecessary DOM queries and improves performance
     
 })();
