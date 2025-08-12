@@ -20,7 +20,7 @@
     // Listen for Liferay SPA navigation events
     if (window.Liferay) {
         Liferay.on('allPortletsReady', function(event) {
-            console.log('SPA navigation complete - reinitializing footer');
+
             setTimeout(initializeFooter, 100);
         });
     }
@@ -31,7 +31,7 @@
     });
     
     function initializeFooter() {
-        console.log('Johnson Matthey Footer Fragment initializing...');
+        // Johnson Matthey Footer Fragment initializing
         
         // Get and apply configuration
         const config = getFragmentConfiguration();
@@ -49,7 +49,7 @@
         // Initialize social media tracking (if needed)
         initializeSocialTracking();
         
-        console.log('Johnson Matthey Footer Fragment initialized with config:', config);
+        // Johnson Matthey Footer Fragment initialized
     }
     
     /**

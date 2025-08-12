@@ -26,7 +26,7 @@
     if (window.Liferay) {
         // Listen for all portlets ready (SennaJS navigation complete)
         Liferay.on('allPortletsReady', function(event) {
-            console.log('SPA navigation complete - reinitializing header');
+
             setTimeout(initializeHeader, 100);
         });
         
@@ -66,7 +66,7 @@
     });
     
     function initializeHeader() {
-        console.log('Johnson Matthey Header Fragment initializing...');
+        // Johnson Matthey Header Fragment initializing
         
         // Get configuration values
         const config = getFragmentConfiguration();
@@ -75,7 +75,7 @@
         const editMode = isInEditMode();
         
         if (editMode) {
-            console.log('Edit mode detected - using simplified initialization');
+
             // Apply configuration settings even in edit mode
             applyConfiguration(config);
             // Simplified initialization for edit mode
@@ -86,7 +86,7 @@
             initializeModals();
             // Add edit mode classes to modals for visual indication
             initializeEditModeDisplay();
-            console.log('Johnson Matthey Header Fragment initialized for edit mode');
+
             return;
         }
         
@@ -114,7 +114,7 @@
         // Initialize sticky header debugging
         initializeStickyHeaderDebug();
         
-        console.log('Johnson Matthey Header Fragment initialized with config:', config);
+        // Johnson Matthey Header Fragment initialized
     }
     
     function isInEditMode() {
@@ -202,7 +202,6 @@
             };
         }
         
-        console.log('Final configuration to be applied:', config);
         return config;
     }
     
@@ -215,48 +214,25 @@
         const userProfileWidget = fragmentElement.querySelector('.jm-user-profile-widget');
         const loginBtn = fragmentElement.querySelector('.jm-login-btn');
 
-        console.log('=== STICKY HEADER DEBUG ===');
-        console.log('Configuration received:', config);
-        console.log('Sticky header setting:', config.stickyHeader);
-        console.log('Header element found:', !!header);
-        console.log('Header element:', header);
-        
         // Apply sticky header setting
         if (config.stickyHeader) {
             header.classList.add('jm-sticky');
-            console.log('Sticky header: enabled - class added');
-            console.log('Header classes after adding sticky:', header.classList.toString());
             
             // Check for Liferay admin control menu and adjust positioning
             const controlMenu = document.querySelector('.control-menu');
             if (controlMenu) {
                 document.body.classList.add('liferay-control-menu-present');
-                console.log('Liferay control menu detected - adjusting sticky header position');
             } else {
                 document.body.classList.remove('liferay-control-menu-present');
-                console.log('No Liferay control menu detected - using default sticky position');
             }
-            
-            // Verify computed styles
-            const computedStyle = getComputedStyle(header);
-            console.log('Header computed styles after sticky:', {
-                position: computedStyle.position,
-                top: computedStyle.top,
-                zIndex: computedStyle.zIndex
-            });
         } else {
             header.classList.remove('jm-sticky');
             document.body.classList.remove('liferay-control-menu-present');
-            console.log('Sticky header: disabled - class removed');
         }
-        console.log('=== END STICKY HEADER DEBUG ===');
         
         // Apply header style
         if (header) {
             header.setAttribute('data-style', config.headerStyle);
-            console.log('Header style applied:', config.headerStyle, 'Element:', header);
-        } else {
-            console.warn('Header element not found for styling');
         }
         
         // Show/hide search button
@@ -1026,13 +1002,10 @@
             const scrollY = window.scrollY;
             const hasSticky = header.classList.contains('jm-sticky');
             
-            if (scrollY > 50) { // Only log after some scrolling to reduce noise
-                const controlMenuPresent = document.querySelector('.control-menu') !== null;
-                console.log(`Scroll position: ${scrollY} | Has sticky class: ${hasSticky} | Position: ${getComputedStyle(header).position} | Top: ${getComputedStyle(header).top} | Z-index: ${getComputedStyle(header).zIndex} | Control menu: ${controlMenuPresent}`);
-            }
+
         });
         
-        console.log('Sticky header scroll debug initialized');
+
     }
     
 })();
