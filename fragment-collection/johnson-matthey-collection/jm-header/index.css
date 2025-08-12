@@ -10,9 +10,59 @@
   background: var(--jm-white);
   border-bottom: 1px solid var(--jm-gray-300);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+  transition: var(--jm-transition);
+}
+
+/* Sticky Header Configuration */
+#wrapper .jm-header.jm-sticky {
   position: sticky;
   top: 0;
-  z-index: 100;
+}
+
+/* Header Style Variants */
+#wrapper .jm-header[data-style="white"] {
+  background: var(--jm-white);
+  border-bottom: 1px solid var(--jm-gray-300);
+}
+
+#wrapper .jm-header[data-style="light"] {
+  background: var(--jm-gray-100);
+  border-bottom: 1px solid var(--jm-gray-400);
+}
+
+#wrapper .jm-header[data-style="primary"] {
+  background: var(--jm-primary);
+  border-bottom: 1px solid var(--jm-primary-dark);
+  color: var(--jm-white);
+}
+
+/* Header style variants - adjust text colors */
+#wrapper .jm-header[data-style="primary"] .jm-nav-link {
+  color: var(--jm-white);
+}
+
+#wrapper .jm-header[data-style="primary"] .jm-nav-link:hover,
+#wrapper .jm-header[data-style="primary"] .jm-nav-link:focus {
+  color: var(--jm-white);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#wrapper .jm-header[data-style="primary"] .jm-nav-item.active > .jm-nav-link {
+  color: var(--jm-white);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#wrapper .jm-header[data-style="primary"] .jm-header-action-btn {
+  color: var(--jm-white);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+#wrapper .jm-header[data-style="primary"] .jm-header-action-btn:hover,
+#wrapper .jm-header[data-style="primary"] .jm-header-action-btn:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 #wrapper .jm-header-content {
@@ -29,7 +79,9 @@
 }
 
 #wrapper .jm-logo-link {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: var(--jm-spacing-sm);
   text-decoration: none;
 }
 
@@ -41,6 +93,17 @@
 
 #wrapper .jm-logo:hover {
   opacity: 0.8;
+}
+
+#wrapper .jm-logo-text {
+  font-size: var(--jm-font-size-lg);
+  font-weight: 600;
+  color: var(--jm-gray-800);
+  transition: var(--jm-transition);
+}
+
+#wrapper .jm-header[data-style="primary"] .jm-logo-text {
+  color: var(--jm-white);
 }
 
 /* Main Navigation */

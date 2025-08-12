@@ -47,6 +47,25 @@ Preferred communication style: Simple, everyday language.
 - **Data Structure**: Handles both `navigationMenuItems` (API) and `children` (fallback) properties
 - **Configuration**: Configurable navigation menu ID via `navigationMenuId` setting
 
+### Header Fragment Configuration System
+- **Show Search Button**: Configuration option to hide/show search functionality (`showSearch`)
+- **Show User Menu**: Configuration option to hide/show user authentication widgets (`showUserMenu`)
+- **Sticky Header**: Configuration option to enable/disable header sticking to top during scroll (`stickyHeader`)
+- **Header Style Variants**: Three visual themes via `headerStyle` configuration:
+  - **White Background**: Default clean white header with gray borders
+  - **Light Gray Background**: Subtle gray background for visual distinction
+  - **Primary Color Background**: Brand primary color with white text for bold branding
+- **Logo Text Configuration**: Editable logo text alongside image logo (`logoText`)
+- **Navigation Menu ID**: Configurable navigation menu identifier for dynamic API loading (`navigationMenuId`)
+
+### Header Fragment Editable Elements
+- **Logo Image**: Fully editable via `data-lfr-editable-id="logo"` and `data-lfr-editable-type="image"`
+  - Uses `[resources:johnson-matthey-logo.png]` for collection-wide logo asset
+  - Supports replacement with any uploaded image through Liferay editor
+- **Logo Text**: Editable text element via `data-lfr-editable-id="logoText"` and `data-lfr-editable-type="text"`
+  - Positioned next to logo image with proper spacing and typography
+  - Automatically adapts color based on header style (white text for primary background)
+
 ### Header Fragment Edit Mode System
 - **Smart Edit Detection**: Enhanced `isInEditMode()` function with multiple detection methods:
   - `has-edit-mode-menu` and `is-edit-mode` body classes
@@ -86,15 +105,18 @@ The project employs a modular, fragment-based architecture where each UI compone
 - **Animation System**: Scroll-triggered animations using CSS transitions/transforms and JavaScript Intersection Observers for performance.
 - **Fragment Configuration**: Uses `typeOptions.validValues` for select fields, avoiding deprecated formats.
 - **Header Fragment**: Enterprise-grade navigation solution featuring:
-    - Dynamic navigation (Liferay Headless API integration with fallback).
-    - Authentication and user management via `[@liferay.user_personal_bar /]` and login modals.
-    - Search functionality with embedded Liferay search portlets.
-    - Comprehensive edit mode detection and visual indicators with smart dropzone system.
-    - Language selector dropzone positioned next to user profile for multilingual widget support.
-    - Full SPA navigation and event handling support (SennaJS).
-    - Mobile responsiveness with hamburger menu and slide-out navigation.
-    - Extensive accessibility (ARIA, keyboard navigation, focus management).
-    - Performance optimizations (event delegation, lazy loading, scoped CSS).
+    - **Comprehensive Configuration System**: Six configuration options including show/hide controls for search and user menu, sticky header toggle, header style variants (white/light/primary), editable logo text, and configurable navigation menu ID.
+    - **Editable Logo System**: Both image and text elements are Liferay-editable with proper `data-lfr-editable` attributes, using collection resources for shared logo asset.
+    - **Dynamic Styling**: CSS-based header style variants with automatic color scheme adaptation for primary background mode.
+    - **Dynamic Navigation**: Liferay Headless API integration with authentication and comprehensive fallback system.
+    - **Authentication Integration**: User management via `[@liferay.user_personal_bar /]` and login modals with configurable visibility.
+    - **Search Functionality**: Embedded Liferay search portlets with configurable show/hide controls.
+    - **Smart Edit Mode Detection**: Comprehensive edit mode detection and visual indicators with smart dropzone system.
+    - **Language Selector Dropzone**: Positioned next to user profile for multilingual widget support.
+    - **SPA Navigation Support**: Full SennaJS compatibility with event handling for seamless page transitions.
+    - **Mobile Responsiveness**: Hamburger menu and slide-out navigation with touch-optimized interactions.
+    - **Accessibility Features**: Extensive ARIA, keyboard navigation, and focus management.
+    - **Performance Optimizations**: Event delegation, lazy loading, and scoped CSS for optimal performance.
 
 ## External Dependencies
 

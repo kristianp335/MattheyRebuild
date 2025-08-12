@@ -68,6 +68,9 @@
     function initializeHeader() {
         console.log('Johnson Matthey Header Fragment initializing...');
         
+        // Get configuration values
+        const config = getFragmentConfiguration();
+        
         // Check if we're in edit mode - more specific detection
         const editMode = isInEditMode();
         
@@ -87,6 +90,9 @@
         // Full initialization for live mode - ensure modals are hidden
         ensureModalsHidden();
         
+        // Apply configuration settings
+        applyConfiguration(config);
+        
         // Initialize navigation
         initializeNavigation();
         
@@ -102,7 +108,7 @@
         // Initialize dropdowns
         setTimeout(initializeDropdowns, 100);
         
-        console.log('Johnson Matthey Header Fragment initialized');
+        console.log('Johnson Matthey Header Fragment initialized with config:', config);
     }
     
     function isInEditMode() {
@@ -160,10 +166,79 @@
     }
     
     /**
+     * Get fragment configuration values
+     */
+    function getFragmentConfiguration() {
+        // Try to get configuration from Liferay's fragment configuration system
+        if (typeof configuration !== 'undefined') {
+            return {
+                showSearch: configuration.showSearch !== undefined ? configuration.showSearch : true,
+                showUserMenu: configuration.showUserMenu !== undefined ? configuration.showUserMenu : true,
+                stickyHeader: configuration.stickyHeader !== undefined ? configuration.stickyHeader : true,
+                logoText: configuration.logoText || 'Johnson Matthey',
+                navigationMenuId: configuration.navigationMenuId || 'primary-menu',
+                headerStyle: configuration.headerStyle || 'white'
+            };
+        }
+        
+        // Fallback default values if configuration is not available
+        return {
+            showSearch: true,
+            showUserMenu: true,
+            stickyHeader: true,
+            logoText: 'Johnson Matthey',
+            navigationMenuId: 'primary-menu',
+            headerStyle: 'white'
+        };
+    }
+    
+    /**
+     * Apply configuration settings to the header
+     */
+    function applyConfiguration(config) {
+        const header = fragmentElement.querySelector('.jm-header');
+        const searchBtn = fragmentElement.querySelector('.jm-search-btn');
+        const userProfileWidget = fragmentElement.querySelector('.jm-user-profile-widget');
+        const loginBtn = fragmentElement.querySelector('.jm-login-btn');
+        const logoText = fragmentElement.querySelector('.jm-logo-text');
+        
+        // Apply sticky header setting
+        if (config.stickyHeader) {
+            header.classList.add('jm-sticky');
+        } else {
+            header.classList.remove('jm-sticky');
+        }
+        
+        // Apply header style
+        header.setAttribute('data-style', config.headerStyle);
+        
+        // Show/hide search button
+        if (searchBtn) {
+            searchBtn.style.display = config.showSearch ? 'flex' : 'none';
+        }
+        
+        // Show/hide user menu components
+        if (userProfileWidget) {
+            userProfileWidget.style.display = config.showUserMenu ? 'block' : 'none';
+        }
+        if (loginBtn) {
+            loginBtn.style.display = config.showUserMenu ? 'flex' : 'none';
+        }
+        
+        // Update logo text if element exists
+        if (logoText) {
+            logoText.textContent = config.logoText;
+        }
+        
+        console.log('Configuration applied:', config);
+    }
+
+    /**
      * Load navigation menu from Liferay API
      */
     function loadNavigationMenu() {
-        const menuId = configuration.navigationMenuId || 'primary-menu';
+        const config = getFragmentConfiguration();
+        const menuId = config.navigationMenuId;
         
         // Check if authentication token is available
         if (typeof Liferay === 'undefined' || !Liferay.authToken) {
