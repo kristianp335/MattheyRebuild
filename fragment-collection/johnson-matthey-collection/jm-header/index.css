@@ -24,6 +24,17 @@
   width: 100% !important;
   z-index: 1000 !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transition: top 0.3s ease !important;
+}
+
+/* Adjust sticky header when Liferay admin control menu is present */
+body:has(.control-menu) #wrapper .jm-header.jm-sticky {
+  top: 56px !important; /* Standard Liferay control menu height */
+}
+
+/* Fallback for browsers without :has() support */
+.liferay-control-menu-present #wrapper .jm-header.jm-sticky {
+  top: 56px !important;
 }
 
 /* Header Style Variants */

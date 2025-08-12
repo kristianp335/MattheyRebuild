@@ -227,6 +227,16 @@
             console.log('Sticky header: enabled - class added');
             console.log('Header classes after adding sticky:', header.classList.toString());
             
+            // Check for Liferay admin control menu and adjust positioning
+            const controlMenu = document.querySelector('.control-menu');
+            if (controlMenu) {
+                document.body.classList.add('liferay-control-menu-present');
+                console.log('Liferay control menu detected - adjusting sticky header position');
+            } else {
+                document.body.classList.remove('liferay-control-menu-present');
+                console.log('No Liferay control menu detected - using default sticky position');
+            }
+            
             // Verify computed styles
             const computedStyle = getComputedStyle(header);
             console.log('Header computed styles after sticky:', {
@@ -236,6 +246,7 @@
             });
         } else {
             header.classList.remove('jm-sticky');
+            document.body.classList.remove('liferay-control-menu-present');
             console.log('Sticky header: disabled - class removed');
         }
         console.log('=== END STICKY HEADER DEBUG ===');
@@ -1016,7 +1027,8 @@
             const hasSticky = header.classList.contains('jm-sticky');
             
             if (scrollY > 50) { // Only log after some scrolling to reduce noise
-                console.log(`Scroll position: ${scrollY} | Has sticky class: ${hasSticky} | Position: ${getComputedStyle(header).position} | Top: ${getComputedStyle(header).top} | Z-index: ${getComputedStyle(header).zIndex}`);
+                const controlMenuPresent = document.querySelector('.control-menu') !== null;
+                console.log(`Scroll position: ${scrollY} | Has sticky class: ${hasSticky} | Position: ${getComputedStyle(header).position} | Top: ${getComputedStyle(header).top} | Z-index: ${getComputedStyle(header).zIndex} | Control menu: ${controlMenuPresent}`);
             }
         });
         
