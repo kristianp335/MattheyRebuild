@@ -177,7 +177,7 @@
                 showSearch: configuration.showSearch !== undefined ? configuration.showSearch : true,
                 showUserMenu: configuration.showUserMenu !== undefined ? configuration.showUserMenu : true,
                 stickyHeader: configuration.stickyHeader !== undefined ? configuration.stickyHeader : true,
-                logoText: configuration.logoText || 'Johnson Matthey',
+
                 navigationMenuId: configuration.navigationMenuId || 'primary-menu',
                 headerStyle: configuration.headerStyle || 'white'
             };
@@ -188,7 +188,7 @@
             showSearch: true,
             showUserMenu: true,
             stickyHeader: true,
-            logoText: 'Johnson Matthey',
+
             navigationMenuId: 'primary-menu',
             headerStyle: 'white'
         };
@@ -202,7 +202,7 @@
         const searchBtn = fragmentElement.querySelector('.jm-search-btn');
         const userProfileWidget = fragmentElement.querySelector('.jm-user-profile-widget');
         const loginBtn = fragmentElement.querySelector('.jm-login-btn');
-        const logoText = fragmentElement.querySelector('.jm-logo-text');
+
         
         // Apply sticky header setting
         if (config.stickyHeader) {
@@ -232,10 +232,7 @@
             loginBtn.style.display = config.showUserMenu ? 'flex' : 'none';
         }
         
-        // Update logo text if element exists
-        if (logoText) {
-            logoText.textContent = config.logoText;
-        }
+
         
         console.log('Configuration applied:', config);
     }

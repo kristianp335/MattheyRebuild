@@ -55,16 +55,13 @@ Preferred communication style: Simple, everyday language.
   - **White Background**: Default clean white header with gray borders
   - **Light Gray Background**: Subtle gray background for visual distinction
   - **Primary Color Background**: Brand primary color with white text for bold branding
-- **Logo Text Configuration**: Editable logo text alongside image logo (`logoText`)
 - **Navigation Menu ID**: Configurable navigation menu identifier for dynamic API loading (`navigationMenuId`)
 
 ### Header Fragment Editable Elements
 - **Logo Image**: Fully editable via `data-lfr-editable-id="logo"` and `data-lfr-editable-type="image"`
   - Uses `[resources:johnson-matthey-logo.png]` for collection-wide logo asset
   - Supports replacement with any uploaded image through Liferay editor
-- **Logo Text**: Editable text element via `data-lfr-editable-id="logoText"` and `data-lfr-editable-type="text"`
-  - Positioned next to logo image with proper spacing and typography
-  - Automatically adapts color based on header style (white text for primary background)
+  - Clean, standalone logo without text elements for professional appearance
 
 ### Header Fragment Edit Mode System
 - **Smart Edit Detection**: Enhanced `isInEditMode()` function with multiple detection methods:
@@ -105,8 +102,8 @@ The project employs a modular, fragment-based architecture where each UI compone
 - **Animation System**: Scroll-triggered animations using CSS transitions/transforms and JavaScript Intersection Observers for performance.
 - **Fragment Configuration**: Uses `typeOptions.validValues` for select fields, avoiding deprecated formats.
 - **Header Fragment**: Enterprise-grade navigation solution featuring:
-    - **Comprehensive Configuration System**: Six configuration options including show/hide controls for search and user menu, sticky header toggle, header style variants (white/light/primary), editable logo text, and configurable navigation menu ID.
-    - **Editable Logo System**: Both image and text elements are Liferay-editable with proper `data-lfr-editable` attributes, using collection resources for shared logo asset.
+    - **Comprehensive Configuration System**: Five configuration options including show/hide controls for search and user menu, sticky header toggle, header style variants (white/light/primary), and configurable navigation menu ID.
+    - **Editable Logo System**: Clean, professional logo image is Liferay-editable with proper `data-lfr-editable` attributes, using collection resources for shared logo asset.
     - **Dynamic Styling**: CSS-based header style variants with automatic color scheme adaptation for primary background mode.
     - **Dynamic Navigation**: Liferay Headless API integration with authentication and comprehensive fallback system.
     - **Authentication Integration**: User management via `[@liferay.user_personal_bar /]` and login modals with configurable visibility.
