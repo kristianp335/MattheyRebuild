@@ -90,6 +90,9 @@
         // Initialize navigation
         initializeNavigation();
         
+        // Initialize logo home link
+        initializeLogoLink();
+        
         // Initialize mobile menu
         initializeMobileMenu();
         
@@ -150,40 +153,253 @@
     }
     
     function initializeNavigation() {
-        // Try to fetch navigation from Liferay Navigation API first
-        if (window.Liferay && window.Liferay.authtoken) {
-            fetchLiferayNavigation();
-        } else {
-            // Fallback to sample navigation structure
-            renderNavigation(getSampleNavigation());
-        }
+        loadNavigationMenu();
     }
     
-    function fetchLiferayNavigation() {
-        // Attempt to get navigation from Liferay Headless Delivery API
-        const authToken = window.Liferay.authtoken;
-        const apiUrl = '/o/headless-delivery/v1.0/sites/${themeDisplay.getScopeGroupId()}/navigation-menus?nestedFields=navigationMenuItems';
+    /**
+     * Load navigation menu from Liferay API
+     */
+    function loadNavigationMenu() {
+        const menuId = configuration.navigationMenuId || 'primary-menu';
         
-        fetch(`${apiUrl}&p_auth=${authToken}`)
+        // Check if authentication token is available
+        if (typeof Liferay === 'undefined' || !Liferay.authToken) {
+            console.warn('Liferay authentication not available, loading fallback navigation');
+            loadFallbackNavigation();
+            return;
+        }
+        
+        const apiUrl = `/o/headless-delivery/v1.0/navigation-menus/${menuId}?nestedFields=true&p_auth=${Liferay.authToken}`;
+        
+        fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Navigation API not available');
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 return response.json();
             })
             .then(data => {
-                if (data.items && data.items.length > 0) {
-                    // Use the first navigation menu found
-                    const navigationItems = data.items[0].navigationMenuItems || [];
-                    renderNavigation(navigationItems);
-                } else {
-                    renderNavigation(getSampleNavigation());
+                console.log('API Navigation Data:', data);
+                console.log('Navigation Menu Items:', data.navigationMenuItems);
+                if (data.navigationMenuItems && data.navigationMenuItems.length > 0) {
+                    console.log('First nav item structure:', data.navigationMenuItems[0]);
                 }
+                
+                renderNavigationFromAPI(data.navigationMenuItems || []);
             })
             .catch(error => {
-                console.log('Using fallback navigation structure');
-                renderNavigation(getSampleNavigation());
+                console.error('Error loading navigation menu:', error);
+                loadFallbackNavigation();
             });
+    }
+
+    /**
+     * Load fallback navigation when API is unavailable
+     */
+    function loadFallbackNavigation() {
+        const fallbackNav = [
+            {
+                name: 'About',
+                url: '/about',
+                children: [
+                    { name: 'Our History', url: '/about/history' },
+                    { name: 'Leadership', url: '/about/leadership' },
+                    { name: 'Locations', url: '/about/locations' }
+                ]
+            },
+            {
+                name: 'Markets',
+                url: '/markets',
+                children: [
+                    { name: 'Automotive', url: '/markets/automotive' },
+                    { name: 'Chemical Processing', url: '/markets/chemical-processing' },
+                    { name: 'Oil & Gas', url: '/markets/oil-gas' }
+                ]
+            },
+            {
+                name: 'Products',
+                url: '/products',
+                children: [
+                    { name: 'Catalysts', url: '/products/catalysts' },
+                    { name: 'Precious Metals', url: '/products/precious-metals' },
+                    { name: 'Chemicals', url: '/products/chemicals' }
+                ]
+            },
+            {
+                name: 'Innovation',
+                url: '/innovation'
+            },
+            {
+                name: 'Sustainability',
+                url: '/sustainability'
+            },
+            {
+                name: 'Investors',
+                url: '/investors'
+            },
+            {
+                name: 'Careers',
+                url: '/careers'
+            },
+            {
+                name: 'News & Insights',
+                url: '/news'
+            }
+        ];
+        
+        renderNavigationFromAPI(fallbackNav);
+    }
+
+    /**
+     * Get the site base path from current URL
+     */
+    function getSiteBasePath() {
+        try {
+            const relativeURL = Liferay.ThemeDisplay.getRelativeURL();
+            // Extract everything up to the last slash: /web/johnson-matthey/home -> /web/johnson-matthey/
+            const lastSlashIndex = relativeURL.lastIndexOf('/');
+            return relativeURL.substring(0, lastSlashIndex + 1);
+        } catch (error) {
+            console.warn('Could not get site base path from ThemeDisplay, using fallback');
+            return '/web/guest/'; // Fallback for guest site
+        }
+    }
+
+    /**
+     * Build complete page URL with site context
+     */
+    function buildPageURL(pagePath) {
+        if (!pagePath || pagePath === '#') return '#';
+        
+        // If it's already a complete URL, return as-is
+        if (pagePath.startsWith('/web/') || pagePath.startsWith('http')) {
+            return pagePath;
+        }
+        
+        // Remove leading slash if present, we'll add it with site base path
+        const cleanPath = pagePath.startsWith('/') ? pagePath.substring(1) : pagePath;
+        const siteBasePath = getSiteBasePath();
+        
+        return `${siteBasePath}${cleanPath}`;
+    }
+
+    /**
+     * Render navigation menu in both desktop and mobile containers using API data
+     */
+    function renderNavigationFromAPI(menuItems) {
+        const desktopNav = fragmentElement.querySelector('.jm-nav-menu');
+        const mobileNav = fragmentElement.querySelector('.jm-mobile-nav-menu');
+        
+        if (!desktopNav || !mobileNav) {
+            console.error('Navigation containers not found');
+            return;
+        }
+        
+        // Clear existing content
+        desktopNav.innerHTML = '';
+        mobileNav.innerHTML = '';
+        
+        // Render desktop navigation
+        menuItems.forEach(item => {
+            const navItem = createNavItemFromAPI(item, false);
+            desktopNav.appendChild(navItem);
+        });
+        
+        // Render mobile navigation
+        menuItems.forEach(item => {
+            const mobileItem = createNavItemFromAPI(item, true);
+            mobileNav.appendChild(mobileItem);
+        });
+        
+        // Initialize dropdowns after rendering
+        setTimeout(() => {
+            initializeDropdowns();
+        }, 100);
+    }
+
+    /**
+     * Create navigation item element from API data
+     */
+    function createNavItemFromAPI(item, isMobile) {
+        // Check for navigationMenuItems (API response) or children (fallback)
+        const hasChildren = (item.navigationMenuItems && item.navigationMenuItems.length > 0) || 
+                          (item.children && item.children.length > 0);
+        const children = item.navigationMenuItems || item.children || [];
+        
+        const listItem = document.createElement('li');
+        listItem.className = isMobile ? 'jm-mobile-nav-item' : 'jm-nav-item';
+        
+        if (hasChildren && !isMobile) {
+            listItem.classList.add('jm-has-dropdown');
+        }
+        
+        // Create main link
+        const link = document.createElement('a');
+        const originalUrl = item.link || item.url || '#';
+        const builtUrl = buildPageURL(originalUrl);
+        
+        console.log(`Navigation item "${item.name || item.title}": ${originalUrl} -> ${builtUrl}`);
+        
+        link.href = builtUrl;
+        link.textContent = item.name || item.title;
+        link.className = isMobile ? 'jm-mobile-nav-link' : 'jm-nav-link';
+        
+        if (item.external) {
+            link.target = '_blank';
+            link.rel = 'noopener';
+        }
+        
+        listItem.appendChild(link);
+        
+        // Add dropdown menu for desktop or submenu for mobile
+        if (hasChildren) {
+            const dropdown = document.createElement(isMobile ? 'div' : 'ul');
+            dropdown.className = isMobile ? 'jm-mobile-dropdown' : 'jm-dropdown-menu';
+            
+            children.forEach(child => {
+                if (isMobile) {
+                    const childLink = document.createElement('a');
+                    childLink.href = buildPageURL(child.link || child.url || '#');
+                    childLink.textContent = child.name || child.title;
+                    childLink.className = 'jm-mobile-dropdown-item';
+                    
+                    if (child.external) {
+                        childLink.target = '_blank';
+                        childLink.rel = 'noopener';
+                    }
+                    
+                    dropdown.appendChild(childLink);
+                } else {
+                    const childItem = document.createElement('li');
+                    const childLink = document.createElement('a');
+                    childLink.href = buildPageURL(child.link || child.url || '#');
+                    childLink.textContent = child.name || child.title;
+                    childLink.className = 'jm-dropdown-item';
+                    
+                    if (child.external) {
+                        childLink.target = '_blank';
+                        childLink.rel = 'noopener';
+                    }
+                    
+                    childItem.appendChild(childLink);
+                    dropdown.appendChild(childItem);
+                }
+            });
+            
+            listItem.appendChild(dropdown);
+        }
+        
+        return listItem;
+    }
+
+    /**
+     * Initialize logo home link with proper site URL
+     */
+    function initializeLogoLink() {
+        const logoLink = fragmentElement.querySelector('#jm-logo-home-link');
+        if (logoLink) {
+            logoLink.href = buildPageURL('/home');
+        }
     }
     
     function getSampleNavigation() {

@@ -1,0 +1,1078 @@
+/* Vanden Header Styles - Scoped to #wrapper */
+
+#wrapper .vanden-top-banner {
+    background-color: var(--vanden-primary-red);
+    color: var(--vanden-white);
+    padding: var(--vanden-spacing-xs) 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+#wrapper .banner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--vanden-spacing-sm);
+    flex-wrap: wrap;
+}
+
+#wrapper .banner-link {
+    color: var(--vanden-white);
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+#wrapper .banner-link:hover {
+    color: var(--vanden-accent-red);
+}
+
+#wrapper .vanden-header {
+    background-color: var(--vanden-white);
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--vanden-shadow-sm);
+}
+
+#wrapper .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--vanden-spacing-sm) 0;
+    min-height: 70px;
+}
+
+#wrapper .logo-section {
+    flex-shrink: 0;
+}
+
+#wrapper .logo-link {
+    display: block;
+    text-decoration: none;
+}
+
+#wrapper .logo {
+    height: 40px;
+    width: auto;
+}
+
+#wrapper .main-navigation {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#wrapper .nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--vanden-spacing-lg);
+}
+
+#wrapper .nav-item {
+    position: relative;
+}
+
+#wrapper .nav-link {
+    display: block;
+    color: var(--vanden-dark-gray);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--vanden-spacing-sm) var(--vanden-spacing-sm);
+    transition: color 0.3s ease;
+    border-radius: var(--vanden-radius-sm);
+}
+
+#wrapper .nav-link:hover,
+#wrapper .nav-link:focus {
+    color: var(--vanden-primary-red);
+    background-color: rgba(46, 125, 50, 0.05);
+}
+
+#wrapper .nav-item.has-dropdown .nav-link::after {
+    content: '▾';
+    margin-left: var(--vanden-spacing-xs);
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+#wrapper .nav-item.has-dropdown:hover .nav-link::after,
+#wrapper .nav-item.has-dropdown.active .nav-link::after {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+#wrapper .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background-color: var(--vanden-white);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--vanden-radius-md);
+    box-shadow: var(--vanden-shadow-lg);
+    min-width: 180px;
+    max-width: 220px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    list-style: none;
+    margin: 0;
+    padding: var(--vanden-spacing-xs) 0;
+}
+
+#wrapper .nav-item:hover .dropdown-menu,
+#wrapper .nav-item.active .dropdown-menu,
+#wrapper .dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+#wrapper .dropdown-item {
+    display: block;
+    color: var(--vanden-dark-gray);
+    text-decoration: none;
+    padding: var(--vanden-spacing-xs) var(--vanden-spacing-md);
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+#wrapper .dropdown-item:hover,
+#wrapper .dropdown-item:focus {
+    background-color: rgba(196, 30, 58, 0.08);
+    color: var(--vanden-primary-red);
+    padding-left: calc(var(--vanden-spacing-md) + 4px);
+}
+
+#wrapper .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--vanden-spacing-md);
+}
+
+/* Search button styling */
+#wrapper .search-btn {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#wrapper .search-btn {
+    border: 2px solid var(--vanden-primary-red) !important;
+    color: var(--vanden-primary-red) !important;
+    background: transparent !important;
+    border-radius: var(--vanden-radius-md) !important;
+}
+
+#wrapper .search-btn:hover {
+    background-color: var(--vanden-primary-red) !important;
+    color: white !important;
+    border-color: var(--vanden-primary-red) !important;
+}
+
+#wrapper .search-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    transition: stroke 0.2s ease;
+}
+
+#wrapper .login-btn {
+    font-size: 0.9rem;
+    padding: var(--vanden-spacing-xs) var(--vanden-spacing-md);
+}
+
+/* Mobile Menu Toggle */
+#wrapper .vanden-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+}
+
+#wrapper .hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: var(--vanden-dark-gray);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+#wrapper .vanden-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+#wrapper .vanden-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+#wrapper .vanden-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+#wrapper .vanden-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--vanden-white);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+}
+
+#wrapper .vanden-mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#wrapper .mobile-menu-content {
+    padding: 80px var(--vanden-spacing-md) var(--vanden-spacing-xl);
+}
+
+#wrapper .mobile-nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper .mobile-nav-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#wrapper .mobile-nav-link {
+    display: block;
+    color: var(--vanden-dark-gray);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: var(--vanden-spacing-md) 0;
+    transition: color 0.3s ease;
+}
+
+#wrapper .mobile-nav-link:hover,
+#wrapper .mobile-nav-link:focus {
+    color: var(--vanden-primary-red);
+}
+
+#wrapper .mobile-dropdown {
+    padding-left: var(--vanden-spacing-md);
+}
+
+#wrapper .mobile-dropdown-item {
+    display: block;
+    color: var(--vanden-medium-gray);
+    text-decoration: none;
+    padding: var(--vanden-spacing-sm) 0;
+    font-size: 1rem;
+}
+
+#wrapper .mobile-dropdown-item:hover,
+#wrapper .mobile-dropdown-item:focus {
+    color: var(--vanden-primary-red);
+}
+
+#wrapper .mobile-auth-section {
+    margin-top: var(--vanden-spacing-xl);
+    text-align: center;
+}
+
+/* User Profile Integration */
+#wrapper .user-profile {
+    display: flex;
+    align-items: center;
+}
+
+#wrapper .user-profile .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: var(--vanden-spacing-xs);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    #wrapper .nav-menu {
+        gap: var(--vanden-spacing-md);
+    }
+    
+    #wrapper .nav-link {
+        padding: var(--vanden-spacing-xs) var(--vanden-spacing-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    #wrapper .main-navigation {
+        display: none;
+    }
+    
+    #wrapper .vanden-menu-toggle {
+        display: flex;
+    }
+    
+    #wrapper .vanden-mobile-menu {
+        display: block;
+    }
+    
+    #wrapper .header-actions .login-btn {
+        display: none;
+    }
+    
+    #wrapper .banner-content {
+        font-size: 0.8rem;
+    }
+    
+    .banner-content #wrapper .banner-text {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #wrapper .banner-content {
+        flex-direction: column;
+        gap: var(--vanden-spacing-xs);
+    }
+    
+    #wrapper .header-content {
+        padding: var(--vanden-spacing-xs) 0;
+        min-height: 60px;
+    }
+    
+    #wrapper .logo {
+        height: 35px;
+    }
+}
+
+/* Login Modal Styles */
+#wrapper .vanden-login-overlay,
+#wrapper .vanden-search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+#wrapper .vanden-login-modal,
+#wrapper .vanden-search-modal {
+    background-color: var(--vanden-white);
+    border-radius: var(--vanden-border-radius);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    min-height: 300px;
+    max-height: 90vh;
+    overflow: visible !important;
+    animation: modalSlideIn 0.3s ease;
+    position: relative !important;
+    transition: min-height 0.3s ease;
+}
+
+/* Expand modal when dropdown suggestions are visible */
+#wrapper .vanden-search-modal:has(.dropdown-menu.search-bar-suggestions-dropdown-menu.show) {
+    min-height: 600px;
+    max-height: 95vh;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+#wrapper .login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--vanden-light-gray);
+    background-color: var(--vanden-light-gray);
+}
+
+#wrapper .login-header h3 {
+    margin: 0;
+    color: var(--vanden-dark-gray);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+#wrapper .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--vanden-gray);
+    cursor: pointer;
+    padding: 5px;
+    transition: var(--vanden-transition);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#wrapper .close-btn:hover {
+    background-color: var(--vanden-border-color);
+    color: var(--vanden-dark-gray);
+}
+
+#wrapper .login-content {
+    padding: 25px;
+    min-height: 300px;
+    overflow-y: auto;
+}
+
+#wrapper .login-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--vanden-gray);
+}
+
+/* User Profile Widget Styles */
+#wrapper .user-profile {
+    text-align: center;
+}
+
+.user-profile #wrapper .user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    background-color: var(--vanden-primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vanden-white);
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.user-profile #wrapper .user-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--vanden-dark-gray);
+    margin-bottom: 10px;
+}
+
+.user-profile #wrapper .user-email {
+    color: var(--vanden-gray);
+    margin-bottom: 20px;
+}
+
+.user-profile #wrapper .profile-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Override Liferay Global Styles in Login Modal Content */
+.login-content #wrapper .portlet,
+.login-content #wrapper .portlet-content,
+.login-content #wrapper .portlet-body {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Remove default Liferay portlet headers */
+.login-content #wrapper .portlet-header,
+.login-content #wrapper .portlet-title-default,
+.login-content #wrapper .portlet-title {
+    display: none !important;
+}
+
+/* Style login form with Vanden theme using actual Liferay DOM structure */
+.login-content #wrapper .input-container {
+    margin-bottom: 1.25rem !important;
+}
+
+.login-content #wrapper .control-label,
+#wrapper .login-content label {
+    color: var(--vanden-dark-gray) !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    display: block !important;
+    font-size: 0.9rem !important;
+    font-family: inherit !important;
+}
+
+/* Target actual Liferay login form inputs including clearable */
+.login-content #wrapper .form-control,
+.login-content input#wrapper .field,
+.login-content .clearable#wrapper .form-control {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    border: 2px solid var(--vanden-border-color) !important;
+    border-radius: var(--vanden-border-radius) !important;
+    font-size: 1rem !important;
+    background: var(--vanden-white) !important;
+    color: var(--vanden-dark-gray) !important;
+    transition: border-color 0.2s ease !important;
+    box-sizing: border-box !important;
+    font-family: inherit !important;
+}
+
+.login-content #wrapper .form-control:focus,
+.login-content input#wrapper .field:focus,
+.login-content .clearable#wrapper .form-control:focus {
+    outline: none !important;
+    border-color: var(--vanden-primary-red) !important;
+    box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1) !important;
+}
+
+/* Target the actual Sign In button */
+.login-content #wrapper .btn,
+.login-content #wrapper .btn-primary,
+#wrapper .login-content button[type="submit"] {
+    background: var(--vanden-primary-red) !important;
+    color: var(--vanden-white) !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: var(--vanden-border-radius) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+    text-transform: none !important;
+    font-family: inherit !important;
+}
+
+.login-content #wrapper .btn:hover,
+.login-content #wrapper .btn-primary:hover,
+#wrapper .login-content button[type="submit"]:hover {
+    background: var(--vanden-dark-red) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3) !important;
+}
+
+.login-content #wrapper .btn:active,
+.login-content #wrapper .btn-primary:active,
+#wrapper .login-content button[type="submit"]:active {
+    transform: translateY(0) !important;
+}
+
+/* Style the button label specifically */
+.login-content #wrapper .lfr-btn-label {
+    color: var(--vanden-white) !important;
+    font-weight: 600 !important;
+}
+
+/* Style checkbox and remember me using actual Liferay structure */
+.login-content #wrapper .checkbox,
+.login-content #wrapper .form-check {
+    margin: 1rem 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#wrapper .login-content input[type="checkbox"] {
+    margin-right: 0.5rem !important;
+    accent-color: var(--vanden-primary-red) !important;
+}
+
+.login-content #wrapper .form-check-label,
+.login-content #wrapper .checkbox label {
+    font-weight: normal !important;
+    color: var(--vanden-gray) !important;
+    display: inline !important;
+    font-size: 0.9rem !important;
+}
+
+/* Style links */
+#wrapper .login-content a,
+.login-content #wrapper .taglib-link {
+    color: var(--vanden-primary-red) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: color 0.2s ease !important;
+}
+
+#wrapper .login-content a:hover,
+.login-content #wrapper .taglib-link:hover {
+    color: var(--vanden-dark-red) !important;
+    text-decoration: underline !important;
+}
+
+/* Style form validation messages */
+/* Enhanced Search Button Styling with Higher Specificity */
+#wrapper .search-content .btn,
+#wrapper .search-content .btn-primary,
+#wrapper .search-content button[type="submit"],
+#wrapper .search-content .search-bar-search-button,
+#wrapper .search-content .input-group-btn button {
+    background-color: #c41e3a !important;
+    border-color: #c41e3a !important;
+    color: white !important;
+    padding: 12px 24px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid #c41e3a !important;
+}
+
+#wrapper .search-content .btn:hover,
+#wrapper .search-content .btn-primary:hover,
+#wrapper .search-content button[type="submit"]:hover,
+#wrapper .search-content .search-bar-search-button:hover,
+#wrapper .search-content .input-group-btn button:hover {
+    background-color: #8b1e2e !important;
+    border-color: #8b1e2e !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Input Group Styling */
+#wrapper .search-content .input-group .input-group-inset-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.login-content #wrapper .alert,
+.login-content #wrapper .alert-danger,
+.login-content #wrapper .error-message {
+    background: #fee !important;
+    color: var(--vanden-dark-red) !important;
+    border: 1px solid rgba(196, 30, 58, 0.2) !important;
+    padding: 12px !important;
+    border-radius: var(--vanden-border-radius) !important;
+    margin-bottom: 1rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* Style success messages */
+.login-content #wrapper .alert-success {
+    background: #efe !important;
+    color: #2d5a2d !important;
+    border-color: rgba(45, 90, 45, 0.2) !important;
+}
+
+/* Style create account and forgot password links using actual Liferay structure */
+.login-content #wrapper .taglib-text {
+    margin-top: 1.5rem !important;
+    text-align: center !important;
+    font-size: 0.9rem !important;
+}
+
+.login-content #wrapper .taglib-text a {
+    margin: 0 0.5rem !important;
+}
+
+/* Style the sign-in form container */
+.login-content #wrapper .sign-in-form {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* Style the login container */
+.login-content #wrapper .login-container {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Style the fieldset */
+#wrapper .login-content fieldset {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Style the panel body */
+.login-content #wrapper .panel-body {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* Hide Liferay specific elements that might interfere */
+.login-content #wrapper .hide {
+    display: none !important;
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+    #wrapper .vanden-login-modal {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    #wrapper .login-header {
+        padding: 15px 20px;
+    }
+    
+    #wrapper .login-content {
+        padding: 20px;
+    }
+    
+    .user-profile #wrapper .profile-actions {
+        flex-direction: column;
+    }
+}
+
+/* Search Modal Overlay */
+/* Search Modal Styles */
+/* Edit mode - show modal for dropzone configuration */
+#wrapper .vanden-search-overlay.vanden-edit-mode {
+    display: block !important;
+    position: relative !important;
+    background: rgba(241, 245, 249, 0.95) !important;
+    border: 2px dashed var(--vanden-primary-red, #C41E3A) !important;
+    margin: 20px 0 !important;
+    border-radius: 8px !important;
+}
+
+#wrapper .vanden-search-overlay.vanden-edit-mode .vanden-search-modal {
+    background: white !important;
+    box-shadow: none !important;
+    position: relative !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+#wrapper .vanden-search-overlay.vanden-edit-mode::before {
+    content: "🎯 Edit Mode: Drop Search Portlet Here";
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background: var(--vanden-primary-red, #C41E3A);
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#wrapper .vanden-search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    backdrop-filter: blur(4px);
+}
+
+#wrapper .vanden-search-modal {
+    background: var(--vanden-white);
+    max-width: 600px;
+    margin: 10% auto;
+    border-radius: var(--vanden-radius-lg);
+    box-shadow: var(--vanden-shadow-xl);
+    overflow: hidden;
+}
+
+#wrapper .search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--vanden-spacing-lg);
+    background: var(--vanden-light-gray);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#wrapper .search-header h3 {
+    margin: 0;
+    color: var(--vanden-dark-gray);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+#wrapper .search-content {
+    padding: var(--vanden-spacing-lg);
+    min-height: 200px;
+    height: auto;
+    transition: min-height 0.3s ease;
+}
+
+/* Expand search content when dropdown suggestions are visible */
+#wrapper .search-content:has(.dropdown-menu.search-bar-suggestions-dropdown-menu.show) {
+    min-height: 500px;
+}
+
+/* Alternative selector for broader browser support */
+.dropdown-menu.search-bar-suggestions-dropdown-menu.show ~ .search-content,
+.search-content .dropdown-menu.search-bar-suggestions-dropdown-menu.show {
+    min-height: 500px !important;
+}
+
+/* Style the embedded Liferay search bar with comprehensive targeting */
+#wrapper .search-content .portlet,
+#wrapper .search-content .portlet-content,
+#wrapper .search-content .portlet-body {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Remove portlet headers */
+#wrapper .search-content .portlet-header,
+#wrapper .search-content .portlet-title-default,
+#wrapper .search-content .portlet-title {
+    display: none !important;
+}
+
+/* Target all input variations in search */
+#wrapper .search-content .form-control,
+#wrapper .search-content .search-bar-keywords-input,
+#wrapper .search-content input[type="text"],
+#wrapper .search-content input.form-control {
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 6px !important;
+    padding: 12px 16px !important;
+    font-size: 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.3s ease !important;
+    background: white !important;
+    color: var(--vanden-dark-gray) !important;
+    font-family: inherit !important;
+}
+
+#wrapper .search-content .form-control:focus,
+#wrapper .search-content .search-bar-keywords-input:focus,
+#wrapper .search-content input[type="text"]:focus,
+#wrapper .search-content input.form-control:focus {
+    border-color: #c41e3a !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1) !important;
+}
+
+/* Target all button variations in search */
+#wrapper .search-content .btn,
+#wrapper .search-content .btn-primary,
+#wrapper .search-content button[type="submit"],
+#wrapper .search-content .search-bar-search-button {
+    background-color: #c41e3a !important;
+    border-color: #c41e3a !important;
+    color: white !important;
+    padding: 12px 24px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    font-family: inherit !important;
+    border: 2px solid #c41e3a !important;
+}
+
+#wrapper .search-content .btn:hover,
+#wrapper .search-content .btn-primary:hover,
+#wrapper .search-content button[type="submit"]:hover,
+#wrapper .search-content .search-bar-search-button:hover {
+    background-color: #8b1e2e !important;
+    border-color: #8b1e2e !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Style input group and suggestions */
+#wrapper .search-content .input-group {
+    margin-bottom: 16px !important;
+    position: relative !important;
+}
+
+#wrapper .search-content .search-bar-suggestions,
+#wrapper .search-content .suggestions,
+#wrapper .search-content .autocomplete-suggestions,
+#wrapper .search-content .liferay-search-suggestions,
+#wrapper .search-content .search-bar-suggestions,
+#wrapper .search-content .suggestions,
+#wrapper .search-content .autocomplete-suggestions,
+#wrapper .search-content .liferay-search-suggestions {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 99999 !important;
+    background: white !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+#wrapper .search-content .suggestion-item,
+#wrapper .search-content .autocomplete-suggestion,
+#wrapper .search-content .search-suggestion,
+.suggestion-item,
+.autocomplete-suggestion,
+.search-suggestion {
+    padding: 12px 16px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    color: #333 !important;
+    font-size: 0.95rem !important;
+    display: block !important;
+    text-decoration: none !important;
+}
+
+#wrapper .search-content .suggestion-item:hover,
+#wrapper .search-content .autocomplete-suggestion:hover,
+#wrapper .search-content .search-suggestion:hover,
+#wrapper .search-content .suggestion-item.selected,
+#wrapper .search-content .autocomplete-suggestion.selected,
+#wrapper .search-content .search-suggestion.selected,
+.suggestion-item:hover,
+.autocomplete-suggestion:hover,
+.search-suggestion:hover,
+.suggestion-item.selected,
+.autocomplete-suggestion.selected,
+.search-suggestion.selected {
+    background-color: rgba(196, 30, 58, 0.08) !important;
+    color: #c41e3a !important;
+}
+
+#wrapper .search-content .suggestion-item:last-child,
+#wrapper .search-content .autocomplete-suggestion:last-child,
+#wrapper .search-content .search-suggestion:last-child {
+    border-bottom: none !important;
+}
+
+/* Override Liferay's specific dropdown menu z-index */
+.dropdown-menu.search-bar-suggestions-dropdown-menu {
+    z-index: 99999 !important;
+    background: white !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+.dropdown-menu.search-bar-suggestions-dropdown-menu.show {
+    z-index: 99999 !important;
+}
+
+/* Style dropdown items with Vanden theme */
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item {
+    padding: 12px 16px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    color: #333 !important;
+    font-size: 0.95rem !important;
+    display: block !important;
+    text-decoration: none !important;
+}
+
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item:hover,
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item:focus,
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item.active {
+    background-color: rgba(196, 30, 58, 0.08) !important;
+    color: #c41e3a !important;
+}
+
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item:last-child {
+    border-bottom: none !important;
+}
+
+/* Header dropzone styling */
+#wrapper .vanden-header-dropzone {
+    display: flex;
+    align-items: center;
+    margin-left: var(--vanden-spacing-md);
+}
+
+#wrapper .vanden-header-dropzone lfr-drop-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    min-width: 100px;
+    border: 2px dashed transparent;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    box-sizing: border-box;
+}
+
+/* Show dropzone in edit mode */
+#wrapper .vanden-header-dropzone lfr-drop-zone[data-editor-enabled="true"],
+#wrapper .is-edit-mode .vanden-header-dropzone lfr-drop-zone,
+body.has-edit-mode-menu .vanden-header-dropzone lfr-drop-zone {
+    border-color: #c41e3a !important;
+    background-color: rgba(196, 30, 58, 0.05) !important;
+    position: relative;
+    min-width: 120px !important;
+    min-height: 40px !important;
+    width: auto;
+    display: flex !important;
+    visibility: visible !important;
+}
+
+#wrapper .vanden-header-dropzone lfr-drop-zone[data-editor-enabled="true"]:before,
+#wrapper .is-edit-mode .vanden-header-dropzone lfr-drop-zone:before,
+body.has-edit-mode-menu .vanden-header-dropzone lfr-drop-zone:before {
+    content: "Drop content here";
+    color: #c41e3a;
+    font-size: 0.75rem;
+    font-weight: 500;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1;
+    display: block !important;
+}
+
+/* Hide dropzone placeholder when content is present */
+#wrapper .vanden-header-dropzone lfr-drop-zone:not(:empty):before {
+    display: none;
+}
+
+/* Hide any unwanted Liferay styling */
+#wrapper .search-content .portlet-boundary {
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Ensure proper spacing */
+#wrapper .search-content form {
+    margin: 0 !important;
+}
+
+#wrapper .search-content .input-group-item {
+    width: 100% !important;
+}

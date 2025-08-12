@@ -31,6 +31,13 @@
           "defaultValue": "Johnson Matthey"
         },
         {
+          "name": "navigationMenuId",
+          "label": "Navigation Menu ID",
+          "description": "ID of the Liferay navigation menu to use",
+          "type": "text",
+          "defaultValue": "primary-menu"
+        },
+        {
           "name": "headerStyle",
           "label": "Header Style",
           "description": "Choose header background style",
