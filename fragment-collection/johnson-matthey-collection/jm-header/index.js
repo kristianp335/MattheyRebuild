@@ -68,10 +68,8 @@
     function initializeHeader() {
         console.log('Johnson Matthey Header Fragment initializing...');
         
-        // Check if we're in edit mode
-        const editMode = document.body.classList.contains('has-edit-mode-menu') || 
-                         document.body.classList.contains('is-edit-mode') ||
-                         document.querySelector('.portlet-layout');
+        // Check if we're in edit mode - more specific detection
+        const editMode = isInEditMode();
         
         if (editMode) {
             console.log('Edit mode detected - using simplified initialization');
@@ -86,7 +84,9 @@
             return;
         }
         
-        // Full initialization for live mode
+        // Full initialization for live mode - ensure modals are hidden
+        ensureModalsHidden();
+        
         // Initialize navigation
         initializeNavigation();
         
@@ -100,6 +100,48 @@
         setTimeout(initializeDropdowns, 100);
         
         console.log('Johnson Matthey Header Fragment initialized');
+    }
+    
+    function isInEditMode() {
+        // More specific edit mode detection
+        const body = document.body;
+        
+        // Check for specific Liferay edit mode indicators
+        const hasEditModeMenu = body.classList.contains('has-edit-mode-menu');
+        const isEditMode = body.classList.contains('is-edit-mode');
+        const hasControlMenu = document.querySelector('.control-menu');
+        const hasPageEditor = document.querySelector('.page-editor');
+        const hasFragmentEntryProcessorEditable = document.querySelector('.fragment-entry-processor-editable');
+        
+        // Only consider in edit mode if we have clear indicators
+        const inEditMode = hasEditModeMenu || isEditMode || (hasControlMenu && (hasPageEditor || hasFragmentEntryProcessorEditable));
+        
+        console.log('Edit mode check:', {
+            hasEditModeMenu,
+            isEditMode,
+            hasControlMenu: !!hasControlMenu,
+            hasPageEditor: !!hasPageEditor,
+            hasFragmentEntryProcessorEditable: !!hasFragmentEntryProcessorEditable,
+            inEditMode
+        });
+        
+        return inEditMode;
+    }
+    
+    function ensureModalsHidden() {
+        // Ensure modals are hidden in live mode
+        const searchOverlay = document.querySelector('#jm-search-overlay');
+        const loginOverlay = document.querySelector('#jm-login-overlay');
+        
+        if (searchOverlay) {
+            searchOverlay.classList.remove('jm-edit-mode');
+            searchOverlay.style.display = 'none';
+        }
+        
+        if (loginOverlay) {
+            loginOverlay.classList.remove('jm-edit-mode');
+            loginOverlay.style.display = 'none';
+        }
     }
     
     function initializeNavigation() {
@@ -533,7 +575,12 @@
     }
     
     function initializeEditModeDisplay() {
-        // Add edit mode classes to modals for visual indication
+        // Add edit mode classes to modals for visual indication ONLY in actual edit mode
+        if (!isInEditMode()) {
+            console.log('Not in edit mode - skipping edit mode display');
+            return;
+        }
+        
         const searchOverlay = document.querySelector('#jm-search-overlay');
         const loginOverlay = document.querySelector('#jm-login-overlay');
         
