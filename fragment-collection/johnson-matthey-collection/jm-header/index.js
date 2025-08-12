@@ -326,92 +326,143 @@
     }
     
     function initializeModals() {
-        // Search modal
+        initializeSearchModal();
+        initializeLoginModal();
+    }
+    
+    function initializeSearchModal() {
         const searchBtn = fragmentElement.querySelector('.jm-search-btn');
-        const searchModal = fragmentElement.querySelector('.jm-search-modal');
-        const searchBackdrop = fragmentElement.querySelector('.jm-search-modal-backdrop');
+        const searchOverlay = document.querySelector('#jm-search-overlay');
+        const closeSearch = document.querySelector('#jm-close-search');
         
-        if (searchBtn && searchBackdrop) {
-            searchBtn.addEventListener('click', () => {
-                openModal(searchBackdrop);
+        if (!searchBtn || !searchOverlay) {
+            console.log('Search elements not found');
+            return;
+        }
+        
+        // Open search modal
+        searchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openSearchModal();
+        });
+        
+        // Close search modal
+        if (closeSearch) {
+            closeSearch.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeSearchModal();
             });
         }
         
-        // Login modal
+        // Close on overlay click
+        searchOverlay.addEventListener('click', function(e) {
+            if (e.target === searchOverlay) {
+                closeSearchModal();
+            }
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && searchOverlay.style.display !== 'none') {
+                closeSearchModal();
+            }
+        });
+    }
+    
+    function initializeLoginModal() {
         const loginBtn = fragmentElement.querySelector('.jm-login-btn');
         const mobileLoginBtn = fragmentElement.querySelector('.jm-mobile-login-btn');
-        const loginModal = fragmentElement.querySelector('.jm-login-modal');
-        const loginBackdrop = fragmentElement.querySelector('.jm-login-modal-backdrop');
+        const loginOverlay = document.querySelector('#jm-login-overlay');
+        const closeLogin = document.querySelector('#jm-close-login');
         
-        if (loginBtn && loginBackdrop) {
-            loginBtn.addEventListener('click', () => {
-                openModal(loginBackdrop);
+        if (!loginOverlay) {
+            console.log('Login overlay not found');
+            return;
+        }
+        
+        // Open login modal
+        if (loginBtn) {
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openLoginModal();
             });
         }
         
-        if (mobileLoginBtn && loginBackdrop) {
-            mobileLoginBtn.addEventListener('click', () => {
+        if (mobileLoginBtn) {
+            mobileLoginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 // Close mobile menu first
                 const mobileNav = fragmentElement.querySelector('.jm-mobile-nav');
                 const mobileToggle = fragmentElement.querySelector('.jm-mobile-menu-toggle');
                 if (mobileNav) {
                     mobileNav.classList.remove('show');
                     mobileToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
                 }
                 
-                openModal(loginBackdrop);
+                openLoginModal();
             });
         }
         
-        // Modal close functionality
-        const modalCloseButtons = fragmentElement.querySelectorAll('.jm-modal-close');
-        const modalBackdrops = fragmentElement.querySelectorAll('.jm-modal-backdrop');
-        
-        modalCloseButtons.forEach(closeBtn => {
-            closeBtn.addEventListener('click', () => {
-                const modal = closeBtn.closest('.jm-modal-backdrop');
-                if (modal) {
-                    closeModal(modal);
-                }
+        // Close login modal
+        if (closeLogin) {
+            closeLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeLoginModal();
             });
+        }
+        
+        // Close on overlay click
+        loginOverlay.addEventListener('click', function(e) {
+            if (e.target === loginOverlay) {
+                closeLoginModal();
+            }
         });
         
-        modalBackdrops.forEach(backdrop => {
-            backdrop.addEventListener('click', (e) => {
-                if (e.target === backdrop) {
-                    closeModal(backdrop);
-                }
-            });
-        });
-        
-        // Escape key to close modals
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const openModal = fragmentElement.querySelector('.jm-modal-backdrop.show');
-                if (openModal) {
-                    closeModal(openModal);
-                }
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && loginOverlay.style.display !== 'none') {
+                closeLoginModal();
             }
         });
     }
     
-    function openModal(modalBackdrop) {
-        modalBackdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
-        
-        // Focus management
-        const modal = modalBackdrop.querySelector('.jm-modal');
-        if (modal) {
-            const firstFocusable = modal.querySelector('input, button, select, textarea, [tabindex]:not([tabindex="-1"])');
-            if (firstFocusable) {
-                setTimeout(() => firstFocusable.focus(), 100);
-            }
+    function openSearchModal() {
+        const searchOverlay = document.querySelector('#jm-search-overlay');
+        if (searchOverlay) {
+            searchOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
     }
     
-    function closeModal(modalBackdrop) {
-        modalBackdrop.classList.remove('show');
-        document.body.style.overflow = '';
+    function closeSearchModal() {
+        const searchOverlay = document.querySelector('#jm-search-overlay');
+        if (searchOverlay) {
+            searchOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+    
+    function openLoginModal() {
+        const loginOverlay = document.querySelector('#jm-login-overlay');
+        if (loginOverlay) {
+            loginOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function closeLoginModal() {
+        const loginOverlay = document.querySelector('#jm-login-overlay');
+        if (loginOverlay) {
+            loginOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
     }
     
 })();

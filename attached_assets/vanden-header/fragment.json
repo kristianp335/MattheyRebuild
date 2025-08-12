@@ -1,0 +1,10 @@
+{
+    "configurationPath": "configuration.json",
+    "cssPath": "index.css",
+    "htmlPath": "index.html",
+    "jsPath": "index.js",
+    "name": "Vanden Header",
+    "thumbnailPath": "thumbnail.png",
+    "type": "component",
+    "icon": "web-content"
+}

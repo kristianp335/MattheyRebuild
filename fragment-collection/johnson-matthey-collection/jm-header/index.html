@@ -34,19 +34,8 @@
 
           <!-- Login/User Button -->
           [#if themeDisplay.isSignedIn()]
-            <div class="jm-user-dropdown jm-dropdown">
-              <button class="jm-header-action-btn jm-user-btn" aria-label="User menu" aria-expanded="false">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
-                  <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
-                </svg>
-                <span class="jm-user-name">${themeDisplay.getUser().getFullName()}</span>
-              </button>
-              <div class="jm-dropdown-menu">
-                <div class="jm-user-profile-widget">
-                  [@liferay_portlet["runtime"] portletName="com_liferay_my_account_web_portlet_MyAccountPortlet" /]
-                </div>
-              </div>
+            <div class="jm-user-profile-widget">
+              [@liferay.user_personal_bar /]
             </div>
           [#else]
             <button class="jm-header-action-btn jm-login-btn" aria-label="Sign in">
@@ -93,15 +82,11 @@
   </header>
 
   <!-- Search Modal -->
-  <div class="jm-modal-backdrop jm-search-modal-backdrop">
-    <div class="jm-modal jm-search-modal" role="dialog" aria-labelledby="search-modal-title" aria-modal="true">
+  <div id="jm-search-overlay" class="jm-search-overlay" style="display: none;">
+    <div class="jm-search-modal">
       <div class="jm-modal-header">
-        <h3 class="jm-modal-title" id="search-modal-title">Search</h3>
-        <button class="jm-modal-close" aria-label="Close search modal">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </button>
+        <h3 class="jm-modal-title" data-lfr-editable-id="search-title" data-lfr-editable-type="text">Search Johnson Matthey</h3>
+        <button id="jm-close-search" class="jm-modal-close" aria-label="Close search">&times;</button>
       </div>
       <div class="jm-modal-body search-content">
         <lfr-drop-zone data-lfr-drop-zone-id="search">
@@ -112,15 +97,11 @@
 
   <!-- Login Modal -->
   [#if !themeDisplay.isSignedIn()]
-    <div class="jm-modal-backdrop jm-login-modal-backdrop">
-      <div class="jm-modal jm-login-modal" role="dialog" aria-labelledby="login-modal-title" aria-modal="true">
+    <div id="jm-login-overlay" class="jm-login-overlay" style="display: none;">
+      <div class="jm-login-modal">
         <div class="jm-modal-header">
-          <h3 class="jm-modal-title" id="login-modal-title">Sign In</h3>
-          <button class="jm-modal-close" aria-label="Close login modal">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </button>
+          <h3 class="jm-modal-title" data-lfr-editable-id="login-title" data-lfr-editable-type="text">Sign In to Johnson Matthey</h3>
+          <button id="jm-close-login" class="jm-modal-close" aria-label="Close login">&times;</button>
         </div>
         <div class="jm-modal-body login-content">
           [@liferay_portlet["runtime"] portletName="com_liferay_login_web_portlet_LoginPortlet" /]

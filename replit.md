@@ -138,9 +138,10 @@ Scroll-triggered animations and interactive elements use CSS transitions and tra
 - **Fixed Configuration Validation Errors**: All fragments now use correct `typeOptions.validValues` structure instead of deprecated `options` 
 - **Fixed FreeMarker Syntax Error**: Header fragment now uses `themeDisplay.getUser().getFullName()` instead of `themeDisplay.getUserName()`
 - **Fixed JavaScript Error**: Resolved 'Cannot read properties of null (reading 'closest')' error with proper null checking and variable scoping
-- **Implemented Modal System**: Added search and login modals with proper dropzone integration and Liferay portlet embedding
+- **Implemented Modal System**: Added search and login modals following Vanden reference implementation with proper overlay structure
 - **Implemented Navigation API**: Added Liferay Headless Delivery API integration with fallback navigation structure
-- **Enhanced Header Fragment**: Added editable logo, user profile widget, dropzone functionality, and comprehensive accessibility features
+- **Enhanced Header Fragment**: Added editable logo, user profile widget using [@liferay.user_personal_bar /], dropzone functionality, and comprehensive accessibility features
+- **Updated User Personal Bar**: Changed from custom portlet to [@liferay.user_personal_bar /] following Liferay best practices from reference implementation
 - **Affected Fragments**: All fragments with select fields (JM Header, Hero, News Carousel, Share Price, Company Overview, Footer)
 - **ZIP Files Updated**: All individual fragment ZIPs and collection ZIP regenerated with corrected configurations and enhanced functionality
 

@@ -426,8 +426,9 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   }
 }
 
-/* Modal Styles */
-#wrapper .jm-modal-backdrop {
+/* Modal Overlay Styles */
+#wrapper .jm-search-overlay,
+#wrapper .jm-login-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -435,19 +436,13 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1050;
-  display: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-#wrapper .jm-modal-backdrop.show {
   display: flex;
-  opacity: 1;
   align-items: center;
   justify-content: center;
 }
 
-#wrapper .jm-modal {
+#wrapper .jm-search-modal,
+#wrapper .jm-login-modal {
   background: var(--jm-white);
   border-radius: var(--jm-border-radius-lg);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -455,12 +450,18 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   width: 90%;
   max-height: 80vh;
   overflow: hidden;
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
+  animation: modalFadeIn 0.3s ease;
 }
 
-#wrapper .jm-modal-backdrop.show .jm-modal {
-  transform: scale(1);
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 #wrapper .jm-modal-header {

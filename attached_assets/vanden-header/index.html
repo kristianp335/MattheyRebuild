@@ -1,0 +1,106 @@
+[#if (configuration.showTopBanner!true)]
+<div class="vanden-top-banner">
+    <div class="vanden-container">
+        <div class="banner-content">
+            <span class="banner-text">${configuration.bannerText!'We are hiring around the world. Be part of our growth journey'} 🚀</span>
+            <a href="${configuration.bannerLinkUrl!'https://careers.vandenrecycling.com/'}" class="banner-link" target="_blank" rel="noopener">
+                ${configuration.bannerLinkText!'Take a look at our vacancies here'}
+            </a>
+        </div>
+    </div>
+</div>
+[/#if]
+
+<header class="vanden-header">
+    <div class="vanden-container">
+        <div class="header-content">
+            <div class="logo-section">
+                <a href="#" class="logo-link" aria-label="Vanden Recycling Home" id="logo-home-link">
+                    <img src="[resources:vanden-logo.svg]" alt="Vanden Recycling" class="logo" data-lfr-editable-id="header-logo" data-lfr-editable-type="image" />
+                </a>
+            </div>
+            
+            <nav class="main-navigation" role="navigation" aria-label="Main Navigation">
+                <div class="nav-menu" id="vanden-nav-menu">
+                    <!-- Navigation will be populated by JavaScript -->
+                </div>
+            </nav>
+            
+            <div class="header-actions">
+                [#if (configuration.showSearch!true)]
+                    <button id="search-btn" class="vanden-btn vanden-btn-outline search-btn" aria-label="Open search">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                [/#if]
+                
+                [#if themeDisplay.isSignedIn()]
+                    <div class="user-profile-widget">
+                        [@liferay.user_personal_bar /]
+                    </div>
+                [#else]
+                    <button id="login-btn" class="vanden-btn vanden-btn-outline login-btn">Login</button>
+                [/#if]
+                
+                <!-- Additional dropzone for custom content -->
+                <div class="vanden-header-dropzone">
+                    <lfr-drop-zone data-lfr-drop-zone-id="header-extra">
+                    </lfr-drop-zone>
+                </div>
+                
+                <button class="vanden-menu-toggle" aria-expanded="false" aria-controls="vanden-mobile-menu" aria-label="Toggle navigation menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="vanden-mobile-menu" id="vanden-mobile-menu">
+        <div class="mobile-menu-content">
+            <div class="mobile-nav-menu">
+                <!-- Mobile navigation will be populated by JavaScript -->
+            </div>
+            
+            [#if !themeDisplay.isSignedIn()]
+            <div class="mobile-auth-section">
+                <button id="mobile-login-btn" class="vanden-btn vanden-btn-large">Login</button>
+            </div>
+            [/#if]
+        </div>
+    </div>
+</header>
+
+<!-- Search Modal Overlay -->
+[#if (configuration.showSearch!true)]
+<div id="search-overlay" class="vanden-search-overlay" style="display: none;">
+    <div class="vanden-search-modal">
+        <div class="search-header">
+            <h3 data-lfr-editable-id="search-title" data-lfr-editable-type="text">Search Vanden Recycling</h3>
+            <button id="close-search" class="close-btn" aria-label="Close search">&times;</button>
+        </div>
+        <div class="search-content">
+            <!-- Liferay dropzone for search portlet -->
+            <lfr-drop-zone data-lfr-drop-zone-id="search"></lfr-drop-zone>
+        </div>
+    </div>
+</div>
+[/#if]
+
+<!-- Login Modal Overlay -->
+<div id="login-overlay" class="vanden-login-overlay" style="display: none;">
+    <div class="vanden-login-modal">
+        <div class="login-header">
+            <h3 data-lfr-editable-id="login-title" data-lfr-editable-type="text">Login to Vanden Recycling</h3>
+            <button id="close-login" class="close-btn" aria-label="Close login">&times;</button>
+        </div>
+        <div id="login-content" class="login-content">
+            <!-- Liferay login portlet embedded via FreeMarker -->
+            [@liferay_portlet["runtime"] portletName="com_liferay_login_web_portlet_LoginPortlet" /]
+        </div>
+    </div>
+</div>
