@@ -38,6 +38,7 @@
 #wrapper .jm-hero-stats {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: var(--jm-spacing-lg);
   margin-bottom: var(--jm-spacing-xl);
 }
