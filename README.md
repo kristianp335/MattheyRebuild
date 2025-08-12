@@ -8,3 +8,41 @@ This repository contains a complete Liferay-native recreation of the Johnson Mat
 
 ## Project Structure
 
+### Client Extensions
+The client extensions provide global CSS and JavaScript that support all fragments across the site:
+
+```
+assets/
+├── global.css           # Global CSS with Johnson Matthey branding using Liferay Classic theme tokens
+├── global.js            # Global JavaScript utilities and shared functionality
+client-extension.yaml    # Client extension configuration (CSS and JS only)
+```
+
+### Fragment Collection
+The fragments are deployed separately and contain the complete Johnson Matthey website components:
+
+```
+fragments/
+└── johnson-matthey-collection/
+    ├── collection.json      # Fragment collection metadata
+    ├── jm-header/          # Header with navigation, login/search modals, mobile menu
+    ├── jm-hero/            # Hero section with video and call-to-action
+    ├── jm-news-carousel/   # News and announcements carousel
+    ├── jm-share-price/     # Live share price widget with charts
+    ├── jm-company-overview/# Company statistics and focus areas
+    └── jm-footer/          # Footer with links, social media, newsletter signup
+```
+
+### Deployment Architecture
+
+**Client Extensions** (`client-extension.yaml`):
+- Deploy global CSS and JavaScript assets
+- Provides foundational styling and utilities
+- Scoped to company level for site-wide availability
+
+**Fragment Collection** (separate deployment):
+- Contains all website components as individual fragments
+- Each fragment includes HTML, CSS, JavaScript, and configuration
+- Deployed independently to fragment library
+- Can be used across multiple Liferay sites
+

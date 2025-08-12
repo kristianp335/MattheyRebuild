@@ -1,8 +1,6 @@
 assemble:
   - from: assets
     into: static
-  - from: src
-    into: fragments
 
 johnson-matthey-global-css:
   name: Johnson Matthey Global CSS

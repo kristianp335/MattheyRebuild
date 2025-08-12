@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johnson Matthey Liferay Fragment Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            border-radius: 12px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .file-tree {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #10b981;
+        }
+        
+        .card h3 {
+            color: #059669;
+            margin-bottom: 1rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+        }
+        
+        .note {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            color: #92400e;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Johnson Matthey Liferay Fragment Collection</h1>
+            <p>Enterprise-grade Liferay fragments with separate client extension deployment</p>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Deployment Architecture</h2>
+            <div class="note">
+                <strong>Important:</strong> This project uses a dual-deployment architecture where client extensions and fragments are deployed separately to optimize Liferay development workflows.
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Client Extensions</h3>
+                    <p>Global CSS and JavaScript assets deployed via <code>client-extension.yaml</code></p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Global CSS</span>
+                        <span class="badge">Global JavaScript</span>
+                        <span class="badge">Company Scope</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Fragment Collection</h3>
+                    <p>Complete fragment library deployed separately to Liferay's fragment system</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">6 Fragments</span>
+                        <span class="badge">Independent Deployment</span>
+                        <span class="badge">Modular Components</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📁 Project Structure</h2>
+            <div class="file-tree">
+<strong>Client Extensions (client-extension.yaml)</strong>
+assets/
+├── global.css           <span class="highlight"># Johnson Matthey branding with Liferay Classic theme tokens</span>
+├── global.js            <span class="highlight"># Shared utilities and modal management</span>
+client-extension.yaml    <span class="highlight"># CSS and JS deployment configuration</span>
+
+<strong>Fragment Collection (separate deployment)</strong>
+fragments/
+└── johnson-matthey-collection/
+    ├── collection.json      <span class="highlight"># Fragment collection metadata</span>
+    ├── jm-header/          <span class="highlight"># Navigation, login/search modals, mobile menu</span>
+    ├── jm-hero/            <span class="highlight"># Hero section with video and CTA</span>
+    ├── jm-news-carousel/   <span class="highlight"># News and announcements carousel</span>
+    ├── jm-share-price/     <span class="highlight"># Live share price widget with charts</span>
+    ├── jm-company-overview/ <span class="highlight"># Company statistics and focus areas</span>
+    └── jm-footer/          <span class="highlight"># Footer with social links and newsletter</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎨 Fragment Components</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>JM Header</h3>
+                    <p>Complete navigation system with dropdowns, login/search modals, and responsive mobile menu</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Navigation API</span>
+                        <span class="badge">Login Modal</span>
+                        <span class="badge">Search Modal</span>
+                        <span class="badge">Mobile Menu</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>JM Hero</h3>
+                    <p>Hero section with video functionality, inline SVG graphics, and call-to-action buttons</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Video Modal</span>
+                        <span class="badge">SVG Graphics</span>
+                        <span class="badge">Responsive Design</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>JM News Carousel</h3>
+                    <p>Interactive news carousel with accessibility features and smooth animations</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Touch Support</span>
+                        <span class="badge">Accessibility</span>
+                        <span class="badge">Auto-play</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>JM Share Price</h3>
+                    <p>Live share price widget with interactive charts and market data simulation</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Live Data</span>
+                        <span class="badge">Charts</span>
+                        <span class="badge">Market Info</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>JM Company Overview</h3>
+                    <p>Company statistics with scroll-triggered animations and focus area highlights</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Statistics</span>
+                        <span class="badge">Animations</span>
+                        <span class="badge">Focus Areas</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>JM Footer</h3>
+                    <p>Comprehensive footer with social links, newsletter signup, and back-to-top functionality</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Social Links</span>
+                        <span class="badge">Newsletter</span>
+                        <span class="badge">Back to Top</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔧 Technical Features</h2>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Liferay Classic Theme Integration:</strong> Uses exclusively Liferay frontend tokens for colors and styling</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Responsive Design:</strong> Mobile-first approach with CSS Grid and Flexbox</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Accessibility:</strong> WCAG 2.1 compliant with proper ARIA attributes and keyboard navigation</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Performance Optimized:</strong> Lightweight code designed for Google Lighthouse scores</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Editable Content:</strong> All text and images use Liferay's inline editing system</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Modal System:</strong> Centralized modal management with embedded Liferay portlets</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Animation System:</strong> Scroll-triggered animations with intersection observers</li>
+                <li style="margin-bottom: 0.5rem;">✅ <strong>Theme Compatibility:</strong> All CSS scoped to #wrapper to prevent admin interface conflicts</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📚 Documentation</h2>
+            <p>Complete documentation including implementation guides, deployment instructions, and component specifications can be found in the project repository.</p>
+            <ul style="margin-top: 1rem;">
+                <li><strong>README.md:</strong> Project overview and deployment architecture</li>
+                <li><strong>replit.md:</strong> Technical architecture and user preferences</li>
+                <li><strong>Fragment Documentation:</strong> Individual component specifications in each fragment directory</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
