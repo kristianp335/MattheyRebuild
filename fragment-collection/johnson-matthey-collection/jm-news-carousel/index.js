@@ -80,6 +80,13 @@
         // Setup responsive behavior
         setupResponsiveCarousel();
         
+        // Setup controls visibility
+        if (!config.showControls) {
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            console.log('Controls hidden via configuration');
+        }
+        
         // Setup controls
         setupCarouselControls(prevButton, nextButton);
         
@@ -174,8 +181,11 @@
     }
     
     function setupCarouselIndicators(container) {
+        console.log('Setting up indicators. Show indicators:', config.showIndicators);
+        
         if (!config.showIndicators) {
             container.style.display = 'none';
+            console.log('Indicators hidden via configuration');
             return;
         }
         
@@ -183,12 +193,14 @@
         container.style.display = 'flex';
         
         const totalSlides = Math.max(1, slides.length - slidesToShow + 1);
+        console.log('Creating', totalSlides, 'indicators for', slides.length, 'slides with', slidesToShow, 'visible');
         
         for (let i = 0; i < totalSlides; i++) {
             const indicator = document.createElement('button');
             indicator.className = 'jm-carousel-indicator';
             indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
             indicator.addEventListener('click', () => {
+                console.log('Indicator', i, 'clicked');
                 goToSlide(i);
                 pauseAutoplay();
             });
