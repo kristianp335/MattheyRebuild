@@ -1,4 +1,5 @@
 <!-- LCP Critical CSS and Preloads for immediate rendering -->
+<link rel="preload" as="image" href="[resources:hero-background.webp]" type="image/webp" fetchpriority="high" />
 <link rel="preload" as="image" href="[resources:hero-background.png]" fetchpriority="high" />
 <style>
 /* Critical CSS for immediate rendering - prevent layout shifts */
@@ -43,21 +44,23 @@
         <!-- Hero Image/Video -->
         <div class="jm-hero-media">
           <div class="jm-hero-image">
-            <img 
-              class="jm-hero-img" 
-              data-lfr-editable-id="heroImage" 
-              data-lfr-editable-type="image"
-              src="[resources:hero-background.png]" 
-              alt="Johnson Matthey sustainable technology solutions"
-              loading="eager"
-              fetchpriority="high"
-              width="800"
-              height="450"
-              decoding="sync"
-              onload="this.style.opacity='1'"
-              style="opacity:0;transition:opacity 0.1s"
-            />
-            <link rel="preload" as="image" href="[resources:hero-background.png]" fetchpriority="high" />
+            <picture>
+              <source srcset="[resources:hero-background.webp]" type="image/webp" />
+              <img 
+                class="jm-hero-img" 
+                data-lfr-editable-id="heroImage" 
+                data-lfr-editable-type="image"
+                src="[resources:hero-background.png]" 
+                alt="Johnson Matthey sustainable technology solutions"
+                loading="eager"
+                fetchpriority="high"
+                width="800"
+                height="450"
+                decoding="sync"
+                onload="this.style.opacity='1'"
+                style="opacity:0;transition:opacity 0.1s"
+              />
+            </picture>
           </div>
           
           <!-- Video Play Button -->
