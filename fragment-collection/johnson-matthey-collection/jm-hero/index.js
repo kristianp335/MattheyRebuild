@@ -5,29 +5,31 @@
     const fragmentElement = document.currentScript.closest('.jm-hero-fragment');
     if (!fragmentElement) return;
     
-    // Initialize on DOM ready and SPA navigation events
-    function ready(fn) {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', fn);
-        } else {
-            fn();
-        }
+    // Optimize initialization for faster LCP
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeHero);
+    } else {
+        // Execute immediately if DOM is already ready (for faster initialization)
+        initializeHero();
     }
-    
-    // Initial load
-    ready(initializeHero);
     
     // Single initialization only - no looping event listeners for performance
     
     function initializeHero() {
-        // Get configuration and apply immediately
+        // Minimal initialization for faster LCP
         const config = getFragmentConfiguration();
-        applyConfiguration(config);
         
-        // Initialize video functionality if enabled
-        if (config.showVideo) {
-            initializeVideo();
-        }
+        // Only apply critical configuration immediately
+        applyCriticalConfiguration(config);
+        
+        // Defer non-critical initialization to avoid blocking LCP
+        requestIdleCallback(() => {
+            applyConfiguration(config);
+            
+            if (config.showVideo) {
+                initializeVideo();
+            }
+        });
     }
     
     /**
@@ -43,10 +45,21 @@
     }
     
     /**
-     * Apply configuration settings to the hero
+     * Apply only critical configuration for faster LCP
+     */
+    function applyCriticalConfiguration(config) {
+        const heroSection = fragmentElement.querySelector('.jm-hero');
+        
+        // Only apply critical styles that affect rendering immediately
+        if (heroSection) {
+            heroSection.setAttribute('data-background', config.backgroundStyle);
+        }
+    }
+    
+    /**
+     * Apply full configuration settings to the hero (deferred)
      */
     function applyConfiguration(config) {
-        const heroSection = fragmentElement.querySelector('.jm-hero');
         const heroContent = fragmentElement.querySelector('.jm-hero-content');
         const videoOverlay = fragmentElement.querySelector('.jm-hero-video-overlay');
         const heroStats = fragmentElement.querySelector('.jm-hero-stats');
@@ -54,11 +67,6 @@
         // Apply layout style
         if (heroContent) {
             heroContent.setAttribute('data-layout', config.layoutStyle);
-        }
-        
-        // Apply background style
-        if (heroSection) {
-            heroSection.setAttribute('data-background', config.backgroundStyle);
         }
         
         // Show/hide video button
@@ -70,7 +78,6 @@
         if (heroStats) {
             heroStats.style.display = config.showStats ? 'flex' : 'none';
         }
-
     }
     
     function initializeVideo() {
