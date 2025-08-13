@@ -149,13 +149,10 @@
                 });
             }, observerOptions);
             
-            // Observe hero elements
-            const animateElements = fragmentElement.querySelectorAll(
-                '.jm-hero-title, .jm-hero-description, .jm-hero-actions, .jm-hero-media, .jm-hero-stats'
-            );
+            // Observe only elements that have animation classes from configuration
+            const animateElements = fragmentElement.querySelectorAll('.jm-animate-ready');
             
             animateElements.forEach(el => {
-                el.classList.add('jm-animate-ready');
                 observer.observe(el);
             });
         }
