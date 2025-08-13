@@ -332,13 +332,17 @@
     
     function nextSlide() {
         const maxSlide = Math.max(0, slides.length - slidesToShow);
+        console.log('Next slide - before:', { currentSlide, maxSlide, totalSlides: slides.length, slidesToShow });
         currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+        console.log('Next slide - after:', { currentSlide });
         updateCarousel();
     }
     
     function previousSlide() {
         const maxSlide = Math.max(0, slides.length - slidesToShow);
+        console.log('Previous slide - before:', { currentSlide, maxSlide, totalSlides: slides.length, slidesToShow });
         currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - 1;
+        console.log('Previous slide - after:', { currentSlide });
         updateCarousel();
     }
     
@@ -350,14 +354,26 @@
     
     function updateCarousel() {
         const track = fragmentElement.querySelector('#jm-news-track');
-        if (!track) return;
+        if (!track) {
+            console.error('Track element not found');
+            return;
+        }
         
         // Calculate slide width as percentage
         const slideWidth = 100 / slidesToShow;
         const translateX = -(currentSlide * slideWidth);
         
+        console.log('Update carousel:', {
+            currentSlide,
+            slidesToShow,
+            slideWidth: slideWidth + '%',
+            translateX: translateX + '%',
+            totalSlides: slides.length
+        });
+        
         // Update track position
         track.style.transform = `translateX(${translateX}%)`;
+        console.log('Applied transform:', track.style.transform);
         
         // Update slides visibility and layout
         slides.forEach((slide, index) => {

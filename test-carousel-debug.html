@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Debug Test</title>
+    <style>
+        /* Copy relevant CSS for testing */
+        #wrapper .jm-carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+            padding: 0 60px;
+            border: 2px solid red; /* Debug border */
+        }
+
+        #wrapper .jm-carousel-track-container {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        #wrapper .jm-carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+            border: 2px solid blue; /* Debug border */
+        }
+
+        #wrapper .jm-carousel-slide {
+            flex: 0 0 50%; /* 2 slides visible */
+            padding: 0 16px;
+            box-sizing: border-box;
+            border: 1px solid green; /* Debug border */
+            min-height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #wrapper .jm-carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 20px;
+        }
+
+        #wrapper .jm-carousel-prev {
+            left: 10px;
+        }
+
+        #wrapper .jm-carousel-next {
+            right: 10px;
+        }
+
+        #wrapper .jm-carousel-control:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        .debug-info {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Carousel Debug Test</h1>
+        <div class="debug-info">
+            <strong>Current State:</strong>
+            <div id="debug-output">Initializing...</div>
+        </div>
+        
+        <div class="jm-news-carousel-fragment">
+            <div class="jm-carousel-container">
+                <div class="jm-carousel-track-container">
+                    <div class="jm-carousel-track" id="jm-news-track">
+                        <div class="jm-carousel-slide">Card 1</div>
+                        <div class="jm-carousel-slide">Card 2</div>
+                        <div class="jm-carousel-slide">Card 3</div>
+                        <div class="jm-carousel-slide">Card 4</div>
+                    </div>
+                </div>
+                <button class="jm-carousel-control jm-carousel-prev">‹</button>
+                <button class="jm-carousel-control jm-carousel-next">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple debug carousel implementation
+        let currentSlide = 0;
+        const slidesToShow = 2;
+        const slides = document.querySelectorAll('.jm-carousel-slide');
+        const track = document.getElementById('jm-news-track');
+        const debugOutput = document.getElementById('debug-output');
+
+        function updateDebugInfo() {
+            const maxSlide = Math.max(0, slides.length - slidesToShow);
+            const slideWidth = 100 / slidesToShow;
+            const translateX = -(currentSlide * slideWidth);
+            
+            debugOutput.innerHTML = `
+                Current Slide: ${currentSlide}<br>
+                Total Slides: ${slides.length}<br>
+                Slides to Show: ${slidesToShow}<br>
+                Max Slide: ${maxSlide}<br>
+                Slide Width: ${slideWidth}%<br>
+                Translate X: ${translateX}%<br>
+                Transform: ${track.style.transform}
+            `;
+        }
+
+        function updateCarousel() {
+            const slideWidth = 100 / slidesToShow;
+            const translateX = -(currentSlide * slideWidth);
+            track.style.transform = `translateX(${translateX}%)`;
+            
+            console.log('Updating carousel:', {
+                currentSlide,
+                slideWidth: slideWidth + '%',
+                translateX: translateX + '%',
+                transform: track.style.transform
+            });
+            
+            updateDebugInfo();
+        }
+
+        function nextSlide() {
+            const maxSlide = Math.max(0, slides.length - slidesToShow);
+            console.log('Next - before:', currentSlide, 'max:', maxSlide);
+            currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+            console.log('Next - after:', currentSlide);
+            updateCarousel();
+        }
+
+        function previousSlide() {
+            const maxSlide = Math.max(0, slides.length - slidesToShow);
+            console.log('Prev - before:', currentSlide, 'max:', maxSlide);
+            currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - 1;
+            console.log('Prev - after:', currentSlide);
+            updateCarousel();
+        }
+
+        // Event listeners
+        document.querySelector('.jm-carousel-next').addEventListener('click', nextSlide);
+        document.querySelector('.jm-carousel-prev').addEventListener('click', previousSlide);
+
+        // Initialize
+        updateCarousel();
+    </script>
+</body>
+</html>
