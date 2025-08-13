@@ -377,44 +377,46 @@
             return;
         }
         
-        // Calculate slide width as percentage
-        const slideWidth = 100 / slidesToShow;
-        const translateX = -(currentSlide * slideWidth);
-        
-        console.log('Update carousel:', {
+        console.log('Update carousel called:', {
             currentSlide,
-            slidesToShow,
-            slideWidth: slideWidth + '%',
-            translateX: translateX + '%',
+            slidesToShow, 
             totalSlides: slides.length
         });
         
-        // Update track position with forced CSS
-        track.style.transform = `translateX(${translateX}%)`;
-        track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        console.log('Applied transform:', track.style.transform);
-        console.log('Track computed style:', {
-            transform: getComputedStyle(track).transform,
-            width: getComputedStyle(track).width,
-            display: getComputedStyle(track).display
+        // Simple slide-by-slide movement: move by 1 slide width at a time
+        const slideWidth = 100 / slidesToShow;  // Width of visible area per slide
+        const translateX = -(currentSlide * slideWidth);
+        
+        console.log('Carousel positioning:', {
+            slideWidth: slideWidth + '%',
+            translateX: translateX + '%',
+            currentSlide,
+            slidesToShow
         });
         
-        // Set total track width to accommodate all slides
-        const totalWidth = slides.length * (100 / slidesToShow);
-        track.style.width = `${totalWidth}%`;
+        // Apply transform to track
+        track.style.transform = `translateX(${translateX}%)`;
+        track.style.transition = 'transform 0.5s ease-in-out';
         
-        // Update slides visibility and layout - Simple percentage approach
+        // Set track width to fit all slides in one row
+        const totalTrackWidth = (slides.length / slidesToShow) * 100;
+        track.style.width = `${totalTrackWidth}%`;
+        
+        console.log('Track styling:', {
+            transform: track.style.transform,
+            width: track.style.width,
+            computedTransform: getComputedStyle(track).transform
+        });
+        
+        // Size each slide to fit exactly in visible area
         slides.forEach((slide, index) => {
-            slide.style.width = `${slideWidth}%`;
-            slide.style.flex = `0 0 ${slideWidth}%`;
-            slide.style.minWidth = 0;
-            slide.style.maxWidth = 'none';
+            const actualSlideWidth = 100 / slides.length; // Each slide's width relative to full track
+            slide.style.width = `${actualSlideWidth}%`;
+            slide.style.flex = `0 0 ${actualSlideWidth}%`;
             
             console.log(`Slide ${index}:`, {
-                slideWidth: `${slideWidth}%`,
-                actualWidth: slide.style.width,
-                flex: slide.style.flex,
-                trackWidth: track.style.width
+                width: slide.style.width,
+                flex: slide.style.flex
             });
             
             // Update accessibility
