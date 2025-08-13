@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Fragment Standalone Test</title>
+    <style>
+        /* Liferay Classic Theme Frontend Tokens */
+        :root {
+            /* Primary Colors */
+            --primary: #0B5FFF;
+            --primary-d1: #0056E0;
+            --primary-d2: #004CC7;
+            --primary-l1: #3D7FFF;
+            --primary-l2: #6FA0FF;
+            
+            /* Secondary Colors */
+            --secondary: #6C757D;
+            --secondary-d1: #5A6268;
+            --secondary-d2: #494F54;
+            --secondary-l1: #868E96;
+            --secondary-l2: #ADB5BD;
+            
+            /* Semantic Colors */
+            --success: #28A745;
+            --info: #17A2B8;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            
+            /* Neutral Colors */
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --body-color: #212529;
+            --muted: #6C757D;
+            
+            /* Spacing */
+            --spacer-1: 0.25rem;
+            --spacer-2: 0.5rem;
+            --spacer-3: 1rem;
+            --spacer-4: 1.5rem;
+            --spacer-5: 3rem;
+            
+            /* Legacy JM Variables for compatibility */
+            --jm-primary: var(--primary);
+            --jm-secondary: var(--secondary);
+            --jm-dark: var(--dark);
+            --jm-white: var(--white);
+            --jm-light: var(--light);
+            --jm-gray-100: #F8F9FA;
+            --jm-gray-300: #DEE2E6;
+            --jm-gray-600: #6C757D;
+            --jm-gray-700: #495057;
+            --jm-gray-800: #343A40;
+            --jm-gray-900: #212529;
+            --jm-success: var(--success);
+            --jm-accent: var(--info);
+            
+            --jm-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --jm-font-size-sm: 0.875rem;
+            --jm-spacing-xs: var(--spacer-1);
+            --jm-spacing-sm: var(--spacer-2);
+            --jm-spacing-md: var(--spacer-3);
+            --jm-spacing-lg: var(--spacer-4);
+            --jm-spacing-xl: 2rem;
+            --jm-spacing-xxl: var(--spacer-5);
+            --jm-border-radius: 0.375rem;
+            --jm-border-radius-lg: 0.5rem;
+            --jm-box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+            --jm-transition: all 0.15s ease-in-out;
+        }
+        
+        body {
+            margin: 0;
+            font-family: var(--jm-font-family);
+            background: var(--light);
+            padding: 20px;
+        }
+        
+        .test-controls {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        input, select {
+            width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background: var(--primary-d1);
+        }
+        
+        .jm-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .jm-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: var(--jm-border-radius);
+            font-weight: 500;
+            transition: var(--jm-transition);
+        }
+        
+        .jm-btn:hover {
+            background: var(--primary-d1);
+            color: var(--white);
+        }
+        
+        .jm-btn-lg {
+            padding: 16px 32px;
+            font-size: 1.125rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-controls">
+        <h2>Hero Fragment Configuration Test</h2>
+        <p>Test the configuration options for the Johnson Matthey Hero Fragment</p>
+        
+        <div class="control-group">
+            <label>
+                <input type="checkbox" id="showVideo" checked> Show Video Button
+            </label>
+        </div>
+        
+        <div class="control-group">
+            <label>
+                <input type="checkbox" id="showStats" checked> Show Statistics
+            </label>
+        </div>
+        
+        <div class="control-group">
+            <label>
+                <input type="checkbox" id="enableAnimations"> Enable Animations
+            </label>
+        </div>
+        
+        <div class="control-group">
+            <label for="layoutStyle">Layout Style:</label>
+            <select id="layoutStyle">
+                <option value="text-left">Text Left, Image Right</option>
+                <option value="text-right">Text Right, Image Left</option>
+                <option value="centered">Centered Layout</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label for="backgroundStyle">Background Style:</label>
+            <select id="backgroundStyle">
+                <option value="primary">Primary Color Background</option>
+                <option value="secondary">Secondary Color Background</option>
+                <option value="dark">Dark Background</option>
+            </select>
+        </div>
+        
+        <button onclick="applyTestConfiguration()">Apply Configuration</button>
+        <button onclick="resetToDefaults()">Reset to Defaults</button>
+        
+        <div id="status" class="status" style="display: none;"></div>
+    </div>
+    
+    <!-- Hero Fragment -->
+    <div id="wrapper">
+        <div class="jm-hero-fragment">
+            <section class="jm-hero" id="main-content" data-background="primary">
+                <div class="jm-container">
+                    <div class="jm-hero-content" data-layout="text-left">
+                        <!-- Hero Text Content -->
+                        <div class="jm-hero-text">
+                            <h1 class="jm-hero-title">A world leader in sustainable technology solutions</h1>
+                            
+                            <div class="jm-hero-stats">
+                                <div class="jm-hero-stat">
+                                    <span class="jm-hero-stat-number">200</span>
+                                    <span class="jm-hero-stat-label">years</span>
+                                </div>
+                                <p class="jm-hero-description">
+                                    For over <strong>200</strong> years Johnson Matthey has contributed to solving some of the world's toughest problems, leaning on our expertise in advanced metals chemistry. But now is the time to make our biggest impact yet.
+                                </p>
+                            </div>
+                            
+                            <div class="jm-hero-description-extended">
+                                <p>The world's leading energy, chemicals and automotive companies depend on us to help them decarbonise and reduce harmful emissions.</p>
+                                
+                                <p class="jm-lcp-optimized">And as the planet faces up to an era of huge global challenges including climate change, energy supply and resource scarcity, we're continuing to innovate, providing solutions that are helping our customers and catalysing the net zero transition for millions of people every day.</p>
+                            </div>
+                            
+                            <div class="jm-hero-actions">
+                                <a href="/about-us" class="jm-btn jm-btn-lg">Read more</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Hero Image -->
+                        <div class="jm-hero-media">
+                            <div class="jm-hero-image">
+                                <img 
+                                    class="jm-hero-img" 
+                                    src="fragment-collection/johnson-matthey-collection/resources/hero-background.png" 
+                                    alt="Johnson Matthey sustainable technology solutions"
+                                    width="800"
+                                    height="450"
+                                />
+                            </div>
+                            
+                            <!-- Video Play Button -->
+                            <div class="jm-hero-video-overlay">
+                                <button class="jm-play-button" aria-label="Play video">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                        <circle cx="30" cy="30" r="30" fill="var(--primary)" opacity="0.9"/>
+                                        <path d="M23 20L23 40L38 30L23 20Z" fill="white"/>
+                                    </svg>
+                                </button>
+                                <p class="jm-video-caption">Find out more about what we do</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Include Hero CSS -->
+    <link rel="stylesheet" href="fragment-collection/johnson-matthey-collection/jm-hero/index.css">
+    
+    <script>
+        // Mock Liferay configuration object
+        let configuration = {
+            showVideo: true,
+            showStats: true,
+            enableAnimations: false,
+            layoutStyle: 'text-left',
+            backgroundStyle: 'primary'
+        };
+        
+        function applyTestConfiguration() {
+            // Update configuration from form
+            configuration.showVideo = document.getElementById('showVideo').checked;
+            configuration.showStats = document.getElementById('showStats').checked;
+            configuration.enableAnimations = document.getElementById('enableAnimations').checked;
+            configuration.layoutStyle = document.getElementById('layoutStyle').value;
+            configuration.backgroundStyle = document.getElementById('backgroundStyle').value;
+            
+            // Apply configuration manually (simulating Liferay behavior)
+            const heroSection = document.querySelector('.jm-hero');
+            const heroContent = document.querySelector('.jm-hero-content');
+            const videoOverlay = document.querySelector('.jm-hero-video-overlay');
+            const heroStats = document.querySelector('.jm-hero-stats');
+            
+            // Apply layout
+            if (heroContent) {
+                heroContent.setAttribute('data-layout', configuration.layoutStyle);
+            }
+            
+            // Apply background
+            if (heroSection) {
+                heroSection.setAttribute('data-background', configuration.backgroundStyle);
+            }
+            
+            // Show/hide elements
+            if (videoOverlay) {
+                videoOverlay.style.display = configuration.showVideo ? 'block' : 'none';
+            }
+            
+            if (heroStats) {
+                heroStats.style.display = configuration.showStats ? 'flex' : 'none';
+            }
+            
+            showStatus('Configuration applied: Layout=' + configuration.layoutStyle + ', Background=' + configuration.backgroundStyle);
+        }
+        
+        function resetToDefaults() {
+            document.getElementById('showVideo').checked = true;
+            document.getElementById('showStats').checked = true;
+            document.getElementById('enableAnimations').checked = false;
+            document.getElementById('layoutStyle').value = 'text-left';
+            document.getElementById('backgroundStyle').value = 'primary';
+            applyTestConfiguration();
+        }
+        
+        function showStatus(message) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.style.display = 'block';
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 4000);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTestConfiguration();
+        });
+    </script>
+</body>
+</html>

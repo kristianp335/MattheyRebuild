@@ -16,12 +16,12 @@
 
 /* Background Style Variants */
 #wrapper .jm-hero[data-background="primary"] {
-  background: var(--jm-primary) !important;
-  color: var(--jm-white) !important;
+  background: var(--primary) !important;
+  color: var(--light) !important;
 }
 
 #wrapper .jm-hero[data-background="primary"] .jm-hero-title {
-  color: var(--jm-white) !important;
+  color: var(--light) !important;
 }
 
 #wrapper .jm-hero[data-background="primary"] .jm-hero-description,
@@ -29,13 +29,17 @@
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
+#wrapper .jm-hero[data-background="primary"] .jm-hero-stat-number {
+  color: var(--light) !important;
+}
+
 #wrapper .jm-hero[data-background="secondary"] {
-  background: var(--jm-secondary) !important;
-  color: var(--jm-white) !important;
+  background: var(--secondary) !important;
+  color: var(--light) !important;
 }
 
 #wrapper .jm-hero[data-background="secondary"] .jm-hero-title {
-  color: var(--jm-white) !important;
+  color: var(--light) !important;
 }
 
 #wrapper .jm-hero[data-background="secondary"] .jm-hero-description,
@@ -43,18 +47,26 @@
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
+#wrapper .jm-hero[data-background="secondary"] .jm-hero-stat-number {
+  color: var(--light) !important;
+}
+
 #wrapper .jm-hero[data-background="dark"] {
-  background: var(--jm-dark) !important;
-  color: var(--jm-white) !important;
+  background: var(--dark) !important;
+  color: var(--light) !important;
 }
 
 #wrapper .jm-hero[data-background="dark"] .jm-hero-title {
-  color: var(--jm-white) !important;
+  color: var(--light) !important;
 }
 
 #wrapper .jm-hero[data-background="dark"] .jm-hero-description,
 #wrapper .jm-hero[data-background="dark"] .jm-hero-description-extended {
   color: rgba(255, 255, 255, 0.9) !important;
+}
+
+#wrapper .jm-hero[data-background="dark"] .jm-hero-stat-number {
+  color: var(--light) !important;
 }
 
 #wrapper .jm-hero-content {
