@@ -129,59 +129,27 @@
     }
     
     function initializeAnimations() {
-        // Intersection Observer for scroll animations
-        if ('IntersectionObserver' in window) {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('jm-animate-in');
-                        
-                        // Start stats counter if it's the stats element
-                        if (entry.target.classList.contains('jm-hero-stats')) {
-                            animateStatsCounter();
-                        }
-                        
-                        // Unobserve after animation starts to prevent re-triggering
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe only elements that have animation classes from configuration
-            const animateElements = fragmentElement.querySelectorAll('.jm-animate-ready');
-            
-            if (animateElements.length > 0) {
-                animateElements.forEach(el => {
-                    observer.observe(el);
-                });
-            } else {
-                // Fallback: trigger animations immediately if no animation elements found
-                // This handles cases where the hero is immediately visible
-                setTimeout(() => {
-                    const allElements = fragmentElement.querySelectorAll(
-                        '.jm-hero-title, .jm-hero-description, .jm-hero-description-extended, .jm-hero-actions, .jm-hero-media, .jm-hero-stats'
-                    );
-                    allElements.forEach(el => {
-                        if (el.classList.contains('jm-animate-ready')) {
-                            el.classList.add('jm-animate-in');
-                        }
-                    });
-                    animateStatsCounter();
-                }, 100);
-            }
-        } else {
-            // Fallback for browsers without Intersection Observer
-            const animateElements = fragmentElement.querySelectorAll('.jm-animate-ready');
-            animateElements.forEach(el => {
-                el.classList.add('jm-animate-in');
-            });
-            animateStatsCounter();
+        const animateElements = fragmentElement.querySelectorAll('.jm-animate-ready');
+        
+        if (animateElements.length === 0) {
+            return; // No elements to animate
         }
+        
+        // For hero sections, trigger animations immediately since they're typically above the fold
+        // Use a small delay to ensure proper DOM rendering and CSS application
+        setTimeout(() => {
+            animateElements.forEach((el, index) => {
+                // Add jm-animate-in class with staggered timing based on element index
+                setTimeout(() => {
+                    el.classList.add('jm-animate-in');
+                    
+                    // Start stats counter if it's the stats element
+                    if (el.classList.contains('jm-hero-stats')) {
+                        animateStatsCounter();
+                    }
+                }, index * 100); // 100ms delay between each element
+            });
+        }, 200); // Initial 200ms delay to ensure everything is ready
     }
     
     function initializeStatsCounter() {
