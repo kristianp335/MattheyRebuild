@@ -11,14 +11,14 @@
     let autoplayInterval = null;
     let isAutoplayPaused = false;
     
-    // Configuration from Liferay
+    // Configuration from Liferay - using simple fallback approach
     const config = {
-        showAutoplay: [#if configuration.showAutoplay??]${configuration.showAutoplay?c}[#else]true[/#if],
-        autoplayDelay: [#if configuration.autoplayDelay??]${configuration.autoplayDelay}[#else]5[/#if] * 1000,
-        showControls: [#if configuration.showControls??]${configuration.showControls?c}[#else]true[/#if],
-        showIndicators: [#if configuration.showIndicators??]${configuration.showIndicators?c}[#else]true[/#if],
-        slidesToShowDesktop: [#if configuration.slidesToShowDesktop??]${configuration.slidesToShowDesktop}[#else]3[/#if],
-        carouselStyle: '[#if configuration.carouselStyle??]${configuration.carouselStyle}[#else]standard[/#if]'
+        showAutoplay: typeof configuration !== 'undefined' && configuration.showAutoplay !== undefined ? configuration.showAutoplay : true,
+        autoplayDelay: typeof configuration !== 'undefined' && configuration.autoplayDelay !== undefined ? parseInt(configuration.autoplayDelay) * 1000 : 5000,
+        showControls: typeof configuration !== 'undefined' && configuration.showControls !== undefined ? configuration.showControls : true,
+        showIndicators: typeof configuration !== 'undefined' && configuration.showIndicators !== undefined ? configuration.showIndicators : true,
+        slidesToShowDesktop: typeof configuration !== 'undefined' && configuration.slidesToShowDesktop !== undefined ? parseInt(configuration.slidesToShowDesktop) : 3,
+        carouselStyle: typeof configuration !== 'undefined' && configuration.carouselStyle !== undefined ? configuration.carouselStyle : 'standard'
     };
     
     // Initialize on DOM ready and SPA navigation events
