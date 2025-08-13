@@ -4,7 +4,7 @@
 #wrapper .jm-news-carousel-fragment {
   position: relative;
   background: var(--jm-white);
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to allow indicators to scale without clipping */
 }
 
 #wrapper .jm-news-carousel {
@@ -338,7 +338,7 @@ body.has-edit-mode-menu #wrapper .jm-news-carousel-fragment .jm-news-item .jm-ca
   justify-content: center;
   gap: var(--jm-spacing-sm);
   margin-top: var(--jm-spacing-lg);
-  padding: 6px 0; /* Add padding to prevent clipping when indicators scale */
+  padding: 10px 0; /* Add extra padding to prevent clipping when indicators scale */
 }
 
 #wrapper .jm-carousel-indicator {
