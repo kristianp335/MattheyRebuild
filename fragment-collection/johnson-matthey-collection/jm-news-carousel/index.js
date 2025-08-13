@@ -196,16 +196,16 @@
         container.innerHTML = '';
         container.style.display = 'flex';
         
-        const totalSlides = Math.max(1, slides.length - slidesToShow + 1);
-        console.log('Creating', totalSlides, 'indicators for', slides.length, 'slides with', slidesToShow, 'visible');
+        const totalIndicators = Math.ceil(slides.length / slidesToShow);
+        console.log('Creating', totalIndicators, 'indicators for', slides.length, 'slides with', slidesToShow, 'visible');
         
-        for (let i = 0; i < totalSlides; i++) {
+        for (let i = 0; i < totalIndicators; i++) {
             const indicator = document.createElement('button');
             indicator.className = 'jm-carousel-indicator';
             indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
             indicator.addEventListener('click', () => {
                 console.log('Indicator', i, 'clicked');
-                goToSlide(i);
+                goToSlide(i * slidesToShow);
                 pauseAutoplay();
             });
             container.appendChild(indicator);
@@ -353,17 +353,17 @@
     }
     
     function nextSlide() {
-        const maxSlide = Math.max(0, slides.length - slidesToShow);
+        const maxSlide = slides.length - slidesToShow;
         console.log('Next slide - before:', { currentSlide, maxSlide, totalSlides: slides.length, slidesToShow });
-        currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+        currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + slidesToShow;
         console.log('Next slide - after:', { currentSlide });
         updateCarousel();
     }
     
     function previousSlide() {
-        const maxSlide = Math.max(0, slides.length - slidesToShow);
+        const maxSlide = slides.length - slidesToShow;
         console.log('Previous slide - before:', { currentSlide, maxSlide, totalSlides: slides.length, slidesToShow });
-        currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - 1;
+        currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - slidesToShow;
         console.log('Previous slide - after:', { currentSlide });
         updateCarousel();
     }
@@ -387,8 +387,8 @@
             totalSlides: slides.length
         });
         
-        // Simple slide-by-slide movement: move by 1 slide width at a time
-        const slideWidth = 100 / slidesToShow;  // Width of visible area per slide
+        // Move by full page of slides: jump by slidesToShow positions  
+        const slideWidth = 100 / slides.length;  // Width of each individual slide
         const translateX = -(currentSlide * slideWidth);
         
         console.log('Carousel positioning:', {
@@ -471,10 +471,9 @@
     
     function updateIndicators() {
         const indicators = fragmentElement.querySelectorAll('.jm-carousel-indicator');
-        const totalSlides = Math.max(1, slides.length - slidesToShow + 1);
         
         indicators.forEach((indicator, index) => {
-            const isActive = index === currentSlide;
+            const isActive = index === Math.floor(currentSlide / slidesToShow);
             indicator.classList.toggle('active', isActive);
             indicator.setAttribute('aria-pressed', isActive);
         });
