@@ -390,6 +390,103 @@
   }
 }
 
+/* Widget Theme Variants */
+#wrapper .jm-share-price-widget[data-theme="standard"] {
+  background: var(--jm-white);
+  border: 1px solid var(--jm-gray-300);
+  color: var(--jm-dark);
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] {
+  background: var(--jm-dark) !important;
+  border: 1px solid var(--jm-gray-600) !important;
+  color: var(--jm-white) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-share-price-title {
+  color: var(--jm-white) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-share-price-symbol {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--jm-gray-200) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-price-amount {
+  color: var(--jm-white) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-price-currency {
+  color: var(--jm-gray-300) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-share-price-header {
+  border-bottom: 1px solid var(--jm-gray-600) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-price-date,
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-price-disclaimer {
+  color: var(--jm-gray-300) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-timeframe-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: var(--jm-gray-600) !important;
+  color: var(--jm-white) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-timeframe-btn.active,
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-timeframe-btn:hover {
+  background: var(--jm-primary) !important;
+  border-color: var(--jm-primary) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="minimal"] {
+  background: var(--jm-gray-50) !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: var(--jm-spacing-md) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="minimal"] .jm-share-price-header {
+  border-bottom: none !important;
+  margin-bottom: var(--jm-spacing-sm) !important;
+  padding-bottom: 0 !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="minimal"] .jm-share-price-title {
+  font-size: var(--jm-font-size-lg) !important;
+  font-weight: 500 !important;
+  color: var(--jm-gray-700) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="minimal"] .jm-share-price-symbol {
+  background: var(--jm-gray-200) !important;
+  color: var(--jm-gray-600) !important;
+  font-size: var(--jm-font-size-xs) !important;
+  padding: 2px 6px !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="minimal"] .jm-price-amount {
+  font-size: 2rem !important;
+  color: var(--jm-gray-800) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="minimal"] .jm-timeframe-btn {
+  background: transparent !important;
+  border: 1px solid var(--jm-gray-400) !important;
+  color: var(--jm-gray-600) !important;
+  padding: 4px 8px !important;
+  font-size: var(--jm-font-size-xs) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="minimal"] .jm-timeframe-btn.active,
+#wrapper .jm-share-price-widget[data-theme="minimal"] .jm-timeframe-btn:hover {
+  background: var(--jm-gray-200) !important;
+  border-color: var(--jm-gray-500) !important;
+  color: var(--jm-gray-800) !important;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   #wrapper .jm-loading-spinner {

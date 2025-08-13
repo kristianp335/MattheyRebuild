@@ -40,6 +40,9 @@
     function initializeSharePrice() {
         console.log('Johnson Matthey Share Price Fragment initializing...');
         
+        // Apply configuration settings
+        applyConfiguration();
+        
         // Initialize chart controls
         initializeChartControls();
         
@@ -53,6 +56,60 @@
         loadPriceData();
         
         console.log('Johnson Matthey Share Price Fragment initialized');
+    }
+    
+    function applyConfiguration() {
+        // Get fragment configuration from Liferay
+        const config = {
+            showChart: configuration.showChart !== false,
+            showStatistics: configuration.showStatistics !== false,
+            autoUpdate: configuration.autoUpdate !== false,
+            updateInterval: parseInt(configuration.updateInterval) || 30,
+            stockSymbol: configuration.stockSymbol || 'JMAT',
+            exchangeName: configuration.exchangeName || 'LON',
+            compactMode: configuration.compactMode === true,
+            widgetTheme: configuration.widgetTheme || 'standard'
+        };
+        
+        console.log('Share Price Fragment Configuration:', config);
+        
+        // Apply theme to widget
+        const widget = fragmentElement.querySelector('.jm-share-price-widget');
+        if (widget) {
+            widget.setAttribute('data-theme', config.widgetTheme);
+            
+            if (config.compactMode) {
+                widget.setAttribute('data-compact', 'true');
+            }
+        }
+        
+        // Show/hide chart based on configuration
+        const chartContainer = fragmentElement.querySelector('.jm-price-chart');
+        if (chartContainer) {
+            chartContainer.style.display = config.showChart ? 'block' : 'none';
+        }
+        
+        // Show/hide statistics based on configuration
+        const statsContainer = fragmentElement.querySelector('.jm-price-stats');
+        if (statsContainer) {
+            statsContainer.style.display = config.showStatistics ? 'block' : 'none';
+        }
+        
+        // Update price update interval
+        if (priceUpdateInterval) {
+            clearInterval(priceUpdateInterval);
+            priceUpdateInterval = null;
+        }
+        
+        if (config.autoUpdate) {
+            // Convert seconds to milliseconds
+            const intervalMs = config.updateInterval * 1000;
+            priceUpdateInterval = setInterval(() => {
+                if (document.visibilityState === 'visible') {
+                    loadPriceData();
+                }
+            }, intervalMs);
+        }
     }
     
     function initializeChartControls() {
