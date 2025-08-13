@@ -34,41 +34,19 @@
             initializeAnimations();
             initializeStatsCounter();
         }
-        
-        console.log('Hero configuration applied:', config);
     }
     
     /**
      * Get fragment configuration values
      */
     function getFragmentConfiguration() {
-
-        let config;
-        
-        // Try to get configuration from Liferay's fragment configuration system
-        if (typeof configuration !== 'undefined') {
-
-            config = {
-                showVideo: configuration.showVideo !== undefined ? configuration.showVideo : true,
-                showStats: configuration.showStats !== undefined ? configuration.showStats : true,
-                enableAnimations: configuration.enableAnimations !== undefined ? configuration.enableAnimations : false,
-                layoutStyle: configuration.layoutStyle || 'text-left',
-                backgroundStyle: configuration.backgroundStyle || 'primary'
-            };
-
-        } else {
-
-            // Fallback default values if configuration is not available
-            config = {
-                showVideo: true,
-                showStats: true,
-                enableAnimations: false,
-                layoutStyle: 'text-left',
-                backgroundStyle: 'primary'
-            };
-        }
-        
-        return config;
+        return {
+            showVideo: configuration.showVideo,
+            showStats: configuration.showStats,
+            enableAnimations: configuration.enableAnimations,
+            layoutStyle: configuration.layoutStyle,
+            backgroundStyle: configuration.backgroundStyle
+        };
     }
     
     /**
