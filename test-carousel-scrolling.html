@@ -263,11 +263,16 @@
             const translateX = -(currentSlide * slideWidth);
             const totalTrackWidth = (slides.length / slidesToShow) * 100;
             
+            const maxSlide = Math.max(0, slides.length - slidesToShow);
+            const totalIndicators = Math.max(1, slides.length - slidesToShow + 1);
+            
             debugContent.innerHTML = `
                 <strong>Current State:</strong><br>
                 • Current Slide: ${currentSlide}<br>
                 • Slides to Show: ${slidesToShow}<br>
                 • Total Slides: ${slides.length}<br>
+                • Max Slide Index: ${maxSlide}<br>
+                • Total Indicators Needed: ${totalIndicators}<br>
                 • Slide Width: ${slideWidth}%<br>
                 • Transform: translateX(${translateX}%)<br>
                 • Track Width: ${totalTrackWidth}%<br>
