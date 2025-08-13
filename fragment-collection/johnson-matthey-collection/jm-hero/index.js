@@ -5,31 +5,23 @@
     const fragmentElement = document.currentScript.closest('.jm-hero-fragment');
     if (!fragmentElement) return;
     
-    // Optimize initialization for faster LCP
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeHero);
-    } else {
-        // Execute immediately if DOM is already ready (for faster initialization)
-        initializeHero();
-    }
+    // Ultra-fast initialization - execute immediately without waiting
+    initializeHero();
     
     // Single initialization only - no looping event listeners for performance
     
     function initializeHero() {
-        // Minimal initialization for faster LCP
+        // Immediate critical path only - no deferred execution
         const config = getFragmentConfiguration();
-        
-        // Only apply critical configuration immediately
         applyCriticalConfiguration(config);
         
-        // Defer non-critical initialization to avoid blocking LCP
-        requestIdleCallback(() => {
+        // Defer ALL non-critical JavaScript after LCP
+        setTimeout(() => {
             applyConfiguration(config);
-            
             if (config.showVideo) {
                 initializeVideo();
             }
-        });
+        }, 0);
     }
     
     /**
