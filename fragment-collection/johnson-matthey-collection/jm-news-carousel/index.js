@@ -399,18 +399,22 @@
             display: getComputedStyle(track).display
         });
         
-        // Update slides visibility and layout - Force override CSS flex
+        // Set total track width to accommodate all slides
+        const totalWidth = slides.length * (100 / slidesToShow);
+        track.style.width = `${totalWidth}%`;
+        
+        // Update slides visibility and layout - Simple percentage approach
         slides.forEach((slide, index) => {
             slide.style.width = `${slideWidth}%`;
-            slide.style.flex = `0 0 ${slideWidth}% !important`;
-            slide.style.minWidth = `${slideWidth}%`;
-            slide.style.maxWidth = `${slideWidth}%`;
+            slide.style.flex = `0 0 ${slideWidth}%`;
+            slide.style.minWidth = 0;
+            slide.style.maxWidth = 'none';
             
             console.log(`Slide ${index}:`, {
-                width: slide.style.width,
+                slideWidth: `${slideWidth}%`,
+                actualWidth: slide.style.width,
                 flex: slide.style.flex,
-                computedWidth: getComputedStyle(slide).width,
-                computedFlex: getComputedStyle(slide).flex
+                trackWidth: track.style.width
             });
             
             // Update accessibility

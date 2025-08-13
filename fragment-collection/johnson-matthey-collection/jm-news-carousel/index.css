@@ -37,6 +37,7 @@
   overflow: hidden;
   margin-bottom: var(--jm-spacing-xl);
   padding: 0 60px; /* Add padding to make room for navigation buttons */
+  width: 100%;
 }
 
 /* Carousel Track */
@@ -53,7 +54,7 @@
 
 /* Carousel slides - JavaScript will set exact flex values */
 #wrapper .jm-carousel-slide {
-  padding: 0 var(--jm-spacing-md);
+  padding: 0 12px;
   box-sizing: border-box;
   flex-shrink: 0;
 }
