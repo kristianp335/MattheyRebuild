@@ -42,17 +42,33 @@
      * Get fragment configuration values
      */
     function getFragmentConfiguration() {
-        // Use Liferay's global configuration object
-        const config = (typeof configuration !== 'undefined') ? configuration : {};
+
+        let config;
         
-        // Apply defaults for any missing values
-        return {
-            showVideo: config.showVideo !== false,
-            showStats: config.showStats !== false,
-            enableAnimations: config.enableAnimations === true,
-            layoutStyle: config.layoutStyle || 'text-left',
-            backgroundStyle: config.backgroundStyle || 'primary'
-        };
+        // Try to get configuration from Liferay's fragment configuration system
+        if (typeof configuration !== 'undefined') {
+
+            config = {
+                showVideo: configuration.showVideo !== undefined ? configuration.showVideo : true,
+                showStats: configuration.showStats !== undefined ? configuration.showStats : true,
+                enableAnimations: configuration.enableAnimations !== undefined ? configuration.enableAnimations : false,
+                layoutStyle: configuration.layoutStyle || 'text-left',
+                backgroundStyle: configuration.backgroundStyle || 'primary'
+            };
+
+        } else {
+
+            // Fallback default values if configuration is not available
+            config = {
+                showVideo: true,
+                showStats: true,
+                enableAnimations: false,
+                layoutStyle: 'text-left',
+                backgroundStyle: 'primary'
+            };
+        }
+        
+        return config;
     }
     
     /**
@@ -64,20 +80,14 @@
         const videoOverlay = fragmentElement.querySelector('.jm-hero-video-overlay');
         const heroStats = fragmentElement.querySelector('.jm-hero-stats');
         
-        // Apply layout style with force update
+        // Apply layout style
         if (heroContent) {
-            heroContent.removeAttribute('data-layout');
-            setTimeout(() => {
-                heroContent.setAttribute('data-layout', config.layoutStyle);
-            }, 10);
+            heroContent.setAttribute('data-layout', config.layoutStyle);
         }
         
-        // Apply background style with force update
+        // Apply background style
         if (heroSection) {
-            heroSection.removeAttribute('data-background');
-            setTimeout(() => {
-                heroSection.setAttribute('data-background', config.backgroundStyle);
-            }, 10);
+            heroSection.setAttribute('data-background', config.backgroundStyle);
         }
         
         // Show/hide video button
@@ -89,8 +99,7 @@
         if (heroStats) {
             heroStats.style.display = config.showStats ? 'flex' : 'none';
         }
-        
-        console.log('Applied layout:', config.layoutStyle, 'background:', config.backgroundStyle);
+
     }
     
     function initializeVideo() {
