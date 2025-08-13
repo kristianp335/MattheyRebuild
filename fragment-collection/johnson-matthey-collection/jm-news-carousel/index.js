@@ -5,7 +5,6 @@
     // Use the fragmentElement provided by Liferay instead of document.currentScript
     // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
     if (!fragmentElement) {
-        console.error('fragmentElement not provided by Liferay');
         return;
     }
     
@@ -40,7 +39,6 @@
     // Listen for Liferay SPA navigation events
     if (window.Liferay) {
         Liferay.on('allPortletsReady', function(event) {
-            console.log('SPA navigation complete - reinitializing news carousel');
             setTimeout(initializeCarousel, 100);
         });
     }
@@ -51,16 +49,11 @@
     });
     
     function initializeCarousel() {
-        console.log('Johnson Matthey News Carousel Fragment initializing...');
-        console.log('Configuration:', config);
-        
         // Initialize slidesToShow from configuration
         slidesToShow = parseInt(config.slidesToShowDesktop) || 3;
-        console.log('Slides to show initialized to:', slidesToShow);
         
         // Detect edit mode for proper handling
         const isEditMode = detectEditMode();
-        console.log('Edit mode detected:', isEditMode);
         
         // Get carousel elements
         const track = fragmentElement.querySelector('#jm-news-track');
@@ -69,15 +62,12 @@
         const indicatorsContainer = fragmentElement.querySelector('#jm-carousel-indicators');
         
         if (!track || !prevButton || !nextButton || !indicatorsContainer) {
-            console.error('Carousel elements not found');
             return;
         }
         
         slides = track.querySelectorAll('.jm-carousel-slide');
-        console.log('Found slides:', slides.length, 'slidesToShow config:', slidesToShow);
         
         if (slides.length === 0) {
-            console.error('No carousel slides found');
             return;
         }
         
@@ -88,7 +78,6 @@
         if (!config.showControls) {
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
-            console.log('Controls hidden via configuration');
         }
         
         // Setup controls
@@ -112,7 +101,7 @@
         // Setup resize listener
         window.addEventListener('resize', debounce(setupResponsiveCarousel, 250));
         
-        console.log(`Johnson Matthey News Carousel initialized with ${slides.length} slides`);
+
         
         // Apply edit mode styles if in edit mode
         if (isEditMode) {
@@ -163,7 +152,7 @@
         prevButton.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Previous button clicked');
+
             if (!prevButton.classList.contains('carousel-disabled')) {
                 previousSlide();
                 pauseAutoplay();
@@ -173,7 +162,7 @@
         nextButton.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Next button clicked');
+
             if (!nextButton.classList.contains('carousel-disabled')) {
                 nextSlide();
                 pauseAutoplay();
@@ -185,11 +174,11 @@
     }
     
     function setupCarouselIndicators(container) {
-        console.log('Setting up indicators. Show indicators:', config.showIndicators);
+
         
         if (!config.showIndicators) {
             container.style.display = 'none';
-            console.log('Indicators hidden via configuration');
+
             return;
         }
         
@@ -197,14 +186,14 @@
         container.style.display = 'flex';
         
         const totalIndicators = Math.ceil(slides.length / slidesToShow);
-        console.log('Creating', totalIndicators, 'indicators for', slides.length, 'slides with', slidesToShow, 'visible');
+
         
         for (let i = 0; i < totalIndicators; i++) {
             const indicator = document.createElement('button');
             indicator.className = 'jm-carousel-indicator';
             indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
             indicator.addEventListener('click', () => {
-                console.log('Indicator', i, 'clicked');
+
                 goToSlide(i * slidesToShow);
                 pauseAutoplay();
             });
@@ -377,26 +366,16 @@
     function updateCarousel() {
         const track = fragmentElement.querySelector('#jm-news-track');
         if (!track) {
-            console.error('Track element not found');
             return;
         }
         
-        console.log('Update carousel called:', {
-            currentSlide,
-            slidesToShow, 
-            totalSlides: slides.length
-        });
+
         
         // Move by full page of slides: jump by slidesToShow positions  
         const slideWidth = 100 / slides.length;  // Width of each individual slide
         const translateX = -(currentSlide * slideWidth);
         
-        console.log('Carousel positioning:', {
-            slideWidth: slideWidth + '%',
-            translateX: translateX + '%',
-            currentSlide,
-            slidesToShow
-        });
+
         
         // Apply transform to track
         track.style.transform = `translateX(${translateX}%)`;
@@ -406,11 +385,7 @@
         const totalTrackWidth = (slides.length / slidesToShow) * 100;
         track.style.width = `${totalTrackWidth}%`;
         
-        console.log('Track styling:', {
-            transform: track.style.transform,
-            width: track.style.width,
-            computedTransform: getComputedStyle(track).transform
-        });
+
         
         // Size each slide to fit exactly in visible area
         slides.forEach((slide, index) => {
@@ -418,10 +393,7 @@
             slide.style.width = `${actualSlideWidth}%`;
             slide.style.flex = `0 0 ${actualSlideWidth}%`;
             
-            console.log(`Slide ${index}:`, {
-                width: slide.style.width,
-                flex: slide.style.flex
-            });
+
             
             // Update accessibility
             const isVisible = index >= currentSlide && index < currentSlide + slidesToShow;
@@ -443,20 +415,12 @@
         const nextButton = fragmentElement.querySelector('.jm-carousel-next');
         
         if (!prevButton || !nextButton) {
-            console.log('Carousel buttons not found:', { prevButton, nextButton });
             return;
         }
         
         const maxSlide = Math.max(0, slides.length - slidesToShow);
         
-        console.log('Carousel state:', {
-            currentSlide,
-            slidesToShow,
-            totalSlides: slides.length,
-            maxSlide,
-            prevDisabled: currentSlide === 0,
-            nextDisabled: currentSlide >= maxSlide
-        });
+
         
         // Update button states - don't disable buttons to prevent interaction issues
         prevButton.classList.toggle('carousel-disabled', currentSlide === 0);
