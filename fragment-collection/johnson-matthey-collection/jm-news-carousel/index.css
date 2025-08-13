@@ -338,6 +338,7 @@ body.has-edit-mode-menu #wrapper .jm-news-carousel-fragment .jm-news-item .jm-ca
   justify-content: center;
   gap: var(--jm-spacing-sm);
   margin-top: var(--jm-spacing-lg);
+  padding: 6px 0; /* Add padding to prevent clipping when indicators scale */
 }
 
 #wrapper .jm-carousel-indicator {
@@ -348,6 +349,7 @@ body.has-edit-mode-menu #wrapper .jm-news-carousel-fragment .jm-news-item .jm-ca
   border: none;
   cursor: pointer;
   transition: var(--jm-transition);
+  flex-shrink: 0; /* Prevent indicators from shrinking */
 }
 
 #wrapper .jm-carousel-indicator:hover,
