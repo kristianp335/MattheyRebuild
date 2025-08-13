@@ -146,15 +146,21 @@
         prevButton.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            previousSlide();
-            pauseAutoplay();
+            console.log('Previous button clicked');
+            if (!prevButton.classList.contains('carousel-disabled')) {
+                previousSlide();
+                pauseAutoplay();
+            }
         });
         
         nextButton.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            nextSlide();
-            pauseAutoplay();
+            console.log('Next button clicked');
+            if (!nextButton.classList.contains('carousel-disabled')) {
+                nextSlide();
+                pauseAutoplay();
+            }
         });
         
         // Update button states
@@ -377,13 +383,25 @@
         const prevButton = fragmentElement.querySelector('.jm-carousel-prev');
         const nextButton = fragmentElement.querySelector('.jm-carousel-next');
         
-        if (!prevButton || !nextButton) return;
+        if (!prevButton || !nextButton) {
+            console.log('Carousel buttons not found:', { prevButton, nextButton });
+            return;
+        }
         
         const maxSlide = Math.max(0, slides.length - slidesToShow);
         
-        // Update button states
-        prevButton.disabled = currentSlide === 0;
-        nextButton.disabled = currentSlide >= maxSlide;
+        console.log('Carousel state:', {
+            currentSlide,
+            slidesToShow,
+            totalSlides: slides.length,
+            maxSlide,
+            prevDisabled: currentSlide === 0,
+            nextDisabled: currentSlide >= maxSlide
+        });
+        
+        // Update button states - don't disable buttons to prevent interaction issues
+        prevButton.classList.toggle('carousel-disabled', currentSlide === 0);
+        nextButton.classList.toggle('carousel-disabled', currentSlide >= maxSlide);
         
         // Update ARIA labels
         prevButton.setAttribute('aria-label', 
