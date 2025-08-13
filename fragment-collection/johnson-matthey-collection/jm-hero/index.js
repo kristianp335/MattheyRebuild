@@ -41,10 +41,17 @@
      */
     function applyCriticalConfiguration(config) {
         const heroSection = fragmentElement.querySelector('.jm-hero');
+        const heroImage = fragmentElement.querySelector('.jm-hero-img');
         
         // Only apply critical styles that affect rendering immediately
         if (heroSection) {
             heroSection.setAttribute('data-background', config.backgroundStyle);
+        }
+        
+        // Ensure image loads with highest priority
+        if (heroImage && !heroImage.complete) {
+            heroImage.loading = 'eager';
+            heroImage.fetchPriority = 'high';
         }
     }
     

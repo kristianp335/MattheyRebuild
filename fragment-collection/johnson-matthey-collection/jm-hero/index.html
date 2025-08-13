@@ -1,9 +1,11 @@
-<!-- LCP Critical CSS for immediate rendering -->
+<!-- LCP Critical CSS and Preloads for immediate rendering -->
+<link rel="preload" as="image" href="[resources:hero-background.png]" fetchpriority="high" />
 <style>
 /* Critical CSS for immediate rendering - prevent layout shifts */
 #wrapper .jm-hero { padding: var(--jm-spacing-xxl) 0; background: var(--jm-white); position: relative; }
 #wrapper .jm-hero-title { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: var(--jm-spacing-lg); }
-#wrapper .jm-hero-img { width: 100%; height: auto; display: block; }
+#wrapper .jm-hero-img { width: 100%; height: auto; display: block; will-change: opacity; }
+#wrapper .jm-hero-image { aspect-ratio: 800/450; background: #f5f5f5; }
 </style>
 <div class="jm-hero-fragment">
   <section class="jm-hero" id="main-content" data-background="${configuration.backgroundStyle}">
@@ -52,7 +54,10 @@
               width="800"
               height="450"
               decoding="sync"
+              onload="this.style.opacity='1'"
+              style="opacity:0;transition:opacity 0.1s"
             />
+            <link rel="preload" as="image" href="[resources:hero-background.png]" fetchpriority="high" />
           </div>
           
           <!-- Video Play Button -->
