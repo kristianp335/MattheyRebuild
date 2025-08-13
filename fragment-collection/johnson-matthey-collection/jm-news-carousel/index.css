@@ -36,6 +36,7 @@
   position: relative;
   overflow: hidden;
   margin-bottom: var(--jm-spacing-xl);
+  padding: 0 60px; /* Add padding to make room for navigation buttons */
 }
 
 /* Carousel Track */
@@ -338,11 +339,13 @@ body.has-edit-mode-menu #wrapper .jm-news-carousel-fragment .jm-news-item .jm-ca
 }
 
 #wrapper .jm-carousel-prev {
-  left: -25px;
+  left: 10px;
+  z-index: 10;
 }
 
 #wrapper .jm-carousel-next {
-  right: -25px;
+  right: 10px;
+  z-index: 10;
 }
 
 /* Carousel Indicators */
@@ -392,11 +395,11 @@ body.has-edit-mode-menu #wrapper .jm-news-carousel-fragment .jm-news-item .jm-ca
   }
   
   #wrapper .jm-carousel-prev {
-    left: -22px;
+    left: 8px;
   }
   
   #wrapper .jm-carousel-next {
-    right: -22px;
+    right: 8px;
   }
 }
 
