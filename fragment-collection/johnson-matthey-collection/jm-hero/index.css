@@ -152,12 +152,6 @@
   line-height: 1.6;
   color: var(--jm-gray-700);
   margin-bottom: var(--jm-spacing-lg);
-  display: inline;
-}
-
-#wrapper .jm-hero-description-extended span {
-  display: block;
-  margin-bottom: 1rem;
 }
 
 
