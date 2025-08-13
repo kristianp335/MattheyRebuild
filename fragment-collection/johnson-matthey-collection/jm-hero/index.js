@@ -28,12 +28,6 @@
         if (config.showVideo) {
             initializeVideo();
         }
-        
-        // Initialize animations if enabled
-        if (config.enableAnimations) {
-            initializeAnimations();
-            initializeStatsCounter();
-        }
     }
     
     /**
@@ -43,7 +37,6 @@
         return {
             showVideo: configuration.showVideo,
             showStats: configuration.showStats,
-            enableAnimations: configuration.enableAnimations,
             layoutStyle: configuration.layoutStyle,
             backgroundStyle: configuration.backgroundStyle
         };
@@ -126,69 +119,6 @@
                 document.body.style.overflow = '';
             });
         }
-    }
-    
-    function initializeAnimations() {
-        const animateElements = fragmentElement.querySelectorAll('.jm-animate-ready');
-        
-        if (animateElements.length === 0) {
-            return; // No elements to animate
-        }
-        
-        // For hero sections, trigger animations immediately since they're typically above the fold
-        // Use a small delay to ensure proper DOM rendering and CSS application
-        setTimeout(() => {
-            animateElements.forEach((el, index) => {
-                // Add jm-animate-in class with staggered timing based on element index
-                setTimeout(() => {
-                    el.classList.add('jm-animate-in');
-                    
-                    // Start stats counter if it's the stats element
-                    if (el.classList.contains('jm-hero-stats')) {
-                        animateStatsCounter();
-                    }
-                }, index * 100); // 100ms delay between each element
-            });
-        }, 200); // Initial 200ms delay to ensure everything is ready
-    }
-    
-    function initializeStatsCounter() {
-        // This will be triggered by intersection observer
-        window.heroStatsAnimated = false;
-    }
-    
-    function animateStatsCounter() {
-        if (window.heroStatsAnimated) return;
-        window.heroStatsAnimated = true;
-        
-        const statNumber = fragmentElement.querySelector('.jm-hero-stat-number');
-        if (!statNumber) return;
-        
-        const finalValue = parseInt(statNumber.textContent) || 200;
-        const duration = 2000; // 2 seconds
-        const frameRate = 60;
-        const totalFrames = (duration / 1000) * frameRate;
-        const increment = finalValue / totalFrames;
-        
-        let currentValue = 0;
-        let frame = 0;
-        
-        const counter = () => {
-            frame++;
-            currentValue += increment;
-            
-            if (currentValue >= finalValue) {
-                statNumber.textContent = finalValue;
-                return;
-            }
-            
-            statNumber.textContent = Math.floor(currentValue);
-            requestAnimationFrame(counter);
-        };
-        
-        // Start the animation
-        statNumber.textContent = '0';
-        requestAnimationFrame(counter);
     }
     
     // Handle keyboard navigation for video button

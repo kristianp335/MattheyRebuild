@@ -17,13 +17,6 @@
           "defaultValue": true
         },
         {
-          "name": "enableAnimations",
-          "label": "Enable Animations",
-          "description": "Enable scroll-triggered animations",
-          "type": "checkbox",
-          "defaultValue": false
-        },
-        {
           "name": "layoutStyle",
           "label": "Layout Style",
           "description": "Choose the hero section layout",

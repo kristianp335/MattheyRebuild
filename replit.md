@@ -32,13 +32,12 @@ The project employs a modular, fragment-based architecture where each UI compone
     - **Mobile Responsiveness**: Fixed hamburger menu and slide-out navigation.
     - **Sticky Header Implementation**: Reliable `position: fixed` implementation with full-width coverage and enhanced shadow.
 - **Hero Fragment**:
-    - **Comprehensive Configuration**: Options for layout style (centered/split), background style (image/gradient/solid), show/hide stats, show/hide video overlay, and enable/disable animations.
+    - **Comprehensive Configuration**: Options for layout style (centered/split), background style (image/gradient/solid), show/hide stats, and show/hide video overlay.
     - **FreeMarker Integration**: All configuration options properly implemented using `[#if condition]` syntax for conditional rendering.
-    - **Animation System**: Scroll-triggered fade-in animations with staggered delays when enabled - elements only animate if `enableAnimations` configuration is true.
     - **Video Integration**: Modal video player with play button overlay, configurable visibility based on `showVideo` setting.
-    - **Statistics Display**: Animated counting statistics with configurable visibility based on `showStats` setting.
+    - **Statistics Display**: Statistics section with configurable visibility based on `showStats` setting.
     - **Dynamic Styling**: Layout and background variants controlled through data attributes and CSS custom properties.
-    - **Performance Optimized**: LCP-optimized background images and efficient animation implementation using Intersection Observer API.
+    - **Performance Optimized**: LCP-optimized background images and clean, minimal JavaScript implementation.
 - **Footer Fragment**:
     - **Comprehensive Configuration**: Options for newsletter signup, social media visibility, back-to-top button, company name, style variants (dark/light/primary), column layouts (5/4/3 columns), link tracking, and newsletter service integration.
     - **Dynamic Styling System**: Three footer style variants with complete color scheme adaptation.
