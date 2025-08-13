@@ -48,6 +48,11 @@
     
     function initializeCarousel() {
         console.log('Johnson Matthey News Carousel Fragment initializing...');
+        console.log('Configuration:', config);
+        
+        // Initialize slidesToShow from configuration
+        slidesToShow = parseInt(config.slidesToShowDesktop) || 3;
+        console.log('Slides to show initialized to:', slidesToShow);
         
         // Detect edit mode for proper handling
         const isEditMode = detectEditMode();
@@ -65,6 +70,7 @@
         }
         
         slides = track.querySelectorAll('.jm-carousel-slide');
+        console.log('Found slides:', slides.length, 'slidesToShow config:', slidesToShow);
         
         if (slides.length === 0) {
             console.error('No carousel slides found');
