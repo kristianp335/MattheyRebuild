@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Live Site Issues</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .code { background: #f5f5f5; padding: 10px; font-family: monospace; }
+        .issue { background: #ffebee; padding: 10px; color: #c62828; }
+        .solution { background: #e8f5e8; padding: 10px; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>Live Site Debug Analysis</h1>
+    
+    <div class="debug-section">
+        <h2>✅ Confirmed: Updated Code IS Deployed</h2>
+        <div class="solution">
+            The live site contains our updated JavaScript with:
+            <ul>
+                <li>✅ "Update carousel called" logging function</li>
+                <li>✅ Correct transform calculations</li>
+                <li>✅ Proper slide sizing logic</li>
+                <li>✅ Configuration reading (slidesToShowDesktop: "3")</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="debug-section">
+        <h2>🔍 Root Cause Analysis</h2>
+        <div class="issue">
+            <strong>CRITICAL ISSUE IDENTIFIED:</strong><br>
+            The JavaScript uses <code>document.currentScript.closest('.jm-news-carousel-fragment')</code>
+            but Liferay's module system may not preserve <code>document.currentScript</code> context.
+        </div>
+        
+        <div class="code">
+            // PROBLEMATIC LINE:
+            const fragmentElement = document.currentScript.closest('.jm-news-carousel-fragment');
+            if (!fragmentElement) return; // <- THIS IS LIKELY FAILING
+        </div>
+    </div>
+
+    <div class="debug-section">
+        <h2>🔧 Solution Required</h2>
+        <div class="solution">
+            <strong>Fix the fragment element detection:</strong><br>
+            Replace <code>document.currentScript</code> approach with reliable selector that works in Liferay's module environment.
+            
+            <p>We need to use the dynamically provided <code>fragmentElement</code> variable that Liferay injects instead of trying to find it with <code>document.currentScript</code>.</p>
+        </div>
+    </div>
+
+    <div class="debug-section">
+        <h2>📋 Evidence from Live Site</h2>
+        <div class="code">
+            // Liferay injects these variables:
+            const configuration = {"carouselStyle":"standard","autoplayDelay":"5","showAutoplay":true,"showIndicators":true,"slidesToShowDesktop":"3","showControls":true};
+            const fragmentElement = document.querySelector('#fragment-2eac0fc6-cae6-beb2-ef28-7f05ce7c8daa');
+            const fragmentEntryLinkNamespace = 'gdrw';
+            const fragmentNamespace = 'gdrw';
+            const layoutMode = 'view';
+            
+            // But our code tries to use:
+            const fragmentElement = document.currentScript.closest('.jm-news-carousel-fragment'); // FAILS!
+        </div>
+    </div>
+
+    <div class="debug-section">
+        <h2>⚠️ Why currentScript Fails in Liferay</h2>
+        <ul>
+            <li>Liferay uses ES modules (<code>type="module"</code>)</li>
+            <li><code>document.currentScript</code> is null in module context</li>
+            <li>Liferay already provides <code>fragmentElement</code> variable</li>
+            <li>Our code should use the provided variable, not try to find it</li>
+        </ul>
+    </div>
+</body>
+</html>

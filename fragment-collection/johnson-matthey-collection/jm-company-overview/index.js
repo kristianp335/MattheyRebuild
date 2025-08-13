@@ -2,8 +2,12 @@
 (function() {
     'use strict';
     
-    const fragmentElement = document.currentScript.closest('.jm-company-overview-fragment');
-    if (!fragmentElement) return;
+    // Use the fragmentElement provided by Liferay instead of document.currentScript
+    // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
+    if (!fragmentElement) {
+        console.error('fragmentElement not provided by Liferay');
+        return;
+    }
     
     // Initialize on DOM ready and SPA navigation events
     function ready(fn) {

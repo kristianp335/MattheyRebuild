@@ -2,12 +2,11 @@
 (function() {
     'use strict';
     
-    let fragmentElement = document.currentScript ? document.currentScript.closest('.jm-header-fragment') : null;
+    // Use the fragmentElement provided by Liferay instead of document.currentScript
+    // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
     if (!fragmentElement) {
-        // Fallback for when currentScript is not available
-        const headerFragments = document.querySelectorAll('.jm-header-fragment');
-        if (headerFragments.length === 0) return;
-        fragmentElement = headerFragments[headerFragments.length - 1]; // Use the last one as fallback
+        console.error('fragmentElement not provided by Liferay');
+        return;
     }
     
     // Initialize on DOM ready and SPA navigation events

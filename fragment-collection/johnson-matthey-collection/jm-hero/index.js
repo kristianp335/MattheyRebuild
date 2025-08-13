@@ -2,8 +2,12 @@
 (function() {
     'use strict';
     
-    const fragmentElement = document.currentScript.closest('.jm-hero-fragment');
-    if (!fragmentElement) return;
+    // Use the fragmentElement provided by Liferay instead of document.currentScript
+    // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
+    if (!fragmentElement) {
+        console.error('fragmentElement not provided by Liferay');
+        return;
+    }
     
     // Ultra-fast initialization - execute immediately without waiting
     initializeHero();
