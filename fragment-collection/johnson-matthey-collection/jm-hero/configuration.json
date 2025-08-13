@@ -21,14 +21,7 @@
           "label": "Enable Animations",
           "description": "Enable scroll-triggered animations",
           "type": "checkbox",
-          "defaultValue": true
-        },
-        {
-          "name": "videoUrl",
-          "label": "Video URL",
-          "description": "YouTube or Vimeo embed URL for the hero video",
-          "type": "text",
-          "defaultValue": ""
+          "defaultValue": false
         },
         {
           "name": "layoutStyle",
@@ -56,22 +49,22 @@
         {
           "name": "backgroundStyle",
           "label": "Background Style",
-          "description": "Choose background appearance",
+          "description": "Choose background color using Liferay Classic theme tokens",
           "type": "select",
-          "defaultValue": "gradient",
+          "defaultValue": "primary",
           "typeOptions": {
             "validValues": [
               {
-                "label": "Gradient Background",
-                "value": "gradient"
+                "label": "Primary Color Background",
+                "value": "primary"
               },
               {
-                "label": "Solid Color",
-                "value": "solid"
+                "label": "Secondary Color Background",
+                "value": "secondary"
               },
               {
-                "label": "Image Background",
-                "value": "image"
+                "label": "Dark Background",
+                "value": "dark"
               }
             ]
           }

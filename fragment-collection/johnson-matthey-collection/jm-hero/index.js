@@ -20,11 +20,81 @@
     // Single initialization only - no looping event listeners for performance
     
     function initializeHero() {
-        // Initialize video functionality only
-        initializeVideo();
+        // Get configuration
+        const config = getFragmentConfiguration();
         
-        // Skip animations and counters for better LCP performance
-        // These can be lazy-loaded after initial content renders
+        // Apply configuration settings
+        applyConfiguration(config);
+        
+        // Initialize video functionality only if enabled
+        if (config.showVideo) {
+            initializeVideo();
+        }
+        
+        // Initialize animations if enabled
+        if (config.enableAnimations) {
+            initializeAnimations();
+            initializeStatsCounter();
+        }
+    }
+    
+    /**
+     * Get fragment configuration values
+     */
+    function getFragmentConfiguration() {
+        let config;
+        
+        // Try to get configuration from Liferay's fragment configuration system
+        if (typeof configuration !== 'undefined') {
+            config = {
+                showVideo: configuration.showVideo !== undefined ? configuration.showVideo : true,
+                showStats: configuration.showStats !== undefined ? configuration.showStats : true,
+                enableAnimations: configuration.enableAnimations !== undefined ? configuration.enableAnimations : false,
+                layoutStyle: configuration.layoutStyle || 'text-left',
+                backgroundStyle: configuration.backgroundStyle || 'primary'
+            };
+        } else {
+            // Fallback default values if configuration is not available
+            config = {
+                showVideo: true,
+                showStats: true,
+                enableAnimations: false,
+                layoutStyle: 'text-left',
+                backgroundStyle: 'primary'
+            };
+        }
+        
+        return config;
+    }
+    
+    /**
+     * Apply configuration settings to the hero
+     */
+    function applyConfiguration(config) {
+        const heroSection = fragmentElement.querySelector('.jm-hero');
+        const heroContent = fragmentElement.querySelector('.jm-hero-content');
+        const videoOverlay = fragmentElement.querySelector('.jm-hero-video-overlay');
+        const heroStats = fragmentElement.querySelector('.jm-hero-stats');
+        
+        // Apply layout style
+        if (heroContent) {
+            heroContent.setAttribute('data-layout', config.layoutStyle);
+        }
+        
+        // Apply background style
+        if (heroSection) {
+            heroSection.setAttribute('data-background', config.backgroundStyle);
+        }
+        
+        // Show/hide video button
+        if (videoOverlay) {
+            videoOverlay.style.display = config.showVideo ? 'block' : 'none';
+        }
+        
+        // Show/hide statistics
+        if (heroStats) {
+            heroStats.style.display = config.showStats ? 'flex' : 'none';
+        }
     }
     
     function initializeVideo() {
@@ -35,8 +105,14 @@
         
         if (!playButton || !videoModal || !videoIframe) return;
         
-        // Sample video URL - replace with actual Johnson Matthey video
-        const videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0';
+        // Get video URL from editable content or use default
+        const videoCaption = fragmentElement.querySelector('.jm-video-caption');
+        let videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0'; // Default video
+        
+        // Try to extract video URL from caption or other editable content
+        if (videoCaption && videoCaption.dataset.videoUrl) {
+            videoUrl = videoCaption.dataset.videoUrl;
+        }
         
         playButton.addEventListener('click', () => {
             // Set video source
