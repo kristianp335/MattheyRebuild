@@ -19,6 +19,7 @@ The project employs a modular, fragment-based architecture where each UI compone
 - **Modal System**: Centralized system for login, search, and video modals, embedding Liferay portlets with extensive CSS overrides for consistent branding.
 - **Animation System**: Scroll-triggered animations using CSS transitions/transforms and JavaScript Intersection Observers.
 - **Fragment Configuration**: Uses `typeOptions.validValues` for select fields.
+**FreeMarker Syntax**: Liferay fragments use `[#` brackets instead of `<#` - configuration conditionals use `[#if condition]content[/#if]` syntax.
 - **Header Fragment**:
     - **Comprehensive Configuration**: Options for search, user menu visibility, sticky header, style variants (white/light/primary), and navigation menu ID.
     - **Editable Logo System**: Liferay-editable logo image.
