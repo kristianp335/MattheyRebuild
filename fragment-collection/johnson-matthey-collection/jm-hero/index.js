@@ -145,6 +145,9 @@
                         if (entry.target.classList.contains('jm-hero-stats')) {
                             animateStatsCounter();
                         }
+                        
+                        // Unobserve after animation starts to prevent re-triggering
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
@@ -152,9 +155,32 @@
             // Observe only elements that have animation classes from configuration
             const animateElements = fragmentElement.querySelectorAll('.jm-animate-ready');
             
+            if (animateElements.length > 0) {
+                animateElements.forEach(el => {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback: trigger animations immediately if no animation elements found
+                // This handles cases where the hero is immediately visible
+                setTimeout(() => {
+                    const allElements = fragmentElement.querySelectorAll(
+                        '.jm-hero-title, .jm-hero-description, .jm-hero-description-extended, .jm-hero-actions, .jm-hero-media, .jm-hero-stats'
+                    );
+                    allElements.forEach(el => {
+                        if (el.classList.contains('jm-animate-ready')) {
+                            el.classList.add('jm-animate-in');
+                        }
+                    });
+                    animateStatsCounter();
+                }, 100);
+            }
+        } else {
+            // Fallback for browsers without Intersection Observer
+            const animateElements = fragmentElement.querySelectorAll('.jm-animate-ready');
             animateElements.forEach(el => {
-                observer.observe(el);
+                el.classList.add('jm-animate-in');
             });
+            animateStatsCounter();
         }
     }
     
