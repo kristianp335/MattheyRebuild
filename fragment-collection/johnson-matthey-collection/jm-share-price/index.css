@@ -439,6 +439,46 @@
 #wrapper .jm-share-price-widget[data-theme="dark"] .jm-timeframe-btn:hover {
   background: var(--jm-primary) !important;
   border-color: var(--jm-primary) !important;
+  color: var(--jm-white) !important;
+}
+
+/* Dark theme chart and controls */
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-price-chart {
+  background: var(--jm-gray-800) !important;
+  border-color: var(--jm-gray-600) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-chart-controls {
+  background: var(--jm-gray-800) !important;
+  border-top-color: var(--jm-gray-600) !important;
+}
+
+/* Dark theme statistics */
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-price-stats {
+  background: var(--jm-gray-800) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-stat-label {
+  color: var(--jm-gray-400) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-stat-value {
+  color: var(--jm-white) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-stat-item:hover .jm-stat-value {
+  color: var(--jm-primary) !important;
+}
+
+/* Dark theme loading and error states */
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-price-loading {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: var(--jm-gray-300) !important;
+}
+
+#wrapper .jm-share-price-widget[data-theme="dark"] .jm-price-error {
+  background: rgba(0, 0, 0, 0.9) !important;
+  color: var(--jm-danger) !important;
 }
 
 #wrapper .jm-share-price-widget[data-theme="minimal"] {
