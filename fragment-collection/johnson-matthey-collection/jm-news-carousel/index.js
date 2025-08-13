@@ -11,6 +11,16 @@
     let autoplayInterval = null;
     let isAutoplayPaused = false;
     
+    // Configuration from Liferay
+    const config = {
+        showAutoplay: [#if configuration.showAutoplay??]${configuration.showAutoplay?c}[#else]true[/#if],
+        autoplayDelay: [#if configuration.autoplayDelay??]${configuration.autoplayDelay}[#else]5[/#if] * 1000,
+        showControls: [#if configuration.showControls??]${configuration.showControls?c}[#else]true[/#if],
+        showIndicators: [#if configuration.showIndicators??]${configuration.showIndicators?c}[#else]true[/#if],
+        slidesToShowDesktop: [#if configuration.slidesToShowDesktop??]${configuration.slidesToShowDesktop}[#else]3[/#if],
+        carouselStyle: '[#if configuration.carouselStyle??]${configuration.carouselStyle}[#else]standard[/#if]'
+    };
+    
     // Initialize on DOM ready and SPA navigation events
     function ready(fn) {
         if (document.readyState === 'loading') {
@@ -92,7 +102,7 @@
         } else if (containerWidth < 1024) {
             slidesToShow = 2;
         } else {
-            slidesToShow = 3;
+            slidesToShow = config.slidesToShowDesktop;
         }
         
         // Ensure current slide is still valid
@@ -103,22 +113,30 @@
     }
     
     function setupCarouselControls(prevButton, nextButton) {
-        prevButton.addEventListener('click', () => {
-            previousSlide();
-            pauseAutoplay();
-        });
-        
-        nextButton.addEventListener('click', () => {
-            nextSlide();
-            pauseAutoplay();
-        });
+        if (config.showControls) {
+            prevButton.addEventListener('click', () => {
+                previousSlide();
+                pauseAutoplay();
+            });
+            
+            nextButton.addEventListener('click', () => {
+                nextSlide();
+                pauseAutoplay();
+            });
+        }
         
         // Update button states
         updateControlButtons();
     }
     
     function setupCarouselIndicators(container) {
+        if (!config.showIndicators) {
+            container.style.display = 'none';
+            return;
+        }
+        
         container.innerHTML = '';
+        container.style.display = 'flex';
         
         const totalSlides = Math.max(1, slides.length - slidesToShow + 1);
         
@@ -232,6 +250,8 @@
     }
     
     function setupAutoplay() {
+        if (!config.showAutoplay) return;
+        
         // Start autoplay
         startAutoplay();
         
@@ -251,13 +271,14 @@
     }
     
     function startAutoplay() {
+        if (!config.showAutoplay) return;
         if (autoplayInterval) clearInterval(autoplayInterval);
         
         autoplayInterval = setInterval(() => {
             if (!isAutoplayPaused) {
                 nextSlide();
             }
-        }, 5000); // 5 seconds
+        }, config.autoplayDelay);
     }
     
     function pauseAutoplay() {
