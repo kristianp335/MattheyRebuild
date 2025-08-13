@@ -152,8 +152,12 @@
   line-height: 1.6;
   color: var(--jm-gray-700);
   margin-bottom: var(--jm-spacing-lg);
-  /* Prevent becoming LCP element */
-  contain: none;
+  display: inline;
+}
+
+#wrapper .jm-hero-description-extended span {
+  display: block;
+  margin-bottom: 1rem;
 }
 
 
