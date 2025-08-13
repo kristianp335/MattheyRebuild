@@ -4,27 +4,27 @@
       <div class="jm-hero-content" data-layout="${configuration.layoutStyle}">
         <!-- Hero Text Content -->
         <div class="jm-hero-text">
-          <h1 class="jm-hero-title" data-lfr-editable-id="heroTitle" data-lfr-editable-type="text">
+          <h1 class="jm-hero-title [#if configuration.enableAnimations]jm-animate-ready[/#if]" data-lfr-editable-id="heroTitle" data-lfr-editable-type="text">
             A world leader in sustainable technology solutions
           </h1>
           
-          <div class="jm-hero-stats" [#if configuration.showStats == false]style="display: none;"[/#if]>
+          <div class="jm-hero-stats [#if configuration.enableAnimations]jm-animate-ready[/#if]" [#if configuration.showStats == false]style="display: none;"[/#if]>
             <div class="jm-hero-stat">
               <span class="jm-hero-stat-number" data-lfr-editable-id="statNumber" data-lfr-editable-type="text">200</span>
               <span class="jm-hero-stat-label" data-lfr-editable-id="statLabel" data-lfr-editable-type="text">years</span>
             </div>
-            <p class="jm-hero-description" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text">
+            <p class="jm-hero-description [#if configuration.enableAnimations]jm-animate-ready[/#if]" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text">
               For over <strong>200</strong> years Johnson Matthey has contributed to solving some of the world's toughest problems, leaning on our expertise in advanced metals chemistry. But now is the time to make our biggest impact yet.
             </p>
           </div>
           
-          <div class="jm-hero-description-extended" data-lfr-editable-id="heroDescriptionExtended" data-lfr-editable-type="rich-text">
+          <div class="jm-hero-description-extended [#if configuration.enableAnimations]jm-animate-ready[/#if]" data-lfr-editable-id="heroDescriptionExtended" data-lfr-editable-type="rich-text">
             <p>The world's leading energy, chemicals and automotive companies depend on us to help them decarbonise and reduce harmful emissions.</p>
             
             <p class="jm-lcp-optimized">And as the planet faces up to an era of huge global challenges including climate change, energy supply and resource scarcity, we're continuing to innovate, providing solutions that are helping our customers and catalysing the net zero transition for millions of people every day.</p>
           </div>
           
-          <div class="jm-hero-actions">
+          <div class="jm-hero-actions [#if configuration.enableAnimations]jm-animate-ready[/#if]">
             <a href="/about-us" class="jm-btn jm-btn-lg" data-lfr-editable-id="heroCtaLink" data-lfr-editable-type="link">
               <span data-lfr-editable-id="heroCtaText" data-lfr-editable-type="text">Read more</span>
             </a>
@@ -32,7 +32,7 @@
         </div>
         
         <!-- Hero Image/Video -->
-        <div class="jm-hero-media">
+        <div class="jm-hero-media [#if configuration.enableAnimations]jm-animate-ready[/#if]">
           <div class="jm-hero-image">
             <img 
               class="jm-hero-img" 
