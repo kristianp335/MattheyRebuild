@@ -1,14 +1,14 @@
 <div class="jm-hero-fragment">
-  <section class="jm-hero" id="main-content" data-background="${configuration.backgroundStyle}"
+  <section class="jm-hero" id="main-content" data-background="${configuration.backgroundStyle}">
     <div class="jm-container">
-      <div class="jm-hero-content" data-layout="${configuration.layoutStyle}"
+      <div class="jm-hero-content" data-layout="${configuration.layoutStyle}">
         <!-- Hero Text Content -->
         <div class="jm-hero-text">
           <h1 class="jm-hero-title" data-lfr-editable-id="heroTitle" data-lfr-editable-type="text">
             A world leader in sustainable technology solutions
           </h1>
           
-          <div class="jm-hero-stats" <#if !configuration.showStats>style="display: none;"</#if>>
+          <div class="jm-hero-stats" <#if configuration.showStats == false>style="display: none;"</#if>>
             <div class="jm-hero-stat">
               <span class="jm-hero-stat-number" data-lfr-editable-id="statNumber" data-lfr-editable-type="text">200</span>
               <span class="jm-hero-stat-label" data-lfr-editable-id="statLabel" data-lfr-editable-type="text">years</span>
@@ -47,7 +47,7 @@
           </div>
           
           <!-- Video Play Button -->
-          <div class="jm-hero-video-overlay" <#if !configuration.showVideo>style="display: none;"</#if>>
+          <div class="jm-hero-video-overlay" <#if configuration.showVideo == false>style="display: none;"</#if>>
             <button class="jm-play-button" aria-label="Play video about Johnson Matthey">
               <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="30" cy="30" r="30" fill="var(--jm-primary)" opacity="0.9"/>
