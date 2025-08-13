@@ -51,28 +51,11 @@
   will-change: transform;
 }
 
-/* Carousel slides - default to 3 slides */
+/* Carousel slides - JavaScript will set exact flex values */
 #wrapper .jm-carousel-slide {
-  flex: 0 0 33.333333%;
   padding: 0 var(--jm-spacing-md);
   box-sizing: border-box;
-}
-
-/* Configuration-based slide layouts */
-#wrapper .jm-news-carousel[data-slides-desktop="1"] .jm-carousel-slide {
-  flex: 0 0 100%;
-}
-
-#wrapper .jm-news-carousel[data-slides-desktop="2"] .jm-carousel-slide {
-  flex: 0 0 50%;
-}
-
-#wrapper .jm-news-carousel[data-slides-desktop="3"] .jm-carousel-slide {
-  flex: 0 0 33.333333%;
-}
-
-#wrapper .jm-news-carousel[data-slides-desktop="4"] .jm-carousel-slide {
-  flex: 0 0 25%;
+  flex-shrink: 0;
 }
 
 /* News Item Cards - Standard Style (Default) */

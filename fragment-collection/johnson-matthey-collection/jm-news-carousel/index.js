@@ -389,14 +389,29 @@
             totalSlides: slides.length
         });
         
-        // Update track position
+        // Update track position with forced CSS
         track.style.transform = `translateX(${translateX}%)`;
+        track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         console.log('Applied transform:', track.style.transform);
+        console.log('Track computed style:', {
+            transform: getComputedStyle(track).transform,
+            width: getComputedStyle(track).width,
+            display: getComputedStyle(track).display
+        });
         
-        // Update slides visibility and layout
+        // Update slides visibility and layout - Force override CSS flex
         slides.forEach((slide, index) => {
             slide.style.width = `${slideWidth}%`;
-            slide.style.flex = `0 0 ${slideWidth}%`;
+            slide.style.flex = `0 0 ${slideWidth}% !important`;
+            slide.style.minWidth = `${slideWidth}%`;
+            slide.style.maxWidth = `${slideWidth}%`;
+            
+            console.log(`Slide ${index}:`, {
+                width: slide.style.width,
+                flex: slide.style.flex,
+                computedWidth: getComputedStyle(slide).width,
+                computedFlex: getComputedStyle(slide).flex
+            });
             
             // Update accessibility
             const isVisible = index >= currentSlide && index < currentSlide + slidesToShow;
