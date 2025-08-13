@@ -49,6 +49,10 @@
     function initializeCarousel() {
         console.log('Johnson Matthey News Carousel Fragment initializing...');
         
+        // Detect edit mode for proper handling
+        const isEditMode = detectEditMode();
+        console.log('Edit mode detected:', isEditMode);
+        
         // Get carousel elements
         const track = fragmentElement.querySelector('#jm-news-track');
         const prevButton = fragmentElement.querySelector('.jm-carousel-prev');
@@ -92,6 +96,31 @@
         window.addEventListener('resize', debounce(setupResponsiveCarousel, 250));
         
         console.log(`Johnson Matthey News Carousel initialized with ${slides.length} slides`);
+        
+        // Apply edit mode styles if in edit mode
+        if (isEditMode) {
+            applyEditModeStyles();
+        }
+    }
+    
+    function detectEditMode() {
+        return document.body.classList.contains('has-edit-mode-menu') ||
+               document.querySelector('[data-editor-enabled="true"]') !== null ||
+               document.querySelector('.is-edit-mode') !== null ||
+               window.location.search.includes('p_l_mode=edit');
+    }
+    
+    function applyEditModeStyles() {
+        // Add edit mode class to fragment for CSS targeting
+        fragmentElement.classList.add('edit-mode-active');
+        
+        // Make all cards more accessible in edit mode
+        const cards = fragmentElement.querySelectorAll('.jm-news-item .jm-card');
+        cards.forEach((card, index) => {
+            card.style.outline = '2px dashed var(--jm-primary, #0b5fff)';
+            card.style.outlineOffset = '4px';
+            card.setAttribute('data-edit-card', `news-card-${index + 1}`);
+        });
     }
     
     function setupResponsiveCarousel() {
@@ -113,17 +142,20 @@
     }
     
     function setupCarouselControls(prevButton, nextButton) {
-        if (config.showControls) {
-            prevButton.addEventListener('click', () => {
-                previousSlide();
-                pauseAutoplay();
-            });
-            
-            nextButton.addEventListener('click', () => {
-                nextSlide();
-                pauseAutoplay();
-            });
-        }
+        // Always set up event listeners, visibility is controlled by CSS and HTML
+        prevButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            previousSlide();
+            pauseAutoplay();
+        });
+        
+        nextButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            nextSlide();
+            pauseAutoplay();
+        });
         
         // Update button states
         updateControlButtons();
