@@ -1,8 +1,8 @@
 <div class="jm-footer-fragment">
-  <footer class="jm-footer" data-style="dark" role="contentinfo">
+  <footer class="jm-footer" data-style="${configuration.footerStyle}" role="contentinfo">
     <div class="jm-container">
       <!-- Main Footer Content -->
-      <div class="jm-footer-main" data-layout="5-column">
+      <div class="jm-footer-main" data-layout="${configuration.columnLayout}">
         <!-- Company Info -->
         <div class="jm-footer-section jm-footer-company">
           <div class="jm-footer-logo">
@@ -16,7 +16,7 @@
           </p>
           
           <!-- Social Media Links -->
-          <div class="jm-footer-social">
+          <div class="jm-footer-social" [#if !configuration.showSocialMedia]style="display: none;"[/#if]>
             <h4 class="jm-footer-social-title">Follow Us</h4>
             <div class="jm-social-links">
               <a href="https://www.linkedin.com/company/johnson-matthey/" 

@@ -177,20 +177,14 @@
 
 #wrapper .jm-hero-image {
   position: relative;
-  border-radius: var(--jm-border-radius-lg);
+  border-radius: 8px;
   overflow: hidden;
-  background: #f5f5f5; /* Neutral placeholder */
-  box-shadow: var(--jm-box-shadow-lg);
-  /* Reserve space to prevent layout shift */
-  aspect-ratio: 400/218;
 }
 
 #wrapper .jm-hero-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
-  border-radius: var(--jm-border-radius-lg);
 }
 
 /* Video Overlay */
@@ -207,19 +201,16 @@
   background: none;
   border: none;
   cursor: pointer;
-  transition: var(--jm-transition);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--jm-spacing-md);
+  margin-bottom: 16px;
 }
 
 #wrapper .jm-play-button:hover,
 #wrapper .jm-play-button:focus {
-  transform: scale(1.1);
-  outline: 2px solid var(--jm-primary);
-  outline-offset: 4px;
+  opacity: 0.9;
 }
 
 #wrapper .jm-play-button:active {

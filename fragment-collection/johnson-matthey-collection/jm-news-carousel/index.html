@@ -1,5 +1,5 @@
 <div class="jm-news-carousel-fragment">
-  <section class="jm-news-carousel">
+  <section class="jm-news-carousel" data-style="${configuration.carouselStyle}" data-slides-desktop="${configuration.slidesToShowDesktop}" [#if !configuration.showControls]data-hide-controls="true"[/#if] [#if !configuration.showIndicators]data-hide-indicators="true"[/#if]>
     <div class="jm-container">
       <!-- Section Header -->
       <div class="jm-section-header">
@@ -14,13 +14,13 @@
       <!-- News Carousel -->
       <div class="jm-carousel-container">
         <!-- Carousel Controls -->
-        <button class="jm-carousel-control jm-carousel-prev" aria-label="Previous news items">
+        <button class="jm-carousel-control jm-carousel-prev" aria-label="Previous news items" [#if !configuration.showControls]style="display: none;"[/#if]>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
         
-        <button class="jm-carousel-control jm-carousel-next" aria-label="Next news items">
+        <button class="jm-carousel-control jm-carousel-next" aria-label="Next news items" [#if !configuration.showControls]style="display: none;"[/#if]>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

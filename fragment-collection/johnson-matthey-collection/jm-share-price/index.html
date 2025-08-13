@@ -1,5 +1,5 @@
 <div class="jm-share-price-fragment">
-  <div class="jm-share-price-widget">
+  <div class="jm-share-price-widget" data-theme="${configuration.widgetTheme}" [#if configuration.compactMode]data-compact="true"[/#if]>
     <div class="jm-share-price-header">
       <h3 class="jm-share-price-title" data-lfr-editable-id="shareTitle" data-lfr-editable-type="text">
         Share Price
@@ -33,7 +33,7 @@
     </div>
     
     <!-- Price Chart Placeholder -->
-    <div class="jm-price-chart" id="jm-price-chart">
+    <div class="jm-price-chart" id="jm-price-chart" [#if !configuration.showChart]style="display: none;"[/#if]>
       <div class="jm-chart-placeholder">
         <svg width="100%" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" class="jm-chart-svg">
           <defs>

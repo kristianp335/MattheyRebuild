@@ -1,5 +1,5 @@
 <div class="jm-company-overview-fragment">
-  <section class="jm-company-overview">
+  <section class="jm-company-overview" data-layout="${configuration.layoutStyle}" data-color-scheme="${configuration.colorScheme}" [#if configuration.compactMode]data-compact="true"[/#if]>
     <div class="jm-container">
       <!-- Section Header -->
       <div class="jm-section-header">
@@ -24,7 +24,7 @@
           </div>
 
           <!-- Company Stats -->
-          <div class="jm-company-stats">
+          <div class="jm-company-stats" [#if !configuration.showStatistics]style="display: none;"[/#if]>
             <div class="jm-stat-item">
               <div class="jm-stat-icon">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
