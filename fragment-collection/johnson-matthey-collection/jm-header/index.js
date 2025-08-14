@@ -369,6 +369,7 @@
         
         if (hasChildren && !isMobile) {
             listItem.classList.add('jm-has-dropdown');
+            listItem.classList.add('has-dropdown');
         }
         
         // Create main link
@@ -385,12 +386,23 @@
             link.rel = 'noopener';
         }
         
+        // Add dropdown arrow for desktop items with children
+        if (hasChildren && !isMobile) {
+            link.setAttribute('aria-expanded', 'false');
+            link.setAttribute('aria-haspopup', 'true');
+            
+            const arrow = document.createElement('span');
+            arrow.className = 'jm-nav-arrow';
+            arrow.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/></svg>';
+            link.appendChild(arrow);
+        }
+        
         listItem.appendChild(link);
         
         // Add dropdown menu for desktop or submenu for mobile
         if (hasChildren) {
             const dropdown = document.createElement(isMobile ? 'div' : 'ul');
-            dropdown.className = isMobile ? 'jm-mobile-dropdown' : 'jm-dropdown-menu';
+            dropdown.className = isMobile ? 'jm-mobile-dropdown-menu' : 'jm-dropdown-menu';
             
             children.forEach(child => {
                 if (isMobile) {
