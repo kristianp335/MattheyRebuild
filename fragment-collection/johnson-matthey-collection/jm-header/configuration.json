@@ -26,6 +26,13 @@
           "defaultValue": "primary-menu"
         },
         {
+          "name": "sitePrefix",
+          "label": "Site Prefix",
+          "description": "URL prefix to prepend to all navigation menu links (e.g., /web/site-name)",
+          "type": "text",
+          "defaultValue": ""
+        },
+        {
           "name": "headerStyle",
           "label": "Header Style",
           "description": "Choose header background style",

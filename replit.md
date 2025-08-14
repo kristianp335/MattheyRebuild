@@ -23,7 +23,8 @@ The project employs a modular, fragment-based architecture where each UI compone
 **FreeMarker Syntax**: Liferay fragments use `[#` brackets instead of `<#` - configuration conditionals use `[#if condition]content[/#if]` syntax.
 - **Fragment Element Detection**: Fixed critical issue where `document.currentScript.closest()` fails in Liferay's ES module environment. All fragments now properly use the `fragmentElement` variable injected by Liferay instead of trying to find elements with `document.currentScript`.
 - **Header Fragment**:
-    - **Comprehensive Configuration**: Options for search, user menu visibility, sticky header, style variants (white/light/primary), and navigation menu ID.
+    - **Comprehensive Configuration**: Options for search, user menu visibility, sticky header, style variants (white/light/primary), navigation menu ID, and site prefix.
+    - **Site Prefix Configuration**: Configurable URL prefix that replaces deprecated ThemeDisplay method for building navigation links.
     - **Editable Logo System**: Liferay-editable logo image.
     - **Dynamic Navigation**: Liferay Headless API integration with authentication and fallback system.
     - **Authentication Integration**: User management via Liferay personal bar and login modals.

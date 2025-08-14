@@ -131,8 +131,8 @@
             config = {
                 showSearch: configuration.showSearch !== undefined ? configuration.showSearch : true,
                 showUserMenu: configuration.showUserMenu !== undefined ? configuration.showUserMenu : true,
-
                 navigationMenuId: configuration.navigationMenuId || 'primary-menu',
+                sitePrefix: configuration.sitePrefix || '',
                 headerStyle: configuration.headerStyle || 'white'
             };
 
@@ -142,8 +142,8 @@
             config = {
                 showSearch: true,
                 showUserMenu: true,
-
                 navigationMenuId: 'primary-menu',
+                sitePrefix: '',
                 headerStyle: 'white'
             };
         }
@@ -277,17 +277,28 @@
     }
 
     /**
-     * Get the site base path from current URL
+     * Get the site base path from configuration or fallback to ThemeDisplay
      */
     function getSiteBasePath() {
+        const config = getFragmentConfiguration();
+        
+        // Use configured site prefix if available
+        if (config.sitePrefix && config.sitePrefix.trim()) {
+            const prefix = config.sitePrefix.trim();
+            // Ensure it starts with / and ends with /
+            return prefix.startsWith('/') ? 
+                (prefix.endsWith('/') ? prefix : prefix + '/') : 
+                ('/' + (prefix.endsWith('/') ? prefix : prefix + '/'));
+        }
+        
+        // Fallback to ThemeDisplay method (deprecated but still functional)
         try {
             const relativeURL = Liferay.ThemeDisplay.getRelativeURL();
             // Extract everything up to the last slash: /web/johnson-matthey/home -> /web/johnson-matthey/
             const lastSlashIndex = relativeURL.lastIndexOf('/');
             return relativeURL.substring(0, lastSlashIndex + 1);
         } catch (error) {
-
-            return '/web/guest/'; // Fallback for guest site
+            return '/web/guest/'; // Final fallback for guest site
         }
     }
 
