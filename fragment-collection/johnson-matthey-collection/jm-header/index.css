@@ -159,35 +159,45 @@
   top: 100%;
   left: 0;
   background: var(--jm-white);
-  border: 1px solid var(--jm-gray-300);
-  border-radius: var(--jm-border-radius);
-  box-shadow: var(--jm-box-shadow-lg);
-  min-width: 200px;
+  border: 2px solid var(--jm-primary);
+  border-radius: calc(var(--jm-border-radius) * 1.5);
+  box-shadow: 0 8px 25px rgba(11, 95, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 220px;
   z-index: 1060 !important;
   display: none;
-  padding: var(--jm-spacing-sm) 0;
+  padding: var(--jm-spacing-md) 0;
   margin-top: var(--jm-spacing-xs);
+  transform: translateY(-5px);
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #wrapper .jm-nav-item .jm-dropdown-menu.show {
   display: block;
+  transform: translateY(0);
+  opacity: 1;
 }
 
 #wrapper .jm-dropdown-item {
   display: block;
   width: 100%;
-  padding: var(--jm-spacing-sm) var(--jm-spacing-md);
+  padding: var(--jm-spacing-md) var(--jm-spacing-lg);
   color: var(--jm-gray-800);
   text-decoration: none;
-  transition: var(--jm-transition);
+  transition: all 0.2s ease;
   font-size: var(--jm-font-size-sm);
+  font-weight: 600;
+  position: relative;
+  border-left: 3px solid transparent;
 }
 
 #wrapper .jm-dropdown-item:hover,
 #wrapper .jm-dropdown-item:focus {
-  background-color: var(--jm-gray-100);
+  background: linear-gradient(135deg, rgba(11, 95, 255, 0.05) 0%, rgba(11, 95, 255, 0.1) 100%);
   color: var(--jm-primary);
   text-decoration: none;
+  border-left-color: var(--jm-primary);
+  transform: translateX(4px);
 }
 
 /* Header Actions */
@@ -378,10 +388,12 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 
 #wrapper .jm-mobile-dropdown-menu {
   display: none;
-  background-color: var(--jm-gray-100);
-  padding: 0;
+  background: linear-gradient(135deg, rgba(11, 95, 255, 0.03) 0%, rgba(11, 95, 255, 0.08) 100%);
+  border-left: 3px solid var(--jm-primary);
+  padding: var(--jm-spacing-sm) 0;
   list-style: none;
   margin: 0;
+  margin-left: var(--jm-spacing-md);
 }
 
 #wrapper .jm-mobile-nav-item.active .jm-mobile-dropdown-menu {
@@ -390,16 +402,18 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 
 #wrapper .jm-mobile-dropdown-item {
   display: block;
-  padding: var(--jm-spacing-sm) var(--jm-spacing-xl);
-  color: var(--jm-gray-700);
+  padding: var(--jm-spacing-md) var(--jm-spacing-xl);
+  color: var(--jm-gray-800);
   text-decoration: none;
   font-size: var(--jm-font-size-sm);
-  transition: var(--jm-transition);
+  font-weight: 600;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
 #wrapper .jm-mobile-dropdown-item:hover,
 #wrapper .jm-mobile-dropdown-item:focus {
-  background-color: var(--jm-gray-200);
+  background: linear-gradient(135deg, rgba(11, 95, 255, 0.1) 0%, rgba(11, 95, 255, 0.15) 100%);
   color: var(--jm-primary);
   text-decoration: none;
 }
