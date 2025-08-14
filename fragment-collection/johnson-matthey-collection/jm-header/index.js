@@ -367,9 +367,11 @@
         const listItem = document.createElement('li');
         listItem.className = isMobile ? 'jm-mobile-nav-item' : 'jm-nav-item';
         
-        if (hasChildren && !isMobile) {
-            listItem.classList.add('jm-has-dropdown');
+        if (hasChildren) {
             listItem.classList.add('has-dropdown');
+            if (!isMobile) {
+                listItem.classList.add('jm-has-dropdown');
+            }
         }
         
         // Create main link
