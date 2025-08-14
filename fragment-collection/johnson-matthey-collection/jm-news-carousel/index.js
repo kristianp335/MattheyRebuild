@@ -343,17 +343,17 @@
     
     function nextSlide() {
         const maxSlide = slides.length - slidesToShow;
-        console.log('Next slide - before:', { currentSlide, maxSlide, totalSlides: slides.length, slidesToShow });
+
         currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + slidesToShow;
-        console.log('Next slide - after:', { currentSlide });
+
         updateCarousel();
     }
     
     function previousSlide() {
         const maxSlide = slides.length - slidesToShow;
-        console.log('Previous slide - before:', { currentSlide, maxSlide, totalSlides: slides.length, slidesToShow });
+
         currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - slidesToShow;
-        console.log('Previous slide - after:', { currentSlide });
+
         updateCarousel();
     }
     

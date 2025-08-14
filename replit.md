@@ -5,6 +5,7 @@ This project delivers a comprehensive Liferay fragment collection to recreate Jo
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
+Preferred name: Call user "Shirley".
 
 ## System Architecture
 The project employs a modular, fragment-based architecture where each UI component is a self-contained Liferay fragment (HTML, CSS, JS, configuration). Global styles and scripts are managed via a client extension. All fragments are scoped under the `#wrapper` CSS selector and integrate seamlessly with Liferay's theme system using Liferay Classic theme tokens via CSS custom properties.
