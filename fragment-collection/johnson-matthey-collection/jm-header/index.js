@@ -768,14 +768,27 @@
         console.log('Initializing mega menu content...');
         
         for (let i = 1; i <= 5; i++) {
-            // Look for the content container that Liferay renders widgets into
-            const contentContainer = document.querySelector(`#dropzone-mega-menu-${i}-container`);
+            // Try multiple possible container naming patterns
+            let contentContainer = document.querySelector(`#dropzone-mega-menu-${i}-container`);
+            
+            // If not found, try alternative Liferay naming patterns
+            if (!contentContainer) {
+                contentContainer = document.querySelector(`[data-lfr-drop-zone-id="mega-menu-${i}"] + div`);
+            }
+            if (!contentContainer) {
+                contentContainer = document.querySelector(`[data-drop-zone-id="mega-menu-${i}"]`);
+            }
+            if (!contentContainer) {
+                contentContainer = document.querySelector(`.mega-menu-${i}-content`);
+            }
+            
             const megaContent = fragmentElement.querySelector(`[data-mega-index="${i}"]`);
             
             console.log(`Checking mega menu ${i}:`, { 
                 contentContainer: !!contentContainer, 
                 megaContent: !!megaContent,
-                containerContent: contentContainer ? contentContainer.innerHTML.length : 0
+                containerContent: contentContainer ? contentContainer.innerHTML.length : 0,
+                containerClass: contentContainer ? contentContainer.className : 'none'
             });
             
             if (contentContainer && megaContent) {
@@ -821,6 +834,16 @@
                     
                     console.log(`No valid content found for mega menu ${i}`);
                 }
+            } else {
+                console.log(`Container or mega content not found for menu ${i}`);
+                
+                // Debug: List all possible container elements
+                const allContainers = document.querySelectorAll('[id*="dropzone"], [class*="mega"], [data-lfr-drop-zone-id]');
+                console.log(`All potential containers on page:`, Array.from(allContainers).map(el => ({ 
+                    id: el.id, 
+                    className: el.className,
+                    dataset: el.dataset
+                })));
             }
         }
     }
