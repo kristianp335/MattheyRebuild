@@ -767,51 +767,37 @@
     function initializeMegaMenuContent() {
         console.log('Initializing mega menu content...');
         
-        // Get all widgets on the page that might be rendered from dropzones
-        const allWidgets = document.querySelectorAll('.portlet, [class*="portlet"], .widget, [id*="portlet"]');
-        console.log(`Found ${allWidgets.length} widgets on page`);
-        
         for (let i = 1; i <= 5; i++) {
             const megaContent = fragmentElement.querySelector(`[data-mega-index="${i}"]`);
-            const dropzone = fragmentElement.querySelector(`[data-lfr-drop-zone-id="mega-menu-${i}"]`);
+            const dropzoneContainer = document.querySelector(`#dropzone-mega-menu-${i}`);
             
             console.log(`Checking mega menu ${i}:`, { 
                 megaContent: !!megaContent,
-                dropzone: !!dropzone
+                dropzoneContainer: !!dropzoneContainer,
+                containerContent: dropzoneContainer ? dropzoneContainer.innerHTML.length : 0
             });
             
-            if (megaContent && dropzone) {
-                // Find widgets that might belong to this dropzone by looking for widgets near the dropzone
-                const dropzoneRect = dropzone.getBoundingClientRect();
-                let nearbyWidgets = [];
+            if (megaContent && dropzoneContainer) {
+                // Get the container's content (which includes rendered widgets)
+                const containerContent = dropzoneContainer.innerHTML;
+                console.log(`Container ${i} content length:`, containerContent.length);
+                console.log(`Container ${i} content preview:`, containerContent.substring(0, 200));
                 
-                allWidgets.forEach(widget => {
-                    const widgetRect = widget.getBoundingClientRect();
-                    // Check if widget is positioned near or after the dropzone in the DOM
-                    const isDomAfter = dropzone.compareDocumentPosition(widget) & Node.DOCUMENT_POSITION_FOLLOWING;
-                    const isSamePage = Math.abs(widgetRect.top - dropzoneRect.top) < 1000; // Within reasonable distance
-                    
-                    if (isDomAfter && isSamePage) {
-                        nearbyWidgets.push(widget);
-                    }
-                });
+                // Check for actual rendered content
+                const hasRealContent = containerContent.trim() && 
+                                     containerContent.length > 50 && // More than just the empty dropzone
+                                     (containerContent.includes('portlet') || 
+                                      containerContent.includes('widget') ||
+                                      containerContent.includes('class=') ||
+                                      containerContent.includes('<div') ||
+                                      containerContent.includes('<p') ||
+                                      containerContent.includes('<a'));
                 
-                console.log(`Found ${nearbyWidgets.length} nearby widgets for mega menu ${i}`);
+                console.log(`Mega menu ${i} has content:`, hasRealContent);
                 
-                if (nearbyWidgets.length > 0) {
-                    // Create container for the widgets
-                    const widgetContainer = document.createElement('div');
-                    widgetContainer.className = 'mega-menu-widgets-container';
-                    
-                    // Clone widgets into container
-                    nearbyWidgets.forEach(widget => {
-                        const clonedWidget = widget.cloneNode(true);
-                        widgetContainer.appendChild(clonedWidget);
-                    });
-                    
-                    // Add to mega content
-                    megaContent.innerHTML = '';
-                    megaContent.appendChild(widgetContainer);
+                if (hasRealContent) {
+                    // Copy the container content to mega content area
+                    megaContent.innerHTML = containerContent;
                     megaContent.classList.add('has-content');
                     
                     // Add class to parent dropdown for styling
@@ -820,36 +806,18 @@
                         dropdown.classList.add('has-mega-content');
                     }
                     
-                    console.log(`Successfully added ${nearbyWidgets.length} widgets to mega menu ${i}`);
+                    console.log(`Successfully added content to mega menu ${i}`);
                 } else {
-                    // Fallback: Check if dropzone itself has any meaningful content
-                    const dropzoneContent = dropzone.innerHTML;
-                    const hasDropzoneContent = dropzoneContent.trim() && 
-                                            !dropzoneContent.includes('Drop widgets here') &&
-                                            !dropzoneContent.includes('lfr-ddm-empty-message') &&
-                                            dropzoneContent.length > 20;
+                    megaContent.classList.remove('has-content');
+                    megaContent.innerHTML = '';
                     
-                    if (hasDropzoneContent) {
-                        megaContent.innerHTML = dropzoneContent;
-                        megaContent.classList.add('has-content');
-                        
-                        const dropdown = megaContent.closest('.jm-dropdown-menu');
-                        if (dropdown) {
-                            dropdown.classList.add('has-mega-content');
-                        }
-                        
-                        console.log(`Using dropzone content for mega menu ${i}`);
-                    } else {
-                        megaContent.classList.remove('has-content');
-                        megaContent.innerHTML = '';
-                        
-                        const dropdown = megaContent.closest('.jm-dropdown-menu');
-                        if (dropdown) {
-                            dropdown.classList.remove('has-mega-content');
-                        }
-                        
-                        console.log(`No content found for mega menu ${i}`);
+                    // Remove class from parent dropdown
+                    const dropdown = megaContent.closest('.jm-dropdown-menu');
+                    if (dropdown) {
+                        dropdown.classList.remove('has-mega-content');
                     }
+                    
+                    console.log(`No valid content found for mega menu ${i}`);
                 }
             }
         }
