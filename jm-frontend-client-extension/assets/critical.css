@@ -17,7 +17,7 @@
 /* Hero critical path optimization */
 .jm-hero {
   padding: 3rem 0 !important;
-  background: #fff !important;
+  background: transparent !important;
   position: relative !important;
   contain: layout style paint size !important;
   min-height: 500px !important;

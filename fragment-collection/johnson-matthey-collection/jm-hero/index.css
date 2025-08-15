@@ -26,7 +26,7 @@
 
 .jm-hero {
   padding: 3rem 0 !important;
-  background: var(--jm-white, #fff) !important;
+  background: transparent !important;
   min-height: 500px !important;
   display: block !important;
   visibility: visible !important;
