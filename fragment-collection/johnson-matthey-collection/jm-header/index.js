@@ -363,12 +363,10 @@
             mobileNav.appendChild(mobileItem);
         });
         
-        // Initialize dropdowns and mega menu content after rendering
-        setTimeout(() => {
-            initializeDropdowns();
-            initializeMegaMenuContent();
-            setupMegaMenuObserver();
-        }, 100);
+        // Initialize dropdowns and mega menu content immediately - no delays
+        initializeDropdowns();
+        initializeMegaMenuContent();
+        setupMegaMenuObserver();
     }
 
     /**
@@ -833,8 +831,8 @@
             });
             
             if (shouldUpdate) {
-                // Dropzone content changed, update mega menus
-                setTimeout(() => initializeMegaMenuContent(), 200);
+                // Dropzone content changed, update mega menus immediately
+                initializeMegaMenuContent();
             }
         });
         
