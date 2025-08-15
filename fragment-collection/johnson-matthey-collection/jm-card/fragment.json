@@ -1,0 +1,11 @@
+{
+  "fragmentEntryKey": "jm-card",
+  "name": "JM Card",
+  "type": "component",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "jsPath": "index.js",
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "icon": "cards2"
+}

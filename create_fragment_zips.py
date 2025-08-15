@@ -40,6 +40,11 @@ FRAGMENTS = {
         'name': 'JM Footer',
         'type': 'section',
         'icon': 'footer'
+    },
+    'jm-card': {
+        'name': 'JM Card',
+        'type': 'component',
+        'icon': 'cards2'
     }
 }
 
