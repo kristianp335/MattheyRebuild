@@ -777,29 +777,10 @@
             
             console.log(`Checking mega menu ${i}:`, { 
                 megaContent: !!megaContent,
-                dropzone: !!dropzone,
-                dropzoneHTML: dropzone ? dropzone.innerHTML.trim() : 'none'
+                dropzone: !!dropzone
             });
             
             if (megaContent && dropzone) {
-                // Check dropzone content first
-                const dropzoneContent = dropzone.innerHTML.trim();
-                console.log(`Dropzone ${i} content: "${dropzoneContent}"`);
-                
-                // If dropzone is empty (just whitespace), skip this mega menu
-                if (!dropzoneContent || dropzoneContent.length === 0) {
-                    megaContent.classList.remove('has-content');
-                    megaContent.innerHTML = '';
-                    
-                    const dropdown = megaContent.closest('.jm-dropdown-menu');
-                    if (dropdown) {
-                        dropdown.classList.remove('has-mega-content');
-                    }
-                    
-                    console.log(`Dropzone ${i} is empty - no mega menu content`);
-                    continue;
-                }
-                
                 // Find widgets that might belong to this dropzone by looking for widgets near the dropzone
                 const dropzoneRect = dropzone.getBoundingClientRect();
                 let nearbyWidgets = [];
@@ -841,11 +822,12 @@
                     
                     console.log(`Successfully added ${nearbyWidgets.length} widgets to mega menu ${i}`);
                 } else {
-                    // Check if dropzone has meaningful content (non-empty, non-placeholder)
-                    const hasDropzoneContent = dropzoneContent && 
+                    // Fallback: Check if dropzone itself has any meaningful content
+                    const dropzoneContent = dropzone.innerHTML;
+                    const hasDropzoneContent = dropzoneContent.trim() && 
                                             !dropzoneContent.includes('Drop widgets here') &&
                                             !dropzoneContent.includes('lfr-ddm-empty-message') &&
-                                            dropzoneContent.length > 10;
+                                            dropzoneContent.length > 20;
                     
                     if (hasDropzoneContent) {
                         megaContent.innerHTML = dropzoneContent;
@@ -866,7 +848,7 @@
                             dropdown.classList.remove('has-mega-content');
                         }
                         
-                        console.log(`Dropzone ${i} has content but no widgets found - content: "${dropzoneContent.substring(0, 100)}"`);
+                        console.log(`No content found for mega menu ${i}`);
                     }
                 }
             }
