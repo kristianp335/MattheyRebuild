@@ -692,7 +692,12 @@
                 
                 if (dropdownMenu) {
                     parentItem.classList.toggle('active');
-                    dropdownMenu.style.display = parentItem.classList.contains('active') ? 'block' : 'none';
+                    // Let CSS handle the display with !important
+                    if (parentItem.classList.contains('active')) {
+                        dropdownMenu.style.display = 'block';
+                    } else {
+                        dropdownMenu.style.display = '';
+                    }
                 }
             });
         });

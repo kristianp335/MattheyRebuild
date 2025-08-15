@@ -397,7 +397,7 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 }
 
 #wrapper .jm-mobile-nav-item.active .jm-mobile-dropdown-menu {
-  display: block;
+  display: block !important;
 }
 
 #wrapper .jm-mobile-dropdown-item {
