@@ -517,7 +517,8 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   }
   
   #wrapper .jm-header-dropzone,
-  #wrapper .jm-mega-menu-dropzones {
+  #wrapper .jm-mega-menu-dropzones,
+  #wrapper .jm-mega-content-containers {
     display: none !important;
   }
 }
@@ -557,6 +558,23 @@ body.has-edit-mode-menu #wrapper .jm-mega-menu-dropzones,
   font-size: var(--jm-font-size-sm);
   font-weight: 600;
   color: var(--jm-primary);
+}
+
+/* Mega Menu Content Containers - Hidden in edit mode, visible in live mode */
+#wrapper .jm-mega-content-containers {
+  display: none;
+}
+
+/* Hide content containers in edit mode */
+.has-edit-mode-menu #wrapper .jm-mega-content-containers,
+body.has-edit-mode-menu #wrapper .jm-mega-content-containers,
+.portlet-layout #wrapper .jm-mega-content-containers,
+.fragment-entry-link-edit-mode #wrapper .jm-mega-content-containers {
+  display: none !important;
+}
+
+#wrapper .jm-mega-content-container {
+  display: none;
 }
 
 

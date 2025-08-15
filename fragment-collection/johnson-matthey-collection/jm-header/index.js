@@ -762,43 +762,50 @@
     }
     
     /**
-     * Initialize mega menu content by copying dropzone content to dropdown areas
+     * Initialize mega menu content by copying content container to dropdown areas
      */
     function initializeMegaMenuContent() {
         console.log('Initializing mega menu content...');
         
         for (let i = 1; i <= 5; i++) {
-            const dropzone = fragmentElement.querySelector(`[data-lfr-drop-zone-id="mega-menu-${i}"]`);
+            // Look for the content container that Liferay renders widgets into
+            const contentContainer = document.querySelector(`#dropzone-mega-menu-${i}-container`);
             const megaContent = fragmentElement.querySelector(`[data-mega-index="${i}"]`);
             
-            console.log(`Checking mega menu ${i}:`, { dropzone: !!dropzone, megaContent: !!megaContent });
+            console.log(`Checking mega menu ${i}:`, { 
+                contentContainer: !!contentContainer, 
+                megaContent: !!megaContent,
+                containerContent: contentContainer ? contentContainer.innerHTML.length : 0
+            });
             
-            if (dropzone && megaContent) {
-                // Get all content from dropzone, including widgets
-                const dropzoneContent = dropzone.innerHTML;
-                console.log(`Dropzone ${i} content:`, dropzoneContent.substring(0, 200));
+            if (contentContainer && megaContent) {
+                // Get rendered widget content from the container
+                const containerContent = contentContainer.innerHTML;
+                console.log(`Container ${i} content length:`, containerContent.length);
+                console.log(`Container ${i} content preview:`, containerContent.substring(0, 200));
                 
-                // Check for actual content (widgets, HTML, etc.)
-                const hasRealContent = dropzoneContent.trim() && 
-                                     !dropzoneContent.includes('Drop widgets here') &&
-                                     !dropzoneContent.includes('lfr-ddm-empty-message') &&
-                                     (dropzoneContent.includes('class=') || 
-                                      dropzoneContent.includes('portlet') || 
-                                      dropzoneContent.includes('widget') ||
-                                      dropzoneContent.length > 20); // More flexible content detection
+                // Check for actual rendered content
+                const hasRealContent = containerContent.trim() && 
+                                     containerContent.length > 10 &&
+                                     (containerContent.includes('class=') || 
+                                      containerContent.includes('portlet') || 
+                                      containerContent.includes('widget') ||
+                                      containerContent.includes('<div') ||
+                                      containerContent.includes('<p') ||
+                                      containerContent.includes('<a'));
                 
                 console.log(`Mega menu ${i} has content:`, hasRealContent);
                 
                 if (hasRealContent) {
-                    // Clone the content properly
-                    megaContent.innerHTML = dropzoneContent;
+                    // Clone the rendered content to mega content area
+                    megaContent.innerHTML = containerContent;
                     megaContent.classList.add('has-content');
                     
                     // Add class to parent dropdown for styling
                     const dropdown = megaContent.closest('.jm-dropdown-menu');
                     if (dropdown) {
                         dropdown.classList.add('has-mega-content');
-                        console.log(`Added has-mega-content class to dropdown ${i}`, megaContent.innerHTML.substring(0, 100));
+                        console.log(`Added has-mega-content class to dropdown ${i}`);
                     }
                     
                     console.log(`Successfully added content to mega menu ${i}`);
@@ -859,7 +866,19 @@
         setInterval(() => {
             console.log('Periodic mega menu refresh...');
             initializeMegaMenuContent();
-        }, 3000);
+        }, 2000);
+        
+        // Watch for changes in content containers
+        for (let i = 1; i <= 5; i++) {
+            const container = document.querySelector(`#dropzone-mega-menu-${i}-container`);
+            if (container) {
+                observer.observe(container, {
+                    childList: true,
+                    subtree: true,
+                    attributes: false
+                });
+            }
+        }
     }
     
     function initializeModals() {
