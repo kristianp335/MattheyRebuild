@@ -680,50 +680,16 @@
 
         });
         
-        // Mobile dropdown functionality
+        // Mobile dropdown functionality - now just for navigation to child pages
         const mobileDropdownTriggers = fragmentElement.querySelectorAll('.jm-mobile-nav-item.has-dropdown > .jm-mobile-nav-link');
         
         mobileDropdownTriggers.forEach(trigger => {
+            // For mobile, we show all dropdowns by default via CSS
+            // The trigger can still be used for navigation if needed
             trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const parentItem = trigger.parentElement;
-                const dropdownMenu = parentItem.querySelector('.jm-mobile-dropdown-menu');
-                
-                // Close other open dropdowns first
-                const allMobileItems = fragmentElement.querySelectorAll('.jm-mobile-nav-item.active');
-                allMobileItems.forEach(item => {
-                    if (item !== parentItem) {
-                        item.classList.remove('active');
-                        const otherDropdown = item.querySelector('.jm-mobile-dropdown-menu');
-                        if (otherDropdown) {
-                            otherDropdown.style.display = '';
-                        }
-                    }
-                });
-                
-                if (dropdownMenu) {
-                    const isCurrentlyActive = parentItem.classList.contains('active');
-                    
-                    if (isCurrentlyActive) {
-                        parentItem.classList.remove('active');
-                        dropdownMenu.style.display = 'none';
-                        dropdownMenu.style.visibility = 'hidden';
-                        dropdownMenu.style.opacity = '0';
-                        dropdownMenu.style.height = '0';
-                    } else {
-                        parentItem.classList.add('active');
-                        dropdownMenu.style.display = 'block';
-                        dropdownMenu.style.visibility = 'visible';
-                        dropdownMenu.style.opacity = '1';
-                        dropdownMenu.style.height = 'auto';
-                    }
-                    
-                    console.log(`Mobile dropdown ${isCurrentlyActive ? 'closed' : 'opened'} for: ${trigger.textContent}`);
-                    console.log(`Parent item classes: ${parentItem.className}`);
-                    console.log(`Dropdown display style: ${dropdownMenu.style.display}`);
-                }
+                // Allow navigation to the parent page
+                // No need to prevent default or manage dropdown visibility
+                console.log(`Mobile nav clicked: ${trigger.textContent}`);
             });
         });
         

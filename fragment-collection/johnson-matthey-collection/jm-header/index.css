@@ -387,7 +387,6 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 }
 
 #wrapper .jm-mobile-dropdown-menu {
-  display: none;
   background: linear-gradient(135deg, rgba(11, 95, 255, 0.03) 0%, rgba(11, 95, 255, 0.08) 100%);
   border-left: 3px solid var(--jm-primary);
   padding: var(--jm-spacing-sm) 0;
@@ -396,17 +395,18 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   margin-left: var(--jm-spacing-md);
 }
 
-#wrapper .jm-mobile-nav-item.active .jm-mobile-dropdown-menu {
-  display: block !important;
+/* Show mobile dropdowns by default on mobile viewports */
+@media (max-width: 768px) {
+  #wrapper .jm-mobile-dropdown-menu {
+    display: block !important;
+  }
 }
 
-/* Additional mobile dropdown visibility rules for better specificity */
-#wrapper .jm-mobile-nav .jm-mobile-nav-item.active .jm-mobile-dropdown-menu {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  height: auto !important;
-  overflow: visible !important;
+/* Hide mobile dropdowns on wider viewports */
+@media (min-width: 769px) {
+  #wrapper .jm-mobile-dropdown-menu {
+    display: none !important;
+  }
 }
 
 #wrapper .jm-mobile-dropdown-item {
