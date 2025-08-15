@@ -1,5 +1,6 @@
 <style>
-/* CRITICAL: Self-contained Hero CSS for immediate rendering */
+/* CRITICAL: Ultra-optimized Hero CSS for sub-2.5s LCP */
+/* Inline critical path CSS for immediate rendering - targeting 90+ Lighthouse score */
 .jm-hero-fragment {
   display: block !important;
   width: 100% !important;
@@ -43,6 +44,7 @@
   gap: 4rem !important;
   align-items: center !important;
   min-height: 500px !important;
+  contain: layout !important;
 }
 
 .jm-hero-text {
@@ -55,6 +57,8 @@
   line-height: 1.1 !important;
   color: #fff !important;
   margin: 0 0 1.5rem 0 !important;
+  contain: layout style !important;
+  will-change: contents !important;
 }
 
 .jm-hero-stats {
@@ -136,6 +140,8 @@
   object-fit: cover !important;
   display: block !important;
   border-radius: 8px !important;
+  will-change: transform !important;
+  transform: translateZ(0) !important;
 }
 
 .jm-hero-video-overlay {
@@ -279,6 +285,7 @@
               alt="Johnson Matthey sustainable technology solutions"
               loading="eager"
               fetchpriority="high"
+              decoding="sync"
               width="600"
               height="400"
             />
