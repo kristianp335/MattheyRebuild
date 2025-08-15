@@ -2,8 +2,24 @@ assemble:
   - from: assets
     into: static
 
+johnson-matthey-critical-css:
+  name: Johnson Matthey Critical CSS - High Priority
+  type: globalCSS
+  url: global-critical.css
+  cssElementAttributes:
+    media: "all"
+    fetchpriority: "high"
+
+johnson-matthey-deferred-css:
+  name: Johnson Matthey Deferred CSS - Low Priority
+  type: globalCSS
+  url: global-deferred.css
+  cssElementAttributes:
+    media: "all"
+    fetchpriority: "low"
+
 johnson-matthey-global-css:
-  name: Johnson Matthey Global CSS - Non-blocking
+  name: Johnson Matthey Global CSS - Legacy (deprecated)
   type: globalCSS
   url: global.css
   cssElementAttributes:
