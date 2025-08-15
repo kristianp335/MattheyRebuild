@@ -24,7 +24,7 @@
 }
 .jm-hero {
   padding: 3rem 0 !important;
-  background: #fff !important;
+  background: var(--jm-white, #fff) !important;
   position: relative !important;
   contain: layout style paint size !important;
   min-height: 500px !important;
@@ -32,6 +32,41 @@
   backface-visibility: hidden !important;
   display: block !important;
   visibility: visible !important;
+}
+/* CRITICAL: Background variants for data attributes */
+.jm-hero[data-background="dark"] {
+  background: var(--jm-dark, #30313f) !important;
+  color: var(--jm-white, #fff) !important;
+}
+.jm-hero[data-background="primary"] {
+  background: var(--jm-primary, #0b5fff) !important;
+  color: var(--jm-white, #fff) !important;
+}
+.jm-hero[data-background="gradient"] {
+  background: linear-gradient(135deg, var(--jm-primary, #0b5fff) 0%, var(--jm-dark, #30313f) 100%) !important;
+  color: var(--jm-white, #fff) !important;
+}
+/* CRITICAL: Text color overrides for dark backgrounds */
+.jm-hero[data-background="dark"] .jm-hero-title {
+  color: var(--jm-white, #fff) !important;
+}
+.jm-hero[data-background="primary"] .jm-hero-title {
+  color: var(--jm-white, #fff) !important;
+}
+.jm-hero[data-background="gradient"] .jm-hero-title {
+  color: var(--jm-white, #fff) !important;
+}
+.jm-hero[data-background="dark"] .jm-hero-description,
+.jm-hero[data-background="dark"] .jm-hero-description-extended {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.jm-hero[data-background="primary"] .jm-hero-description,
+.jm-hero[data-background="primary"] .jm-hero-description-extended {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.jm-hero[data-background="gradient"] .jm-hero-description,
+.jm-hero[data-background="gradient"] .jm-hero-description-extended {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 .jm-hero-content {
   display: grid !important;

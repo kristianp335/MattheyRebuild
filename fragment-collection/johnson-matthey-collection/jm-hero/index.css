@@ -26,10 +26,24 @@
 
 .jm-hero {
   padding: 3rem 0 !important;
-  background: #fff !important;
+  background: var(--jm-white, #fff) !important;
   min-height: 500px !important;
   display: block !important;
   visibility: visible !important;
+  position: relative !important;
+}
+/* CRITICAL: Background variants for data attributes */
+.jm-hero[data-background="dark"] {
+  background: var(--jm-dark, #30313f) !important;
+  color: var(--jm-white, #fff) !important;
+}
+.jm-hero[data-background="primary"] {
+  background: var(--jm-primary, #0b5fff) !important;
+  color: var(--jm-white, #fff) !important;
+}
+.jm-hero[data-background="gradient"] {
+  background: linear-gradient(135deg, var(--jm-primary, #0b5fff) 0%, var(--jm-dark, #30313f) 100%) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-hero-content {
@@ -53,59 +67,7 @@
 /* Non-critical styles below */
 
 /* Background Style Variants */
-#wrapper .jm-hero[data-background="primary"] {
-  background: var(--primary) !important;
-  color: var(--light) !important;
-}
-
-#wrapper .jm-hero[data-background="primary"] .jm-hero-title {
-  color: var(--light) !important;
-}
-
-#wrapper .jm-hero[data-background="primary"] .jm-hero-description,
-#wrapper .jm-hero[data-background="primary"] .jm-hero-description-extended {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-#wrapper .jm-hero[data-background="primary"] .jm-hero-stat-number {
-  color: var(--light) !important;
-}
-
-#wrapper .jm-hero[data-background="secondary"] {
-  background: var(--secondary) !important;
-  color: var(--light) !important;
-}
-
-#wrapper .jm-hero[data-background="secondary"] .jm-hero-title {
-  color: var(--light) !important;
-}
-
-#wrapper .jm-hero[data-background="secondary"] .jm-hero-description,
-#wrapper .jm-hero[data-background="secondary"] .jm-hero-description-extended {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-#wrapper .jm-hero[data-background="secondary"] .jm-hero-stat-number {
-  color: var(--light) !important;
-}
-
-#wrapper .jm-hero[data-background="dark"] {
-  background: var(--dark) !important;
-  color: var(--light) !important;
-}
-
-#wrapper .jm-hero[data-background="dark"] .jm-hero-title {
-  color: var(--light) !important;
-}
-
-#wrapper .jm-hero[data-background="dark"] .jm-hero-description,
-#wrapper .jm-hero[data-background="dark"] .jm-hero-description-extended {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-#wrapper .jm-hero[data-background="dark"] .jm-hero-stat-number {
-  color: var(--light) !important;
-}
+/* Background variants updated above in critical CSS */
 
 /* Grid layout optimized in critical CSS above */
 
