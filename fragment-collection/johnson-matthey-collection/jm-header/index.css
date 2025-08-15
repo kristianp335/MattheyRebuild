@@ -510,8 +510,9 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
     border: none;
   }
   
-  #wrapper .jm-header-dropzone {
-    display: none;
+  #wrapper .jm-header-dropzone,
+  #wrapper .jm-mega-menu-dropzones {
+    display: none !important;
   }
 }
 
