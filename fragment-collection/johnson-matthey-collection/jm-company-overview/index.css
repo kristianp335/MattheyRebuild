@@ -37,6 +37,8 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--jm-spacing-xxl);
   align-items: start;
+  /* CLS prevention - stable grid layout */
+  contain: layout;
 }
 
 /* Overview Content */
@@ -135,6 +137,9 @@
   border-radius: var(--jm-border-radius-lg);
   overflow: hidden;
   box-shadow: var(--jm-box-shadow-lg);
+  /* CLS prevention - stable container dimensions */
+  min-height: 300px;
+  contain: layout;
 }
 
 #wrapper .jm-overview-image {
@@ -143,6 +148,9 @@
   object-fit: cover;
   display: block;
   transition: var(--jm-transition);
+  /* CLS prevention - ensure stable layout */
+  aspect-ratio: 3/2;
+  background-color: var(--jm-gray-100);
 }
 
 #wrapper .jm-media-container:hover .jm-overview-image {

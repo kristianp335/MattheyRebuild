@@ -53,6 +53,12 @@
 - **Improved Lighthouse scores** for Performance and LCP metrics
 - **Better user experience** with faster visual completion
 
+## CLS (Cumulative Layout Shift) Fixes
+- **Added explicit dimensions** to all images (width/height attributes)
+- **CSS containment** added to prevent layout thrashing
+- **Aspect ratio preservation** with `aspect-ratio: 3/2` for stable sizing
+- **Min-height containers** to reserve space before content loads
+
 ## Monitoring Points
 1. Lighthouse Performance score should improve significantly
 2. LCP timing should reduce from 4,800ms to under 1,500ms
