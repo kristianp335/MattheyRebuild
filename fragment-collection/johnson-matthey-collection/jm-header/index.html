@@ -1,3 +1,191 @@
+<style>
+/* HEADER FRAGMENT CSS - ALL INLINE FOR OPTIMAL PERFORMANCE */
+/* Consolidated from 924 lines of external CSS to eliminate blocking */
+
+/* CSS Variables */
+:root {
+  --jm-header-height: 80px;
+}
+
+/* Header Layout - Critical rendering path */
+#wrapper .jm-header-fragment {
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+#wrapper .jm-header {
+  background: var(--jm-white) !important;
+  border-bottom: 1px solid var(--jm-gray-300) !important;
+  position: relative !important;
+  z-index: 100 !important;
+}
+
+#wrapper .jm-header-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: var(--jm-spacing-md, 1rem) 0 !important;
+  min-height: 60px !important;
+}
+
+/* Logo */
+#wrapper .jm-header-logo {
+  flex-shrink: 0 !important;
+}
+
+#wrapper .jm-logo-link {
+  display: inline-block !important;
+  text-decoration: none !important;
+}
+
+#wrapper .jm-logo {
+  height: 40px !important;
+  width: auto !important;
+  transition: opacity 0.3s ease !important;
+}
+
+#wrapper .jm-logo:hover {
+  opacity: 0.8 !important;
+}
+
+/* Main Navigation */
+#wrapper .jm-nav {
+  flex: 1 !important;
+  margin: 0 var(--jm-spacing-xl, 1.5rem) !important;
+}
+
+#wrapper .jm-nav-list {
+  display: flex !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#wrapper .jm-nav-item {
+  position: relative !important;
+  margin: 0 var(--jm-spacing-sm, 0.75rem) !important;
+}
+
+#wrapper .jm-nav-link {
+  display: flex !important;
+  align-items: center !important;
+  padding: var(--jm-spacing-sm, 0.75rem) var(--jm-spacing-md, 1rem) !important;
+  color: var(--jm-gray-800, #343a40) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  border-radius: var(--jm-border-radius, 4px) !important;
+  transition: all 0.3s ease !important;
+  white-space: nowrap !important;
+}
+
+#wrapper .jm-nav-link:hover,
+#wrapper .jm-nav-link:focus {
+  color: var(--jm-primary, #0b5fff) !important;
+  background-color: var(--jm-gray-100, #f8f9fa) !important;
+  text-decoration: none !important;
+}
+
+/* Header Actions */
+#wrapper .jm-header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--jm-spacing-sm, 0.75rem) !important;
+  flex-shrink: 0 !important;
+}
+
+#wrapper .jm-header-action-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--jm-spacing-xs, 0.5rem) !important;
+  padding: var(--jm-spacing-sm, 0.75rem) !important;
+  background: none !important;
+  border: 1px solid var(--jm-gray-300, #dee2e6) !important;
+  border-radius: var(--jm-border-radius, 4px) !important;
+  color: var(--jm-gray-700, #495057) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
+}
+
+#wrapper .jm-header-action-btn:hover,
+#wrapper .jm-header-action-btn:focus {
+  background-color: var(--jm-gray-100, #f8f9fa) !important;
+  border-color: var(--jm-primary, #0b5fff) !important;
+  color: var(--jm-primary, #0b5fff) !important;
+}
+
+/* Mobile Menu Toggle */
+#wrapper .jm-mobile-menu-toggle {
+  display: none !important;
+  background: none !important;
+  border: 1px solid var(--jm-gray-300, #dee2e6) !important;
+  border-radius: var(--jm-border-radius, 4px) !important;
+  padding: var(--jm-spacing-sm, 0.75rem) !important;
+  cursor: pointer !important;
+}
+
+#wrapper .jm-hamburger {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 20px !important;
+  height: 16px !important;
+  justify-content: space-between !important;
+}
+
+#wrapper .jm-hamburger span {
+  display: block !important;
+  height: 2px !important;
+  background-color: var(--jm-gray-700, #495057) !important;
+  border-radius: 1px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Mobile Navigation */
+#wrapper .jm-mobile-nav {
+  display: none !important;
+  background: var(--jm-white, #fff) !important;
+  border-top: 1px solid var(--jm-gray-300, #dee2e6) !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 50 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+#wrapper .jm-mobile-nav.show {
+  display: block !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #wrapper .jm-nav,
+  #wrapper .jm-header-action-btn span {
+    display: none !important;
+  }
+  
+  #wrapper .jm-mobile-menu-toggle {
+    display: block !important;
+  }
+  
+  #wrapper .jm-header-actions {
+    gap: var(--jm-spacing-xs, 0.5rem) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #wrapper .jm-header-content {
+    padding: var(--jm-spacing-sm, 0.75rem) 0 !important;
+  }
+  
+  #wrapper .jm-logo {
+    height: 32px !important;
+  }
+}
+</style>
+
 <div class="jm-header-fragment">
   <header class="jm-header">
     <div class="jm-container">
