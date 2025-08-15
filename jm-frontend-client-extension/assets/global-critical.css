@@ -1,0 +1,64 @@
+/* CRITICAL CSS ONLY - Must load immediately for LCP */
+/* Version: 1.6.0 - Ultra-optimized for immediate rendering */
+
+/* CRITICAL ONLY: Essential CSS custom properties */
+#wrapper {
+  /* CRITICAL: Essential colors for immediate render */
+  --jm-primary: #0b5fff;
+  --jm-gray-700: var(--gray-700, #495057);
+  --jm-white: var(--white, #fff);
+  --jm-dark: var(--brand-color-4, #30313f);
+  --jm-gray-800: var(--gray-800, #393a4a);
+  
+  /* Critical typography */
+  --jm-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --jm-font-size-base: 1rem;
+  --jm-font-size-lg: 1.125rem;
+  --jm-spacing-md: 1rem;
+  --jm-spacing-lg: 1.5rem;
+  --jm-spacing-xl: 2rem;
+}
+
+/* CRITICAL: Base typography - needed for LCP text */
+#wrapper {
+  font-family: var(--jm-font-family);
+  color: var(--jm-gray-800);
+}
+
+/* CRITICAL: Header logo - prevents CLS */
+#wrapper .jm-logo {
+  height: 40px;
+  width: 120px;
+  object-fit: contain;
+}
+
+/* CRITICAL: Essential layout */
+#wrapper .jm-hero-fragment {
+  display: block;
+  width: 100%;
+  min-height: 500px;
+}
+
+/* Hero text - LCP element critical styles */
+#wrapper .jm-hero-description,
+#wrapper .jm-hero-description-extended p {
+  font-family: var(--jm-font-family);
+  color: var(--jm-white);
+  line-height: 1.7;
+  margin: 0 0 1.5rem 0;
+  font-size: 1.125rem;
+  font-weight: 400;
+  display: block;
+}
+
+#wrapper .jm-hero-content {
+  display: block;
+  position: relative;
+  z-index: 2;
+  padding: 3rem 1rem;
+}
+
+#wrapper .jm-hero-text {
+  display: block;
+  color: var(--jm-white);
+}

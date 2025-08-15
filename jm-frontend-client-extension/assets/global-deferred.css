@@ -1,0 +1,91 @@
+/* NON-CRITICAL CSS - Can be loaded after LCP */
+/* Contains: Modals, forms, animations, hover effects, scrollbars */
+
+/* Custom Scrollbars - Non-critical */
+#wrapper ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#wrapper ::-webkit-scrollbar-track {
+  background: var(--jm-gray-200);
+  border-radius: var(--jm-border-radius);
+}
+
+#wrapper ::-webkit-scrollbar-thumb {
+  background: var(--jm-gray-400);
+  border-radius: var(--jm-border-radius);
+}
+
+#wrapper ::-webkit-scrollbar-thumb:hover {
+  background: var(--jm-gray-500);
+}
+
+/* Modal and Form Styles - All Non-critical */
+#wrapper .login-content .form-control,
+#wrapper .login-content input.field,
+#wrapper .login-content .clearable.form-control {
+  border: 2px solid var(--jm-gray-300) !important;
+  border-radius: var(--jm-border-radius) !important;
+  padding: var(--jm-spacing-sm) var(--jm-spacing-md) !important;
+  font-size: var(--jm-font-size-base) !important;
+  transition: var(--jm-transition) !important;
+}
+
+#wrapper .login-content .form-control:focus,
+#wrapper .login-content input.field:focus,
+#wrapper .login-content .clearable.form-control:focus {
+  border-color: var(--jm-primary) !important;
+  box-shadow: 0 0 0 0.2rem rgba(11, 95, 255, 0.25) !important;
+  outline: none !important;
+}
+
+#wrapper .login-content .control-label {
+  color: var(--jm-gray-800) !important;
+  font-weight: 500 !important;
+  margin-bottom: var(--jm-spacing-xs) !important;
+}
+
+#wrapper .login-content .btn-primary {
+  background-color: var(--jm-primary) !important;
+  border-color: var(--jm-primary) !important;
+  color: var(--jm-white) !important;
+  padding: var(--jm-spacing-sm) var(--jm-spacing-lg) !important;
+  border-radius: var(--jm-border-radius) !important;
+  font-weight: 500 !important;
+  transition: var(--jm-transition) !important;
+}
+
+#wrapper .login-content .btn-primary:hover,
+#wrapper .login-content .btn-primary:focus {
+  background-color: var(--jm-accent) !important;
+  border-color: var(--jm-accent) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--jm-box-shadow) !important;
+}
+
+#wrapper .login-content .lfr-btn-label {
+  color: var(--jm-white) !important;
+}
+
+#wrapper .login-content .taglib-text a {
+  color: var(--jm-primary) !important;
+  text-decoration: none !important;
+  transition: var(--jm-transition) !important;
+}
+
+#wrapper .login-content .taglib-text a:hover,
+#wrapper .login-content .taglib-text a:focus {
+  color: var(--jm-accent) !important;
+  text-decoration: underline !important;
+}
+
+#wrapper .login-content .portlet,
+#wrapper .login-content .portlet-content,
+#wrapper .login-content .portlet-body {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}

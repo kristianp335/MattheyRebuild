@@ -3,15 +3,16 @@ assemble:
     into: static
 
 johnson-matthey-global-css:
-  name: Johnson Matthey Global CSS
+  name: Johnson Matthey Global CSS - Non-blocking
   type: globalCSS
   url: global.css
 
 johnson-matthey-global-js:
-  name: Johnson Matthey Global JavaScript
+  name: Johnson Matthey Global JavaScript - Non-blocking
   type: globalJS
   scriptLocation: head
   url: global.js
   scriptElementAttributes:
     data-senna-track: "permanent"
-    fetchpriority: "high"
+    async: "true"
+    defer: "true"
