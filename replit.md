@@ -22,7 +22,8 @@ The project employs a modular, fragment-based architecture where each UI compone
 - **Fragment Configuration**: Uses `typeOptions.validValues` for select fields.
 **FreeMarker Syntax**: Liferay fragments use `[#` brackets instead of `<#` - configuration conditionals use `[#if condition]content[/#if]` syntax.
 - **Fragment Element Detection**: Fixed critical issue where `document.currentScript.closest()` fails in Liferay's ES module environment. All fragments now properly use the `fragmentElement` variable injected by Liferay instead of trying to find elements with `document.currentScript`.
-- **CSS Specificity Fix**: Resolved Hero fragment visibility issue by removing `#wrapper` selector dependencies. Fragments now use direct class selectors for maximum Liferay compatibility and guaranteed visibility on live sites.
+- **CSS Specificity Fix**: Resolved Hero fragment visibility issue by removing `#wrapper` selector dependencies and CSS containment properties that were causing layout collapse. Fragments now use direct class selectors for maximum Liferay compatibility and guaranteed visibility on live sites.
+- **Mobile Responsiveness Enhancement**: Fixed responsive layout issues with proper mobile breakpoints, improved text contrast for accessibility (WCAG AA compliance), and optimized mobile layout flow.
 - **JM Card Fragment**:
     - **Standalone Component**: Complete card fragment for use in mega menus and page content
     - **Context-Aware Styling**: Automatically applies compact mode when used in mega menu dropzones

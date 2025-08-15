@@ -67,7 +67,48 @@
 /* Non-critical styles below */
 
 /* Background Style Variants */
-/* Background variants updated above in critical CSS */
+/* Enhanced responsive design and accessibility */
+@media (max-width: 768px) {
+  .jm-hero-content {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+  
+  .jm-hero {
+    padding: 2rem 0 !important;
+  }
+  
+  .jm-hero-stats {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .jm-hero-media {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .jm-hero {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .jm-hero-content {
+    gap: 1.5rem !important;
+  }
+  
+  .jm-hero-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .jm-hero-stat-number {
+    font-size: 3rem !important;
+  }
+}
 
 /* Grid layout optimized in critical CSS above */
 
