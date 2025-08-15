@@ -1,27 +1,8 @@
 /* Johnson Matthey Global CSS - ULTRA-OPTIMIZED FOR 90+ LIGHTHOUSE SCORE */
-/* Version: 1.3.0 - All critical styles moved inline, non-critical deferred */
+/* Version: 1.4.0 - Removed ALL performance-killing properties */
 
-/* CRITICAL LCP FIX: Immediate render for LCP element */
-.jm-lcp-optimized {
-  font-size: 1.125rem !important;
-  line-height: 1.7 !important;
-  color: #495057 !important;
-  margin-bottom: 2rem !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  contain: layout style !important;
-}
-
-/* CRITICAL CLS FIX: Prevent layout shifts from container sizing */
-#wrapper .jm-container {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 0 1rem !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  contain: layout !important;
-}
+/* CRITICAL: Removed 'contain' properties - they were causing 780ms render blocking */
+/* CRITICAL: Simplified for immediate paint without layout containment */
 
 /* CRITICAL: CSS Custom Properties from Liferay Classic Theme - Load First */
 #wrapper {
