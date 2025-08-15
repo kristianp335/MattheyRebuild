@@ -41,16 +41,10 @@
             // Initialize mobile menu and modals for edit mode
             initializeMobileMenu();
             initializeModals();
-            // Initialize mega menu content for edit mode with multiple attempts
-            setTimeout(() => initializeMegaMenuContent(), 500);
-            setTimeout(() => initializeMegaMenuContent(), 1000);
-            setTimeout(() => initializeMegaMenuContent(), 2000);
-            setTimeout(() => {
-                initializeMegaMenuContent();
-                setupMegaMenuObserver();
-            }, 3000);
-            // Add edit mode classes to modals for visual indication
-            initializeEditModeDisplay();
+            // Initialize mega menu content for edit mode - single call
+            initializeMegaMenuContent();
+            setupMegaMenuObserver();
+            // Skip edit mode display initialization to prevent flashing
 
             return;
         }
