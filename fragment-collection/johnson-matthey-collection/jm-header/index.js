@@ -708,13 +708,21 @@
                     
                     if (isCurrentlyActive) {
                         parentItem.classList.remove('active');
-                        dropdownMenu.style.display = '';
+                        dropdownMenu.style.display = 'none';
+                        dropdownMenu.style.visibility = 'hidden';
+                        dropdownMenu.style.opacity = '0';
+                        dropdownMenu.style.height = '0';
                     } else {
                         parentItem.classList.add('active');
                         dropdownMenu.style.display = 'block';
+                        dropdownMenu.style.visibility = 'visible';
+                        dropdownMenu.style.opacity = '1';
+                        dropdownMenu.style.height = 'auto';
                     }
                     
                     console.log(`Mobile dropdown ${isCurrentlyActive ? 'closed' : 'opened'} for: ${trigger.textContent}`);
+                    console.log(`Parent item classes: ${parentItem.className}`);
+                    console.log(`Dropdown display style: ${dropdownMenu.style.display}`);
                 }
             });
         });

@@ -400,6 +400,15 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   display: block !important;
 }
 
+/* Additional mobile dropdown visibility rules for better specificity */
+#wrapper .jm-mobile-nav .jm-mobile-nav-item.active .jm-mobile-dropdown-menu {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
 #wrapper .jm-mobile-dropdown-item {
   display: block;
   padding: var(--jm-spacing-md) var(--jm-spacing-xl);
