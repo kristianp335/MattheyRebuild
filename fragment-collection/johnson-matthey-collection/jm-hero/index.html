@@ -1,6 +1,6 @@
-<!-- Critical LCP CSS inlined for instant rendering -->
+<!-- CRITICAL LCP + CLS PERFORMANCE CSS - ULTRA OPTIMIZED -->
 <style>
-/* Critical path CSS for LCP optimization - NO CSS VARIABLES */
+/* CRITICAL: Immediate paint for LCP elements */
 #wrapper .jm-lcp-optimized {
   font-size: 1.125rem !important;
   line-height: 1.7 !important;
@@ -9,7 +9,8 @@
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  contain: layout style !important;
+  contain: layout style paint !important;
+  transform: translateZ(0) !important;
 }
 #wrapper .jm-hero-fragment {
   position: relative;
@@ -59,10 +60,10 @@
             A world leader in sustainable technology solutions
           </h1>
           
-          <div class="jm-hero-stats" [#if !configuration.showStats]style="display: none;"[/#if]>
-            <div class="jm-hero-stat">
-              <span class="jm-hero-stat-number" data-lfr-editable-id="statNumber" data-lfr-editable-type="text">200</span>
-              <span class="jm-hero-stat-label" data-lfr-editable-id="statLabel" data-lfr-editable-type="text">years</span>
+          <div class="jm-hero-stats" [#if !configuration.showStats]style="display: none;"[/#if] style="display: flex !important; align-items: flex-start !important; gap: 1.5rem !important; margin-bottom: 2rem !important; min-height: 120px !important;">
+            <div class="jm-hero-stat" style="display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; flex-shrink: 0 !important; width: 80px !important;">
+              <span class="jm-hero-stat-number" data-lfr-editable-id="statNumber" data-lfr-editable-type="text" style="font-size: 4rem !important; font-weight: 800 !important; color: #0b5fff !important; line-height: 1 !important; display: block !important;">200</span>
+              <span class="jm-hero-stat-label" data-lfr-editable-id="statLabel" data-lfr-editable-type="text" style="font-size: 1.125rem !important; color: #6b6c7e !important; font-weight: 500 !important; margin-top: 0.25rem !important;">years</span>
             </div>
             <p class="jm-hero-description jm-lcp-optimized" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text" style="font-size: 1.125rem !important; line-height: 1.7 !important; color: #495057 !important; margin-bottom: 2rem !important; display: block !important; visibility: visible !important; opacity: 1 !important;">
               For over <strong>200</strong> years Johnson Matthey has contributed to solving some of the world's toughest problems, leaning on our expertise in advanced metals chemistry. But now is the time to make our biggest impact yet.
@@ -98,6 +99,7 @@
                 width="600"
                 height="400"
                 decoding="sync"
+                style="width: 100% !important; height: 400px !important; object-fit: cover !important; display: block !important;"
               />
             </picture>
           </div>

@@ -12,14 +12,16 @@
 - Moved essential styles to `<style>` block in hero fragment HTML with `!important` declarations
 - Added CSS containment (`contain: layout style`) for layout isolation
 
-### 2. Cumulative Layout Shift (CLS) Prevention
-**Problem**: `div.jm-container` elements causing 0.882 layout shift score due to undefined dimensions.
+### 2. Cumulative Layout Shift (CLS) Prevention (Target: <0.1)
+**Problem**: Multiple layout shifts totaling 0.364 CLS score from `div.jm-hero-stats` (0.363) and image sizing.
 
-**Solution**: 
-- **Added explicit container sizing** with fixed max-width (1200px) and responsive padding
-- **Applied dimensions inline** to prevent any CSS loading delays from affecting layout
-- **Added CSS containment** (`contain: layout`) to isolate layout calculations
-- **Fixed grid container dimensions** to prevent content-driven layout shifts
+**Critical Fixes Applied**: 
+- **Added explicit dimensions to ALL layout containers** with hard-coded sizes (max-width: 1200px)
+- **Fixed hero stats container** with min-height: 120px and explicit flex properties
+- **Applied image sizing** with width: 100%, height: 400px, object-fit: cover
+- **Added CSS containment** (`contain: layout style paint`) to isolate all layout calculations
+- **GPU acceleration** with `transform: translateZ(0)` for composite layer isolation
+- **Inline critical styles** to prevent any CSS loading delays from affecting layout
 
 ### 3. Debugging Code Performance Impact
 **Problem**: Found 16+ console.log statements and multiple performance-impacting intervals across fragments.
