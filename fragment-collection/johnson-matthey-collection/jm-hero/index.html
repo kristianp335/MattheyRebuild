@@ -1,4 +1,227 @@
-<!-- Optimized for minimal CSS - leveraging critical.css for core layout -->
+<style>
+/* CRITICAL: Self-contained Hero CSS for immediate rendering */
+.jm-hero-fragment {
+  display: block !important;
+  width: 100% !important;
+  min-height: 500px !important;
+}
+
+.jm-hero {
+  padding: 4rem 0 !important;
+  width: 100% !important;
+  position: relative !important;
+  background: #30313f !important;
+  color: #fff !important;
+}
+
+.jm-hero[data-background="dark"] {
+  background: #30313f !important;
+  color: #fff !important;
+}
+
+.jm-hero[data-background="primary"] {
+  background: #0b5fff !important;
+  color: #fff !important;
+}
+
+.jm-hero[data-background="gradient"] {
+  background: linear-gradient(135deg, #0b5fff 0%, #30313f 100%) !important;
+  color: #fff !important;
+}
+
+.jm-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.jm-hero-content {
+  display: grid !important;
+  grid-template-columns: 1.2fr 0.8fr !important;
+  gap: 4rem !important;
+  align-items: center !important;
+  min-height: 500px !important;
+}
+
+.jm-hero-text {
+  display: block !important;
+}
+
+.jm-hero-title {
+  font-size: 3.5rem !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  color: #fff !important;
+  margin: 0 0 1.5rem 0 !important;
+}
+
+.jm-hero-stats {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 1.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.jm-hero-stat {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  flex-shrink: 0 !important;
+  width: 80px !important;
+}
+
+.jm-hero-stat-number {
+  font-size: 4rem !important;
+  font-weight: 800 !important;
+  color: #0b5fff !important;
+  line-height: 1 !important;
+  display: block !important;
+}
+
+.jm-hero-stat-label {
+  font-size: 1.125rem !important;
+  color: #e9ecef !important;
+  font-weight: 500 !important;
+  margin-top: 0.25rem !important;
+}
+
+.jm-hero-description,
+.jm-hero-description-extended {
+  font-size: 1.125rem !important;
+  line-height: 1.7 !important;
+  color: #f8f9fa !important;
+  margin-bottom: 2rem !important;
+}
+
+.jm-hero-actions {
+  margin-top: 2rem !important;
+}
+
+.jm-btn {
+  display: inline-block !important;
+  padding: 0.75rem 2rem !important;
+  background: #0b5fff !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  border-radius: 4px !important;
+  font-weight: 500 !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.jm-btn:hover {
+  background: #0952e6 !important;
+}
+
+.jm-hero-media {
+  display: block !important;
+  position: relative !important;
+}
+
+.jm-hero-img {
+  width: 100% !important;
+  height: 400px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 8px !important;
+}
+
+.jm-hero-video-overlay {
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  text-align: center !important;
+}
+
+.jm-play-button {
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  margin-bottom: 10px !important;
+}
+
+.jm-video-caption {
+  color: #fff !important;
+  font-size: 0.875rem !important;
+  margin: 0 !important;
+  background: rgba(0,0,0,0.7) !important;
+  padding: 0.5rem !important;
+  border-radius: 4px !important;
+}
+
+/* CRITICAL: Mobile Responsive - High Priority */
+@media (max-width: 768px) {
+  .jm-hero-content {
+    display: block !important;
+    text-align: center !important;
+  }
+  
+  .jm-hero {
+    padding: 2rem 0 !important;
+  }
+  
+  .jm-hero-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .jm-hero-stats {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .jm-hero-stat-number {
+    font-size: 3rem !important;
+  }
+  
+  .jm-hero-media {
+    margin-top: 2rem !important;
+  }
+  
+  .jm-hero-img {
+    height: 300px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .jm-hero {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .jm-hero-title {
+    font-size: 2rem !important;
+  }
+  
+  .jm-hero-stat-number {
+    font-size: 2.5rem !important;
+  }
+  
+  .jm-hero-img {
+    height: 250px !important;
+  }
+}
+
+/* Layout variants */
+.jm-hero-content[data-layout="text-right"] {
+  grid-template-columns: 0.8fr 1.2fr !important;
+}
+
+.jm-hero-content[data-layout="text-right"] .jm-hero-text {
+  order: 2 !important;
+}
+
+.jm-hero-content[data-layout="text-right"] .jm-hero-media {
+  order: 1 !important;
+}
+
+.jm-hero-content[data-layout="centered"] {
+  grid-template-columns: 1fr !important;
+  text-align: center !important;
+  justify-items: center !important;
+}
+</style>
 
 <div class="jm-hero-fragment">
   <section class="jm-hero" id="main-content" data-background="${configuration.backgroundStyle}">
