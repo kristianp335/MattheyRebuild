@@ -1,6 +1,6 @@
-<!-- CRITICAL LCP + CLS PERFORMANCE CSS - ULTRA OPTIMIZED -->
+<!-- ULTRA-AGGRESSIVE LCP OPTIMIZATION: Critical inline styles for 90+ Lighthouse score -->
 <style>
-/* CRITICAL: Immediate paint for LCP elements */
+/* CRITICAL: Sub-2.5s LCP target - immediate paint for all critical elements */
 #wrapper .jm-lcp-optimized {
   font-size: 1.125rem !important;
   line-height: 1.7 !important;
@@ -9,19 +9,25 @@
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  contain: layout style paint !important;
-  transform: translateZ(0) !important;
+  contain: layout style paint size !important;
+  transform: translateZ(0) translateX(0) translateY(0) !important;
+  will-change: auto !important;
 }
 #wrapper .jm-hero-fragment {
   position: relative;
   overflow: hidden;
-  contain: layout;
+  contain: layout style paint size !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
 }
 #wrapper .jm-hero {
-  padding: 3rem 0;
-  background: var(--jm-white, #fff);
+  padding: 3rem 0 !important;
+  background: #fff !important;
   position: relative;
-  contain: layout style;
+  contain: layout style paint size !important;
+  min-height: 500px !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
 }
 #wrapper .jm-hero-content {
   display: grid;
@@ -56,7 +62,7 @@
       <div class="jm-hero-content" data-layout="${configuration.layoutStyle}">
         <!-- Hero Text Content -->
         <div class="jm-hero-text">
-          <h1 class="jm-hero-title" data-lfr-editable-id="heroTitle" data-lfr-editable-type="text">
+          <h1 class="jm-hero-title" data-lfr-editable-id="heroTitle" data-lfr-editable-type="text" style="font-size: 3.5rem !important; font-weight: 800 !important; line-height: 1.1 !important; color: #0b5fff !important; margin: 0 0 1.5rem 0 !important; contain: layout style paint size !important; transform: translateZ(0) !important; will-change: auto !important;">
             A world leader in sustainable technology solutions
           </h1>
           
@@ -99,7 +105,7 @@
                 width="600"
                 height="400"
                 decoding="sync"
-                style="width: 100% !important; height: 400px !important; object-fit: cover !important; display: block !important;"
+                style="width: 100% !important; height: 400px !important; object-fit: cover !important; display: block !important; transform: translateZ(0) !important; contain: layout style paint size !important; backface-visibility: hidden !important;"
               />
             </picture>
           </div>
