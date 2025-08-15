@@ -1,7 +1,7 @@
-<!-- ULTRA-AGGRESSIVE LCP OPTIMIZATION: Critical inline styles for 90+ Lighthouse score -->
+<!-- CRITICAL FIX: CSS Specificity - Remove #wrapper dependency for live site visibility -->
 <style>
-/* CRITICAL: Sub-2.5s LCP target - immediate paint for all critical elements */
-#wrapper .jm-lcp-optimized {
+/* CRITICAL: Direct selectors without #wrapper dependency for immediate paint */
+.jm-lcp-optimized {
   font-size: 1.125rem !important;
   line-height: 1.7 !important;
   color: #495057 !important;
@@ -13,44 +13,50 @@
   transform: translateZ(0) translateX(0) translateY(0) !important;
   will-change: auto !important;
 }
-#wrapper .jm-hero-fragment {
-  position: relative;
-  overflow: hidden;
+.jm-hero-fragment {
+  position: relative !important;
+  overflow: hidden !important;
   contain: layout style paint size !important;
   transform: translateZ(0) !important;
   backface-visibility: hidden !important;
+  display: block !important;
+  visibility: visible !important;
 }
-#wrapper .jm-hero {
+.jm-hero {
   padding: 3rem 0 !important;
   background: #fff !important;
-  position: relative;
+  position: relative !important;
   contain: layout style paint size !important;
   min-height: 500px !important;
   transform: translateZ(0) !important;
   backface-visibility: hidden !important;
+  display: block !important;
+  visibility: visible !important;
 }
-#wrapper .jm-hero-content {
-  display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: 3rem;
-  align-items: center;
-  min-height: 60vh;
-  contain: layout;
+.jm-hero-content {
+  display: grid !important;
+  grid-template-columns: 1.4fr 0.6fr !important;
+  gap: 3rem !important;
+  align-items: center !important;
+  min-height: 60vh !important;
+  contain: layout !important;
+  visibility: visible !important;
 }
-#wrapper .jm-hero-text {
-  z-index: 2;
-  position: relative;
-  contain: layout style;
+.jm-hero-text {
+  z-index: 2 !important;
+  position: relative !important;
+  contain: layout style !important;
+  display: block !important;
+  visibility: visible !important;
 }
-/* CRITICAL: LCP element optimization - prevent render blocking */
-#wrapper .jm-lcp-optimized {
-  font-size: 1.125rem !important;
-  line-height: 1.7 !important;
-  color: #495057 !important;
-  margin-bottom: 2rem !important;
+.jm-hero-title {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+.jm-container {
+  display: block !important;
+  visibility: visible !important;
 }
 </style>
 <!-- Ultra-fast image preloads -->

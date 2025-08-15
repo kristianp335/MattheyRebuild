@@ -1,8 +1,8 @@
 /* CRITICAL CSS FOR LCP OPTIMIZATION - LOAD FIRST */
 /* Target: Sub-2.5s LCP for 90+ Lighthouse Score */
 
-/* Container base styles - prevent layout shifts */
-#wrapper .jm-container {
+/* CRITICAL VISIBILITY FIX: Direct selectors for Liferay compatibility */
+.jm-container {
   max-width: 1200px !important;
   margin: 0 auto !important;
   padding: 0 1rem !important;
@@ -10,20 +10,24 @@
   box-sizing: border-box !important;
   contain: layout style paint size !important;
   transform: translateZ(0) !important;
+  display: block !important;
+  visibility: visible !important;
 }
 
 /* Hero critical path optimization */
-#wrapper .jm-hero {
+.jm-hero {
   padding: 3rem 0 !important;
   background: #fff !important;
-  position: relative;
+  position: relative !important;
   contain: layout style paint size !important;
   min-height: 500px !important;
   transform: translateZ(0) !important;
   backface-visibility: hidden !important;
+  display: block !important;
+  visibility: visible !important;
 }
 
-#wrapper .jm-hero-content {
+.jm-hero-content {
   display: grid !important;
   grid-template-columns: 1.4fr 0.6fr !important;
   gap: 3rem !important;
@@ -31,10 +35,11 @@
   min-height: 400px !important;
   contain: layout style paint !important;
   transform: translateZ(0) !important;
+  visibility: visible !important;
 }
 
 /* LCP element optimization */
-#wrapper .jm-hero-title {
+.jm-hero-title {
   font-size: 3.5rem !important;
   font-weight: 800 !important;
   line-height: 1.1 !important;
@@ -43,35 +48,38 @@
   contain: layout style paint !important;
   transform: translateZ(0) !important;
   will-change: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Critical mobile responsive styles */
 @media (max-width: 1024px) {
-  #wrapper .jm-hero-content {
+  .jm-hero-content {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
     text-align: center !important;
     min-height: auto !important;
   }
-  #wrapper .jm-hero {
+  .jm-hero {
     padding: 2rem 0 !important;
     min-height: auto !important;
   }
-  #wrapper .jm-hero-title {
+  .jm-hero-title {
     font-size: 2.5rem !important;
   }
 }
 
 @media (max-width: 768px) {
-  #wrapper .jm-hero-title {
+  .jm-hero-title {
     font-size: 2rem !important;
   }
 }
 
 /* GPU acceleration for all critical elements */
-#wrapper .jm-hero *,
-#wrapper .jm-hero-fragment *,
-#wrapper .jm-container * {
+.jm-hero *,
+.jm-hero-fragment *,
+.jm-container * {
   transform: translateZ(0) !important;
   backface-visibility: hidden !important;
 }
