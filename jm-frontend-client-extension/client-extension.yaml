@@ -6,6 +6,9 @@ johnson-matthey-global-css:
   name: Johnson Matthey Global CSS - Non-blocking
   type: globalCSS
   url: global.css
+  cssElementAttributes:
+    media: "all"
+    fetchpriority: "low"
 
 johnson-matthey-global-js:
   name: Johnson Matthey Global JavaScript - Non-blocking
@@ -16,3 +19,4 @@ johnson-matthey-global-js:
     data-senna-track: "permanent"
     async: "true"
     defer: "true"
+    fetchpriority: "low"
