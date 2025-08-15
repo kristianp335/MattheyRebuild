@@ -34,6 +34,16 @@
   position: relative;
   contain: layout style;
 }
+/* CRITICAL: LCP element optimization - prevent render blocking */
+#wrapper .jm-lcp-optimized {
+  font-size: 1.125rem !important;
+  line-height: 1.7 !important;
+  color: #495057 !important;
+  margin-bottom: 2rem !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
 </style>
 <!-- Ultra-fast image preloads -->
 <link rel="preload" as="image" href="[resources:hero-background.webp]" type="image/webp" fetchpriority="high" />
@@ -53,7 +63,7 @@
               <span class="jm-hero-stat-number" data-lfr-editable-id="statNumber" data-lfr-editable-type="text">200</span>
               <span class="jm-hero-stat-label" data-lfr-editable-id="statLabel" data-lfr-editable-type="text">years</span>
             </div>
-            <p class="jm-hero-description jm-lcp-optimized" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text">
+            <p class="jm-hero-description jm-lcp-optimized" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text" style="font-size: 1.125rem !important; line-height: 1.7 !important; color: #495057 !important; margin-bottom: 2rem !important; display: block !important; visibility: visible !important; opacity: 1 !important;">
               For over <strong>200</strong> years Johnson Matthey has contributed to solving some of the world's toughest problems, leaning on our expertise in advanced metals chemistry. But now is the time to make our biggest impact yet.
             </p>
           </div>

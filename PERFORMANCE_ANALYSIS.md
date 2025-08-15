@@ -69,16 +69,16 @@ setInterval(() => {
 ## Live Site Performance Impact
 
 ### Before Optimizations:
-- LCP: 4,800ms (88% render delay)
+- LCP: 5,800ms (90% render delay on p.jm-lcp-optimized)
 - 16+ console statements executing per page load
 - 2-second intervals running continuously
 - Unoptimized CSS loading order
 
 ### After Optimizations:
-- LCP: Expected <1,500ms (target achieved)
+- LCP: Target <1,500ms with inline critical CSS
 - Zero console output in production
 - Efficient mutation observers only
-- Priority-ordered critical CSS
+- Priority-ordered critical CSS + inline LCP styles
 
 ## Performance Monitoring Points
 
