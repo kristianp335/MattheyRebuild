@@ -7,9 +7,6 @@
           "label": "Show Image",
           "description": "Display the card image",
           "type": "checkbox",
-          "typeOptions": {
-            "showLabel": true
-          },
           "defaultValue": true
         },
         {
@@ -42,9 +39,6 @@
           "label": "Show Category",
           "description": "Display a category tag",
           "type": "checkbox",
-          "typeOptions": {
-            "showLabel": true
-          },
           "defaultValue": true
         },
         {
@@ -87,9 +81,6 @@
           "label": "Show Button",
           "description": "Display a call-to-action button",
           "type": "checkbox",
-          "typeOptions": {
-            "showLabel": true
-          },
           "defaultValue": true
         },
         {
