@@ -768,7 +768,7 @@
         console.log('Initializing mega menu content...');
         
         for (let i = 1; i <= 5; i++) {
-            const megaContent = fragmentElement.querySelector(`[data-mega-index="${i}"]`);
+            const megaContent = fragmentElement.querySelector(`.jm-dropdown-menu .jm-mega-content[data-mega-index="${i}"]`);
             const dropzoneContainer = document.querySelector(`#dropzone-mega-menu-${i}`);
             
             console.log(`Checking mega menu ${i}:`, { 
