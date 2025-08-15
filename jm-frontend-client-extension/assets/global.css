@@ -1,13 +1,23 @@
-/* Johnson Matthey Global CSS - All selectors scoped to #wrapper */
-/* Using Liferay Classic Theme Frontend Tokens */
+/* Johnson Matthey Global CSS - Performance Optimized */
+/* Critical CSS variables loaded first for LCP optimization */
 
-/* CSS Custom Properties from Liferay Classic Theme */
+/* CRITICAL: CSS Custom Properties from Liferay Classic Theme - Load First */
 #wrapper {
+  /* Core brand colors - highest priority */
   --jm-primary: var(--brand-color-1, #0b5fff);
+  --jm-gray-700: var(--gray-700, #495057);
+  --jm-white: var(--white, #fff);
+  --jm-dark: var(--brand-color-4, #30313f);
+  
+  /* Layout & typography essentials */
+  --jm-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --jm-spacing-lg: 1.5rem;
+  --jm-spacing-xl: 2rem;
+  --jm-spacing-xxl: 3rem;
+  
+  /* Secondary brand colors - lower priority */
   --jm-secondary: var(--brand-color-2, #6b6c7e);
   --jm-accent: var(--brand-color-3, #2e5aac);
-  --jm-dark: var(--brand-color-4, #30313f);
-  --jm-white: var(--white, #fff);
   --jm-light: var(--light, #f1f2f5);
   --jm-gray-100: var(--gray-100, #f7f8f9);
   --jm-gray-200: var(--gray-200, #f1f2f5);
@@ -15,7 +25,6 @@
   --jm-gray-400: var(--gray-400, #cdced9);
   --jm-gray-500: var(--gray-500, #a7a9bc);
   --jm-gray-600: var(--gray-600, #6b6c7e);
-  --jm-gray-700: var(--gray-700, #495057);
   --jm-gray-800: var(--gray-800, #393a4a);
   --jm-gray-900: var(--gray-900, #272833);
   --jm-success: var(--success, #287d3c);
@@ -23,16 +32,12 @@
   --jm-danger: var(--danger, #da1414);
   --jm-info: var(--info, #2e5aac);
   
-  /* Johnson Matthey spacing system */
+  /* Spacing system - ordered by usage frequency */
   --jm-spacing-xs: 0.25rem;
   --jm-spacing-sm: 0.5rem;
   --jm-spacing-md: 1rem;
-  --jm-spacing-lg: 1.5rem;
-  --jm-spacing-xl: 2rem;
-  --jm-spacing-xxl: 3rem;
   
-  /* Typography */
-  --jm-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Typography scale */
   --jm-font-size-sm: 0.875rem;
   --jm-font-size-base: 1rem;
   --jm-font-size-lg: 1.125rem;
@@ -40,7 +45,7 @@
   --jm-font-size-xxl: 1.5rem;
   --jm-font-size-xxxl: 2rem;
   
-  /* Shadows and transitions */
+  /* Effects - non-critical, loaded last */
   --jm-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --jm-box-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
   --jm-transition: all 0.3s ease;
@@ -48,12 +53,16 @@
   --jm-border-radius-lg: 8px;
 }
 
-/* Typography */
+/* CRITICAL: Base typography for LCP */
 #wrapper {
   font-family: var(--jm-font-family);
   color: var(--jm-gray-800);
+  /* Performance optimizations */
+  contain: layout style;
+  font-display: swap;
 }
 
+/* Critical headings */
 #wrapper h1,
 #wrapper h2,
 #wrapper h3,
@@ -64,6 +73,8 @@
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: var(--jm-spacing-md);
+  /* Font optimization */
+  font-display: swap;
 }
 
 #wrapper h1 {
@@ -95,7 +106,7 @@
   text-decoration: underline;
 }
 
-/* Button Styles */
+/* CRITICAL: Button styles for hero CTA */
 #wrapper .jm-btn {
   display: inline-block;
   padding: var(--jm-spacing-sm) var(--jm-spacing-lg);
@@ -109,6 +120,9 @@
   text-decoration: none;
   cursor: pointer;
   transition: var(--jm-transition);
+  /* Performance optimization */
+  contain: layout style;
+  will-change: transform;
 }
 
 #wrapper .jm-btn:hover,

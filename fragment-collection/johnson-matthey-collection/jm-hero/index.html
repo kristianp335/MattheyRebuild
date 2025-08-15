@@ -1,4 +1,41 @@
-<!-- Ultra-fast image preloads only -->
+<!-- Critical LCP CSS inlined for instant rendering -->
+<style>
+/* Critical path CSS for LCP optimization */
+#wrapper .jm-lcp-optimized {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--jm-gray-700, #495057);
+  margin-bottom: 1.5rem;
+  flex: 1;
+  contain: layout style;
+  will-change: auto;
+}
+#wrapper .jm-hero-fragment {
+  position: relative;
+  overflow: hidden;
+  contain: layout;
+}
+#wrapper .jm-hero {
+  padding: 3rem 0;
+  background: var(--jm-white, #fff);
+  position: relative;
+  contain: layout style;
+}
+#wrapper .jm-hero-content {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 60vh;
+  contain: layout;
+}
+#wrapper .jm-hero-text {
+  z-index: 2;
+  position: relative;
+  contain: layout style;
+}
+</style>
+<!-- Ultra-fast image preloads -->
 <link rel="preload" as="image" href="[resources:hero-background.webp]" type="image/webp" fetchpriority="high" />
 <link rel="preload" as="image" href="[resources:hero-background.png]" fetchpriority="high" />
 <div class="jm-hero-fragment">
@@ -16,7 +53,7 @@
               <span class="jm-hero-stat-number" data-lfr-editable-id="statNumber" data-lfr-editable-type="text">200</span>
               <span class="jm-hero-stat-label" data-lfr-editable-id="statLabel" data-lfr-editable-type="text">years</span>
             </div>
-            <p class="jm-hero-description" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text">
+            <p class="jm-hero-description jm-lcp-optimized" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text">
               For over <strong>200</strong> years Johnson Matthey has contributed to solving some of the world's toughest problems, leaning on our expertise in advanced metals chemistry. But now is the time to make our biggest impact yet.
             </p>
           </div>

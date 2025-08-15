@@ -1,16 +1,7 @@
-/* Johnson Matthey Hero Fragment Styles */
+/* Johnson Matthey Hero Fragment Styles - LCP Optimized */
 
-/* Hero Section - Ultra LCP Optimized */
-#wrapper .jm-hero-fragment {
-  position: relative;
-  overflow: hidden;
-}
-
-#wrapper .jm-hero {
-  padding: var(--jm-spacing-xxl) 0;
-  background: var(--jm-white);
-  position: relative;
-}
+/* Critical styles moved to inline <style> for LCP performance */
+/* Non-critical styles below */
 
 /* Background Style Variants */
 #wrapper .jm-hero[data-background="primary"] {
@@ -67,13 +58,7 @@
   color: var(--light) !important;
 }
 
-#wrapper .jm-hero-content {
-  display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: var(--jm-spacing-xxl);
-  align-items: center;
-  min-height: 60vh;
-}
+/* Grid layout optimized in critical CSS above */
 
 /* Layout Style Variants */
 #wrapper .jm-hero-content[data-layout="text-right"] {
@@ -98,11 +83,7 @@
   max-width: 600px;
 }
 
-/* Hero Text Content */
-#wrapper .jm-hero-text {
-  z-index: 2;
-  position: relative;
-}
+/* Hero text styling optimized in critical CSS above */
 
 #wrapper .jm-hero-title {
   font-size: 3.5rem;
@@ -146,18 +127,12 @@
   margin-top: var(--jm-spacing-xs);
 }
 
-#wrapper .jm-hero-description,
+/* LCP element styles moved to critical inline CSS */
 #wrapper .jm-hero-description-extended {
   font-size: 1.125rem;
   line-height: 1.6;
   color: var(--jm-gray-700);
   margin-bottom: var(--jm-spacing-lg);
-}
-
-
-
-#wrapper .jm-hero-description {
-  flex: 1;
 }
 
 #wrapper .jm-hero-description strong {
