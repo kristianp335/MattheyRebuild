@@ -11,23 +11,23 @@
   padding: 4rem 0 !important;
   width: 100% !important;
   position: relative !important;
-  background: #30313f !important;
-  color: #fff !important;
+  background: var(--jm-gray-900, #30313f) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-hero[data-background="dark"] {
-  background: #30313f !important;
-  color: #fff !important;
+  background: var(--jm-gray-900, #30313f) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-hero[data-background="primary"] {
-  background: #0b5fff !important;
-  color: #fff !important;
+  background: var(--jm-primary, #0b5fff) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-hero[data-background="gradient"] {
-  background: linear-gradient(135deg, #0b5fff 0%, #30313f 100%) !important;
-  color: #fff !important;
+  background: linear-gradient(135deg, var(--jm-primary, #0b5fff) 0%, var(--jm-gray-900, #30313f) 100%) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-container {
@@ -44,7 +44,6 @@
   gap: 4rem !important;
   align-items: center !important;
   min-height: 500px !important;
-  contain: layout !important;
 }
 
 .jm-hero-text {
@@ -55,10 +54,8 @@
   font-size: 3.5rem !important;
   font-weight: 800 !important;
   line-height: 1.1 !important;
-  color: #fff !important;
+  color: var(--jm-white, #fff) !important;
   margin: 0 0 1.5rem 0 !important;
-  contain: layout style !important;
-  will-change: contents !important;
 }
 
 .jm-hero-stats {
@@ -80,14 +77,14 @@
 .jm-hero-stat-number {
   font-size: 4rem !important;
   font-weight: 800 !important;
-  color: #0b5fff !important;
+  color: var(--jm-primary, #0b5fff) !important;
   line-height: 1 !important;
   display: block !important;
 }
 
 .jm-hero-stat-label {
   font-size: 1.125rem !important;
-  color: #e9ecef !important;
+  color: var(--jm-gray-200, #e9ecef) !important;
   font-weight: 500 !important;
   margin-top: 0.25rem !important;
 }
@@ -96,17 +93,17 @@
 .jm-hero-description-extended {
   font-size: 1.125rem !important;
   line-height: 1.7 !important;
-  color: #ffffff !important;
+  color: var(--jm-white, #ffffff) !important;
   margin-bottom: 2rem !important;
 }
 
 .jm-hero-description-extended p {
-  color: #ffffff !important;
+  color: var(--jm-white, #ffffff) !important;
   font-weight: 400 !important;
 }
 
 .jm-lcp-optimized {
-  color: #ffffff !important;
+  color: var(--jm-white, #ffffff) !important;
   opacity: 0.95 !important;
 }
 
@@ -117,8 +114,8 @@
 .jm-btn {
   display: inline-block !important;
   padding: 0.75rem 2rem !important;
-  background: #0b5fff !important;
-  color: #fff !important;
+  background: var(--jm-primary, #0b5fff) !important;
+  color: var(--jm-white, #fff) !important;
   text-decoration: none !important;
   border-radius: 4px !important;
   font-weight: 500 !important;
@@ -126,7 +123,7 @@
 }
 
 .jm-btn:hover {
-  background: #0952e6 !important;
+  background: var(--jm-primary-dark, #0952e6) !important;
 }
 
 .jm-hero-media {
@@ -140,8 +137,6 @@
   object-fit: cover !important;
   display: block !important;
   border-radius: 8px !important;
-  will-change: transform !important;
-  transform: translateZ(0) !important;
 }
 
 .jm-hero-video-overlay {
@@ -160,7 +155,7 @@
 }
 
 .jm-video-caption {
-  color: #fff !important;
+  color: var(--jm-white, #fff) !important;
   font-size: 0.875rem !important;
   margin: 0 !important;
   background: rgba(0,0,0,0.7) !important;
@@ -285,7 +280,7 @@
               alt="Johnson Matthey sustainable technology solutions"
               loading="eager"
               fetchpriority="high"
-              decoding="sync"
+
               width="600"
               height="400"
             />
