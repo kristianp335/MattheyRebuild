@@ -866,6 +866,19 @@
             initializeMegaMenuContent();
         }, 2000);
         
+        // Watch for changes in all container divs
+        for (let i = 1; i <= 5; i++) {
+            const container = document.querySelector(`#dropzone-mega-menu-${i}`);
+            if (container) {
+                observer.observe(container, {
+                    childList: true,
+                    subtree: true,
+                    attributes: false
+                });
+                console.log(`Added observer for container ${i}`);
+            }
+        }
+        
 
     }
     
