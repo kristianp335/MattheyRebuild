@@ -45,7 +45,8 @@
             // Initialize mega menu content for edit mode
             setTimeout(() => {
                 initializeMegaMenuContent();
-            }, 200);
+                setupMegaMenuObserver();
+            }, 500);
             // Add edit mode classes to modals for visual indication
             initializeEditModeDisplay();
 
@@ -371,6 +372,7 @@
         setTimeout(() => {
             initializeDropdowns();
             initializeMegaMenuContent();
+            setupMegaMenuObserver();
         }, 100);
     }
 
@@ -758,16 +760,28 @@
      * Initialize mega menu content by copying dropzone content to dropdown areas
      */
     function initializeMegaMenuContent() {
+        console.log('Initializing mega menu content...');
+        
         for (let i = 1; i <= 5; i++) {
             const dropzone = fragmentElement.querySelector(`[data-lfr-drop-zone-id="mega-menu-${i}"]`);
             const megaContent = fragmentElement.querySelector(`[data-mega-index="${i}"]`);
             
+            console.log(`Checking mega menu ${i}:`, { dropzone: !!dropzone, megaContent: !!megaContent });
+            
             if (dropzone && megaContent) {
-                // Clone dropzone content to mega content area
+                // Get all content from dropzone, including widgets
                 const dropzoneContent = dropzone.innerHTML;
-                const hasContent = dropzoneContent.trim() && !dropzoneContent.includes('Drop widgets here');
+                console.log(`Dropzone ${i} content:`, dropzoneContent.substring(0, 200));
                 
-                if (hasContent) {
+                // Check for actual content (widgets, HTML, etc.)
+                const hasRealContent = dropzoneContent.trim() && 
+                                     !dropzoneContent.includes('Drop widgets here') &&
+                                     !dropzoneContent.includes('lfr-ddm-empty-message') &&
+                                     dropzoneContent.length > 50; // More than just empty tags
+                
+                console.log(`Mega menu ${i} has content:`, hasRealContent);
+                
+                if (hasRealContent) {
                     megaContent.innerHTML = dropzoneContent;
                     megaContent.classList.add('has-content');
                     
@@ -775,6 +789,7 @@
                     const dropdown = megaContent.closest('.jm-dropdown-menu');
                     if (dropdown) {
                         dropdown.classList.add('has-mega-content');
+                        console.log(`Added has-mega-content class to dropdown ${i}`);
                     }
                 } else {
                     megaContent.classList.remove('has-content');
@@ -788,6 +803,39 @@
                 }
             }
         }
+    }
+    
+    /**
+     * Set up mutation observer to watch for dropzone content changes
+     */
+    function setupMegaMenuObserver() {
+        const observer = new MutationObserver((mutations) => {
+            let shouldUpdate = false;
+            
+            mutations.forEach((mutation) => {
+                // Check if any mega menu dropzones were modified
+                if (mutation.type === 'childList' || mutation.type === 'subtree') {
+                    const target = mutation.target;
+                    if (target.closest && target.closest('[data-lfr-drop-zone-id^="mega-menu-"]')) {
+                        shouldUpdate = true;
+                    }
+                }
+            });
+            
+            if (shouldUpdate) {
+                console.log('Dropzone content changed, updating mega menus...');
+                setTimeout(() => initializeMegaMenuContent(), 100);
+            }
+        });
+        
+        // Observe the entire fragment for changes
+        observer.observe(fragmentElement, {
+            childList: true,
+            subtree: true,
+            attributes: false
+        });
+        
+        console.log('Mega menu observer set up');
     }
     
     function initializeModals() {
