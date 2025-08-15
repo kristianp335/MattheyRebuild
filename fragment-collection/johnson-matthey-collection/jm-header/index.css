@@ -169,10 +169,11 @@
   display: none;
   padding: 0;
   margin-top: var(--jm-spacing-xs);
-  margin-right: var(--jm-spacing-lg);
+  margin-right: var(--jm-spacing-xl);
   transform: translateY(-5px);
   opacity: 0;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  list-style: none !important;
 }
 
 /* Mega menu with content gets expanded width */
@@ -206,12 +207,29 @@
 /* Navigation Links Section */
 #wrapper .jm-dropdown-links {
   padding: var(--jm-spacing-md) 0;
+  list-style: none !important;
+  margin: 0;
+}
+
+#wrapper .jm-dropdown-links li,
+#wrapper .jm-dropdown-menu li,
+#wrapper .jm-dropdown-menu ul,
+#wrapper .jm-dropdown-menu ol {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0;
+  padding-left: 0;
+}
+
+#wrapper .jm-dropdown-menu::before,
+#wrapper .jm-dropdown-menu li::before {
+  display: none !important;
 }
 
 #wrapper .jm-dropdown-item {
   display: block;
   width: 100%;
-  padding: var(--jm-spacing-md) var(--jm-spacing-lg);
+  padding: var(--jm-spacing-md) var(--jm-spacing-xl);
   color: var(--jm-gray-800);
   text-decoration: none;
   transition: all 0.2s ease;
@@ -219,6 +237,7 @@
   font-weight: 600;
   position: relative;
   border-left: 3px solid transparent;
+  list-style: none !important;
 }
 
 #wrapper .jm-dropdown-item:hover,
