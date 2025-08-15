@@ -1,10 +1,10 @@
 <div id="${fragmentEntryLinkNamespace}-jm-card" class="jm-card">
   <div class="jm-card-content">
-    [#if showImage.getData()]
+    [#if configuration.showImage]
       <div class="jm-card-image">
         <img 
-          src="${cardImage.getData()}" 
-          alt="${cardImageAlt.getData()}" 
+          src="${configuration.cardImage}" 
+          alt="${configuration.cardImageAlt}" 
           data-lfr-editable-id="cardImage" 
           data-lfr-editable-type="image"
         />
@@ -12,30 +12,30 @@
     [/#if]
     
     <div class="jm-card-body">
-      [#if showCategory.getData()]
+      [#if configuration.showCategory]
         <div class="jm-card-category" data-lfr-editable-id="cardCategory" data-lfr-editable-type="text">
-          ${cardCategory.getData()}
+          ${configuration.cardCategory}
         </div>
       [/#if]
       
       <h3 class="jm-card-title" data-lfr-editable-id="cardTitle" data-lfr-editable-type="text">
-        ${cardTitle.getData()}
+        ${configuration.cardTitle}
       </h3>
       
       <p class="jm-card-description" data-lfr-editable-id="cardDescription" data-lfr-editable-type="rich-text">
-        ${cardDescription.getData()}
+        ${configuration.cardDescription}
       </p>
       
-      [#if showButton.getData()]
+      [#if configuration.showButton]
         <div class="jm-card-actions">
           <a 
-            href="${cardButtonUrl.getData()}" 
+            href="${configuration.cardButtonUrl}" 
             class="jm-card-button" 
             data-lfr-editable-id="cardButtonText" 
             data-lfr-editable-type="link"
-            [#if cardButtonTarget.getData() == "blank"]target="_blank" rel="noopener noreferrer"[/#if]
+            [#if configuration.cardButtonTarget == "blank"]target="_blank" rel="noopener noreferrer"[/#if]
           >
-            ${cardButtonText.getData()}
+            ${configuration.cardButtonText}
           </a>
         </div>
       [/#if]
