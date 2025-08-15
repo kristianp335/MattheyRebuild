@@ -765,23 +765,18 @@
      * Initialize mega menu content by copying content container to dropdown areas
      */
     function initializeMegaMenuContent() {
-        console.log('Initializing mega menu content...');
+        // Initialize mega menu content synchronization
         
         for (let i = 1; i <= 5; i++) {
             const megaContent = fragmentElement.querySelector(`.jm-dropdown-menu .jm-mega-content[data-mega-index="${i}"]`);
             const dropzoneContainer = document.querySelector(`#dropzone-mega-menu-${i}`);
             
-            console.log(`Checking mega menu ${i}:`, { 
-                megaContent: !!megaContent,
-                dropzoneContainer: !!dropzoneContainer,
-                containerContent: dropzoneContainer ? dropzoneContainer.innerHTML.length : 0
-            });
+            // Check mega menu content presence
             
             if (megaContent && dropzoneContainer) {
                 // Get the container's content (which includes rendered widgets)
                 const containerContent = dropzoneContainer.innerHTML;
-                console.log(`Container ${i} content length:`, containerContent.length);
-                console.log(`Container ${i} content preview:`, containerContent.substring(0, 200));
+                // Check container content
                 
                 // Check for actual rendered content
                 const hasRealContent = containerContent.trim() && 
@@ -793,7 +788,7 @@
                                       containerContent.includes('<p') ||
                                       containerContent.includes('<a'));
                 
-                console.log(`Mega menu ${i} has content:`, hasRealContent);
+                // Mega menu has content, apply styling
                 
                 if (hasRealContent) {
                     // Copy the container content to mega content area
@@ -806,7 +801,7 @@
                         dropdown.classList.add('has-mega-content');
                     }
                     
-                    console.log(`Successfully added content to mega menu ${i}`);
+                    // Content successfully added to mega menu
                 } else {
                     megaContent.classList.remove('has-content');
                     megaContent.innerHTML = '';
@@ -817,7 +812,7 @@
                         dropdown.classList.remove('has-mega-content');
                     }
                     
-                    console.log(`No valid content found for mega menu ${i}`);
+                    // No content found for this mega menu
                 }
             }
         }
@@ -837,16 +832,16 @@
                     if (target.getAttribute && target.getAttribute('data-lfr-drop-zone-id') && 
                         target.getAttribute('data-lfr-drop-zone-id').startsWith('mega-menu-')) {
                         shouldUpdate = true;
-                        console.log('Direct dropzone change detected:', target.getAttribute('data-lfr-drop-zone-id'));
+                        // Direct dropzone change detected
                     } else if (target.closest && target.closest('[data-lfr-drop-zone-id^="mega-menu-"]')) {
                         shouldUpdate = true;
-                        console.log('Nested dropzone change detected');
+                        // Nested dropzone change detected
                     }
                 }
             });
             
             if (shouldUpdate) {
-                console.log('Dropzone content changed, updating mega menus...');
+                // Dropzone content changed, update mega menus
                 setTimeout(() => initializeMegaMenuContent(), 200);
             }
         });
@@ -858,11 +853,10 @@
             attributes: false
         });
         
-        console.log('Mega menu observer set up');
+        // Mega menu observer active
         
-        // Also set up periodic refresh for reliable content sync
+        // Set up periodic refresh for reliable content sync
         setInterval(() => {
-            console.log('Periodic mega menu refresh...');
             initializeMegaMenuContent();
         }, 2000);
         
@@ -875,7 +869,6 @@
                     subtree: true,
                     attributes: false
                 });
-                console.log(`Added observer for container ${i}`);
             }
         }
         

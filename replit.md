@@ -22,6 +22,14 @@ The project employs a modular, fragment-based architecture where each UI compone
 - **Fragment Configuration**: Uses `typeOptions.validValues` for select fields.
 **FreeMarker Syntax**: Liferay fragments use `[#` brackets instead of `<#` - configuration conditionals use `[#if condition]content[/#if]` syntax.
 - **Fragment Element Detection**: Fixed critical issue where `document.currentScript.closest()` fails in Liferay's ES module environment. All fragments now properly use the `fragmentElement` variable injected by Liferay instead of trying to find elements with `document.currentScript`.
+- **JM Card Fragment**:
+    - **Standalone Component**: Complete card fragment for use in mega menus and page content
+    - **Context-Aware Styling**: Automatically applies compact mode when used in mega menu dropzones
+    - **Comprehensive Configuration**: Image, category, title, description, and button options with show/hide controls
+    - **FreeMarker Integration**: Proper `configuration.variableName` syntax for all template variables
+    - **Analytics Ready**: Built-in click tracking with contextual location data
+    - **Accessibility Compliant**: WCAG AA standards with proper alt text and semantic HTML
+    - **Performance Optimized**: Lazy loading, error handling, and minimal JavaScript footprint
 - **Header Fragment**:
     - **Comprehensive Configuration**: Options for search, user menu visibility, sticky header, style variants (white/light/primary), navigation menu ID, and site prefix.
     - **Site Prefix Configuration**: Configurable URL prefix that replaces deprecated ThemeDisplay method for building navigation links.
