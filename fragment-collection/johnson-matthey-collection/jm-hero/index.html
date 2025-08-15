@@ -24,7 +24,7 @@
 }
 .jm-hero {
   padding: 3rem 0 !important;
-  background: var(--jm-white, #fff) !important;
+  background: #fff !important;
   position: relative !important;
   contain: layout style paint size !important;
   min-height: 500px !important;
@@ -33,28 +33,28 @@
   display: block !important;
   visibility: visible !important;
 }
-/* CRITICAL: Background variants for data attributes */
+/* CRITICAL: Background variants with hardcoded colors - CSS variables not loading */
 .jm-hero[data-background="dark"] {
-  background: var(--jm-dark, #30313f) !important;
-  color: var(--jm-white, #fff) !important;
+  background: #30313f !important;
+  color: #fff !important;
 }
 .jm-hero[data-background="primary"] {
-  background: var(--jm-primary, #0b5fff) !important;
-  color: var(--jm-white, #fff) !important;
+  background: #0b5fff !important;
+  color: #fff !important;
 }
 .jm-hero[data-background="gradient"] {
-  background: linear-gradient(135deg, var(--jm-primary, #0b5fff) 0%, var(--jm-dark, #30313f) 100%) !important;
-  color: var(--jm-white, #fff) !important;
+  background: linear-gradient(135deg, #0b5fff 0%, #30313f 100%) !important;
+  color: #fff !important;
 }
-/* CRITICAL: Text color overrides for dark backgrounds */
+/* CRITICAL: Text color overrides with hardcoded colors */
 .jm-hero[data-background="dark"] .jm-hero-title {
-  color: var(--jm-white, #fff) !important;
+  color: #fff !important;
 }
 .jm-hero[data-background="primary"] .jm-hero-title {
-  color: var(--jm-white, #fff) !important;
+  color: #fff !important;
 }
 .jm-hero[data-background="gradient"] .jm-hero-title {
-  color: var(--jm-white, #fff) !important;
+  color: #fff !important;
 }
 .jm-hero[data-background="dark"] .jm-hero-description,
 .jm-hero[data-background="dark"] .jm-hero-description-extended {
