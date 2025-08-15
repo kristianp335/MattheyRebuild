@@ -898,17 +898,7 @@
             initializeMegaMenuContent();
         }, 2000);
         
-        // Watch for changes in content containers
-        for (let i = 1; i <= 5; i++) {
-            const container = document.querySelector(`#dropzone-mega-menu-${i}-container`);
-            if (container) {
-                observer.observe(container, {
-                    childList: true,
-                    subtree: true,
-                    attributes: false
-                });
-            }
-        }
+
     }
     
     function initializeModals() {
