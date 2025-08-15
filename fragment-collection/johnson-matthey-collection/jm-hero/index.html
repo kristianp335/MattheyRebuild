@@ -1,63 +1,11 @@
 <style>
-/* ULTRA-CRITICAL LCP FIX: Inline essential styles for immediate text render */
-/* EMERGENCY: LCP text at 4.9s - must render without waiting for CSS */
+/* CRITICAL LCP FIX: Hero must render immediately - NO DELAYS */
+/* EMERGENCY: LCP went from 3.4s to 5.5s - fixing LCP bottleneck */
 .jm-hero-fragment {
   display: block !important;
   width: 100% !important;
   min-height: 500px !important;
-}
-
-/* ULTRA-CRITICAL: Complete hero text styling - zero dependency on global CSS */
-.jm-hero-description,
-.jm-hero-description-extended p {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  color: #fff !important;
-  line-height: 1.7 !important;
-  margin: 0 0 1.5rem 0 !important;
-  padding: 0 !important;
-  font-size: 1.125rem !important;
-  font-weight: 400 !important;
-  max-width: none !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block !important;
-}
-
-/* CRITICAL: Immediate hero container styles */
-.jm-hero-content {
-  display: block !important;
-  position: relative !important;
-  z-index: 2 !important;
-  padding: 3rem 1rem !important;
-}
-
-.jm-hero-text {
-  display: block !important;
-  color: #fff !important;
-}
-
-/* Prevent any layout blocking */
-* {
-  box-sizing: border-box;
-}
-
-/* Resource hints for better loading */
-@supports (font-display: swap) {
-  .jm-hero-description,
-  .jm-hero-description-extended p {
-    font-display: swap;
-  }
-}
-
-/* Preload critical resources */
-.jm-hero-fragment::before {
-  content: "";
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  background: url('data:text/css,@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");') no-repeat;
+  will-change: auto !important;
 }
 
 .jm-hero {

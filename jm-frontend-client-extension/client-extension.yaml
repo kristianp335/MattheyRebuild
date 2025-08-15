@@ -2,29 +2,16 @@ assemble:
   - from: assets
     into: static
 
-johnson-matthey-critical-css:
-  name: Johnson Matthey Critical CSS - High Priority
+johnson-matthey-global-css:
+  name: Johnson Matthey Global CSS
   type: globalCSS
-  url: critical.css
-  cssElementAttributes:
-    media: "all"
-    fetchpriority: "high"
-
-johnson-matthey-deferred-css:
-  name: Johnson Matthey Deferred CSS - Low Priority
-  type: globalCSS
-  url: deferred.css
-  cssElementAttributes:
-    media: "all"
-    fetchpriority: "low"
+  url: global.css
 
 johnson-matthey-global-js:
-  name: Johnson Matthey Global JavaScript - Non-blocking
+  name: Johnson Matthey Global JavaScript
   type: globalJS
   scriptLocation: head
   url: global.js
   scriptElementAttributes:
     data-senna-track: "permanent"
-    async: "true"
-    defer: "true"
-    fetchpriority: "low"
+    fetchpriority: "high"

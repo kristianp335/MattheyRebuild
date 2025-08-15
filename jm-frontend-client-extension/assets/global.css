@@ -60,7 +60,9 @@
 #wrapper {
   font-family: var(--jm-font-family);
   color: var(--jm-gray-800);
-  /* Performance optimizations - removed render-blocking contain */
+  /* Performance optimizations */
+  contain: layout style;
+  font-display: swap;
 }
 
 /* Critical headings */
