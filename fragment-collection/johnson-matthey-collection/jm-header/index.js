@@ -42,11 +42,14 @@
             // Initialize mobile menu and modals for edit mode
             initializeMobileMenu();
             initializeModals();
-            // Initialize mega menu content for edit mode
+            // Initialize mega menu content for edit mode with multiple attempts
+            setTimeout(() => initializeMegaMenuContent(), 500);
+            setTimeout(() => initializeMegaMenuContent(), 1000);
+            setTimeout(() => initializeMegaMenuContent(), 2000);
             setTimeout(() => {
                 initializeMegaMenuContent();
                 setupMegaMenuObserver();
-            }, 500);
+            }, 3000);
             // Add edit mode classes to modals for visual indication
             initializeEditModeDisplay();
 
@@ -777,7 +780,10 @@
                 const hasRealContent = dropzoneContent.trim() && 
                                      !dropzoneContent.includes('Drop widgets here') &&
                                      !dropzoneContent.includes('lfr-ddm-empty-message') &&
-                                     dropzoneContent.length > 50; // More than just empty tags
+                                     (dropzoneContent.includes('class=') || 
+                                      dropzoneContent.includes('portlet') || 
+                                      dropzoneContent.includes('widget') ||
+                                      dropzoneContent.length > 20); // More flexible content detection
                 
                 console.log(`Mega menu ${i} has content:`, hasRealContent);
                 
@@ -814,17 +820,22 @@
             
             mutations.forEach((mutation) => {
                 // Check if any mega menu dropzones were modified
-                if (mutation.type === 'childList' || mutation.type === 'subtree') {
+                if (mutation.type === 'childList') {
                     const target = mutation.target;
-                    if (target.closest && target.closest('[data-lfr-drop-zone-id^="mega-menu-"]')) {
+                    if (target.getAttribute && target.getAttribute('data-lfr-drop-zone-id') && 
+                        target.getAttribute('data-lfr-drop-zone-id').startsWith('mega-menu-')) {
                         shouldUpdate = true;
+                        console.log('Direct dropzone change detected:', target.getAttribute('data-lfr-drop-zone-id'));
+                    } else if (target.closest && target.closest('[data-lfr-drop-zone-id^="mega-menu-"]')) {
+                        shouldUpdate = true;
+                        console.log('Nested dropzone change detected');
                     }
                 }
             });
             
             if (shouldUpdate) {
                 console.log('Dropzone content changed, updating mega menus...');
-                setTimeout(() => initializeMegaMenuContent(), 100);
+                setTimeout(() => initializeMegaMenuContent(), 200);
             }
         });
         
@@ -836,6 +847,12 @@
         });
         
         console.log('Mega menu observer set up');
+        
+        // Also set up periodic refresh for reliable content sync
+        setInterval(() => {
+            console.log('Periodic mega menu refresh...');
+            initializeMegaMenuContent();
+        }, 3000);
     }
     
     function initializeModals() {
