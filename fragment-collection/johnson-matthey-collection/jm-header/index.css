@@ -87,13 +87,11 @@
 
 #wrapper .jm-logo {
   height: 40px;
-  width: auto;
-  transition: var(--jm-transition);
+  width: 120px;
+  /* No transition on critical path element */
 }
 
-#wrapper .jm-logo:hover {
-  opacity: 0.8;
-}
+/* Logo hover effect removed for critical path optimization */
 
 
 

@@ -51,7 +51,7 @@
   /* Effects - non-critical, loaded last */
   --jm-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --jm-box-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
-  --jm-transition: all 0.15s ease;
+  --jm-transition: all 0.2s ease;
   --jm-border-radius: 4px;
   --jm-border-radius-lg: 8px;
 }
