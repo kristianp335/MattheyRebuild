@@ -139,12 +139,7 @@
   border-radius: 8px !important;
 }
 
-.jm-hero-svg {
-  max-width: 100% !important;
-  height: 400px !important;
-  display: block !important;
-  border-radius: 8px !important;
-}
+/* SVG styling removed - now using data URL in img tag */
 
 .jm-hero-video-overlay {
   position: absolute !important;
@@ -279,74 +274,16 @@
         <!-- Hero Image/Video -->
         <div class="jm-hero-media">
           <div class="jm-hero-image">
-            <svg 
-              class="jm-hero-img jm-hero-svg" 
+            <img 
+              class="jm-hero-img" 
               data-lfr-editable-id="heroImage" 
               data-lfr-editable-type="image"
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJoZXJvR3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwYjVmZmY7c3RvcC1vcGFjaXR5OjAuMSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzBiNWZmZjtzdG9wLW9wYWNpdHk6MC4zIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjaGVyb0dyYWRpZW50KSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwLCA1MCkiPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSI4IiBmaWxsPSIjMGI1ZmZmIiBvcGFjaXR5PSIwLjgiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSI2MCIgcj0iNiIgZmlsbD0iIzBiNWZmZiIgb3BhY2l0eT0iMC42Ii8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iODAiIHI9IjgiIGZpbGw9IiMwYjVmZmYiIG9wYWNpdHk9IjAuOCIvPjxsaW5lIHgxPSIxMDgiIHkxPSI4MCIgeDI9IjEzMiIgeTI9IjgwIiBzdHJva2U9IiMwYjVmZmYiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC43Ii8+PGxpbmUgeDE9IjExNCIgeTE9IjY4IiB4Mj0iMTI2IiB5Mj0iNjgiIHN0cm9rZT0iIzBiNWZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjciLz48cmVjdCB4PSIyMDAiIHk9IjUwIiB3aWR0aD0iNDAiIGhlaWdodD0iNjAiIHJ4PSI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMwYjVmZmYiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC43Ii8+PHJlY3QgeD0iMjEwIiB5PSI3MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMGI1ZmZmIiBvcGFjaXR5PSIwLjYiLz48cmVjdCB4PSIyMzUiIHk9IjQ1IiB3aWR0aD0iOCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzBiNWZmZiIgb3BhY2l0eT0iMC41Ii8+PGNpcmNsZSBjeD0iMzUwIiBjeT0iODAiIHI9IjEyIiBmaWxsPSJub25lIiBzdHJva2U9IiMwYjVmZmYiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iMzUwIiBjeT0iODAiIHI9IjMiIGZpbGw9IiMwYjVmZmYiLz48dGV4dCB4PSIzNDUiIHk9Ijg1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiMwYjVmZmYiIGZvbnQtd2VpZ2h0PSJib2xkIj5I4oKCPC90ZXh0PjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDAsIDIwMCkiPjxwYXRoIGQ9Ik01MCA1MCBRNDAgMzAgNjAgMjAgUTgwIDMwIDcwIDUwIFE2MCA3MCA1MCA1MCBaIiBmaWxsPSIjMjg3ZDNjIiBvcGFjaXR5PSIwLjgiLz48cGF0aCBkPSJNNTAgNTAgUTU1IDM1IDUwIDIwIiBzdHJva2U9IiMyODdkM2MiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC42Ii8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUwLCAwKSI+PHBhdGggZD0iTTMwIDIwIFExMCAxMCAyMCA0MCBRMzAgNTAgNTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBiNWZmZiIgc3Ryb2tlLXdpZHRoPSIzIiBvcGFjaXR5PSIwLjciLz48cGF0aCBkPSJNNTAgNDAgUTcwIDUwIDYwIDIwIFE1MCAxMCAzMCAyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGI1ZmZmIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuNyIvPjxwYXRoIGQ9Ik02MCAyMCBRNzAgMCAzMCAyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGI1ZmZmIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuNyIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAsIDApIj48Y2lyY2xlIGN4PSIzNSIgY3k9IjM1IiByPSIzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGI1ZmZmIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuNiIvPjxwYXRoIGQ9Ik01IDM1IFEzNSAxNSA2NSAzNSBRMzUgNTUgNSAzNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGI1ZmZmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNSIvPjxwYXRoIGQ9Ik0zNSA1IFEyNSAzNSAzNSA2NSBRNDUgMzUgMzUgNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGI1ZmZmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNSIvPjwvZz48L2c+PHRleHQgeD0iMzAwIiB5PSIzNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwYjVmZmYiIG9wYWNpdHk9IjAuOCI+Sm9obnNvbiBNYXR0aGV5PC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iMzc1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM2YjZjN2UiIG9wYWNpdHk9IjAuNyI+U3VzdGFpbmFibGUgVGVjaG5vbG9neSBTb2x1dGlvbnM8L3RleHQ+PC9zdmc+"
+              alt="Johnson Matthey sustainable technology solutions"
               width="600"
               height="400"
-              viewBox="0 0 600 400"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Johnson Matthey sustainable technology solutions">
-              
-              <!-- Background -->
-              <defs>
-                <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:var(--jm-primary, #0b5fff);stop-opacity:0.1" />
-                  <stop offset="100%" style="stop-color:var(--jm-primary, #0b5fff);stop-opacity:0.3" />
-                </linearGradient>
-              </defs>
-              
-              <rect width="600" height="400" fill="url(#heroGradient)" />
-              
-              <!-- Technology Icons -->
-              <g transform="translate(50, 50)">
-                <!-- Catalyst molecule -->
-                <circle cx="100" cy="80" r="8" fill="var(--jm-primary, #0b5fff)" opacity="0.8" />
-                <circle cx="120" cy="60" r="6" fill="var(--jm-primary, #0b5fff)" opacity="0.6" />
-                <circle cx="140" cy="80" r="8" fill="var(--jm-primary, #0b5fff)" opacity="0.8" />
-                <line x1="108" y1="80" x2="132" y2="80" stroke="var(--jm-primary, #0b5fff)" stroke-width="2" opacity="0.7" />
-                <line x1="114" y1="68" x2="126" y2="68" stroke="var(--jm-primary, #0b5fff)" stroke-width="2" opacity="0.7" />
-                
-                <!-- Battery/Energy icon -->
-                <rect x="200" y="50" width="40" height="60" rx="5" fill="none" stroke="var(--jm-primary, #0b5fff)" stroke-width="3" opacity="0.7" />
-                <rect x="210" y="70" width="20" height="20" fill="var(--jm-primary, #0b5fff)" opacity="0.6" />
-                <rect x="235" y="45" width="8" height="10" fill="var(--jm-primary, #0b5fff)" opacity="0.5" />
-                
-                <!-- Hydrogen atom -->
-                <circle cx="350" cy="80" r="12" fill="none" stroke="var(--jm-primary, #0b5fff)" stroke-width="2" opacity="0.7" />
-                <circle cx="350" cy="80" r="3" fill="var(--jm-primary, #0b5fff)" />
-                <text x="345" y="85" font-family="Arial" font-size="10" fill="var(--jm-primary, #0b5fff)" font-weight="bold">H₂</text>
-              </g>
-              
-              <!-- Sustainability Elements -->
-              <g transform="translate(100, 200)">
-                <!-- Leaf icon -->
-                <path d="M50 50 Q40 30 60 20 Q80 30 70 50 Q60 70 50 50 Z" fill="var(--jm-success, #287d3c)" opacity="0.8" />
-                <path d="M50 50 Q55 35 50 20" stroke="var(--jm-success, #287d3c)" stroke-width="2" fill="none" opacity="0.6" />
-                
-                <!-- Recycling arrows -->
-                <g transform="translate(150, 0)">
-                  <path d="M30 20 Q10 10 20 40 Q30 50 50 40" fill="none" stroke="var(--jm-primary, #0b5fff)" stroke-width="3" opacity="0.7" />
-                  <path d="M50 40 Q70 50 60 20 Q50 10 30 20" fill="none" stroke="var(--jm-primary, #0b5fff)" stroke-width="3" opacity="0.7" />
-                  <path d="M60 20 Q70 0 30 20" fill="none" stroke="var(--jm-primary, #0b5fff)" stroke-width="3" opacity="0.7" />
-                </g>
-                
-                <!-- Globe/Earth -->
-                <g transform="translate(300, 0)">
-                  <circle cx="35" cy="35" r="30" fill="none" stroke="var(--jm-primary, #0b5fff)" stroke-width="3" opacity="0.6" />
-                  <path d="M5 35 Q35 15 65 35 Q35 55 5 35" fill="none" stroke="var(--jm-primary, #0b5fff)" stroke-width="2" opacity="0.5" />
-                  <path d="M35 5 Q25 35 35 65 Q45 35 35 5" fill="none" stroke="var(--jm-primary, #0b5fff)" stroke-width="2" opacity="0.5" />
-                </g>
-              </g>
-              
-              <!-- Company Name -->
-              <text x="300" y="350" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
-                    text-anchor="middle" fill="var(--jm-primary, #0b5fff)" opacity="0.8">Johnson Matthey</text>
-              <text x="300" y="375" font-family="Arial, sans-serif" font-size="14" 
-                    text-anchor="middle" fill="var(--jm-gray-600, #6b6c7e)" opacity="0.7">Sustainable Technology Solutions</text>
-            </svg>
+              loading="eager"
+            />
           </div>
           
           [#if configuration.showVideo]
