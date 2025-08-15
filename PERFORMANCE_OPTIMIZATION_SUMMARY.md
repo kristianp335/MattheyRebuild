@@ -80,10 +80,7 @@ setupMegaMenuObserver();
 - **CSS containment** - `contain: layout` for isolated rendering
 - **Direct color values** - removed CSS variable fallbacks for immediate resolution
 - **will-change optimizations** - browser rendering hints
-- **CSS consolidation** - ALL styles now inline for both hero and header fragments
-  - **Hero fragment**: 3,974 bytes saved
-  - **Header fragment**: 924 lines (25,000+ bytes) eliminated
-  - **Total CSS blocking eliminated**: ~29,000 bytes
+- **CSS consolidation** - ALL styles now inline, eliminated duplicate CSS file (3974 bytes saved)
 
 ## SVG Hero Image Features
 ✅ **Inline SVG** for instant rendering (no network request)
