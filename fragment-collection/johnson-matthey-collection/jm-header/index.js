@@ -360,9 +360,28 @@
      */
     function createNavItemFromAPI(item, isMobile) {
         // Check for navigationMenuItems (API response) or children (fallback)
-        const hasChildren = (item.navigationMenuItems && item.navigationMenuItems.length > 0) || 
-                          (item.children && item.children.length > 0);
-        const children = item.navigationMenuItems || item.children || [];
+        const rawChildren = item.navigationMenuItems || item.children || [];
+        
+        // Filter out duplicate items (e.g., Home item containing another Home item)
+        const children = rawChildren.filter(child => {
+            const parentName = (item.name || item.title || '').toLowerCase().trim();
+            const childName = (child.name || child.title || '').toLowerCase().trim();
+            
+            // Prevent self-nesting: don't include a child with the same name as parent
+            if (parentName === childName) {
+                console.warn(`Filtered duplicate nested item: ${parentName} -> ${childName}`);
+                return false;
+            }
+            
+            // Prevent "home" nesting patterns that cause DOM issues
+            if (parentName === 'home' && childName === 'home') {
+                return false;
+            }
+            
+            return true;
+        });
+        
+        const hasChildren = children.length > 0;
         
         const listItem = document.createElement('li');
         listItem.className = isMobile ? 'jm-mobile-nav-item' : 'jm-nav-item';
@@ -687,17 +706,35 @@
         mobileDropdownTriggers.forEach(trigger => {
             trigger.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
+                
                 const parentItem = trigger.parentElement;
                 const dropdownMenu = parentItem.querySelector('.jm-mobile-dropdown-menu');
                 
-                if (dropdownMenu) {
-                    parentItem.classList.toggle('active');
-                    // Let CSS handle the display with !important
-                    if (parentItem.classList.contains('active')) {
-                        dropdownMenu.style.display = 'block';
-                    } else {
-                        dropdownMenu.style.display = '';
+                // Close other open dropdowns first
+                const allMobileItems = fragmentElement.querySelectorAll('.jm-mobile-nav-item.active');
+                allMobileItems.forEach(item => {
+                    if (item !== parentItem) {
+                        item.classList.remove('active');
+                        const otherDropdown = item.querySelector('.jm-mobile-dropdown-menu');
+                        if (otherDropdown) {
+                            otherDropdown.style.display = '';
+                        }
                     }
+                });
+                
+                if (dropdownMenu) {
+                    const isCurrentlyActive = parentItem.classList.contains('active');
+                    
+                    if (isCurrentlyActive) {
+                        parentItem.classList.remove('active');
+                        dropdownMenu.style.display = '';
+                    } else {
+                        parentItem.classList.add('active');
+                        dropdownMenu.style.display = 'block';
+                    }
+                    
+                    console.log(`Mobile dropdown ${isCurrentlyActive ? 'closed' : 'opened'} for: ${trigger.textContent}`);
                 }
             });
         });
