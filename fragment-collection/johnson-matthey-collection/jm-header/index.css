@@ -153,7 +153,7 @@
   transform: rotate(180deg);
 }
 
-/* Dropdown Menus */
+/* Dropdown Menus - Mega Menu Style */
 #wrapper .jm-nav-item .jm-dropdown-menu {
   position: absolute;
   top: 100%;
@@ -162,10 +162,11 @@
   border: 2px solid var(--jm-primary);
   border-radius: calc(var(--jm-border-radius) * 1.5);
   box-shadow: 0 8px 25px rgba(11, 95, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
-  min-width: 220px;
+  min-width: 480px;
+  max-width: 600px;
   z-index: 1060 !important;
   display: none;
-  padding: var(--jm-spacing-md) 0;
+  padding: 0;
   margin-top: var(--jm-spacing-xs);
   margin-right: var(--jm-spacing-lg);
   transform: translateY(-5px);
@@ -177,6 +178,18 @@
   display: block;
   transform: translateY(0);
   opacity: 1;
+}
+
+/* Mega Menu Content Area */
+#wrapper .jm-mega-content {
+  padding: var(--jm-spacing-lg);
+  border-bottom: 1px solid var(--jm-gray-200);
+  min-height: 120px;
+}
+
+/* Navigation Links Section */
+#wrapper .jm-dropdown-links {
+  padding: var(--jm-spacing-md) 0;
 }
 
 #wrapper .jm-dropdown-item {
@@ -490,6 +503,45 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   #wrapper .jm-header-dropzone {
     display: none;
   }
+}
+
+/* Mega Menu Dropzones - Edit Mode Only */
+#wrapper .jm-mega-menu-dropzones {
+  display: none;
+  padding: var(--jm-spacing-lg);
+  background: var(--jm-gray-50);
+  border: 2px dashed var(--jm-primary);
+  border-radius: var(--jm-border-radius);
+  margin: var(--jm-spacing-md) 0;
+}
+
+#wrapper .jm-edit-mode .jm-mega-menu-dropzones {
+  display: block;
+}
+
+#wrapper .jm-mega-dropzone {
+  margin-bottom: var(--jm-spacing-lg);
+  padding: var(--jm-spacing-md);
+  background: var(--jm-white);
+  border: 1px solid var(--jm-gray-300);
+  border-radius: var(--jm-border-radius);
+}
+
+#wrapper .jm-mega-dropzone:last-child {
+  margin-bottom: 0;
+}
+
+#wrapper .jm-mega-dropzone-label {
+  margin: 0 0 var(--jm-spacing-sm) 0;
+  font-size: var(--jm-font-size-sm);
+  font-weight: 600;
+  color: var(--jm-primary);
+}
+
+/* Hidden mega content containers for runtime */
+#wrapper .jm-mega-content {
+  display: none;
+}
 }
 
 @media (max-width: 480px) {

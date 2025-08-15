@@ -53,6 +53,49 @@
             <lfr-drop-zone data-lfr-drop-zone-id="language-selector">
             </lfr-drop-zone>
           </div>
+        </div>
+      </div>
+
+      <!-- Mega Menu Dropzones (Edit Mode Only) -->
+      <div class="jm-mega-menu-dropzones jm-edit-mode-only">
+        <div class="jm-mega-dropzone" data-mega-index="1">
+          <h4 class="jm-mega-dropzone-label">Mega Menu Content 1</h4>
+          <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-1">
+          </lfr-drop-zone>
+        </div>
+        <div class="jm-mega-dropzone" data-mega-index="2">
+          <h4 class="jm-mega-dropzone-label">Mega Menu Content 2</h4>
+          <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-2">
+          </lfr-drop-zone>
+        </div>
+        <div class="jm-mega-dropzone" data-mega-index="3">
+          <h4 class="jm-mega-dropzone-label">Mega Menu Content 3</h4>
+          <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-3">
+          </lfr-drop-zone>
+        </div>
+        <div class="jm-mega-dropzone" data-mega-index="4">
+          <h4 class="jm-mega-dropzone-label">Mega Menu Content 4</h4>
+          <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-4">
+          </lfr-drop-zone>
+        </div>
+        <div class="jm-mega-dropzone" data-mega-index="5">
+          <h4 class="jm-mega-dropzone-label">Mega Menu Content 5</h4>
+          <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-5">
+          </lfr-drop-zone>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="jm-mobile-nav" id="jm-mobile-nav">
+        <ul class="jm-mobile-nav-list">
+          <!-- Mobile navigation will be populated by JavaScript -->
+        </ul>
+        <div class="jm-mobile-nav-actions">
+          [#if !themeDisplay.isSignedIn()]
+            <button class="jm-btn jm-mobile-login-btn">Sign In</button>
+          [#else]
+            <a href="/c/portal/logout" class="jm-btn jm-btn-secondary">Sign Out</a>
+          [/#if]
 
           <!-- Mobile Menu Toggle -->
           <button class="jm-mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">

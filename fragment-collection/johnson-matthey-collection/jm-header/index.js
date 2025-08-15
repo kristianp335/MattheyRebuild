@@ -320,6 +320,9 @@
         return `${siteBasePath}${cleanPath}`;
     }
 
+    // Track mega menu index for dropzone mapping
+    let currentMegaIndex = 1;
+
     /**
      * Render navigation menu in both desktop and mobile containers using API data
      */
@@ -329,9 +332,11 @@
         
         if (!desktopNav || !mobileNav) {
             console.error('Navigation containers not found');
-
             return;
         }
+        
+        // Reset mega menu index
+        currentMegaIndex = 1;
         
         // Clear existing content
         desktopNav.innerHTML = '';
@@ -349,9 +354,10 @@
             mobileNav.appendChild(mobileItem);
         });
         
-        // Initialize dropdowns after rendering
+        // Initialize dropdowns and mega menu content after rendering
         setTimeout(() => {
             initializeDropdowns();
+            initializeMegaMenuContent();
         }, 100);
     }
 
@@ -402,11 +408,11 @@
         
         // Add dropdown menu for desktop or submenu for mobile
         if (hasChildren) {
-            const dropdown = document.createElement(isMobile ? 'div' : 'ul');
-            dropdown.className = isMobile ? 'jm-mobile-dropdown-menu' : 'jm-dropdown-menu';
-            
-            children.forEach(child => {
-                if (isMobile) {
+            if (isMobile) {
+                const dropdown = document.createElement('div');
+                dropdown.className = 'jm-mobile-dropdown-menu';
+                
+                children.forEach(child => {
                     const childLink = document.createElement('a');
                     childLink.href = buildPageURL(child.link || child.url || '#');
                     childLink.textContent = child.name || child.title;
@@ -418,7 +424,26 @@
                     }
                     
                     dropdown.appendChild(childLink);
-                } else {
+                });
+                
+                listItem.appendChild(dropdown);
+            } else {
+                // Desktop mega menu
+                const dropdown = document.createElement('div');
+                dropdown.className = 'jm-dropdown-menu';
+                
+                // Add mega content area
+                const megaContent = document.createElement('div');
+                megaContent.className = 'jm-mega-content';
+                megaContent.setAttribute('data-mega-index', currentMegaIndex.toString());
+                dropdown.appendChild(megaContent);
+                
+                // Add navigation links section
+                const linksSection = document.createElement('div');
+                linksSection.className = 'jm-dropdown-links';
+                
+                const linksList = document.createElement('ul');
+                children.forEach(child => {
                     const childItem = document.createElement('li');
                     const childLink = document.createElement('a');
                     childLink.href = buildPageURL(child.link || child.url || '#');
@@ -431,11 +456,15 @@
                     }
                     
                     childItem.appendChild(childLink);
-                    dropdown.appendChild(childItem);
-                }
-            });
-            
-            listItem.appendChild(dropdown);
+                    linksList.appendChild(childItem);
+                });
+                
+                linksSection.appendChild(linksList);
+                dropdown.appendChild(linksSection);
+                
+                listItem.appendChild(dropdown);
+                currentMegaIndex++;
+            }
         }
         
         return listItem;
@@ -710,6 +739,27 @@
                 document.body.style.overflow = '';
             }
         });
+    }
+    
+    /**
+     * Initialize mega menu content by copying dropzone content to dropdown areas
+     */
+    function initializeMegaMenuContent() {
+        for (let i = 1; i <= 5; i++) {
+            const dropzone = fragmentElement.querySelector(`[data-lfr-drop-zone-id="mega-menu-${i}"]`);
+            const megaContent = fragmentElement.querySelector(`[data-mega-index="${i}"]`);
+            
+            if (dropzone && megaContent) {
+                // Clone dropzone content to mega content area
+                const dropzoneContent = dropzone.innerHTML;
+                if (dropzoneContent.trim()) {
+                    megaContent.innerHTML = dropzoneContent;
+                    megaContent.style.display = 'block';
+                } else {
+                    megaContent.style.display = 'none';
+                }
+            }
+        }
     }
     
     function initializeModals() {
