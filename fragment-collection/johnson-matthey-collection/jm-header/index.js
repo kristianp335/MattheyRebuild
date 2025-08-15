@@ -454,6 +454,8 @@
                 const megaContent = document.createElement('div');
                 megaContent.className = 'jm-mega-content';
                 megaContent.setAttribute('data-mega-index', currentMegaIndex.toString());
+                megaContent.setAttribute('data-mega-menu-id', `mega-${currentMegaIndex}`);
+                console.log(`Created mega content area for index ${currentMegaIndex}`);
                 dropdown.appendChild(megaContent);
                 
                 // Add navigation links section
@@ -788,6 +790,7 @@
                 console.log(`Mega menu ${i} has content:`, hasRealContent);
                 
                 if (hasRealContent) {
+                    // Clone the content properly
                     megaContent.innerHTML = dropzoneContent;
                     megaContent.classList.add('has-content');
                     
@@ -795,8 +798,10 @@
                     const dropdown = megaContent.closest('.jm-dropdown-menu');
                     if (dropdown) {
                         dropdown.classList.add('has-mega-content');
-                        console.log(`Added has-mega-content class to dropdown ${i}`);
+                        console.log(`Added has-mega-content class to dropdown ${i}`, megaContent.innerHTML.substring(0, 100));
                     }
+                    
+                    console.log(`Successfully added content to mega menu ${i}`);
                 } else {
                     megaContent.classList.remove('has-content');
                     megaContent.innerHTML = '';
@@ -806,6 +811,8 @@
                     if (dropdown) {
                         dropdown.classList.remove('has-mega-content');
                     }
+                    
+                    console.log(`No valid content found for mega menu ${i}`);
                 }
             }
         }
