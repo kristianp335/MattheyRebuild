@@ -46,23 +46,23 @@
 #wrapper .jm-header[data-style="primary"] .jm-nav-link:hover,
 #wrapper .jm-header[data-style="primary"] .jm-nav-link:focus {
   color: var(--jm-white) !important;
-  background-color: var(--overlay-light, rgba(255, 255, 255, 0.1)) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 #wrapper .jm-header[data-style="primary"] .jm-nav-item.active > .jm-nav-link {
   color: var(--jm-white) !important;
-  background-color: var(--overlay-medium, rgba(255, 255, 255, 0.2)) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 #wrapper .jm-header[data-style="primary"] .jm-header-action-btn {
   color: var(--jm-white) !important;
-  border-color: var(--border-light, rgba(255, 255, 255, 0.3)) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 #wrapper .jm-header[data-style="primary"] .jm-header-action-btn:hover,
 #wrapper .jm-header[data-style="primary"] .jm-header-action-btn:focus {
-  background-color: var(--overlay-light, rgba(255, 255, 255, 0.1)) !important;
-  border-color: var(--border-medium, rgba(255, 255, 255, 0.5)) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 
@@ -157,7 +157,7 @@
   background: var(--jm-white);
   border: 2px solid var(--jm-primary);
   border-radius: calc(var(--jm-border-radius) * 1.5);
-  box-shadow: 0 8px 25px var(--primary-shadow, rgba(11, 95, 255, 0.15)), 0 4px 12px var(--shadow-color, rgba(0, 0, 0, 0.1));
+  box-shadow: 0 8px 25px rgba(11, 95, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
   min-width: 220px;
   max-width: 800px;
   width: auto;
@@ -239,7 +239,7 @@
 
 #wrapper .jm-dropdown-item:hover,
 #wrapper .jm-dropdown-item:focus {
-  background: linear-gradient(135deg, var(--primary-bg-light, rgba(11, 95, 255, 0.05)) 0%, var(--primary-bg-medium, rgba(11, 95, 255, 0.1)) 100%);
+  background: linear-gradient(135deg, rgba(11, 95, 255, 0.05) 0%, rgba(11, 95, 255, 0.1) 100%);
   color: var(--jm-primary);
   text-decoration: none;
   border-left-color: var(--jm-primary);
@@ -311,7 +311,7 @@
 #wrapper .is-edit-mode .jm-header-dropzone lfr-drop-zone,
 body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone {
   border-color: var(--jm-primary) !important;
-  background-color: var(--primary-bg-light, rgba(11, 95, 255, 0.05)) !important;
+  background-color: rgba(11, 95, 255, 0.05) !important;
   position: relative;
   min-width: 120px !important;
   min-height: 40px !important;
@@ -433,7 +433,7 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 }
 
 #wrapper .jm-mobile-dropdown-menu {
-  background: linear-gradient(135deg, var(--primary-bg-subtle, rgba(11, 95, 255, 0.03)) 0%, var(--primary-bg-light, rgba(11, 95, 255, 0.08)) 100%);
+  background: linear-gradient(135deg, rgba(11, 95, 255, 0.03) 0%, rgba(11, 95, 255, 0.08) 100%);
   border-left: 3px solid var(--jm-primary);
   padding: var(--jm-spacing-sm) 0;
   list-style: none;
@@ -469,7 +469,7 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 
 #wrapper .jm-mobile-dropdown-item:hover,
 #wrapper .jm-mobile-dropdown-item:focus {
-  background: linear-gradient(135deg, var(--primary-bg-medium, rgba(11, 95, 255, 0.1)) 0%, var(--primary-bg-strong, rgba(11, 95, 255, 0.15)) 100%);
+  background: linear-gradient(135deg, rgba(11, 95, 255, 0.1) 0%, rgba(11, 95, 255, 0.15) 100%);
   color: var(--jm-primary);
   text-decoration: none;
 }
@@ -614,7 +614,7 @@ body.has-edit-mode-menu #wrapper .jm-mega-menu-dropzones,
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: var(--backdrop-color, rgba(0, 0, 0, 0.5)) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
   z-index: 1050 !important;
   display: none !important;
   align-items: center !important;
@@ -632,7 +632,7 @@ body.has-edit-mode-menu #wrapper .jm-mega-menu-dropzones,
 #wrapper .jm-login-modal {
   background: var(--jm-white) !important;
   border-radius: var(--jm-border-radius-lg) !important;
-  box-shadow: 0 10px 25px var(--shadow-color-lg, rgba(0, 0, 0, 0.2)) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
   max-width: 500px !important;
   width: 90% !important;
   max-height: 80vh !important;
@@ -723,7 +723,7 @@ body.has-edit-mode-menu #wrapper .jm-mega-menu-dropzones,
 #wrapper .is-edit-mode .jm-header-dropzone lfr-drop-zone,
 body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone {
   border-color: var(--jm-primary) !important;
-  background-color: var(--info-bg-light, rgba(13, 110, 253, 0.05)) !important;
+  background-color: rgba(13, 110, 253, 0.05) !important;
   position: relative;
   min-width: 120px !important;
   min-height: 40px !important;
@@ -757,7 +757,7 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 #wrapper .jm-search-overlay.jm-edit-mode {
   display: block !important;
   position: relative !important;
-  background: var(--overlay-background, rgba(241, 245, 249, 0.95)) !important;
+  background: rgba(241, 245, 249, 0.95) !important;
   border: 2px dashed var(--jm-primary) !important;
   margin: 20px 0 !important;
   border-radius: var(--jm-border-radius) !important;
@@ -787,7 +787,7 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 #wrapper .jm-login-overlay.jm-edit-mode {
   display: block !important;
   position: relative !important;
-  background: var(--overlay-background, rgba(241, 245, 249, 0.95)) !important;
+  background: rgba(241, 245, 249, 0.95) !important;
   border: 2px dashed var(--jm-primary) !important;
   margin: 20px 0 !important;
   border-radius: var(--jm-border-radius) !important;
@@ -866,7 +866,7 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
 /* Edit Mode Styling for Language Selector Dropzone */
 #wrapper .jm-language-selector-dropzone.jm-edit-mode lfr-drop-zone {
   border-color: var(--jm-primary) !important;
-  background: var(--overlay-background, rgba(241, 245, 249, 0.95)) !important;
+  background: rgba(241, 245, 249, 0.95) !important;
   min-height: 44px;
 }
 

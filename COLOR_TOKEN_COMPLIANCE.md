@@ -1,8 +1,8 @@
-# ✅ **COLOR TOKEN COMPLIANCE ACHIEVED**
+# ✅ **STYLEBOOKS COMPATIBILITY RESTORED**
 
-## **🎯 Complete Migration to Liferay Classic Theme Tokens**
+## **🎯 Fixed Non-Existent Token Issue**
 
-All hardcoded colors have been systematically replaced with Liferay Classic theme tokens to ensure proper theming compliance and maintainability.
+**ISSUE RESOLVED**: Non-existent CSS custom property tokens were breaking Liferay Stylebooks functionality. Reverted to hardcoded values while keeping only real Liferay theme tokens that actually exist.
 
 ## **📊 Summary of Changes:**
 
@@ -142,4 +142,19 @@ New `johnson-matthey-collection.zip` generated with complete color token complia
 - ✅ Hero Fragment
 - ✅ All other fragments maintained existing compliance
 
-**Status**: **FULLY COMPLIANT** with Liferay Classic theme token requirements ✅
+**Status**: **STYLEBOOKS COMPATIBLE** - Only real Liferay tokens used, fake tokens removed ✅
+
+## **⚠️ Root Cause Analysis:**
+
+**The Problem**: 
+- Used non-existent CSS custom property names like `--overlay-light`, `--shadow-color`, `--primary-bg-light`
+- These tokens don't exist in Liferay Classic theme
+- Stylebooks couldn't control non-existent properties, causing functionality to break
+
+**The Solution**:
+- Reverted fake tokens back to hardcoded `rgba()` values
+- Kept only legitimate Liferay theme tokens like `var(--primary, #0b5fff)`
+- Restored full Stylebooks compatibility
+
+**Lesson Learned**: 
+Only use CSS custom properties that actually exist in the target Liferay theme, otherwise Stylebooks integration fails.
