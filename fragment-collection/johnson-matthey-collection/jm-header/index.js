@@ -767,83 +767,90 @@
     function initializeMegaMenuContent() {
         console.log('Initializing mega menu content...');
         
+        // Get all widgets on the page that might be rendered from dropzones
+        const allWidgets = document.querySelectorAll('.portlet, [class*="portlet"], .widget, [id*="portlet"]');
+        console.log(`Found ${allWidgets.length} widgets on page`);
+        
         for (let i = 1; i <= 5; i++) {
-            // Try multiple possible container naming patterns
-            let contentContainer = document.querySelector(`#dropzone-mega-menu-${i}-container`);
-            
-            // If not found, try alternative Liferay naming patterns
-            if (!contentContainer) {
-                contentContainer = document.querySelector(`[data-lfr-drop-zone-id="mega-menu-${i}"] + div`);
-            }
-            if (!contentContainer) {
-                contentContainer = document.querySelector(`[data-drop-zone-id="mega-menu-${i}"]`);
-            }
-            if (!contentContainer) {
-                contentContainer = document.querySelector(`.mega-menu-${i}-content`);
-            }
-            
             const megaContent = fragmentElement.querySelector(`[data-mega-index="${i}"]`);
+            const dropzone = fragmentElement.querySelector(`[data-lfr-drop-zone-id="mega-menu-${i}"]`);
             
             console.log(`Checking mega menu ${i}:`, { 
-                contentContainer: !!contentContainer, 
                 megaContent: !!megaContent,
-                containerContent: contentContainer ? contentContainer.innerHTML.length : 0,
-                containerClass: contentContainer ? contentContainer.className : 'none'
+                dropzone: !!dropzone
             });
             
-            if (contentContainer && megaContent) {
-                // Get rendered widget content from the container
-                const containerContent = contentContainer.innerHTML;
-                console.log(`Container ${i} content length:`, containerContent.length);
-                console.log(`Container ${i} content preview:`, containerContent.substring(0, 200));
+            if (megaContent && dropzone) {
+                // Find widgets that might belong to this dropzone by looking for widgets near the dropzone
+                const dropzoneRect = dropzone.getBoundingClientRect();
+                let nearbyWidgets = [];
                 
-                // Check for actual rendered content
-                const hasRealContent = containerContent.trim() && 
-                                     containerContent.length > 10 &&
-                                     (containerContent.includes('class=') || 
-                                      containerContent.includes('portlet') || 
-                                      containerContent.includes('widget') ||
-                                      containerContent.includes('<div') ||
-                                      containerContent.includes('<p') ||
-                                      containerContent.includes('<a'));
+                allWidgets.forEach(widget => {
+                    const widgetRect = widget.getBoundingClientRect();
+                    // Check if widget is positioned near or after the dropzone in the DOM
+                    const isDomAfter = dropzone.compareDocumentPosition(widget) & Node.DOCUMENT_POSITION_FOLLOWING;
+                    const isSamePage = Math.abs(widgetRect.top - dropzoneRect.top) < 1000; // Within reasonable distance
+                    
+                    if (isDomAfter && isSamePage) {
+                        nearbyWidgets.push(widget);
+                    }
+                });
                 
-                console.log(`Mega menu ${i} has content:`, hasRealContent);
+                console.log(`Found ${nearbyWidgets.length} nearby widgets for mega menu ${i}`);
                 
-                if (hasRealContent) {
-                    // Clone the rendered content to mega content area
-                    megaContent.innerHTML = containerContent;
+                if (nearbyWidgets.length > 0) {
+                    // Create container for the widgets
+                    const widgetContainer = document.createElement('div');
+                    widgetContainer.className = 'mega-menu-widgets-container';
+                    
+                    // Clone widgets into container
+                    nearbyWidgets.forEach(widget => {
+                        const clonedWidget = widget.cloneNode(true);
+                        widgetContainer.appendChild(clonedWidget);
+                    });
+                    
+                    // Add to mega content
+                    megaContent.innerHTML = '';
+                    megaContent.appendChild(widgetContainer);
                     megaContent.classList.add('has-content');
                     
                     // Add class to parent dropdown for styling
                     const dropdown = megaContent.closest('.jm-dropdown-menu');
                     if (dropdown) {
                         dropdown.classList.add('has-mega-content');
-                        console.log(`Added has-mega-content class to dropdown ${i}`);
                     }
                     
-                    console.log(`Successfully added content to mega menu ${i}`);
+                    console.log(`Successfully added ${nearbyWidgets.length} widgets to mega menu ${i}`);
                 } else {
-                    megaContent.classList.remove('has-content');
-                    megaContent.innerHTML = '';
+                    // Fallback: Check if dropzone itself has any meaningful content
+                    const dropzoneContent = dropzone.innerHTML;
+                    const hasDropzoneContent = dropzoneContent.trim() && 
+                                            !dropzoneContent.includes('Drop widgets here') &&
+                                            !dropzoneContent.includes('lfr-ddm-empty-message') &&
+                                            dropzoneContent.length > 20;
                     
-                    // Remove class from parent dropdown
-                    const dropdown = megaContent.closest('.jm-dropdown-menu');
-                    if (dropdown) {
-                        dropdown.classList.remove('has-mega-content');
+                    if (hasDropzoneContent) {
+                        megaContent.innerHTML = dropzoneContent;
+                        megaContent.classList.add('has-content');
+                        
+                        const dropdown = megaContent.closest('.jm-dropdown-menu');
+                        if (dropdown) {
+                            dropdown.classList.add('has-mega-content');
+                        }
+                        
+                        console.log(`Using dropzone content for mega menu ${i}`);
+                    } else {
+                        megaContent.classList.remove('has-content');
+                        megaContent.innerHTML = '';
+                        
+                        const dropdown = megaContent.closest('.jm-dropdown-menu');
+                        if (dropdown) {
+                            dropdown.classList.remove('has-mega-content');
+                        }
+                        
+                        console.log(`No content found for mega menu ${i}`);
                     }
-                    
-                    console.log(`No valid content found for mega menu ${i}`);
                 }
-            } else {
-                console.log(`Container or mega content not found for menu ${i}`);
-                
-                // Debug: List all possible container elements
-                const allContainers = document.querySelectorAll('[id*="dropzone"], [class*="mega"], [data-lfr-drop-zone-id]');
-                console.log(`All potential containers on page:`, Array.from(allContainers).map(el => ({ 
-                    id: el.id, 
-                    className: el.className,
-                    dataset: el.dataset
-                })));
             }
         }
     }

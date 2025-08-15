@@ -577,6 +577,17 @@ body.has-edit-mode-menu #wrapper .jm-mega-content-containers,
   display: none;
 }
 
+/* Mega menu widget containers */
+#wrapper .mega-menu-widgets-container {
+  width: 100%;
+}
+
+#wrapper .mega-menu-widgets-container .portlet {
+  margin: 0;
+  border: none;
+  box-shadow: none;
+}
+
 
 }
 
