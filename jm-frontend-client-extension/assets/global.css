@@ -13,6 +13,16 @@
   contain: layout style !important;
 }
 
+/* CRITICAL CLS FIX: Prevent layout shifts from container sizing */
+#wrapper .jm-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  contain: layout !important;
+}
+
 /* CRITICAL: CSS Custom Properties from Liferay Classic Theme - Load First */
 #wrapper {
   /* Core brand colors - highest priority */

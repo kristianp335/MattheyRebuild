@@ -12,10 +12,29 @@
   contain: layout style !important;
 }
 
+/* CRITICAL CLS FIX: Prevent layout shifts */
+#wrapper .jm-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  contain: layout !important;
+}
+
 #wrapper .jm-hero {
   padding: 3rem 0 !important;
   background: #fff !important;
   min-height: 500px !important;
+}
+
+#wrapper .jm-hero-content {
+  display: grid !important;
+  grid-template-columns: 1.4fr 0.6fr !important;
+  gap: 3rem !important;
+  align-items: center !important;
+  min-height: 400px !important;
+  contain: layout !important;
 }
 
 #wrapper .jm-hero-description-extended {
