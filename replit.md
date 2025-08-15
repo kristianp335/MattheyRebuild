@@ -13,7 +13,7 @@ The project employs a modular, fragment-based architecture where each UI compone
 **Key Architectural Decisions:**
 - **Dual-Deployment**: Client extension for global CSS/JS and fragment collection for UI components.
 - **Fragment Modularity**: Each component is an independent Liferay fragment.
-- **Color System**: Exclusive use of Liferay Classic theme frontend tokens for branding consistency.
+- **Color System**: Complete migration to Liferay Classic theme frontend tokens achieved - all hardcoded colors systematically replaced with semantic theme tokens for proper theming compliance.
 - **JavaScript Isolation**: IIFEs and event-driven architecture ensure proper initialization and prevent global namespace pollution.
 - **Content Management**: All content (text, images, links) is editable via Liferay's inline editing system using `data-lfr-editable` attributes.
 - **Responsive Design**: Mobile-first approach using CSS Grid and Flexbox with consistent breakpoints.

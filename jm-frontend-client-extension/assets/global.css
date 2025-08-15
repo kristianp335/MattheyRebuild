@@ -7,7 +7,7 @@
 /* CRITICAL ONLY: Essential CSS custom properties */
 #wrapper {
   /* CRITICAL: LCP optimization - immediate color resolution */
-  --jm-primary: #0b5fff;
+  --jm-primary: var(--primary, #0b5fff);
   --jm-gray-700: var(--gray-700, #495057);
   --jm-white: var(--white, #fff);
   --jm-dark: var(--brand-color-4, #30313f);
@@ -49,8 +49,8 @@
   --jm-font-size-xxxl: 2rem;
   
   /* Effects - non-critical, loaded last */
-  --jm-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --jm-box-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --jm-box-shadow: 0 2px 8px var(--shadow-color, rgba(0, 0, 0, 0.1));
+  --jm-box-shadow-lg: 0 4px 16px var(--shadow-color-lg, rgba(0, 0, 0, 0.15));
   --jm-transition: all 0.2s ease;
   --jm-border-radius: 4px;
   --jm-border-radius-lg: 8px;
@@ -246,7 +246,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--backdrop-color, rgba(0, 0, 0, 0.5));
   z-index: 1050 !important;
   display: none;
 }
@@ -420,7 +420,7 @@
 #wrapper .login-content input.field:focus,
 #wrapper .login-content .clearable.form-control:focus {
   border-color: var(--jm-primary) !important;
-  box-shadow: 0 0 0 0.2rem rgba(11, 95, 255, 0.25) !important;
+  box-shadow: 0 0 0 0.2rem var(--focus-ring-color, rgba(11, 95, 255, 0.25)) !important;
   outline: none !important;
 }
 
