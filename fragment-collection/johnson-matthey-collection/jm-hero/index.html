@@ -9,29 +9,29 @@
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  contain: layout style paint size !important;
   transform: translateZ(0) translateX(0) translateY(0) !important;
   will-change: auto !important;
 }
 .jm-hero-fragment {
   position: relative !important;
-  overflow: hidden !important;
-  contain: layout style paint size !important;
+  overflow: visible !important;
   transform: translateZ(0) !important;
   backface-visibility: hidden !important;
   display: block !important;
   visibility: visible !important;
+  min-height: 500px !important;
 }
 .jm-hero {
   padding: 3rem 0 !important;
   background: transparent !important;
   position: relative !important;
-  contain: layout style paint size !important;
   min-height: 500px !important;
   transform: translateZ(0) !important;
   backface-visibility: hidden !important;
   display: block !important;
   visibility: visible !important;
+  width: 100% !important;
+  height: auto !important;
 }
 /* CRITICAL: Background variants with hardcoded colors - CSS variables not loading */
 .jm-hero[data-background="dark"] {
@@ -74,15 +74,17 @@
   gap: 3rem !important;
   align-items: center !important;
   min-height: 60vh !important;
-  contain: layout !important;
   visibility: visible !important;
+  width: 100% !important;
+  height: auto !important;
 }
 .jm-hero-text {
   z-index: 2 !important;
   position: relative !important;
-  contain: layout style !important;
   display: block !important;
   visibility: visible !important;
+  width: 100% !important;
+  height: auto !important;
 }
 .jm-hero-title {
   display: block !important;
