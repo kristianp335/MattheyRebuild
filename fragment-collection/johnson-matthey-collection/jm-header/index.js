@@ -42,6 +42,10 @@
             // Initialize mobile menu and modals for edit mode
             initializeMobileMenu();
             initializeModals();
+            // Initialize mega menu content for edit mode
+            setTimeout(() => {
+                initializeMegaMenuContent();
+            }, 200);
             // Add edit mode classes to modals for visual indication
             initializeEditModeDisplay();
 
@@ -89,6 +93,15 @@
         // Must have both control menu AND active page editor OR actively editable elements
         // This prevents false positives on live sites that might have control menu but no editing
         const inEditMode = (hasEditModeMenu || isEditMode) && (hasPageEditor || hasEditableElements);
+        
+        // Add/remove body class to help with mega menu dropzone visibility
+        if (inEditMode) {
+            body.classList.add('has-edit-mode-menu');
+            fragmentElement.classList.add('jm-edit-mode');
+        } else {
+            body.classList.remove('has-edit-mode-menu');
+            fragmentElement.classList.remove('jm-edit-mode');
+        }
         
         return inEditMode;
     }

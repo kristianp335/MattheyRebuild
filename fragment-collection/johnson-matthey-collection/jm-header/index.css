@@ -526,8 +526,12 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   margin: var(--jm-spacing-md) 0;
 }
 
-#wrapper .jm-edit-mode .jm-mega-menu-dropzones {
-  display: block;
+/* Show mega menu dropzones in edit mode */
+.has-edit-mode-menu #wrapper .jm-mega-menu-dropzones,
+body.has-edit-mode-menu #wrapper .jm-mega-menu-dropzones,
+.portlet-layout #wrapper .jm-mega-menu-dropzones,
+.fragment-entry-link-edit-mode #wrapper .jm-mega-menu-dropzones {
+  display: block !important;
 }
 
 #wrapper .jm-mega-dropzone {
