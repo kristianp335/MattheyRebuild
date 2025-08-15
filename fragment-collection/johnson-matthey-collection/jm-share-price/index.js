@@ -5,7 +5,6 @@
     // Use the fragmentElement provided by Liferay instead of document.currentScript
     // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
     if (!fragmentElement) {
-        console.error('fragmentElement not provided by Liferay');
         return;
     }
     
@@ -27,7 +26,7 @@
     // Listen for Liferay SPA navigation events
     if (window.Liferay) {
         Liferay.on('allPortletsReady', function(event) {
-            console.log('SPA navigation complete - reinitializing share price');
+            // SPA navigation complete - reinitialize
             setTimeout(initializeSharePrice, 100);
         });
     }
@@ -38,7 +37,7 @@
     });
     
     function initializeSharePrice() {
-        console.log('Johnson Matthey Share Price Fragment initializing...');
+        // Initialize share price fragment
         
         // Apply configuration settings
         applyConfiguration();
@@ -55,7 +54,7 @@
         // Load initial price data
         loadPriceData();
         
-        console.log('Johnson Matthey Share Price Fragment initialized');
+        // Share price fragment ready
     }
     
     function applyConfiguration() {
@@ -71,7 +70,7 @@
             widgetTheme: configuration.widgetTheme || 'standard'
         };
         
-        console.log('Share Price Fragment Configuration:', config);
+        // Configuration applied
         
         // Apply theme to widget
         const widget = fragmentElement.querySelector('.jm-share-price-widget');
@@ -102,8 +101,8 @@
         }
         
         if (config.autoUpdate) {
-            // Convert seconds to milliseconds
-            const intervalMs = config.updateInterval * 1000;
+            // Convert seconds to milliseconds - optimize for performance
+            const intervalMs = Math.max(config.updateInterval * 1000, 15000); // Minimum 15 seconds
             priceUpdateInterval = setInterval(() => {
                 if (document.visibilityState === 'visible') {
                     loadPriceData();
@@ -202,7 +201,7 @@
                 hideLoadingState();
                 
             } catch (error) {
-                console.error('Error loading price data:', error);
+                // Error loading price data
                 showErrorState();
             }
         }, 1000);

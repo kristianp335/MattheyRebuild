@@ -17,7 +17,7 @@
     // Configuration from Liferay - using simple fallback approach
     const config = {
         showAutoplay: typeof configuration !== 'undefined' && configuration.showAutoplay !== undefined ? configuration.showAutoplay : true,
-        autoplayDelay: typeof configuration !== 'undefined' && configuration.autoplayDelay !== undefined ? parseInt(configuration.autoplayDelay) * 1000 : 5000,
+        autoplayDelay: typeof configuration !== 'undefined' && configuration.autoplayDelay !== undefined ? Math.max(parseInt(configuration.autoplayDelay) * 1000, 3000) : 5000,
         showControls: typeof configuration !== 'undefined' && configuration.showControls !== undefined ? configuration.showControls : true,
         showIndicators: typeof configuration !== 'undefined' && configuration.showIndicators !== undefined ? configuration.showIndicators : true,
         slidesToShowDesktop: typeof configuration !== 'undefined' && configuration.slidesToShowDesktop !== undefined ? parseInt(configuration.slidesToShowDesktop) : 3,

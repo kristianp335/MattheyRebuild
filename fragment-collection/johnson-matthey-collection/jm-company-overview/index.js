@@ -5,7 +5,6 @@
     // Use the fragmentElement provided by Liferay instead of document.currentScript
     // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
     if (!fragmentElement) {
-        console.error('fragmentElement not provided by Liferay');
         return;
     }
     
@@ -24,7 +23,7 @@
     // Listen for Liferay SPA navigation events
     if (window.Liferay) {
         Liferay.on('allPortletsReady', function(event) {
-            console.log('SPA navigation complete - reinitializing company overview');
+            // SPA navigation complete - reinitialize
             setTimeout(initializeCompanyOverview, 100);
         });
     }
@@ -35,7 +34,7 @@
     });
     
     function initializeCompanyOverview() {
-        console.log('Johnson Matthey Company Overview Fragment initializing...');
+        // Initialize company overview fragment
         
         // Initialize video functionality
         initializeVideo();
@@ -49,7 +48,7 @@
         // Initialize accessibility features
         initializeAccessibility();
         
-        console.log('Johnson Matthey Company Overview Fragment initialized');
+        // Company overview fragment ready
     }
     
     function initializeVideo() {

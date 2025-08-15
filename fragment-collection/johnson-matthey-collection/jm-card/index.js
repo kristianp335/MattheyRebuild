@@ -4,20 +4,17 @@
     
     // Ensure fragmentElement is available
     if (typeof fragmentElement === 'undefined') {
-        console.warn('JM Card: fragmentElement not available');
         return;
     }
     
     const cardElement = fragmentElement.querySelector('.jm-card');
     
     if (!cardElement) {
-        console.warn('JM Card: Card element not found');
         return;
     }
     
-    // Initialize card
     function initializeCard() {
-        console.log('JM Card: Initializing card...');
+        // Initialize card functionality
         
         // Add compact class if in mega menu context
         const isInMegaMenu = cardElement.closest('.jm-mega-content') || 
@@ -25,7 +22,7 @@
         
         if (isInMegaMenu) {
             cardElement.classList.add('compact');
-            console.log('JM Card: Applied compact styling for mega menu');
+            // Applied compact styling
         }
         
         // Add click analytics if needed
@@ -34,7 +31,7 @@
             cardButton.addEventListener('click', function(e) {
                 // Track card click analytics
                 const cardTitle = cardElement.querySelector('.jm-card-title')?.textContent || 'Unknown';
-                console.log('JM Card: Button clicked -', cardTitle);
+                // Card button clicked
                 
                 // Add any analytics tracking here
                 if (typeof gtag !== 'undefined') {
@@ -53,7 +50,7 @@
             
             // Add error handling
             cardImage.addEventListener('error', function() {
-                console.warn('JM Card: Image failed to load');
+                // Image load error handled
                 this.style.display = 'none';
             });
         }
@@ -66,6 +63,6 @@
         initializeCard();
     }
     
-    console.log('JM Card: Fragment initialized');
+    // JM Card fragment ready
     
 })();

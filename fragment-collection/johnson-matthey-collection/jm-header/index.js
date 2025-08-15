@@ -5,7 +5,6 @@
     // Use the fragmentElement provided by Liferay instead of document.currentScript
     // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
     if (!fragmentElement) {
-        console.error('fragmentElement not provided by Liferay');
         return;
     }
     
@@ -231,7 +230,7 @@
                 renderNavigationFromAPI(data.navigationMenuItems || []);
             })
             .catch(error => {
-                console.error('Error loading navigation menu:', error);
+                // Error loading navigation menu
                 loadFallbackNavigation();
             });
     }
@@ -348,7 +347,6 @@
         const mobileNav = fragmentElement.querySelector('.jm-mobile-nav-list');
         
         if (!desktopNav || !mobileNav) {
-            console.error('Navigation containers not found');
             return;
         }
         
@@ -455,7 +453,7 @@
                 megaContent.className = 'jm-mega-content';
                 megaContent.setAttribute('data-mega-index', currentMegaIndex.toString());
                 megaContent.setAttribute('data-mega-menu-id', `mega-${currentMegaIndex}`);
-                console.log(`Created mega content area for index ${currentMegaIndex}`);
+                // Mega content area created
                 dropdown.appendChild(megaContent);
                 
                 // Add navigation links section
@@ -738,7 +736,7 @@
             trigger.addEventListener('click', (e) => {
                 // Allow navigation to the parent page
                 // No need to prevent default or manage dropdown visibility
-                console.log(`Mobile nav clicked: ${trigger.textContent}`);
+                // Mobile navigation click handled
             });
         });
         
@@ -855,10 +853,7 @@
         
         // Mega menu observer active
         
-        // Set up periodic refresh for reliable content sync
-        setInterval(() => {
-            initializeMegaMenuContent();
-        }, 2000);
+        // Use efficient one-time content sync with debounced updates only
         
         // Watch for changes in all container divs
         for (let i = 1; i <= 5; i++) {
@@ -877,12 +872,7 @@
     
     function initializeModals() {
 
-        // Debug: List all buttons in fragment
-        const allButtons = fragmentElement.querySelectorAll('button');
-
-        allButtons.forEach((btn, index) => {
-
-        });
+        // Initialize modal functionality
         
         initializeSearchModal();
         initializeLoginModal();

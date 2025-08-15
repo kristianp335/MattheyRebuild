@@ -5,7 +5,6 @@
     // Use the fragmentElement provided by Liferay instead of document.currentScript
     // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
     if (!fragmentElement) {
-        console.error('fragmentElement not provided by Liferay');
         return;
     }
     
