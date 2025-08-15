@@ -1,10 +1,9 @@
-/* Johnson Matthey Global CSS - ULTRA-OPTIMIZED FOR 90+ LIGHTHOUSE SCORE */
-/* Version: 1.4.0 - Removed ALL performance-killing properties */
+/* Johnson Matthey Global CSS - Performance Optimized */
+/* Version: 1.5.0 - Focused on critical rendering path */
 
-/* CRITICAL: Removed 'contain' properties - they were causing 780ms render blocking */
-/* CRITICAL: Simplified for immediate paint without layout containment */
+/* PERFORMANCE STRATEGY: Minimize CSS, prioritize critical rendering path */
 
-/* CRITICAL: CSS Custom Properties from Liferay Classic Theme - Load First */
+/* CRITICAL ONLY: Essential CSS custom properties */
 #wrapper {
   /* Core brand colors - highest priority */
   --jm-primary: var(--brand-color-1, #0b5fff);

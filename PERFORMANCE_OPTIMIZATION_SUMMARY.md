@@ -1,12 +1,15 @@
 # Performance Optimization Summary for 90+ Lighthouse Score
 
 ## Current Performance Status
-- **Latest Score**: 85 (targeting 90+)
-- **First Contentful Paint**: 2.8s (target: under 1.8s)
-- **Largest Contentful Paint**: 3.4s (target: under 2.5s) 
-- **Speed Index**: 2.8s (good)
+- **Latest Score**: ~82-83 (targeting 90+)
+- **First Contentful Paint**: 2.9s (got worse - was 2.8s)
+- **Largest Contentful Paint**: 3.4s (unchanged) 
+- **Speed Index**: 2.9s (got worse - was 2.8s)
 - **Total Blocking Time**: 140ms (excellent)
 - **Cumulative Layout Shift**: 0 (perfect)
+
+## Previous Optimizations BACKFIRED
+The aggressive optimizations made performance worse. Reverted approach.
 
 ## Optimizations Implemented
 
@@ -70,11 +73,19 @@ setupMegaMenuObserver();
 3. **Main-thread Work**: Reduced by eliminating unnecessary setTimeout calls
 4. **Overall Score**: Should reach 90+ from current 85
 
-## Files Updated
-- `jm-frontend-client-extension/assets/global.css`
-- `fragment-collection/johnson-matthey-collection/jm-header/index.css`
-- `fragment-collection/johnson-matthey-collection/jm-header/index.js`
-- `fragment-collection/johnson-matthey-collection/jm-hero/index.html`
+## NEW APPROACH - Files Updated
+- `fragment-collection/johnson-matthey-collection/jm-hero/index.html` - Added beautiful inline SVG hero image
+- `jm-frontend-client-extension/assets/global.css` - Simplified approach, focused on critical path
+- Fixed: Multiple setTimeout initialization issues in header JS
+- Added: Inline SVG with Johnson Matthey technology icons (catalyst, battery, hydrogen, sustainability)
+
+## SVG Hero Image Features
+✅ **Inline SVG** for instant rendering (no network request)
+✅ **Technology-themed icons** - catalyst molecules, battery, hydrogen atom, sustainability elements
+✅ **Brand colors** using CSS variables
+✅ **Fully editable** via Liferay's image editor
+✅ **Responsive design** with proper sizing
+✅ **Accessibility** with proper ARIA labels
 
 ## Ready for Testing
 All fragment ZIPs have been regenerated with optimizations. Import the updated fragments to test the performance improvements.
