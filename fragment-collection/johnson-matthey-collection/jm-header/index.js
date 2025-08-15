@@ -360,27 +360,7 @@
      */
     function createNavItemFromAPI(item, isMobile) {
         // Check for navigationMenuItems (API response) or children (fallback)
-        const rawChildren = item.navigationMenuItems || item.children || [];
-        
-        // Filter out duplicate items (e.g., Home item containing another Home item)
-        const children = rawChildren.filter(child => {
-            const parentName = (item.name || item.title || '').toLowerCase().trim();
-            const childName = (child.name || child.title || '').toLowerCase().trim();
-            
-            // Prevent self-nesting: don't include a child with the same name as parent
-            if (parentName === childName) {
-                console.warn(`Filtered duplicate nested item: ${parentName} -> ${childName}`);
-                return false;
-            }
-            
-            // Prevent "home" nesting patterns that cause DOM issues
-            if (parentName === 'home' && childName === 'home') {
-                return false;
-            }
-            
-            return true;
-        });
-        
+        const children = item.navigationMenuItems || item.children || [];
         const hasChildren = children.length > 0;
         
         const listItem = document.createElement('li');
