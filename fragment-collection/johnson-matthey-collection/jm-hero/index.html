@@ -1,10 +1,11 @@
 <style>
-/* CRITICAL HERO CSS: Inline for immediate first paint */
-/* PERFORMANCE: LCP optimization with SVG default image */
+/* CRITICAL LCP FIX: Hero must render immediately - NO DELAYS */
+/* EMERGENCY: LCP went from 3.4s to 5.5s - fixing LCP bottleneck */
 .jm-hero-fragment {
   display: block !important;
   width: 100% !important;
   min-height: 500px !important;
+  will-change: auto !important;
 }
 
 .jm-hero {
@@ -13,6 +14,8 @@
   position: relative !important;
   background: var(--jm-gray-900, #30313f) !important;
   color: var(--jm-white, #fff) !important;
+  content-visibility: auto !important;
+  contain: layout !important;
 }
 
 .jm-hero[data-background="dark"] {
@@ -144,6 +147,8 @@
   height: 400px !important;
   display: block !important;
   border-radius: 8px !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
 }
 
 .jm-hero-video-overlay {

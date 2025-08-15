@@ -1,15 +1,15 @@
 # Performance Optimization Summary for 90+ Lighthouse Score
 
-## Current Performance Status
-- **Latest Score**: ~82-83 (targeting 90+)
-- **First Contentful Paint**: 2.9s (got worse - was 2.8s)
-- **Largest Contentful Paint**: 3.4s (unchanged) 
-- **Speed Index**: 2.9s (got worse - was 2.8s)
-- **Total Blocking Time**: 140ms (excellent)
+## CRITICAL PERFORMANCE EMERGENCY 🚨
+- **Latest Score**: ~60-70 (TERRIBLE - targeting 90+)
+- **First Contentful Paint**: 2.8s (acceptable)
+- **Largest Contentful Paint**: **5.5s** (CATASTROPHIC - was 3.4s!)
+- **Speed Index**: 2.8s (good)
+- **Total Blocking Time**: 107ms (excellent)  
 - **Cumulative Layout Shift**: 0 (perfect)
 
-## Previous Optimizations BACKFIRED
-The aggressive optimizations made performance worse. Reverted approach.
+## ROOT CAUSE IDENTIFIED
+LCP jumped from 3.4s to 5.5s - hero element rendering is the bottleneck!
 
 ## Optimizations Implemented
 
@@ -73,11 +73,13 @@ setupMegaMenuObserver();
 3. **Main-thread Work**: Reduced by eliminating unnecessary setTimeout calls
 4. **Overall Score**: Should reach 90+ from current 85
 
-## NEW APPROACH - Files Updated
-- `fragment-collection/johnson-matthey-collection/jm-hero/index.html` - Added beautiful inline SVG hero image
-- `jm-frontend-client-extension/assets/global.css` - Simplified approach, focused on critical path
-- Fixed: Multiple setTimeout initialization issues in header JS
-- Added: Inline SVG with Johnson Matthey technology icons (catalyst, battery, hydrogen, sustainability)
+## EMERGENCY LCP FIXES APPLIED
+- **Inline SVG hero image** - eliminates network request for LCP element
+- **Hardware acceleration** - `transform: translateZ(0)` and `backface-visibility: hidden`
+- **Content visibility optimization** - `content-visibility: auto` for faster rendering
+- **CSS containment** - `contain: layout` for isolated rendering
+- **Direct color values** - removed CSS variable fallbacks for immediate resolution
+- **will-change optimizations** - browser rendering hints
 
 ## SVG Hero Image Features
 ✅ **Inline SVG** for instant rendering (no network request)
