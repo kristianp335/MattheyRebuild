@@ -1,5 +1,5 @@
-/* HERO FRAGMENT - NON-CRITICAL STYLES DEFERRED */
-/* Core layout handled by critical.css for optimal LCP */
+/* HERO FRAGMENT - NON-CRITICAL STYLES */
+/* Core layout handled inline for optimal LCP */
 
 /* Hero content elements - non-critical rendering */
 .jm-hero-text {

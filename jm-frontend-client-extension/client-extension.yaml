@@ -2,11 +2,6 @@ assemble:
   - from: assets
     into: static
 
-johnson-matthey-critical-css:
-  name: Johnson Matthey Critical CSS (LCP Optimized)
-  type: globalCSS
-  url: critical.css
-
 johnson-matthey-global-css:
   name: Johnson Matthey Global CSS
   type: globalCSS

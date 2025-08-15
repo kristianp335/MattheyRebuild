@@ -11,7 +11,7 @@ Preferred name: Call user "Kris".
 The project employs a modular, fragment-based architecture where each UI component is a self-contained Liferay fragment (HTML, CSS, JS, configuration). Global styles and scripts are managed via a client extension. All fragments are scoped under the `#wrapper` CSS selector and integrate seamlessly with Liferay's theme system using Liferay Classic theme tokens via CSS custom properties.
 
 **Key Architectural Decisions:**
-- **Dual-Deployment**: Client extension for global assets and fragment collection for UI components.
+- **Dual-Deployment**: Client extension for global CSS/JS and fragment collection for UI components.
 - **Fragment Modularity**: Each component is an independent Liferay fragment.
 - **Color System**: Exclusive use of Liferay Classic theme frontend tokens for branding consistency.
 - **JavaScript Isolation**: IIFEs and event-driven architecture ensure proper initialization and prevent global namespace pollution.
@@ -51,7 +51,7 @@ The project employs a modular, fragment-based architecture where each UI compone
     - **Video Integration**: Modal video player with play button overlay, configurable visibility based on `showVideo` setting.
     - **Statistics Display**: Statistics section with configurable visibility based on `showStats` setting.
     - **Dynamic Styling**: Layout and background variants controlled through data attributes and CSS custom properties.
-    - **Performance Ultra-Optimized**: Targeting 90+ Lighthouse score with aggressive LCP optimization (sub-2.5s), CLS elimination (<0.1), critical CSS consolidation, eager image loading, complete mobile responsiveness, and zero debugging artifacts. Moved all critical Hero styles to client extension critical.css and removed duplicate CSS for optimal performance.
+    - **Performance Ultra-Optimized**: Targeting 90+ Lighthouse score with aggressive LCP optimization (sub-2.5s), CLS elimination (<0.1), inline CSS for critical rendering, eager image loading, complete mobile responsiveness, and zero debugging artifacts. Self-contained Hero fragment with inline styles for immediate rendering.
 - **Footer Fragment**:
     - **Comprehensive Configuration**: Options for newsletter signup, social media visibility, back-to-top button, company name, style variants (dark/light/primary), column layouts (5/4/3 columns), link tracking, and newsletter service integration.
     - **Dynamic Styling System**: Three footer style variants with complete color scheme adaptation.
