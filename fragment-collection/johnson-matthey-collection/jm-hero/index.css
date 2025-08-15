@@ -1,5 +1,30 @@
 /* Johnson Matthey Hero Fragment Styles - LCP Optimized */
 
+/* CRITICAL LCP FIX: Override any CSS variable dependencies */
+#wrapper .jm-lcp-optimized {
+  font-size: 1.125rem !important;
+  line-height: 1.7 !important;
+  color: #495057 !important;
+  margin-bottom: 2rem !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  contain: layout style !important;
+}
+
+#wrapper .jm-hero {
+  padding: 3rem 0 !important;
+  background: #fff !important;
+  min-height: 500px !important;
+}
+
+#wrapper .jm-hero-description-extended {
+  font-size: 1.125rem !important;
+  line-height: 1.7 !important;
+  color: #495057 !important;
+  margin-bottom: 2rem !important;
+}
+
 /* Critical styles moved to inline <style> for LCP performance */
 /* Non-critical styles below */
 
@@ -115,29 +140,29 @@
 #wrapper .jm-hero-stat-number {
   font-size: 4rem;
   font-weight: 800;
-  color: var(--jm-primary);
+  color: #0b5fff !important;
   line-height: 1;
   display: block;
 }
 
 #wrapper .jm-hero-stat-label {
   font-size: 1.125rem;
-  color: var(--jm-gray-600);
+  color: #6b6c7e !important;
   font-weight: 500;
-  margin-top: var(--jm-spacing-xs);
+  margin-top: 0.25rem !important;
 }
 
-/* LCP element styles moved to critical inline CSS */
+/* LCP element styles - CRITICAL: NO CSS VARIABLES */
 #wrapper .jm-hero-description-extended {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--jm-gray-700);
-  margin-bottom: var(--jm-spacing-lg);
+  font-size: 1.125rem !important;
+  line-height: 1.7 !important;
+  color: #495057 !important;
+  margin-bottom: 2rem !important;
 }
 
 #wrapper .jm-hero-description strong {
-  color: var(--jm-primary);
-  font-weight: 700;
+  color: #0b5fff !important;
+  font-weight: 700 !important;
 }
 
 #wrapper .jm-hero-actions {
