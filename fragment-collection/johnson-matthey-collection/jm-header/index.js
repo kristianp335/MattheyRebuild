@@ -701,6 +701,15 @@
                 document.body.style.overflow = '';
             }
         });
+        
+        // Close mobile menu when viewport expands beyond mobile breakpoint
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && mobileNav.classList.contains('show')) {
+                mobileNav.classList.remove('show');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
     }
     
     function initializeModals() {
