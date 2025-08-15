@@ -1,13 +1,12 @@
 /* Johnson Matthey Global CSS - Performance Optimized */
 /* Version: 1.5.0 - Focused on critical rendering path */
 
-/* EMERGENCY LCP FIX: Critical rendering path optimization */
-/* LCP ISSUE: 5.5s is unacceptable - must fix immediately */
+/* PERFORMANCE STRATEGY: Minimize CSS, prioritize critical rendering path */
 
 /* CRITICAL ONLY: Essential CSS custom properties */
 #wrapper {
-  /* CRITICAL: LCP optimization - immediate color resolution */
-  --jm-primary: var(--primary, #0b5fff);
+  /* Core brand colors - highest priority */
+  --jm-primary: var(--brand-color-1, #0b5fff);
   --jm-gray-700: var(--gray-700, #495057);
   --jm-white: var(--white, #fff);
   --jm-dark: var(--brand-color-4, #30313f);
@@ -51,7 +50,7 @@
   /* Effects - non-critical, loaded last */
   --jm-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --jm-box-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
-  --jm-transition: all 0.2s ease;
+  --jm-transition: all 0.3s ease;
   --jm-border-radius: 4px;
   --jm-border-radius-lg: 8px;
 }

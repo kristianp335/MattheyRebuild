@@ -1,2 +1,247 @@
-/* All CSS consolidated to inline styles in index.html for optimal performance */
-/* This eliminates duplicate styles and reduces CSS blocking time */
+/* HERO FRAGMENT - NON-CRITICAL STYLES */
+/* Core layout handled inline for optimal LCP */
+
+/* Hero content elements - non-critical rendering */
+.jm-hero-text {
+  display: block;
+}
+
+.jm-hero-stats {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.jm-hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+  width: 80px;
+}
+
+.jm-hero-stat-number {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #0b5fff;
+  line-height: 1;
+  display: block;
+}
+
+.jm-hero-stat-label {
+  font-size: 1.125rem;
+  color: #e9ecef;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.jm-hero-description,
+.jm-hero-description-extended {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #f8f9fa;
+  margin-bottom: 2rem;
+}
+
+.jm-hero-actions {
+  margin-top: 2rem;
+}
+
+.jm-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: #0b5fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.jm-btn:hover {
+  background: #0952e6;
+}
+
+.jm-hero-media {
+  display: block;
+  position: relative;
+}
+
+.jm-hero-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.jm-hero-video-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+}
+
+.jm-play-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.jm-video-caption {
+  color: #fff;
+  font-size: 0.875rem;
+  margin: 0;
+  background: rgba(0,0,0,0.7);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+/* Layout Style Variants */
+.jm-hero-content[data-layout="text-right"] {
+  grid-template-columns: 0.8fr 1.2fr;
+}
+
+.jm-hero-content[data-layout="text-right"] .jm-hero-text {
+  order: 2;
+}
+
+.jm-hero-content[data-layout="text-right"] .jm-hero-media {
+  order: 1;
+}
+
+.jm-hero-content[data-layout="centered"] {
+  grid-template-columns: 1fr;
+  text-align: center;
+  justify-items: center;
+}
+
+.jm-hero-content[data-layout="centered"] .jm-hero-media {
+  max-width: 600px;
+}
+
+/* Background variations */
+.jm-hero[data-background="light"] {
+  background: #fff;
+  color: #333;
+}
+
+.jm-hero[data-background="light"] .jm-hero-title {
+  color: #333;
+}
+
+.jm-hero[data-background="light"] .jm-hero-description,
+.jm-hero[data-background="light"] .jm-hero-description-extended {
+  color: #495057;
+}
+
+.jm-hero[data-background="light"] .jm-hero-stat-label {
+  color: #6c757d;
+}
+
+/* Mobile responsive - additional breakpoints */
+@media (max-width: 768px) {
+  .jm-hero-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .jm-hero-stat-number {
+    font-size: 3rem;
+  }
+  
+  .jm-hero-media {
+    order: -1;
+  }
+  
+  .jm-hero-img {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jm-hero {
+    padding: 1.5rem 0;
+  }
+  
+  .jm-hero-content {
+    gap: 1.5rem;
+  }
+  
+  .jm-hero-title {
+    font-size: 2rem;
+  }
+  
+  .jm-hero-stat-number {
+    font-size: 2.5rem;
+  }
+}
+
+/* Modal styles - deferred, non-critical */
+.jm-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: none;
+}
+
+.jm-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90%;
+  overflow: hidden;
+}
+
+.jm-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.jm-modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.jm-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.jm-modal-body {
+  padding: 1rem;
+}
+
+.jm-video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.jm-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

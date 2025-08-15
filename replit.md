@@ -13,12 +13,12 @@ The project employs a modular, fragment-based architecture where each UI compone
 **Key Architectural Decisions:**
 - **Dual-Deployment**: Client extension for global CSS/JS and fragment collection for UI components.
 - **Fragment Modularity**: Each component is an independent Liferay fragment.
-- **Color System**: Complete migration to Liferay Classic theme frontend tokens achieved - all hardcoded colors systematically replaced with semantic theme tokens for proper theming compliance.
+- **Color System**: Exclusive use of Liferay Classic theme frontend tokens for branding consistency.
 - **JavaScript Isolation**: IIFEs and event-driven architecture ensure proper initialization and prevent global namespace pollution.
 - **Content Management**: All content (text, images, links) is editable via Liferay's inline editing system using `data-lfr-editable` attributes.
 - **Responsive Design**: Mobile-first approach using CSS Grid and Flexbox with consistent breakpoints.
 - **Modal System**: Centralized system for login, search, and video modals, embedding Liferay portlets with extensive CSS overrides for consistent branding.
-- **Ultra-Fast Animation System**: ALL animations optimized for maximum performance - global transitions 2x faster (0.15s), hero fragment animations completely removed, header delays eliminated, modal focus instant. **Performance-first approach with 87+ Lighthouse score achievement.**
+- **Animation System**: Scroll-triggered animations using CSS transitions/transforms and JavaScript Intersection Observers.
 - **Fragment Configuration**: Uses `typeOptions.validValues` for select fields.
 **FreeMarker Syntax**: Liferay fragments use `[#` brackets instead of `<#` - configuration conditionals use `[#if condition]content[/#if]` syntax.
 - **Fragment Element Detection**: Fixed critical issue where `document.currentScript.closest()` fails in Liferay's ES module environment. All fragments now properly use the `fragmentElement` variable injected by Liferay instead of trying to find elements with `document.currentScript`.
@@ -51,7 +51,7 @@ The project employs a modular, fragment-based architecture where each UI compone
     - **Video Integration**: Modal video player with play button overlay, configurable visibility based on `showVideo` setting.
     - **Statistics Display**: Statistics section with configurable visibility based on `showStats` setting.
     - **Dynamic Styling**: Layout and background variants controlled through data attributes and CSS custom properties.
-    - **Performance Ultra-Optimized**: **ACHIEVEMENT UNLOCKED** - LCP improved from 5.5s to 3.2s (2.3s improvement), FCP from 5.5s+ to 2.8s. **ALL ANIMATIONS REMOVED** from hero fragment for maximum speed. Header animations optimized with zero delays. Inline CSS, base64 SVG, eager loading, perfect CLS (0.0), excellent TBT (180ms). **85+ Lighthouse score achieved**.
+    - **Performance Ultra-Optimized**: Targeting 90+ Lighthouse score with aggressive LCP optimization (sub-2.5s), CLS elimination (<0.1), inline CSS for critical rendering, eager image loading, complete mobile responsiveness, and zero debugging artifacts. Self-contained Hero fragment with inline styles for immediate rendering.
 - **Footer Fragment**:
     - **Comprehensive Configuration**: Options for newsletter signup, social media visibility, back-to-top button, company name, style variants (dark/light/primary), column layouts (5/4/3 columns), link tracking, and newsletter service integration.
     - **Dynamic Styling System**: Three footer style variants with complete color scheme adaptation.

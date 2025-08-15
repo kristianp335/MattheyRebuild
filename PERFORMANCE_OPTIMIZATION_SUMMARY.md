@@ -1,15 +1,15 @@
 # Performance Optimization Summary for 90+ Lighthouse Score
 
-## CRITICAL PERFORMANCE EMERGENCY 🚨
-- **Latest Score**: ~60-70 (TERRIBLE - targeting 90+)
-- **First Contentful Paint**: 2.8s (acceptable)
-- **Largest Contentful Paint**: **5.5s** (CATASTROPHIC - was 3.4s!)
-- **Speed Index**: 2.8s (good)
-- **Total Blocking Time**: 107ms (excellent)  
+## Current Performance Status
+- **Latest Score**: ~82-83 (targeting 90+)
+- **First Contentful Paint**: 2.9s (got worse - was 2.8s)
+- **Largest Contentful Paint**: 3.4s (unchanged) 
+- **Speed Index**: 2.9s (got worse - was 2.8s)
+- **Total Blocking Time**: 140ms (excellent)
 - **Cumulative Layout Shift**: 0 (perfect)
 
-## ROOT CAUSE IDENTIFIED
-LCP jumped from 3.4s to 5.5s - hero element rendering is the bottleneck!
+## Previous Optimizations BACKFIRED
+The aggressive optimizations made performance worse. Reverted approach.
 
 ## Optimizations Implemented
 
@@ -73,14 +73,11 @@ setupMegaMenuObserver();
 3. **Main-thread Work**: Reduced by eliminating unnecessary setTimeout calls
 4. **Overall Score**: Should reach 90+ from current 85
 
-## EMERGENCY LCP FIXES APPLIED
-- **Inline SVG hero image** - eliminates network request for LCP element
-- **Hardware acceleration** - `transform: translateZ(0)` and `backface-visibility: hidden`
-- **Content visibility optimization** - `content-visibility: auto` for faster rendering
-- **CSS containment** - `contain: layout` for isolated rendering
-- **Direct color values** - removed CSS variable fallbacks for immediate resolution
-- **will-change optimizations** - browser rendering hints
-- **CSS consolidation** - ALL styles now inline, eliminated duplicate CSS file (3974 bytes saved)
+## NEW APPROACH - Files Updated
+- `fragment-collection/johnson-matthey-collection/jm-hero/index.html` - Added beautiful inline SVG hero image
+- `jm-frontend-client-extension/assets/global.css` - Simplified approach, focused on critical path
+- Fixed: Multiple setTimeout initialization issues in header JS
+- Added: Inline SVG with Johnson Matthey technology icons (catalyst, battery, hydrogen, sustainability)
 
 ## SVG Hero Image Features
 ✅ **Inline SVG** for instant rendering (no network request)
@@ -93,34 +90,4 @@ setupMegaMenuObserver();
 ## Ready for Testing
 All fragment ZIPs have been regenerated with optimizations. Import the updated fragments to test the performance improvements.
 
-## ✅ ULTRA-PERFORMANCE MODE ACTIVATED - ALL ANIMATIONS REMOVED!
-✅ **MASSIVE LCP improvement**: From 5.5s down to **3.2s** (2.3s improvement!)  
-✅ **Excellent FCP**: Dropped from 5.5s+ to **2.8s** (2.7s improvement!)  
-✅ **Perfect CLS**: **0.0** - zero layout shift  
-✅ **Great TBT**: **180ms** - excellent blocking time  
-✅ **Speed Index**: **2.8s** - fast visual completion  
-
-### **HERO FRAGMENT - ZERO ANIMATIONS:**
-✅ **All animations completely removed** from hero fragment  
-✅ **Instant rendering** - no JavaScript delays or transitions  
-✅ **Modal system**: Instant open/close with no animations  
-✅ **Video loading**: Immediate display without loading animations  
-
-### **HEADER FRAGMENT - ULTRA-FAST ANIMATIONS:**
-✅ **All setTimeout delays removed** - immediate initialization  
-✅ **Mega menu updates**: Instant without 200ms delays  
-✅ **Dropdown initialization**: No 100ms delays  
-✅ **Search focus**: Immediate without setTimeout  
-
-### **LIFERAY COMPLIANCE:**
-✅ **Fixed validation error** - IMG tag with base64 SVG  
-✅ **Zero CSS blocking** - all styles inline  
-✅ **3,974 bytes eliminated** from duplicate CSS  
-
-### **🌐 GLOBAL CLIENT EXTENSIONS - ULTRA-FAST:**
-✅ **All transitions 2x faster** - changed from 0.3s to 0.15s globally  
-✅ **Modal focus delays removed** - instant focus without 100ms setTimeout  
-✅ **Skip link animations sped up** - 0.15s transition vs 0.3s  
-✅ **All fragments inherit speed** - header, hero, footer, cards all faster  
-
-**PERFORMANCE RESULT**: **87+ Lighthouse score expected** with ultra-fast interactions!
+**Priority**: Import `jm-header.zip` and `jm-hero.zip` first as they contain the most critical optimizations.
