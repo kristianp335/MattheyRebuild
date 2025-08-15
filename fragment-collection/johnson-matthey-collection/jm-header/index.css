@@ -206,7 +206,7 @@
 
 /* Navigation Links Section */
 #wrapper .jm-dropdown-links {
-  padding: var(--jm-spacing-md) 0;
+  padding: var(--jm-spacing-md) var(--jm-spacing-lg);
   list-style: none !important;
   margin: 0;
 }
@@ -229,7 +229,8 @@
 #wrapper .jm-dropdown-item {
   display: block;
   width: 100%;
-  padding: var(--jm-spacing-md) var(--jm-spacing-xl);
+  padding: var(--jm-spacing-md) calc(var(--jm-spacing-xl) * 1.5);
+  margin-right: var(--jm-spacing-lg);
   color: var(--jm-gray-800);
   text-decoration: none;
   transition: all 0.2s ease;
