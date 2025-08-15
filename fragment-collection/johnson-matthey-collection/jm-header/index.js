@@ -752,11 +752,26 @@
             if (dropzone && megaContent) {
                 // Clone dropzone content to mega content area
                 const dropzoneContent = dropzone.innerHTML;
-                if (dropzoneContent.trim()) {
+                const hasContent = dropzoneContent.trim() && !dropzoneContent.includes('Drop widgets here');
+                
+                if (hasContent) {
                     megaContent.innerHTML = dropzoneContent;
-                    megaContent.style.display = 'block';
+                    megaContent.classList.add('has-content');
+                    
+                    // Add class to parent dropdown for styling
+                    const dropdown = megaContent.closest('.jm-dropdown-menu');
+                    if (dropdown) {
+                        dropdown.classList.add('has-mega-content');
+                    }
                 } else {
-                    megaContent.style.display = 'none';
+                    megaContent.classList.remove('has-content');
+                    megaContent.innerHTML = '';
+                    
+                    // Remove class from parent dropdown
+                    const dropdown = megaContent.closest('.jm-dropdown-menu');
+                    if (dropdown) {
+                        dropdown.classList.remove('has-mega-content');
+                    }
                 }
             }
         }
