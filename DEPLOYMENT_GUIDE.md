@@ -9,7 +9,7 @@ The client extension now uses **split CSS architecture** for optimal performance
 johnson-matthey-critical-css:
   name: Johnson Matthey Critical CSS - High Priority
   type: globalCSS
-  url: global-critical.css
+  url: critical.css
   cssElementAttributes:
     media: "all"
     fetchpriority: "high"
@@ -17,7 +17,7 @@ johnson-matthey-critical-css:
 johnson-matthey-deferred-css:
   name: Johnson Matthey Deferred CSS - Low Priority  
   type: globalCSS
-  url: global-deferred.css
+  url: deferred.css
   cssElementAttributes:
     media: "all"
     fetchpriority: "low"
@@ -37,13 +37,13 @@ johnson-matthey-global-js:
 ## **🎯 CSS Loading Strategy:**
 
 ### **Critical CSS (63 lines)**
-- **File**: `global-critical.css`
+- **File**: `critical.css`
 - **Priority**: HIGH
 - **Contains**: Essential LCP styles, hero text, header logo, basic layout
 - **Loads**: Immediately for fast LCP rendering
 
 ### **Deferred CSS (90 lines)**  
-- **File**: `global-deferred.css`
+- **File**: `deferred.css`
 - **Priority**: LOW
 - **Contains**: Modals, forms, scrollbars, hover effects, animations
 - **Loads**: After LCP, non-blocking
