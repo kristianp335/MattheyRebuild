@@ -32,8 +32,9 @@ The project employs a modular, fragment-based architecture where each UI compone
     - **Smart Edit Mode Detection**: Comprehensive edit mode detection and visual indicators with smart dropzone system.
     - **Language Selector Dropzone**: Positioned next to user profile for multilingual widget support.
     - **SPA Navigation Support**: Full SennaJS compatibility.
-    - **Mobile Responsiveness**: Fixed hamburger menu and slide-out navigation.
+    - **Mobile Responsiveness**: Fixed hamburger menu and slide-out navigation with viewport-based resize handling.
     - **Sticky Header Implementation**: Reliable `position: fixed` implementation with full-width coverage and enhanced shadow.
+    - **Mega Menu System**: 5 configurable dropzones that map to navigation items with children, featuring dynamic width sizing, content-aware display, mobile viewport visibility controls, and real-time content synchronization with mutation observers.
 - **Hero Fragment**:
     - **Comprehensive Configuration**: Options for layout style (centered/split), background style (image/gradient/solid), show/hide stats, and show/hide video overlay.
     - **FreeMarker Integration**: All configuration options properly implemented using `[#if condition]` syntax for conditional rendering.
