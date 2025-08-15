@@ -191,10 +191,16 @@
   padding: var(--jm-spacing-lg);
   border-bottom: 1px solid var(--jm-gray-200);
   display: none;
+  min-height: 60px;
 }
 
 #wrapper .jm-mega-content.has-content {
-  display: block;
+  display: block !important;
+}
+
+/* Ensure mega content shows when dropdown is visible */
+#wrapper .jm-dropdown-menu.show .jm-mega-content.has-content {
+  display: block !important;
 }
 
 /* Navigation Links Section */
