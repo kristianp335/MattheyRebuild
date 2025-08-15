@@ -63,7 +63,7 @@
         // Focus first focusable element
         const focusableElement = modal.querySelector('input, button, select, textarea, [tabindex]:not([tabindex="-1"])');
         if (focusableElement) {
-            setTimeout(() => focusableElement.focus(), 100);
+            focusableElement.focus();
         }
         
         // Dispatch custom event
@@ -134,7 +134,7 @@
             text-decoration: none;
             border-radius: 4px;
             z-index: 1000;
-            transition: top 0.3s;
+            transition: top 0.15s;
         `;
         
         skipLink.addEventListener('focus', function() {
