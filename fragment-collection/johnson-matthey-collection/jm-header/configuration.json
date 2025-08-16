@@ -54,6 +54,20 @@
               }
             ]
           }
+        },
+        {
+          "name": "primaryColor",
+          "label": "Primary Brand Color",
+          "description": "Primary color for branding elements and links",
+          "type": "colorPalette",
+          "defaultValue": "#0b5fff"
+        },
+        {
+          "name": "textColor",
+          "label": "Text Color",
+          "description": "Main text color for navigation and content",
+          "type": "colorPalette",
+          "defaultValue": "#393a4a"
         }
       ]
     }
