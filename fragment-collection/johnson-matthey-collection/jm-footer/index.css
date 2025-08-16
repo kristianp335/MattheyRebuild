@@ -383,67 +383,77 @@
 }
 
 @media (max-width: 768px) {
-  /* Keep 4-column layout but improve mobile readability */
+  /* Mobile: Always use 2 columns regardless of desktop configuration */
   #wrapper .jm-footer {
-    padding: var(--jm-spacing-lg) var(--jm-spacing-sm);
+    padding: var(--jm-spacing-lg) var(--jm-spacing-md);
   }
   
-  /* Preserve 4-column grid for mobile but with smaller gaps */
-  #wrapper .jm-footer-main[data-layout="4-column"] {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--jm-spacing-sm);
-    font-size: 14px;
+  /* Force 2 columns on mobile for all layouts */
+  #wrapper .jm-footer-main {
+    grid-template-columns: 1fr 1fr !important;
+    gap: var(--jm-spacing-lg) !important;
   }
   
-  /* Improve mobile text readability without changing layout */
-  #wrapper .jm-footer-title {
-    font-size: 14px;
-    margin-bottom: var(--jm-spacing-sm);
-    font-weight: 700;
-    line-height: 1.2;
-  }
-  
-  #wrapper .jm-footer-links a {
-    font-size: 13px;
-    line-height: 1.3;
-    padding: 6px 0;
-    word-wrap: break-word;
-    hyphens: auto;
-  }
-  
-  /* Company section mobile adjustments */
+  /* Company section spans both columns on mobile */
   #wrapper .jm-footer-company {
-    padding-right: var(--jm-spacing-xs);
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: var(--jm-spacing-lg);
+    padding-right: 0;
   }
   
   #wrapper .jm-footer-description {
-    font-size: 13px;
-    line-height: 1.4;
-    margin-bottom: var(--jm-spacing-md);
-    word-wrap: break-word;
-    hyphens: auto;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: var(--jm-spacing-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
-  /* Social links mobile */
+  /* Social media centered */
+  #wrapper .jm-footer-social {
+    text-align: center;
+  }
+  
   #wrapper .jm-social-links {
-    gap: var(--jm-spacing-xs);
-    justify-content: flex-start;
+    justify-content: center;
+    gap: var(--jm-spacing-md);
   }
   
   #wrapper .jm-social-link {
-    width: 28px;
-    height: 28px;
+    width: 40px;
+    height: 40px;
   }
   
   #wrapper .jm-footer-social-title {
-    font-size: 13px;
-    margin-bottom: var(--jm-spacing-xs);
+    font-size: 16px;
+    margin-bottom: var(--jm-spacing-md);
+  }
+  
+  /* Footer sections use 2-column grid */
+  #wrapper .jm-footer-section {
+    text-align: center;
+  }
+  
+  #wrapper .jm-footer-title {
+    font-size: 18px;
+    margin-bottom: var(--jm-spacing-md);
+    font-weight: 600;
+  }
+  
+  #wrapper .jm-footer-links a {
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 8px 0;
+    display: block;
   }
   
   /* Newsletter mobile */
   #wrapper .jm-newsletter-content {
     grid-template-columns: 1fr;
-    gap: var(--jm-spacing-md);
+    gap: var(--jm-spacing-lg);
+    text-align: center;
   }
   
   #wrapper .jm-newsletter-form {
@@ -454,90 +464,85 @@
   #wrapper .jm-footer-bottom {
     flex-direction: column;
     text-align: center;
-    gap: var(--jm-spacing-md);
+    gap: var(--jm-spacing-lg);
   }
   
   #wrapper .jm-legal-links {
     justify-content: center;
     flex-wrap: wrap;
-    gap: var(--jm-spacing-sm);
+    gap: var(--jm-spacing-md);
   }
 }
 
 @media (max-width: 480px) {
-  /* Extra small screens - preserve 4-column but make even more compact */
+  /* Very small screens: Single column layout */
   #wrapper .jm-footer {
-    padding: var(--jm-spacing-md) 2px;
+    padding: var(--jm-spacing-md) var(--jm-spacing-sm);
   }
   
-  #wrapper .jm-footer-main[data-layout="4-column"] {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    font-size: 12px;
+  #wrapper .jm-footer-main {
+    grid-template-columns: 1fr !important;
+    gap: var(--jm-spacing-lg) !important;
   }
   
-  /* Ultra-compact typography for very small screens */
+  /* Company section full width */
+  #wrapper .jm-footer-company {
+    grid-column: 1;
+    margin-bottom: var(--jm-spacing-lg);
+  }
+  
+  #wrapper .jm-footer-description {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  /* Footer sections stack vertically */
+  #wrapper .jm-footer-section {
+    text-align: center;
+  }
+  
   #wrapper .jm-footer-title {
-    font-size: 12px;
-    margin-bottom: 4px;
-    line-height: 1.1;
-    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: var(--jm-spacing-md);
   }
   
   #wrapper .jm-footer-links a {
-    font-size: 11px;
-    line-height: 1.2;
-    padding: 4px 0;
-    word-wrap: break-word;
-    hyphens: auto;
+    font-size: 15px;
+    padding: 6px 0;
   }
   
-  /* Company section extra compact */
-  #wrapper .jm-footer-description {
-    font-size: 11px;
-    line-height: 1.3;
-    margin-bottom: var(--jm-spacing-xs);
-    word-wrap: break-word;
-    hyphens: auto;
-  }
-  
-  /* Social links ultra compact */
-  #wrapper .jm-social-links {
-    gap: 2px;
-  }
-  
+  /* Social links smaller */
   #wrapper .jm-social-link {
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
   }
   
   #wrapper .jm-footer-social-title {
-    font-size: 11px;
-    margin-bottom: 2px;
+    font-size: 15px;
   }
   
-  /* Legal links stack on very small screens */
+  /* Legal links stack */
   #wrapper .jm-legal-links {
     flex-direction: column;
-    gap: var(--jm-spacing-xs);
-    font-size: 10px;
+    gap: var(--jm-spacing-sm);
+    font-size: 13px;
   }
   
-  /* Newsletter extra compact */
+  /* Newsletter mobile */
   #wrapper .jm-newsletter-signup {
     max-width: 100%;
   }
   
   #wrapper .jm-form-group {
     flex-direction: column;
-    gap: var(--jm-spacing-xs);
+    gap: var(--jm-spacing-md);
   }
   
   #wrapper .jm-newsletter-input,
   #wrapper .jm-newsletter-btn {
     border-radius: var(--jm-border-radius);
     border: 2px solid var(--jm-gray-600);
-    font-size: 12px;
+    font-size: 14px;
   }
   
   #wrapper .jm-newsletter-btn {
