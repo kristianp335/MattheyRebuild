@@ -54,7 +54,7 @@ The project employs a modular, fragment-based architecture where each UI compone
     - **Video Integration**: Modal video player with play button overlay, configurable visibility based on `showVideo` setting.
     - **Statistics Display**: Statistics section with configurable visibility based on `showStats` setting.
     - **Dynamic Styling**: Layout and background variants controlled through data attributes and CSS custom properties.
-    - **Performance Ultra-Optimized**: Targeting 90+ Lighthouse score with aggressive LCP optimization (sub-2.5s), CLS elimination (<0.1), inline CSS for critical rendering, eager image loading, complete mobile responsiveness, and zero debugging artifacts. Self-contained Hero fragment with inline styles for immediate rendering. **LCP Critical Fix**: Resolved structural render-blocking by moving hero description outside stats flexbox container and eliminating CSS variable dependencies with direct color values for immediate paint.
+    - **Performance Ultra-Optimized**: Targeting 90+ Lighthouse score with aggressive LCP optimization (sub-2.5s), CLS elimination (<0.1), inline CSS for critical rendering, eager image loading, complete mobile responsiveness, and zero debugging artifacts. Self-contained Hero fragment with inline styles for immediate rendering.
 - **Footer Fragment**:
     - **Comprehensive Configuration**: Options for newsletter signup, social media visibility, back-to-top button, company name, style variants (dark/light/primary), column layouts (5/4/3 columns), link tracking, and newsletter service integration.
     - **Dynamic Styling System**: Three footer style variants with complete color scheme adaptation.
