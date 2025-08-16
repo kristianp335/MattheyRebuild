@@ -60,9 +60,10 @@
 
 .jm-hero-stats {
   display: flex !important;
-  align-items: flex-start !important;
-  gap: 1.5rem !important;
-  margin-bottom: 2rem !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  margin-bottom: 1.5rem !important;
+  justify-content: flex-start !important;
 }
 
 .jm-hero-stat {
@@ -77,19 +78,33 @@
 .jm-hero-stat-number {
   font-size: 4rem !important;
   font-weight: 800 !important;
-  color: var(--jm-primary, #0b5fff) !important;
+  color: #0b5fff !important;
   line-height: 1 !important;
   display: block !important;
 }
 
 .jm-hero-stat-label {
   font-size: 1.125rem !important;
-  color: var(--jm-gray-200, #e9ecef) !important;
+  color: #e9ecef !important;
   font-weight: 500 !important;
   margin-top: 0.25rem !important;
 }
 
-.jm-hero-description,
+/* CRITICAL LCP ELEMENT - Direct colors for immediate rendering */
+.jm-hero-description {
+  font-size: 1.125rem !important;
+  line-height: 1.7 !important;
+  color: #ffffff !important;
+  margin-bottom: 2rem !important;
+  font-weight: 400 !important;
+  display: block !important;
+}
+
+.jm-hero-description strong {
+  font-weight: 600 !important;
+  color: #ffffff !important;
+}
+
 .jm-hero-description-extended {
   font-size: 1.125rem !important;
   line-height: 1.7 !important;
@@ -253,10 +268,10 @@
               <span class="jm-hero-stat-number" data-lfr-editable-id="statNumber" data-lfr-editable-type="text">200</span>
               <span class="jm-hero-stat-label" data-lfr-editable-id="statLabel" data-lfr-editable-type="text">years</span>
             </div>
-            <p class="jm-hero-description" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text">
-              For over <strong>200</strong> years Johnson Matthey has contributed to solving some of the world's toughest problems, leaning on our expertise in advanced metals chemistry. But now is the time to make our biggest impact yet.
-            </p>
           </div>
+          <p class="jm-hero-description" data-lfr-editable-id="heroDescription" data-lfr-editable-type="rich-text">
+            For over <strong>200</strong> years Johnson Matthey has contributed to solving some of the world's toughest problems, leaning on our expertise in advanced metals chemistry. But now is the time to make our biggest impact yet.
+          </p>
           [/#if]
           
           <div class="jm-hero-description-extended" data-lfr-editable-id="heroDescriptionExtended" data-lfr-editable-type="rich-text">
