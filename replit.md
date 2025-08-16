@@ -55,6 +55,7 @@ The project employs a modular, fragment-based architecture where each UI compone
     - **Statistics Display**: Statistics section with configurable visibility based on `showStats` setting.
     - **Dynamic Styling**: Layout and background variants controlled through data attributes and CSS custom properties.
     - **Performance Ultra-Optimized**: Targeting 90+ Lighthouse score with aggressive LCP optimization (sub-2.5s), CLS elimination (<0.1), inline CSS for critical rendering, eager image loading, complete mobile responsiveness, and zero debugging artifacts. Self-contained Hero fragment with inline styles for immediate rendering.
+    - **Direct Liferay Token Integration**: Optimized to use native Liferay theme tokens (var(--primary), var(--spacer-4), etc.) directly from the head style element, eliminating dependency on global.css client extension for instant loading performance.
 - **Footer Fragment**:
     - **Comprehensive Configuration**: Options for newsletter signup, social media visibility, back-to-top button, company name, style variants (dark/light/primary), column layouts (5/4/3 columns), link tracking, and newsletter service integration.
     - **Dynamic Styling System**: Three footer style variants with complete color scheme adaptation.
