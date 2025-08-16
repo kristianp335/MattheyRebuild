@@ -61,20 +61,6 @@
               }
             ]
           }
-        },
-        {
-          "name": "primaryColor",
-          "label": "Primary Brand Color",
-          "description": "Primary color for buttons and accents",
-          "type": "colorPalette",
-          "defaultValue": "#0b5fff"
-        },
-        {
-          "name": "backgroundColor",
-          "label": "Background Color",
-          "description": "Override background color (takes precedence over Background Style)",
-          "type": "colorPalette",
-          "defaultValue": "#30313f"
         }
       ]
     }
