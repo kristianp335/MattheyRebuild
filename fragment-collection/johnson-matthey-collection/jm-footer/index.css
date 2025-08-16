@@ -401,37 +401,40 @@
     grid-column: 1 / -1;
     grid-row: 1;
     text-align: center;
-    margin-bottom: var(--jm-spacing-md);
-    padding-right: 0;
+    margin-bottom: var(--jm-spacing-xl);
+    padding: 0 var(--jm-spacing-md);
   }
   
   #wrapper .jm-footer-description {
     font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: var(--jm-spacing-lg);
-    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: var(--jm-spacing-xl);
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
   }
   
-  /* Social media centered */
+  /* Social media perfectly centered */
   #wrapper .jm-footer-social {
     text-align: center;
+    margin-top: var(--jm-spacing-md);
   }
   
   #wrapper .jm-social-links {
     justify-content: center;
-    gap: var(--jm-spacing-md);
+    gap: var(--jm-spacing-lg);
+    margin-top: var(--jm-spacing-md);
   }
   
   #wrapper .jm-social-link {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
   
   #wrapper .jm-footer-social-title {
     font-size: 16px;
     margin-bottom: var(--jm-spacing-md);
+    font-weight: 600;
   }
   
   /* First two navigation sections - second row */
@@ -439,12 +442,14 @@
     grid-column: 1;
     grid-row: 2;
     text-align: center;
+    padding: var(--jm-spacing-md) var(--jm-spacing-sm);
   }
   
   #wrapper .jm-footer-section:nth-child(3) {
     grid-column: 2;
     grid-row: 2;
     text-align: center;
+    padding: var(--jm-spacing-md) var(--jm-spacing-sm);
   }
   
   /* Last two navigation sections - third row, below social icons */
@@ -452,30 +457,51 @@
     grid-column: 1;
     grid-row: 3;
     text-align: center;
+    padding: var(--jm-spacing-md) var(--jm-spacing-sm);
   }
   
   #wrapper .jm-footer-section:nth-child(5) {
     grid-column: 2;
     grid-row: 3;
     text-align: center;
+    padding: var(--jm-spacing-md) var(--jm-spacing-sm);
   }
   
-  /* Footer section styling */
+  /* Footer section styling - perfectly centered */
   #wrapper .jm-footer-section {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   #wrapper .jm-footer-title {
     font-size: 18px;
-    margin-bottom: var(--jm-spacing-md);
+    margin-bottom: var(--jm-spacing-lg);
     font-weight: 600;
+    text-align: center;
+  }
+  
+  #wrapper .jm-footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--jm-spacing-sm);
+    width: 100%;
+  }
+  
+  #wrapper .jm-footer-links li {
+    text-align: center;
+    width: 100%;
   }
   
   #wrapper .jm-footer-links a {
     font-size: 16px;
-    line-height: 1.4;
-    padding: 8px 0;
-    display: block;
+    line-height: 1.5;
+    padding: var(--jm-spacing-xs) 0;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
   }
   
   /* Newsletter mobile */
