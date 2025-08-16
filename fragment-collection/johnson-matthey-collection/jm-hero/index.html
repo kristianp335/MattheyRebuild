@@ -15,28 +15,28 @@
   padding: 10rem 0 !important;
   width: 100% !important;
   position: relative !important;
-  background: var(--gray-900, #272833) !important;
-  color: var(--white, #fff) !important;
+  background: #272833 !important;
+  color: #fff !important;
 }
 
 .jm-hero[data-background="dark"] {
-  background: var(--gray-900, #272833) !important;
-  color: var(--white, #fff) !important;
+  background: #272833 !important;
+  color: #fff !important;
 }
 
 .jm-hero[data-background="primary"] {
-  background: var(--primary, #0b5fff) !important;
-  color: var(--white, #fff) !important;
+  background: #1E22AA !important;
+  color: #fff !important;
 }
 
 .jm-hero[data-background="light"] {
-  background: var(--white, #fff) !important;
-  color: var(--body-color, #1c1c24) !important;
+  background: #fff !important;
+  color: #1c1c24 !important;
 }
 
 .jm-hero[data-background="gradient"] {
-  background: linear-gradient(135deg, var(--primary, #0b5fff) 0%, var(--gray-900, #272833) 100%) !important;
-  color: var(--white, #fff) !important;
+  background: linear-gradient(135deg, #1E22AA 0%, #272833 100%) !important;
+  color: #fff !important;
 }
 
 .jm-container {
@@ -63,13 +63,13 @@
   font-size: 3.5rem !important;
   font-weight: 900 !important;
   line-height: 1.2 !important;
-  color: var(--white, #fff) !important;
+  color: #fff !important;
   margin: 0 0 1.5rem 0 !important;
   font-display: swap !important;
 }
 
 .jm-hero[data-background="light"] .jm-hero-title {
-  color: var(--body-color, #1c1c24) !important;
+  color: #1c1c24 !important;
 }
 
 .jm-hero-stats {
@@ -91,27 +91,27 @@
 .jm-hero-stat-number {
   font-size: 3.5rem !important;
   font-weight: 900 !important;
-  color: var(--primary, #0b5fff) !important;
+  color: #1E22AA !important;
   line-height: 1 !important;
   display: block !important;
 }
 
 .jm-hero-stat-label {
   font-size: 1.125rem !important;
-  color: var(--gray-200, #f1f2f5) !important;
+  color: #f1f2f5 !important;
   font-weight: 600 !important;
   margin-top: 0.25rem !important;
 }
 
 .jm-hero[data-background="light"] .jm-hero-stat-label {
-  color: var(--gray-700, #495057) !important;
+  color: #495057 !important;
 }
 
 .jm-hero-description,
 .jm-hero-description-extended {
   font-size: 1.125rem !important;
   line-height: 1.7 !important;
-  color: var(--gray-100, #f7f8f9) !important;
+  color: #f7f8f9 !important;
   margin-bottom: 3rem !important;
   font-display: swap !important;
   letter-spacing: 0.01em !important;
@@ -121,7 +121,7 @@
 
 .jm-hero[data-background="light"] .jm-hero-description,
 .jm-hero[data-background="light"] .jm-hero-description-extended {
-  color: var(--gray-700, #495057) !important;
+  color: #495057 !important;
 }
 
 .jm-hero-description-extended p {
@@ -138,8 +138,8 @@
 .jm-btn {
   display: inline-block !important;
   padding: 0.75rem 3rem !important;
-  background: var(--primary, #0b5fff) !important;
-  color: var(--white, #fff) !important;
+  background: #1E22AA !important;
+  color: #fff !important;
   text-decoration: none !important;
   border-radius: 0.25rem !important;
   font-weight: 600 !important;
@@ -151,8 +151,8 @@
 }
 
 .jm-btn:hover {
-  background: var(--btn-primary-hover-background-color, #0053f0) !important;
-  color: var(--btn-primary-hover-color, #fff) !important;
+  background: #0053f0 !important;
+  color: #fff !important;
 }
 
 .jm-hero-media {
@@ -184,7 +184,7 @@
 }
 
 .jm-video-caption {
-  color: var(--white, #fff) !important;
+  color: #fff !important;
   font-size: 0.875rem !important;
   margin: 0 !important;
   background: rgba(0,0,0,0.7) !important;
@@ -233,7 +233,7 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  background: var(--white, #fff) !important;
+  background: #fff !important;
   border-radius: 0.5rem !important;
   max-width: 800px !important;
   width: 90% !important;
@@ -247,14 +247,14 @@
   justify-content: space-between !important;
   align-items: center !important;
   padding: 1rem !important;
-  border-bottom: 1px solid var(--gray-300, #dee2e6) !important;
+  border-bottom: 1px solid #e7e7ed !important;
 }
 
 .jm-modal-title {
   margin: 0 !important;
   font-size: 1.25rem !important;
   font-weight: 600 !important;
-  color: var(--body-color, #1c1c24) !important;
+  color: #1c1c24 !important;
   font-display: swap !important;
 }
 
@@ -264,7 +264,7 @@
   font-size: 1.5rem !important;
   cursor: pointer !important;
   padding: 0.5rem !important;
-  color: var(--body-color, #1c1c24) !important;
+  color: #1c1c24 !important;
 }
 
 .jm-modal-body {
@@ -486,3 +486,127 @@
     </div>
   </div>
 </div>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Wait for DOM to be fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeHeroVariables);
+  } else {
+    initializeHeroVariables();
+  }
+  
+  function initializeHeroVariables() {
+    try {
+      // Find the hero element within this fragment
+      const heroElement = fragmentElement ? fragmentElement.querySelector('.jm-hero') : document.querySelector('.jm-hero');
+      
+      if (!heroElement) {
+        console.warn('Hero element not found for CSS variable restoration');
+        return;
+      }
+      
+      // Restore all Liferay theme CSS variables with exact values
+      // Colors - using overridden values from Liferay theme tokens
+      heroElement.style.setProperty('--primary', '#1E22AA');
+      heroElement.style.setProperty('--brand-color-1', '#1E22AA'); 
+      heroElement.style.setProperty('--brand-color-2', '#454769');
+      heroElement.style.setProperty('--white', '#fff');
+      heroElement.style.setProperty('--black', '#000');
+      heroElement.style.setProperty('--body-color', '#1c1c24');
+      heroElement.style.setProperty('--body-bg', '#fff');
+      
+      // Grays
+      heroElement.style.setProperty('--gray-100', '#f7f8f9');
+      heroElement.style.setProperty('--gray-200', '#f1f2f5');
+      heroElement.style.setProperty('--gray-300', '#e7e7ed');
+      heroElement.style.setProperty('--gray-400', '#cdced9');
+      heroElement.style.setProperty('--gray-500', '#a7a9bc');
+      heroElement.style.setProperty('--gray-600', '#6b6c7e');
+      heroElement.style.setProperty('--gray-700', '#495057');
+      heroElement.style.setProperty('--gray-800', '#393a4a');
+      heroElement.style.setProperty('--gray-900', '#272833');
+      heroElement.style.setProperty('--gray-dark', '#393a4a');
+      
+      // Theme colors
+      heroElement.style.setProperty('--secondary', '#6b6c7e');
+      heroElement.style.setProperty('--success', '#287d3c');
+      heroElement.style.setProperty('--info', '#2e5aac');
+      heroElement.style.setProperty('--warning', '#b95000');
+      heroElement.style.setProperty('--danger', '#da1414');
+      heroElement.style.setProperty('--light', '#f1f2f5');
+      heroElement.style.setProperty('--dark', '#272833');
+      heroElement.style.setProperty('--lighter', '#f7f8f9');
+      
+      // Button variables
+      heroElement.style.setProperty('--btn-primary-background-color', '#1E22AA');
+      heroElement.style.setProperty('--btn-primary-color', '#fff');
+      heroElement.style.setProperty('--btn-primary-border-color', '#1E22AA');
+      heroElement.style.setProperty('--btn-primary-hover-background-color', '#0053f0');
+      heroElement.style.setProperty('--btn-primary-hover-color', '#fff');
+      heroElement.style.setProperty('--btn-primary-hover-border-color', 'transparent');
+      
+      // Typography
+      heroElement.style.setProperty('--font-family-base', 'system-ui, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', Arial, sans-serif');
+      heroElement.style.setProperty('--font-family-sans-serif', 'system-ui, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen-Sans, Ubuntu, Cantarell, \'Helvetica Neue\', Arial, sans-serif');
+      heroElement.style.setProperty('--font-family-monospace', 'SFMono-Regular, Menlo, Monaco, Consolas, \'Liberation Mono\', \'Courier New\', monospace');
+      
+      // Font sizes (for reference, though hardcoded in CSS)
+      heroElement.style.setProperty('--font-size-base', '0.875rem');
+      heroElement.style.setProperty('--font-size-sm', '0.875rem');
+      heroElement.style.setProperty('--font-size-lg', '1.125rem');
+      heroElement.style.setProperty('--lead-font-size', '1.25rem');
+      heroElement.style.setProperty('--h1-font-size', '1.625rem');
+      
+      // Display sizes
+      heroElement.style.setProperty('--display1-size', '6rem');
+      heroElement.style.setProperty('--display2-size', '5.5rem');
+      heroElement.style.setProperty('--display3-size', '4.5rem');
+      heroElement.style.setProperty('--display4-size', '3.5rem');
+      
+      // Font weights
+      heroElement.style.setProperty('--font-weight-light', '300');
+      heroElement.style.setProperty('--font-weight-normal', '400');
+      heroElement.style.setProperty('--font-weight-semi-bold', '600');
+      heroElement.style.setProperty('--font-weight-bold', '700');
+      heroElement.style.setProperty('--font-weight-bolder', '900');
+      
+      // Spacing (for reference, though hardcoded in CSS)
+      heroElement.style.setProperty('--spacer-0', '0');
+      heroElement.style.setProperty('--spacer-1', '0.25rem');
+      heroElement.style.setProperty('--spacer-2', '0.5rem');
+      heroElement.style.setProperty('--spacer-3', '1rem');
+      heroElement.style.setProperty('--spacer-4', '1.5rem');
+      heroElement.style.setProperty('--spacer-5', '3rem');
+      heroElement.style.setProperty('--spacer-6', '4.5rem');
+      heroElement.style.setProperty('--spacer-7', '6rem');
+      heroElement.style.setProperty('--spacer-8', '7.5rem');
+      heroElement.style.setProperty('--spacer-9', '9rem');
+      heroElement.style.setProperty('--spacer-10', '10rem');
+      
+      // Border radius
+      heroElement.style.setProperty('--border-radius', '0.25rem');
+      heroElement.style.setProperty('--border-radius-sm', '0.1875rem');
+      heroElement.style.setProperty('--border-radius-lg', '0.375rem');
+      heroElement.style.setProperty('--border-radius-circle', '50%');
+      
+      // Box shadows
+      heroElement.style.setProperty('--box-shadow', '0 .5rem 1rem rgba(0, 0, 0, .15)');
+      heroElement.style.setProperty('--box-shadow-sm', '0 .125rem .25rem rgba(0, 0, 0, .075)');
+      heroElement.style.setProperty('--box-shadow-lg', '0 1rem 3rem rgba(0, 0, 0, .175)');
+      
+      // Aspect ratios
+      heroElement.style.setProperty('--aspect-ratio', '100%');
+      heroElement.style.setProperty('--aspect-ratio-16-to-9', '56.25%');
+      heroElement.style.setProperty('--aspect-ratio-4-to-3', '75%');
+      heroElement.style.setProperty('--aspect-ratio-8-to-3', '37.5%');
+      
+      console.log('✅ CSS variables restored successfully for Hero fragment - dynamic theming enabled');
+    } catch (error) {
+      console.warn('❌ Failed to restore CSS variables for Hero fragment:', error);
+    }
+  }
+})();
+</script>
