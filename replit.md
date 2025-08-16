@@ -24,7 +24,7 @@ The project employs a modular, fragment-based architecture where each UI compone
 - **Fragment Element Detection**: Fixed critical issue where `document.currentScript.closest()` fails in Liferay's ES module environment. All fragments now properly use the `fragmentElement` variable injected by Liferay instead of trying to find elements with `document.currentScript`.
 - **Hero Fragment Image Fix**: Fixed "Each editable image element must contain an IMG tag" error by converting inline SVG to IMG element with SVG data URL, maintaining visual design while ensuring Liferay compatibility.
 - **Header Logo Sizing**: Added fixed width="180" height="40" attributes to header logo for consistent sizing.
-- **Footer Mobile Responsiveness Fix**: Mobile optimization preserving 4-column layout while improving typography, word-wrapping, and compact spacing to eliminate text cutoff and cramped appearance without changing the column structure.
+- **Footer Mobile Responsiveness Fix**: Complete mobile layout overhaul with single-column design for optimal readability. Mobile (768px and below) always uses single column regardless of desktop configuration, with all content perfectly centered and proper spacing.
 - **CSS Specificity Fix**: Resolved Hero fragment visibility issue by removing `#wrapper` selector dependencies and CSS containment properties that were causing layout collapse. Fragments now use direct class selectors for maximum Liferay compatibility and guaranteed visibility on live sites.
 - **Mobile Responsiveness Enhancement**: Fixed responsive layout issues with proper mobile breakpoints, improved text contrast for accessibility (WCAG AA compliance), and optimized mobile layout flow.
 - **JM Card Fragment**:
