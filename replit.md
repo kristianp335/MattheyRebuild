@@ -53,6 +53,7 @@ The project employs a modular, fragment-based architecture where each UI compone
     - **Hybrid CSS Architecture**: Critical layout styles inline for immediate first paint, non-critical features (dropdowns, mega menus, animations) in external CSS for feature preservation.
 - **Hero Fragment**:
     - **Comprehensive Configuration**: Options for layout style (centered/split), background style (image/gradient/solid), show/hide stats, and show/hide video overlay.
+    - **Color Customization**: Primary color and background color pickers for real-time brand customization with JavaScript-driven application.
     - **FreeMarker Integration**: All configuration options properly implemented using `[#if condition]` syntax for conditional rendering.
     - **Video Integration**: Modal video player with play button overlay, configurable visibility based on `showVideo` setting.
     - **Statistics Display**: Statistics section with configurable visibility based on `showStats` setting.

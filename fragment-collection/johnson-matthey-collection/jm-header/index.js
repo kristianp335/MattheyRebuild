@@ -25,6 +25,9 @@
     function initializeHeader() {
         // Johnson Matthey Header Fragment initializing
         
+        // Apply configuration colors first
+        applyConfigurationColors();
+        
         // Get configuration values
         const config = getFragmentConfiguration();
         
@@ -32,7 +35,6 @@
         const editMode = isInEditMode();
         
         if (editMode) {
-
             // Apply configuration settings even in edit mode
             applyConfiguration(config);
             // Simplified initialization for edit mode
@@ -53,6 +55,7 @@
         ensureModalsHidden();
         
         // Apply configuration settings
+        applyConfiguration(config);
         applyConfiguration(config);
         
         // Initialize navigation
@@ -1045,6 +1048,28 @@
         
         if (languageDropzone) {
             languageDropzone.classList.add('jm-edit-mode');
+        }
+    }
+    
+    // Apply configuration colors from data attributes
+    function applyConfigurationColors() {
+        const headerFragment = fragmentElement;
+        if (!headerFragment) return;
+        
+        const primaryColor = headerFragment.dataset.primaryColor || '#0b5fff';
+        const textColor = headerFragment.dataset.textColor || '#393a4a';
+        const headerStyle = headerFragment.dataset.headerStyle || 'white';
+        
+        // Apply colors via CSS custom properties
+        headerFragment.style.setProperty('--jm-primary', primaryColor);
+        headerFragment.style.setProperty('--jm-text-color', textColor);
+        
+        // Update header style class for background variants
+        const header = headerFragment.querySelector('.jm-header');
+        if (header) {
+            header.classList.remove('jm-header-white', 'jm-header-light', 'jm-header-primary');
+            header.classList.add(`jm-header-${headerStyle}`);
+            header.setAttribute('data-style', headerStyle);
         }
     }
     

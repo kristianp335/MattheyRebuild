@@ -14,6 +14,9 @@
     // Single initialization only - no looping event listeners for performance
     
     function initializeHero() {
+        // Apply configuration colors first
+        applyConfigurationColors();
+        
         // Immediate critical path only - no deferred execution
         const config = getFragmentConfiguration();
         applyCriticalConfiguration(config);
@@ -35,8 +38,31 @@
             showVideo: configuration.showVideo,
             showStats: configuration.showStats,
             layoutStyle: configuration.layoutStyle,
-            backgroundStyle: configuration.backgroundStyle
+            backgroundStyle: configuration.backgroundStyle,
+            primaryColor: configuration.primaryColor,
+            backgroundColor: configuration.backgroundColor
         };
+    }
+    
+    /**
+     * Apply configuration colors from data attributes
+     */
+    function applyConfigurationColors() {
+        const heroFragment = fragmentElement;
+        if (!heroFragment) return;
+        
+        const primaryColor = heroFragment.dataset.primaryColor || '#0b5fff';
+        const backgroundColor = heroFragment.dataset.backgroundColor || '#30313f';
+        
+        // Apply colors via CSS custom properties
+        heroFragment.style.setProperty('--jm-primary', primaryColor);
+        heroFragment.style.setProperty('--jm-background-override', backgroundColor);
+        
+        // Apply background color override if provided
+        const heroSection = heroFragment.querySelector('.jm-hero');
+        if (heroSection && backgroundColor !== '#30313f') {
+            heroSection.style.setProperty('background', backgroundColor, 'important');
+        }
     }
     
     /**

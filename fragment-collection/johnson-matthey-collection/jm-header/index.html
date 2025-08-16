@@ -1,9 +1,9 @@
 <style>
 /* CRITICAL HEADER CSS: Inline for optimal LCP performance */
 .jm-header-fragment {
-  /* Configuration-driven CSS custom properties - scoped to fragment */
-  --jm-primary: ${configuration.primaryColor!'#0b5fff'};
-  --jm-text-color: ${configuration.textColor!'#393a4a'};
+  /* Essential CSS custom properties - scoped to fragment */
+  --jm-primary: #0b5fff; /* Will be overridden by data attributes */
+  --jm-text-color: #393a4a; /* Will be overridden by data attributes */
   --jm-white: #fff;
   --jm-gray-100: #f7f8f9;
   --jm-gray-200: #f1f2f5;
@@ -237,7 +237,10 @@
 [/#if]
 </style>
 
-<div class="jm-header-fragment">
+<div class="jm-header-fragment" 
+     data-primary-color="[#if configuration.primaryColor??]${configuration.primaryColor}[#else]#0b5fff[/#if]"
+     data-text-color="[#if configuration.textColor??]${configuration.textColor}[#else]#393a4a[/#if]"
+     data-header-style="[#if configuration.headerStyle??]${configuration.headerStyle}[#else]white[/#if]">
   <header class="jm-header">
     <div class="jm-container">
       <div class="jm-header-content">
