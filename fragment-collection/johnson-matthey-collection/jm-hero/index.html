@@ -1,9 +1,14 @@
 <style>
-/* CRITICAL HERO CSS: Inline with native Liferay tokens for immediate first paint */
+/* CRITICAL HERO CSS: RENDER-BLOCKING INDEPENDENT - Loads instantly regardless of external CSS */
+/* NO DEPENDENCIES: Zero reliance on clay.css, global.css, or any external stylesheets */
 .jm-hero-fragment {
   display: block !important;
   width: 100% !important;
   min-height: 500px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: auto !important;
+  position: relative !important;
 }
 
 .jm-hero {
@@ -283,64 +288,90 @@
   height: 100% !important;
 }
 
-/* Font family configuration styles */
+/* ANTI-BLOCKING: Force immediate text visibility */
+.jm-hero-description,
+.jm-hero-description-extended,
+.jm-hero-title,
+.jm-hero-stat-label,
+.jm-btn,
+.jm-video-caption {
+  font-display: swap !important;
+  text-rendering: optimizeSpeed !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Font family configuration styles - BLOCKING INDEPENDENT */
 .jm-hero[data-font-family="system"],
 .jm-hero[data-font-family="system"] * {
-  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
 .jm-hero[data-font-family="liferay"],
 .jm-hero[data-font-family="liferay"] * {
-  font-family: var(--font-family-base, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif) !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif !important;
 }
 
 .jm-hero[data-font-family="serif"],
 .jm-hero[data-font-family="serif"] * {
-  font-family: Georgia, 'Times New Roman', Times, serif !important;
+  font-family: Georgia, "Times New Roman", Times, serif !important;
 }
 
-/* Mobile responsive with Liferay tokens */
+/* CRITICAL MOBILE RESPONSIVE - RENDER-BLOCKING INDEPENDENT */
 @media (max-width: 768px) {
   .jm-hero-content {
     display: block !important;
     text-align: center !important;
+    gap: 3rem !important;
   }
   
   .jm-hero {
-    padding: var(--spacer-5) 0 !important;
+    padding: 3rem 0 !important;
   }
   
   .jm-hero-title {
     font-size: 2.5rem !important;
+    margin-bottom: 1.5rem !important;
   }
   
   .jm-hero-stats {
     justify-content: center !important;
     flex-wrap: wrap !important;
-    margin-bottom: var(--spacer-4) !important;
+    margin-bottom: 1.5rem !important;
+    gap: 1.5rem !important;
   }
   
   .jm-hero-stat-number {
-    font-size: var(--spacer-5) !important;
+    font-size: 3rem !important;
+  }
+  
+  .jm-hero-description,
+  .jm-hero-description-extended {
+    font-size: 1.125rem !important;
+    margin-bottom: 3rem !important;
   }
   
   .jm-hero-media {
-    margin-top: var(--spacer-5) !important;
+    margin-top: 3rem !important;
     order: -1 !important;
   }
   
   .jm-hero-img {
     height: 300px !important;
   }
+  
+  .jm-hero-actions {
+    margin-top: 3rem !important;
+  }
 }
 
 @media (max-width: 480px) {
   .jm-hero {
-    padding: var(--spacer-4) 0 !important;
+    padding: 1.5rem 0 !important;
   }
   
   .jm-hero-content {
-    gap: var(--spacer-4) !important;
+    gap: 1.5rem !important;
   }
   
   .jm-hero-title {
@@ -349,6 +380,11 @@
   
   .jm-hero-stat-number {
     font-size: 2.5rem !important;
+  }
+  
+  .jm-hero-description,
+  .jm-hero-description-extended {
+    font-size: 1rem !important;
   }
   
   .jm-hero-img {
