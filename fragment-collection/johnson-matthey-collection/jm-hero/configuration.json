@@ -52,12 +52,39 @@
                 "value": "primary"
               },
               {
-                "label": "Secondary Color Background",
-                "value": "secondary"
+                "label": "Light Background",
+                "value": "light"
               },
               {
                 "label": "Dark Background",
                 "value": "dark"
+              },
+              {
+                "label": "Gradient Background",
+                "value": "gradient"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fontFamily",
+          "label": "Font Family",
+          "description": "Choose font family for optimal LCP performance",
+          "type": "select",
+          "defaultValue": "system",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "System Fonts (Fastest LCP)",
+                "value": "system"
+              },
+              {
+                "label": "Liferay Default Fonts",
+                "value": "liferay"
+              },
+              {
+                "label": "Serif Fonts",
+                "value": "serif"
               }
             ]
           }

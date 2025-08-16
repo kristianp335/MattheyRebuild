@@ -55,12 +55,13 @@
 }
 
 .jm-hero-title {
-  font-size: var(--display4-size) !important;
-  font-weight: var(--font-weight-bolder) !important;
-  line-height: var(--display-line-height) !important;
-  color: var(--white) !important;
-  margin: 0 0 var(--spacer-4) 0 !important;
-  font-family: var(--font-family-base) !important;
+  font-size: var(--display4-size, 3.5rem) !important;
+  font-weight: var(--font-weight-bolder, 900) !important;
+  line-height: var(--display-line-height, 1.2) !important;
+  color: var(--white, #fff) !important;
+  margin: 0 0 var(--spacer-4, 1.5rem) 0 !important;
+  font-display: swap !important;
+  contain: layout !important;
 }
 
 .jm-hero[data-background="light"] .jm-hero-title {
@@ -104,11 +105,15 @@
 
 .jm-hero-description,
 .jm-hero-description-extended {
-  font-size: var(--font-size-lg) !important;
+  font-size: var(--font-size-lg, 1.125rem) !important;
   line-height: 1.7 !important;
-  color: var(--gray-100) !important;
-  margin-bottom: var(--spacer-5) !important;
-  font-family: var(--font-family-base) !important;
+  color: var(--gray-100, #f7f8f9) !important;
+  margin-bottom: var(--spacer-5, 3rem) !important;
+  font-display: swap !important;
+  contain: layout !important;
+  letter-spacing: 0.01em !important;
+  text-rendering: optimizeSpeed !important;
+  min-height: 1.7em !important;
 }
 
 .jm-hero[data-background="light"] .jm-hero-description,
@@ -118,7 +123,9 @@
 
 .jm-hero-description-extended p {
   color: inherit !important;
-  font-weight: var(--font-weight-normal) !important;
+  font-weight: var(--font-weight-normal, 400) !important;
+  margin: 0 0 var(--spacer-3, 1rem) 0 !important;
+  min-height: 1.7em !important;
 }
 
 .jm-hero-actions {
@@ -127,20 +134,22 @@
 
 .jm-btn {
   display: inline-block !important;
-  padding: 0.75rem var(--spacer-5) !important;
-  background: var(--primary) !important;
-  color: var(--white) !important;
+  padding: 0.75rem var(--spacer-5, 3rem) !important;
+  background: var(--primary, #0b5fff) !important;
+  color: var(--white, #fff) !important;
   text-decoration: none !important;
-  border-radius: var(--border-radius) !important;
-  font-weight: var(--font-weight-semi-bold) !important;
-  font-size: var(--font-size-base) !important;
-  font-family: var(--font-family-base) !important;
+  border-radius: var(--border-radius, 0.25rem) !important;
+  font-weight: var(--font-weight-semi-bold, 600) !important;
+  font-size: var(--font-size-base, 0.875rem) !important;
   transition: background-color 0.3s ease !important;
+  font-display: swap !important;
+  min-height: 44px !important;
+  min-width: 120px !important;
 }
 
 .jm-btn:hover {
-  background: var(--btn-primary-hover-background-color) !important;
-  color: var(--btn-primary-hover-color) !important;
+  background: var(--btn-primary-hover-background-color, #0053f0) !important;
+  color: var(--btn-primary-hover-color, #fff) !important;
 }
 
 .jm-hero-media {
@@ -172,13 +181,13 @@
 }
 
 .jm-video-caption {
-  color: var(--white) !important;
-  font-size: var(--font-size-sm) !important;
-  font-family: var(--font-family-base) !important;
+  color: var(--white, #fff) !important;
+  font-size: var(--font-size-sm, 0.875rem) !important;
   margin: 0 !important;
   background: rgba(0,0,0,0.7) !important;
-  padding: var(--spacer-2) !important;
-  border-radius: var(--border-radius) !important;
+  padding: var(--spacer-2, 0.5rem) !important;
+  border-radius: var(--border-radius, 0.25rem) !important;
+  font-display: swap !important;
 }
 
 /* Layout variants */
@@ -240,10 +249,10 @@
 
 .jm-modal-title {
   margin: 0 !important;
-  font-size: var(--lead-font-size) !important;
-  font-weight: var(--font-weight-semi-bold) !important;
-  font-family: var(--font-family-base) !important;
-  color: var(--body-color) !important;
+  font-size: var(--lead-font-size, 1.25rem) !important;
+  font-weight: var(--font-weight-semi-bold, 600) !important;
+  color: var(--body-color, #1c1c24) !important;
+  font-display: swap !important;
 }
 
 .jm-modal-close {
@@ -272,6 +281,22 @@
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
+}
+
+/* Font family configuration styles */
+.jm-hero[data-font-family="system"],
+.jm-hero[data-font-family="system"] * {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+}
+
+.jm-hero[data-font-family="liferay"],
+.jm-hero[data-font-family="liferay"] * {
+  font-family: var(--font-family-base, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif) !important;
+}
+
+.jm-hero[data-font-family="serif"],
+.jm-hero[data-font-family="serif"] * {
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
 }
 
 /* Mobile responsive with Liferay tokens */
@@ -333,7 +358,7 @@
 </style>
 
 <div class="jm-hero-fragment">
-  <section class="jm-hero" id="main-content" data-background="${configuration.backgroundStyle}">
+  <section class="jm-hero" id="main-content" data-background="${configuration.backgroundStyle}" data-font-family="${configuration.fontFamily}">
     <div class="jm-container">
       <div class="jm-hero-content" data-layout="${configuration.layoutStyle}">
         <!-- Hero Text Content -->
