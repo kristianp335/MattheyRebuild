@@ -383,166 +383,166 @@
 }
 
 @media (max-width: 768px) {
-  /* Main footer mobile adjustments */
+  /* Keep 4-column layout but improve mobile readability */
   #wrapper .jm-footer {
-    padding: var(--jm-spacing-xl) var(--jm-spacing-md) !important;
+    padding: var(--jm-spacing-lg) var(--jm-spacing-sm);
   }
   
-  #wrapper .jm-footer-main {
-    grid-template-columns: 1fr !important;
-    gap: var(--jm-spacing-xl) !important;
+  /* Preserve 4-column grid for mobile but with smaller gaps */
+  #wrapper .jm-footer-main[data-layout="4-column"] {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--jm-spacing-sm);
+    font-size: 14px;
   }
   
-  /* Company section mobile improvements */
-  #wrapper .jm-footer-company {
-    padding-right: 0 !important;
-    text-align: center !important;
-    order: -1 !important;
-    margin-bottom: var(--jm-spacing-lg) !important;
-  }
-  
-  /* Footer description better mobile formatting */
-  #wrapper .jm-footer-description {
-    font-size: 16px !important;
-    line-height: 1.6 !important;
-    max-width: none !important;
-    word-wrap: break-word !important;
-  }
-  
-  /* Social media mobile layout */
-  #wrapper .jm-footer-social {
-    text-align: center !important;
-  }
-  
-  #wrapper .jm-social-links {
-    justify-content: center !important;
-    gap: var(--jm-spacing-lg) !important;
-  }
-  
-  /* Footer sections mobile styling */
-  #wrapper .jm-footer-section {
-    text-align: center !important;
-    padding: 0 var(--jm-spacing-md) !important;
-  }
-  
-  #wrapper .jm-footer-section:nth-child(4),
-  #wrapper .jm-footer-section:nth-child(5) {
-    grid-template-columns: 1fr !important;
-  }
-  
-  /* Footer titles mobile */
+  /* Improve mobile text readability without changing layout */
   #wrapper .jm-footer-title {
-    font-size: 18px !important;
-    margin-bottom: var(--jm-spacing-lg) !important;
-    font-weight: 600 !important;
-  }
-  
-  /* Footer links mobile improvements */
-  #wrapper .jm-footer-links {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: var(--jm-spacing-md) !important;
-  }
-  
-  #wrapper .jm-footer-links li {
-    width: 100% !important;
-    text-align: center !important;
+    font-size: 14px;
+    margin-bottom: var(--jm-spacing-sm);
+    font-weight: 700;
+    line-height: 1.2;
   }
   
   #wrapper .jm-footer-links a {
-    display: block !important;
-    padding: 10px 0 !important;
-    font-size: 16px !important;
-    line-height: 1.4 !important;
-    word-wrap: break-word !important;
+    font-size: 13px;
+    line-height: 1.3;
+    padding: 6px 0;
+    word-wrap: break-word;
+    hyphens: auto;
   }
   
-  /* Footer bottom mobile */
-  #wrapper .jm-footer-bottom {
-    flex-direction: column !important;
-    text-align: center !important;
-    gap: var(--jm-spacing-lg) !important;
+  /* Company section mobile adjustments */
+  #wrapper .jm-footer-company {
+    padding-right: var(--jm-spacing-xs);
   }
   
-  #wrapper .jm-legal-links {
-    justify-content: center !important;
+  #wrapper .jm-footer-description {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: var(--jm-spacing-md);
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Social links mobile */
+  #wrapper .jm-social-links {
+    gap: var(--jm-spacing-xs);
+    justify-content: flex-start;
+  }
+  
+  #wrapper .jm-social-link {
+    width: 28px;
+    height: 28px;
+  }
+  
+  #wrapper .jm-footer-social-title {
+    font-size: 13px;
+    margin-bottom: var(--jm-spacing-xs);
   }
   
   /* Newsletter mobile */
   #wrapper .jm-newsletter-content {
-    grid-template-columns: 1fr !important;
-    gap: var(--jm-spacing-lg) !important;
-    text-align: center !important;
+    grid-template-columns: 1fr;
+    gap: var(--jm-spacing-md);
   }
   
   #wrapper .jm-newsletter-form {
-    justify-content: center !important;
+    justify-content: center;
+  }
+  
+  /* Footer bottom mobile */
+  #wrapper .jm-footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--jm-spacing-md);
+  }
+  
+  #wrapper .jm-legal-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--jm-spacing-sm);
   }
 }
 
 @media (max-width: 480px) {
-  /* Extra small screens - very mobile optimized */
+  /* Extra small screens - preserve 4-column but make even more compact */
   #wrapper .jm-footer {
-    padding: var(--jm-spacing-lg) var(--jm-spacing-sm) !important;
+    padding: var(--jm-spacing-md) 2px;
   }
   
-  #wrapper .jm-footer-main {
-    gap: var(--jm-spacing-lg) !important;
+  #wrapper .jm-footer-main[data-layout="4-column"] {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    font-size: 12px;
   }
   
-  /* Footer description extra small */
-  #wrapper .jm-footer-description {
-    font-size: 15px !important;
-    line-height: 1.5 !important;
-  }
-  
-  /* Footer titles smaller */
+  /* Ultra-compact typography for very small screens */
   #wrapper .jm-footer-title {
-    font-size: 16px !important;
-    margin-bottom: var(--jm-spacing-md) !important;
+    font-size: 12px;
+    margin-bottom: 4px;
+    line-height: 1.1;
+    font-weight: 700;
   }
   
-  /* Footer links smaller */
   #wrapper .jm-footer-links a {
-    font-size: 15px !important;
-    padding: 8px 0 !important;
+    font-size: 11px;
+    line-height: 1.2;
+    padding: 4px 0;
+    word-wrap: break-word;
+    hyphens: auto;
   }
   
-  /* Legal links stack */
+  /* Company section extra compact */
+  #wrapper .jm-footer-description {
+    font-size: 11px;
+    line-height: 1.3;
+    margin-bottom: var(--jm-spacing-xs);
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Social links ultra compact */
+  #wrapper .jm-social-links {
+    gap: 2px;
+  }
+  
+  #wrapper .jm-social-link {
+    width: 24px;
+    height: 24px;
+  }
+  
+  #wrapper .jm-footer-social-title {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  
+  /* Legal links stack on very small screens */
   #wrapper .jm-legal-links {
-    flex-direction: column !important;
-    gap: var(--jm-spacing-sm) !important;
+    flex-direction: column;
+    gap: var(--jm-spacing-xs);
+    font-size: 10px;
   }
   
-  /* Newsletter mobile improvements */
+  /* Newsletter extra compact */
   #wrapper .jm-newsletter-signup {
-    max-width: 100% !important;
+    max-width: 100%;
   }
   
   #wrapper .jm-form-group {
-    flex-direction: column !important;
-    gap: var(--jm-spacing-md) !important;
+    flex-direction: column;
+    gap: var(--jm-spacing-xs);
   }
   
   #wrapper .jm-newsletter-input,
   #wrapper .jm-newsletter-btn {
-    border-radius: var(--jm-border-radius) !important;
-    border: 2px solid var(--jm-gray-600) !important;
+    border-radius: var(--jm-border-radius);
+    border: 2px solid var(--jm-gray-600);
+    font-size: 12px;
   }
   
   #wrapper .jm-newsletter-btn {
-    border-color: var(--jm-primary) !important;
-    justify-content: center !important;
-  }
-  
-  /* Social links smaller spacing */
-  #wrapper .jm-social-links {
-    gap: var(--jm-spacing-md) !important;
-  }
-  
-  #wrapper .jm-social-link {
-    width: 36px !important;
-    height: 36px !important;
+    border-color: var(--jm-primary);
+    justify-content: center;
   }
 }
 
