@@ -32,20 +32,6 @@
 
 **Expected Impact**: LCP reduction from 3.2s to sub-2.5s (eliminates 2,488ms render delay)
 
-### 🔄 **HYBRID RESTORATION SYSTEM**
-**JavaScript Variable Restoration**: After hardcoded CSS renders instantly, JavaScript restores all Liferay theme variables on the hero element:
-
-**Restored Variables**:
-- Colors: `--primary: #1E22AA`, `--white: #fff`, `--gray-100: #f7f8f9`, etc.
-- Fonts: `--font-family-base: system-ui, -apple-system...`  
-- Spacing: `--spacer-1` through `--spacer-10`
-- Typography: `--display1-size` through `--h1-font-size`
-- Buttons: `--btn-primary-*` hover states
-- Borders: `--border-radius` variants
-- Shadows: `--box-shadow` variants
-
-**Result**: ⚡ Instant rendering + 🎨 Full dynamic theming capability
-
 ## Previous Optimizations BACKFIRED
 The aggressive optimizations made performance worse. Reverted approach.
 
