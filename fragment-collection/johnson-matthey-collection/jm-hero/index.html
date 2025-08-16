@@ -1,56 +1,33 @@
 <style>
-/* FONTS: Self-contained font imports */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-/* CRITICAL HERO CSS: Fully self-contained with zero dependencies */
-/* PERFORMANCE: LCP optimization with hardcoded values */
+/* CRITICAL HERO CSS: Inline for immediate first paint */
+/* PERFORMANCE: LCP optimization with SVG default image */
 .jm-hero-fragment {
   display: block !important;
   width: 100% !important;
   min-height: 500px !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .jm-hero {
   padding: 4rem 0 !important;
   width: 100% !important;
   position: relative !important;
-  background: #30313f !important;
-  color: #ffffff !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  background: var(--jm-gray-900, #30313f) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-hero[data-background="dark"] {
-  background: #30313f !important;
-  color: #ffffff !important;
+  background: var(--jm-gray-900, #30313f) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-hero[data-background="primary"] {
-  background: #0b5fff !important;
-  color: #ffffff !important;
+  background: var(--jm-primary, #0b5fff) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-hero[data-background="gradient"] {
-  background: linear-gradient(135deg, #0b5fff 0%, #30313f 100%) !important;
-  color: #ffffff !important;
-}
-
-.jm-hero[data-background="light"] {
-  background: #ffffff !important;
-  color: #212529 !important;
-}
-
-.jm-hero[data-background="light"] .jm-hero-title {
-  color: #212529 !important;
-}
-
-.jm-hero[data-background="light"] .jm-hero-description,
-.jm-hero[data-background="light"] .jm-hero-description-extended {
-  color: #495057 !important;
-}
-
-.jm-hero[data-background="light"] .jm-hero-stat-label {
-  color: #6c757d !important;
+  background: linear-gradient(135deg, var(--jm-primary, #0b5fff) 0%, var(--jm-gray-900, #30313f) 100%) !important;
+  color: var(--jm-white, #fff) !important;
 }
 
 .jm-container {
@@ -77,9 +54,8 @@
   font-size: 3.5rem !important;
   font-weight: 800 !important;
   line-height: 1.1 !important;
-  color: #ffffff !important;
+  color: var(--jm-white, #fff) !important;
   margin: 0 0 1.5rem 0 !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .jm-hero-stats {
@@ -101,38 +77,33 @@
 .jm-hero-stat-number {
   font-size: 4rem !important;
   font-weight: 800 !important;
-  color: #0b5fff !important;
+  color: var(--jm-primary, #0b5fff) !important;
   line-height: 1 !important;
   display: block !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .jm-hero-stat-label {
   font-size: 1.125rem !important;
-  color: #e9ecef !important;
+  color: var(--jm-gray-200, #e9ecef) !important;
   font-weight: 500 !important;
   margin-top: 0.25rem !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .jm-hero-description,
 .jm-hero-description-extended {
   font-size: 1.125rem !important;
   line-height: 1.7 !important;
-  color: #ffffff !important;
+  color: var(--jm-white, #ffffff) !important;
   margin-bottom: 2rem !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  font-weight: 400 !important;
 }
 
 .jm-hero-description-extended p {
-  color: #ffffff !important;
+  color: var(--jm-white, #ffffff) !important;
   font-weight: 400 !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .jm-lcp-optimized {
-  color: #ffffff !important;
+  color: var(--jm-white, #ffffff) !important;
   opacity: 0.95 !important;
 }
 
@@ -143,19 +114,16 @@
 .jm-btn {
   display: inline-block !important;
   padding: 0.75rem 2rem !important;
-  background: #0b5fff !important;
-  color: #ffffff !important;
+  background: var(--jm-primary, #0b5fff) !important;
+  color: var(--jm-white, #fff) !important;
   text-decoration: none !important;
   border-radius: 4px !important;
   font-weight: 500 !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   transition: background-color 0.3s ease !important;
-  border: none !important;
-  cursor: pointer !important;
 }
 
 .jm-btn:hover {
-  background: #0952e6 !important;
+  background: var(--jm-primary-dark, #0952e6) !important;
 }
 
 .jm-hero-media {
@@ -189,14 +157,12 @@
 }
 
 .jm-video-caption {
-  color: #ffffff !important;
+  color: var(--jm-white, #fff) !important;
   font-size: 0.875rem !important;
   margin: 0 !important;
   background: rgba(0,0,0,0.7) !important;
   padding: 0.5rem !important;
   border-radius: 4px !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  font-weight: 400 !important;
 }
 
 /* CRITICAL: Mobile Responsive - High Priority */
@@ -268,115 +234,6 @@
   grid-template-columns: 1fr !important;
   text-align: center !important;
   justify-items: center !important;
-}
-
-.jm-hero-content[data-layout="centered"] .jm-hero-media {
-  max-width: 600px !important;
-}
-
-/* VIDEO MODAL STYLES - Self-contained with hardcoded colors */
-.jm-modal-backdrop {
-  display: none !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background: rgba(0, 0, 0, 0.8) !important;
-  z-index: 10000 !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-}
-
-.jm-modal-backdrop.active {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.jm-modal {
-  background: #ffffff !important;
-  border-radius: 8px !important;
-  max-width: 90vw !important;
-  max-height: 90vh !important;
-  width: 800px !important;
-  overflow: hidden !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
-}
-
-.jm-modal-header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 1rem 1.5rem !important;
-  background: #f8f9fa !important;
-  border-bottom: 1px solid #e9ecef !important;
-}
-
-.jm-modal-title {
-  font-size: 1.25rem !important;
-  font-weight: 600 !important;
-  color: #212529 !important;
-  margin: 0 !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-}
-
-.jm-modal-close {
-  background: none !important;
-  border: none !important;
-  cursor: pointer !important;
-  padding: 0.5rem !important;
-  color: #6c757d !important;
-  border-radius: 4px !important;
-  transition: background-color 0.2s !important;
-}
-
-.jm-modal-close:hover {
-  background: #f1f3f4 !important;
-  color: #212529 !important;
-}
-
-.jm-modal-body {
-  padding: 0 !important;
-}
-
-.jm-video-content {
-  position: relative !important;
-  width: 100% !important;
-  height: 450px !important;
-}
-
-.jm-video-container {
-  position: relative !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.jm-video-container iframe {
-  width: 100% !important;
-  height: 100% !important;
-  border: none !important;
-}
-
-/* Modal responsive */
-@media (max-width: 768px) {
-  .jm-modal {
-    width: 95vw !important;
-    height: auto !important;
-    max-height: 95vh !important;
-  }
-  
-  .jm-video-content {
-    height: 56.25vw !important; /* 16:9 aspect ratio */
-    max-height: 400px !important;
-  }
-  
-  .jm-modal-header {
-    padding: 0.75rem 1rem !important;
-  }
-  
-  .jm-modal-title {
-    font-size: 1.125rem !important;
-  }
 }
 </style>
 
