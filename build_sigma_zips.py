@@ -38,6 +38,36 @@ def create_zip_from_directory(source_dir, output_path, exclude_patterns=None):
     print(f"✓ Created: {output_path}")
     return True
 
+def create_fragment_collection_zip(source_dir, output_path, collection_name):
+    """
+    Create a fragment collection ZIP with proper Liferay structure (root directory wrapper)
+    """
+    exclude_patterns = ['.DS_Store', '__pycache__', '*.pyc', '.git']
+    
+    print(f"Creating ZIP: {output_path}")
+    print(f"Source directory: {source_dir}")
+    
+    with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(source_dir):
+            # Remove excluded directories
+            dirs[:] = [d for d in dirs if not any(pattern in d for pattern in exclude_patterns)]
+            
+            for file in files:
+                # Skip excluded files
+                if any(pattern in file for pattern in exclude_patterns):
+                    continue
+                    
+                file_path = os.path.join(root, file)
+                # Get relative path from source directory
+                relative_path = os.path.relpath(file_path, source_dir)
+                # Add collection name as root directory in ZIP
+                archive_path = f"{collection_name}/{relative_path}"
+                zipf.write(file_path, archive_path)
+                print(f"  Added: {archive_path}")
+    
+    print(f"✓ Created: {output_path}")
+    return True
+
 def validate_fragment_collection(collection_dir):
     """
     Validate fragment collection structure
@@ -140,10 +170,11 @@ def main():
     # 1. Build Fragment Collection
     collection_dir = "fragment-collection/sigma-pharmaceuticals-collection"
     collection_zip = os.path.join(output_dir, "sigma-pharmaceuticals-collection.zip")
+    collection_name = "sigma-pharmaceuticals-collection"
     
     if os.path.exists(collection_dir):
         if validate_fragment_collection(collection_dir):
-            create_zip_from_directory(collection_dir, collection_zip)
+            create_fragment_collection_zip(collection_dir, collection_zip, collection_name)
         else:
             print(f"❌ Fragment collection validation failed")
             build_success = False
