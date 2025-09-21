@@ -74,9 +74,10 @@
   margin-bottom: var(--sigma-spacing-lg);
 }
 
-#wrapper .sigma-footer-logo-svg {
+#wrapper .sigma-footer-logo-img {
   height: 32px;
   width: auto;
+  max-width: 150px;
 }
 
 #wrapper .sigma-footer-description {
