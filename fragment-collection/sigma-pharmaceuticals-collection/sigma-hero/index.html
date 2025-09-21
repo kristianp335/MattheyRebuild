@@ -1,0 +1,118 @@
+<div class="sigma-hero-fragment">
+  <section class="sigma-hero" data-layout="${configuration.layoutStyle}" data-background="${configuration.backgroundStyle}">
+    <div class="sigma-hero-background">
+      <img 
+        src="[resources:sigma-hero-bg.jpg]"
+        alt="Sigma Pharmaceuticals Facilities"
+        class="sigma-hero-bg-image"
+        data-lfr-editable-id="heroBackgroundImage"
+        data-lfr-editable-type="image"
+      />
+      <div class="sigma-hero-overlay"></div>
+    </div>
+    
+    <div class="sigma-container">
+      <div class="sigma-hero-content">
+        <div class="sigma-hero-main">
+          <!-- Statistics Bar -->
+          <div class="sigma-hero-stats" [#if !configuration.showStats]style="display: none;"[/#if]>
+            <div class="sigma-stat-item">
+              <span class="sigma-stat-number" data-lfr-editable-id="yearsInBusiness" data-lfr-editable-type="text">40+</span>
+              <span class="sigma-stat-label" data-lfr-editable-id="yearsLabel" data-lfr-editable-type="text">Years in Business</span>
+            </div>
+            <div class="sigma-stat-item">
+              <span class="sigma-stat-number" data-lfr-editable-id="productLines" data-lfr-editable-type="text">1,500+</span>
+              <span class="sigma-stat-label" data-lfr-editable-id="productLinesLabel" data-lfr-editable-type="text">Product Lines</span>
+            </div>
+            <div class="sigma-stat-item">
+              <span class="sigma-stat-number" data-lfr-editable-id="teamMembers" data-lfr-editable-type="text">500+</span>
+              <span class="sigma-stat-label" data-lfr-editable-id="teamMembersLabel" data-lfr-editable-type="text">Team Members</span>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="sigma-hero-text">
+            <h1 class="sigma-hero-title" data-lfr-editable-id="heroTitle" data-lfr-editable-type="text">
+              40 years of business supporting healthcare
+            </h1>
+            
+            <p class="sigma-hero-description" data-lfr-editable-id="heroDescription" data-lfr-editable-type="text">
+              Sigma, a family-run business for more than 40 years, serving Independent Pharmacies, Dispensing Doctors, and Hospitals. Our strapline: Independent Together.
+            </p>
+            
+            <div class="sigma-hero-tagline">
+              <span class="sigma-tagline-text" data-lfr-editable-id="tagline" data-lfr-editable-type="text">Independent, Together.</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="sigma-hero-actions" [#if !configuration.showButtons]style="display: none;"[/#if]>
+            <a href="/products" 
+               class="sigma-btn sigma-btn-primary" 
+               data-lfr-editable-id="productsButton" 
+               data-lfr-editable-type="link">
+              Our Products
+            </a>
+            <a href="/services" 
+               class="sigma-btn sigma-btn-secondary" 
+               data-lfr-editable-id="servicesButton" 
+               data-lfr-editable-type="link">
+              Our Services
+            </a>
+          </div>
+        </div>
+
+        <!-- Secondary Content (for split layout) -->
+        <div class="sigma-hero-secondary">
+          <div class="sigma-hero-highlights">
+            <div class="sigma-highlight-item">
+              <div class="sigma-highlight-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7 7-7Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <h3 class="sigma-highlight-title" data-lfr-editable-id="highlight1Title" data-lfr-editable-type="text">
+                Patient Care
+              </h3>
+              <p class="sigma-highlight-text" data-lfr-editable-id="highlight1Text" data-lfr-editable-type="text">
+                Dedicated to delivering medication to patients unable to visit community pharmacies through our Sigcare service.
+              </p>
+            </div>
+            
+            <div class="sigma-highlight-item">
+              <div class="sigma-highlight-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="sigma-highlight-title" data-lfr-editable-id="highlight2Title" data-lfr-editable-type="text">
+                Quality Assured
+              </h3>
+              <p class="sigma-highlight-text" data-lfr-editable-id="highlight2Text" data-lfr-editable-type="text">
+                MHRA licensed with comprehensive Quality Management System and fully-qualified team.
+              </p>
+            </div>
+            
+            <div class="sigma-highlight-item">
+              <div class="sigma-highlight-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="sigma-highlight-title" data-lfr-editable-id="highlight3Title" data-lfr-editable-type="text">
+                Family Values
+              </h3>
+              <p class="sigma-highlight-text" data-lfr-editable-id="highlight3Text" data-lfr-editable-type="text">
+                Family-run business extending our "family" culture across all 500+ team members for over 40 years.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

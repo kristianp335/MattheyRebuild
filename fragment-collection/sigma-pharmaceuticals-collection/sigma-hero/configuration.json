@@ -1,0 +1,64 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "name": "layoutStyle",
+          "label": "Layout Style",
+          "description": "Choose the hero layout style",
+          "type": "select",
+          "defaultValue": "centered",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Centered Content",
+                "value": "centered"
+              },
+              {
+                "label": "Split Layout",
+                "value": "split"
+              }
+            ]
+          }
+        },
+        {
+          "name": "backgroundStyle",
+          "label": "Background Style",
+          "description": "Choose the background style",
+          "type": "select",
+          "defaultValue": "image",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Background Image",
+                "value": "image"
+              },
+              {
+                "label": "Gradient Background",
+                "value": "gradient"
+              },
+              {
+                "label": "Solid Color",
+                "value": "solid"
+              }
+            ]
+          }
+        },
+        {
+          "name": "showStats",
+          "label": "Show Statistics",
+          "description": "Display statistics section (40 years, etc.)",
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        {
+          "name": "showButtons",
+          "label": "Show Action Buttons",
+          "description": "Display call-to-action buttons",
+          "type": "checkbox",
+          "defaultValue": true
+        }
+      ]
+    }
+  ]
+}

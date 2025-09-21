@@ -1,0 +1,372 @@
+/* Sigma Pharmaceuticals Hero Fragment Styles */
+
+/* Hero Section */
+#wrapper .sigma-hero-fragment {
+  position: relative;
+}
+
+#wrapper .sigma-hero {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--sigma-primary);
+}
+
+/* Background Handling */
+#wrapper .sigma-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+#wrapper .sigma-hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#wrapper .sigma-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 85, 183, 0.8) 0%, rgba(46, 139, 87, 0.6) 100%);
+  z-index: 2;
+}
+
+/* Background Style Variants */
+#wrapper .sigma-hero[data-background="gradient"] .sigma-hero-bg-image {
+  display: none;
+}
+
+#wrapper .sigma-hero[data-background="gradient"] .sigma-hero-overlay {
+  background: linear-gradient(135deg, var(--sigma-primary) 0%, var(--sigma-secondary) 100%);
+}
+
+#wrapper .sigma-hero[data-background="solid"] .sigma-hero-bg-image {
+  display: none;
+}
+
+#wrapper .sigma-hero[data-background="solid"] .sigma-hero-overlay {
+  background: var(--sigma-primary);
+}
+
+/* Content Container */
+#wrapper .sigma-hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sigma-spacing-xxl);
+  align-items: center;
+  padding: var(--sigma-spacing-xxl) 0;
+}
+
+/* Layout Variants */
+#wrapper .sigma-hero[data-layout="split"] .sigma-hero-content {
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sigma-spacing-xxl);
+}
+
+#wrapper .sigma-hero[data-layout="centered"] .sigma-hero-secondary {
+  display: none;
+}
+
+/* Statistics Bar */
+#wrapper .sigma-hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--sigma-spacing-xl);
+  margin-bottom: var(--sigma-spacing-xl);
+  padding: var(--sigma-spacing-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--sigma-border-radius-lg);
+  backdrop-filter: blur(10px);
+}
+
+#wrapper .sigma-stat-item {
+  text-align: center;
+  color: var(--sigma-white);
+}
+
+#wrapper .sigma-stat-number {
+  display: block;
+  font-size: var(--sigma-font-size-xxxl);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--sigma-spacing-xs);
+}
+
+#wrapper .sigma-stat-label {
+  display: block;
+  font-size: var(--sigma-font-size-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+/* Main Text Content */
+#wrapper .sigma-hero-text {
+  text-align: center;
+  margin-bottom: var(--sigma-spacing-xl);
+}
+
+#wrapper .sigma-hero[data-layout="split"] .sigma-hero-text {
+  text-align: left;
+}
+
+#wrapper .sigma-hero-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--sigma-white);
+  margin-bottom: var(--sigma-spacing-lg);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#wrapper .sigma-hero-description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: var(--sigma-spacing-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#wrapper .sigma-hero[data-layout="split"] .sigma-hero-description {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#wrapper .sigma-hero-tagline {
+  margin-bottom: var(--sigma-spacing-lg);
+}
+
+#wrapper .sigma-tagline-text {
+  display: inline-block;
+  font-size: var(--sigma-font-size-xl);
+  font-weight: 600;
+  color: var(--sigma-white);
+  background: rgba(255, 255, 255, 0.2);
+  padding: var(--sigma-spacing-sm) var(--sigma-spacing-lg);
+  border-radius: var(--sigma-border-radius-lg);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Action Buttons */
+#wrapper .sigma-hero-actions {
+  display: flex;
+  gap: var(--sigma-spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#wrapper .sigma-hero[data-layout="split"] .sigma-hero-actions {
+  justify-content: flex-start;
+}
+
+#wrapper .sigma-hero-actions .sigma-btn {
+  min-width: 160px;
+  padding: var(--sigma-spacing-md) var(--sigma-spacing-xl);
+  font-size: var(--sigma-font-size-lg);
+  font-weight: 600;
+  border-radius: var(--sigma-border-radius-lg);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+#wrapper .sigma-hero-actions .sigma-btn-primary {
+  background: var(--sigma-white);
+  color: var(--sigma-primary);
+  border-color: var(--sigma-white);
+}
+
+#wrapper .sigma-hero-actions .sigma-btn-primary:hover,
+#wrapper .sigma-hero-actions .sigma-btn-primary:focus {
+  background: transparent;
+  color: var(--sigma-white);
+  border-color: var(--sigma-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#wrapper .sigma-hero-actions .sigma-btn-secondary {
+  background: transparent;
+  color: var(--sigma-white);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+#wrapper .sigma-hero-actions .sigma-btn-secondary:hover,
+#wrapper .sigma-hero-actions .sigma-btn-secondary:focus {
+  background: var(--sigma-white);
+  color: var(--sigma-primary);
+  border-color: var(--sigma-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary Content (Split Layout) */
+#wrapper .sigma-hero-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#wrapper .sigma-hero-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sigma-spacing-lg);
+  max-width: 400px;
+}
+
+#wrapper .sigma-highlight-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: var(--sigma-spacing-lg);
+  border-radius: var(--sigma-border-radius-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: var(--sigma-transition);
+}
+
+#wrapper .sigma-highlight-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+#wrapper .sigma-highlight-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: var(--sigma-white);
+  color: var(--sigma-primary);
+  border-radius: var(--sigma-border-radius-lg);
+  margin-bottom: var(--sigma-spacing-md);
+}
+
+#wrapper .sigma-highlight-title {
+  font-size: var(--sigma-font-size-lg);
+  font-weight: 600;
+  color: var(--sigma-white);
+  margin-bottom: var(--sigma-spacing-sm);
+}
+
+#wrapper .sigma-highlight-text {
+  font-size: var(--sigma-font-size-base);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  #wrapper .sigma-hero[data-layout="split"] .sigma-hero-content {
+    grid-template-columns: 1fr;
+    gap: var(--sigma-spacing-xl);
+  }
+  
+  #wrapper .sigma-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  #wrapper .sigma-hero-stats {
+    gap: var(--sigma-spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  #wrapper .sigma-hero {
+    min-height: 500px;
+  }
+  
+  #wrapper .sigma-hero-content {
+    padding: var(--sigma-spacing-xl) 0;
+  }
+  
+  #wrapper .sigma-hero-title {
+    font-size: 2rem;
+  }
+  
+  #wrapper .sigma-hero-description {
+    font-size: var(--sigma-font-size-lg);
+  }
+  
+  #wrapper .sigma-hero-stats {
+    flex-direction: column;
+    gap: var(--sigma-spacing-md);
+    text-align: center;
+  }
+  
+  #wrapper .sigma-stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+  
+  #wrapper .sigma-stat-number {
+    font-size: var(--sigma-font-size-xl);
+    margin-bottom: 0;
+    margin-right: var(--sigma-spacing-md);
+  }
+  
+  #wrapper .sigma-hero-actions {
+    flex-direction: column;
+    gap: var(--sigma-spacing-sm);
+  }
+  
+  #wrapper .sigma-hero-actions .sigma-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  #wrapper .sigma-hero-highlights {
+    gap: var(--sigma-spacing-md);
+  }
+  
+  #wrapper .sigma-highlight-item {
+    padding: var(--sigma-spacing-md);
+  }
+  
+  #wrapper .sigma-highlight-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  #wrapper .sigma-hero {
+    min-height: 400px;
+  }
+  
+  #wrapper .sigma-hero-title {
+    font-size: 1.75rem;
+  }
+  
+  #wrapper .sigma-hero-description {
+    font-size: var(--sigma-font-size-base);
+  }
+  
+  #wrapper .sigma-tagline-text {
+    font-size: var(--sigma-font-size-base);
+    padding: var(--sigma-spacing-xs) var(--sigma-spacing-md);
+  }
+  
+  #wrapper .sigma-hero-stats {
+    padding: var(--sigma-spacing-md);
+  }
+}
