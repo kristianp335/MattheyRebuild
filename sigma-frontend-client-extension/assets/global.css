@@ -7,11 +7,15 @@
 #wrapper {
   /* Core brand colors - using Liferay tokens like JM */
   --sigma-primary: var(--brand-color-1, #1e4a72);
+  --sigma-primary-dark: #0f2d47;
+  --sigma-primary-light: #4a6fa5;
+  --sigma-primary-rgb: 30, 74, 114;
   --sigma-secondary: var(--brand-color-2, #2c5f2d);
   --sigma-accent: var(--brand-color-3, #097969);
   --sigma-dark: var(--brand-color-4, #1a202c);
   
   /* Standard Liferay gray tokens - exact same as JM */
+  --sigma-gray-50: #f9fafb;
   --sigma-gray-100: var(--gray-100, #f7f8f9);
   --sigma-gray-200: var(--gray-200, #f1f2f5);
   --sigma-gray-300: var(--gray-300, #e7e7ed);
@@ -38,6 +42,13 @@
   --sigma-spacing-lg: 1.5rem;
   --sigma-spacing-xl: 2rem;
   --sigma-spacing-xxl: 3rem;
+  
+  /* Effects - professional and clean */
+  --sigma-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --sigma-box-shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.07), 0 10px 15px rgba(0, 0, 0, 0.1);
+  --sigma-transition: all 0.2s ease-in-out;
+  --sigma-border-radius: 4px;
+  --sigma-border-radius-lg: 8px;
   
   /* Typography scale - pharmaceutical professional */
   --sigma-font-size-xs: 0.75rem;
