@@ -109,24 +109,16 @@ def validate_client_extension(extension_dir):
     
     print(f"✓ Found client-extension.yaml")
     
-    # Check assemble directory
-    assemble_dir = os.path.join(extension_dir, 'assemble')
-    if not os.path.exists(assemble_dir):
-        print(f"❌ Missing assemble directory in {extension_dir}")
-        return False
-    
-    print(f"✓ Found assemble directory")
-    
-    # Check for static files
-    static_dir = os.path.join(assemble_dir, 'static')
-    if os.path.exists(static_dir):
-        static_files = os.listdir(static_dir)
-        if static_files:
-            print(f"✓ Found {len(static_files)} static files: {static_files}")
+    # Check assets directory (where source files are stored)
+    assets_dir = os.path.join(extension_dir, 'assets')
+    if os.path.exists(assets_dir):
+        asset_files = os.listdir(assets_dir)
+        if asset_files:
+            print(f"✓ Found {len(asset_files)} asset files: {asset_files}")
         else:
-            print(f"⚠️ Empty static directory")
+            print(f"⚠️ Empty assets directory")
     else:
-        print(f"⚠️ No static directory found")
+        print(f"⚠️ No assets directory found")
     
     return True
 
