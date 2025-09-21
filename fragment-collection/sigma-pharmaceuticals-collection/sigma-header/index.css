@@ -475,6 +475,13 @@ body.has-edit-mode-menu .sigma-account-selector-dropzone lfr-drop-zone:before {
   background: var(--sigma-gray-50);
 }
 
+/* Show mega menu dropzones in edit mode */
+body.has-edit-mode-menu .sigma-mega-menu-dropzones,
+#wrapper .is-edit-mode .sigma-mega-menu-dropzones,
+[data-editor-enabled="true"] .sigma-mega-menu-dropzones {
+  display: block !important;
+}
+
 #wrapper .sigma-edit-mode-only {
   display: none;
 }
@@ -495,6 +502,55 @@ body.has-edit-mode-menu .sigma-edit-mode-only,
   margin-bottom: var(--sigma-spacing-sm);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Mega Menu Dropzone Styling */
+#wrapper .sigma-mega-dropzone lfr-drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  min-width: 200px;
+  border: 2px dashed transparent;
+  border-radius: var(--sigma-border-radius);
+  transition: all 0.3s ease;
+  padding: var(--sigma-spacing-lg);
+  box-sizing: border-box;
+  background: var(--sigma-white);
+}
+
+/* Edit Mode Styling for Mega Menu Dropzones */
+body.has-edit-mode-menu .sigma-mega-dropzone lfr-drop-zone,
+#wrapper .is-edit-mode .sigma-mega-dropzone lfr-drop-zone,
+[data-editor-enabled="true"] .sigma-mega-dropzone lfr-drop-zone {
+  border-color: var(--sigma-primary) !important;
+  background-color: rgba(var(--sigma-primary-rgb), 0.05) !important;
+  position: relative;
+  display: flex !important;
+  visibility: visible !important;
+}
+
+/* Placeholder Text for Mega Menu Dropzones */
+body.has-edit-mode-menu .sigma-mega-dropzone lfr-drop-zone:before,
+#wrapper .is-edit-mode .sigma-mega-dropzone lfr-drop-zone:before,
+[data-editor-enabled="true"] .sigma-mega-dropzone lfr-drop-zone:before {
+  content: "Drop content here";
+  color: var(--sigma-primary);
+  font-size: var(--sigma-font-size-sm);
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+  display: block !important;
+}
+
+/* Hide placeholder when content is present */
+#wrapper .sigma-mega-dropzone lfr-drop-zone:not(:empty):before {
+  display: none;
 }
 
 /* Responsive Design */
