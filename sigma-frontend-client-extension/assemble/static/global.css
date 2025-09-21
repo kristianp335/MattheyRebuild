@@ -5,15 +5,15 @@
 
 /* CRITICAL ONLY: Essential CSS custom properties */
 #wrapper {
-  /* Core pharmaceutical brand colors - medical blue palette */
-  --sigma-primary: var(--brand-color-1, #0055b7);
-  --sigma-primary-dark: var(--brand-color-1-dark, #003d85);
-  --sigma-primary-light: var(--brand-color-1-light, #337dd6);
-  --sigma-primary-rgb: 0, 85, 183;
+  /* Core pharmaceutical brand colors - based on actual Sigma website */
+  --sigma-primary: var(--brand-color-1, #1e4a72);
+  --sigma-primary-dark: var(--brand-color-1-dark, #0f2d47);
+  --sigma-primary-light: var(--brand-color-1-light, #4a6fa5);
+  --sigma-primary-rgb: 30, 74, 114;
   
-  /* Medical green accents for health/safety */
-  --sigma-secondary: var(--brand-color-2, #2e8b57);
-  --sigma-accent: var(--brand-color-3, #20b2aa);
+  /* Professional healthcare colors */
+  --sigma-secondary: var(--brand-color-2, #2c5f2d);
+  --sigma-accent: var(--brand-color-3, #097969);
   
   /* Professional grays for pharmaceutical industry */
   --sigma-gray-700: var(--gray-700, #4a5568);
