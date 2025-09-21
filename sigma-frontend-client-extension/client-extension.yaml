@@ -1,7 +1,8 @@
-assemble:
-    - from: assemble
-      into: static
 name: Sigma Pharmaceuticals Frontend
 type: globalCSS
 url: global.css
 version: 1.0.0
+
+assemble:
+  - from: assemble
+    into: static

@@ -1,7 +1,8 @@
-assemble:
-    - from: assemble
-      into: static
 name: Sigma Pharmaceuticals JavaScript
 type: globalJS
 url: global.js
 version: 1.0.0
+
+assemble:
+  - from: assemble
+    into: static
