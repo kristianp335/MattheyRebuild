@@ -1,0 +1,448 @@
+/* Sigma Pharmaceuticals Footer Fragment Styles */
+
+/* Footer Container */
+#wrapper .sigma-footer-fragment {
+  position: relative;
+  margin-top: auto;
+}
+
+#wrapper .sigma-footer {
+  background: var(--sigma-dark);
+  color: var(--sigma-white);
+  padding-top: var(--sigma-spacing-xxl);
+}
+
+/* Footer Style Variants */
+#wrapper .sigma-footer[data-style="dark"] {
+  background: var(--sigma-dark) !important;
+  color: var(--sigma-white) !important;
+}
+
+#wrapper .sigma-footer[data-style="light"] {
+  background: var(--sigma-gray-100) !important;
+  color: var(--sigma-gray-800) !important;
+}
+
+#wrapper .sigma-footer[data-style="light"] .sigma-footer-description {
+  color: var(--sigma-gray-600) !important;
+}
+
+#wrapper .sigma-footer[data-style="light"] .sigma-footer-title {
+  color: var(--sigma-gray-800) !important;
+}
+
+#wrapper .sigma-footer[data-style="light"] .sigma-footer-links a {
+  color: var(--sigma-gray-600) !important;
+}
+
+#wrapper .sigma-footer[data-style="light"] .sigma-footer-links a:hover {
+  color: var(--sigma-primary) !important;
+}
+
+#wrapper .sigma-footer[data-style="primary"] {
+  background: var(--sigma-primary) !important;
+  color: var(--sigma-white) !important;
+}
+
+/* Main Footer Content */
+#wrapper .sigma-footer-main {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: var(--sigma-spacing-xl);
+  margin-bottom: var(--sigma-spacing-xl);
+}
+
+/* Footer Column Layout Variants */
+#wrapper .sigma-footer-main[data-layout="5-column"] {
+  grid-template-columns: 2fr repeat(4, 1fr);
+}
+
+#wrapper .sigma-footer-main[data-layout="4-column"] {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#wrapper .sigma-footer-main[data-layout="3-column"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Company Section */
+#wrapper .sigma-footer-company {
+  padding-right: var(--sigma-spacing-lg);
+}
+
+#wrapper .sigma-footer-logo {
+  margin-bottom: var(--sigma-spacing-lg);
+}
+
+#wrapper .sigma-footer-logo-svg {
+  height: 32px;
+  width: auto;
+}
+
+#wrapper .sigma-footer-description {
+  font-size: var(--sigma-font-size-base);
+  line-height: 1.6;
+  margin-bottom: var(--sigma-spacing-lg);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Social Media */
+#wrapper .sigma-footer-social {
+  margin-top: var(--sigma-spacing-lg);
+}
+
+#wrapper .sigma-footer-social-title {
+  font-size: var(--sigma-font-size-sm);
+  font-weight: 600;
+  margin-bottom: var(--sigma-spacing-sm);
+  color: var(--sigma-white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#wrapper .sigma-social-links {
+  display: flex;
+  gap: var(--sigma-spacing-sm);
+}
+
+#wrapper .sigma-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--sigma-border-radius);
+  color: var(--sigma-white);
+  text-decoration: none;
+  transition: var(--sigma-transition);
+}
+
+#wrapper .sigma-social-link:hover,
+#wrapper .sigma-social-link:focus {
+  background: var(--sigma-primary);
+  border-color: var(--sigma-primary);
+  color: var(--sigma-white);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+/* Footer Sections */
+#wrapper .sigma-footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#wrapper .sigma-footer-title {
+  font-size: var(--sigma-font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--sigma-spacing-md);
+  color: var(--sigma-white);
+}
+
+#wrapper .sigma-footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper .sigma-footer-links li {
+  margin-bottom: var(--sigma-spacing-sm);
+}
+
+#wrapper .sigma-footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: var(--sigma-font-size-base);
+  transition: var(--sigma-transition);
+  display: block;
+  padding: var(--sigma-spacing-xs) 0;
+}
+
+#wrapper .sigma-footer-links a:hover,
+#wrapper .sigma-footer-links a:focus {
+  color: var(--sigma-primary-light);
+  text-decoration: none;
+  padding-left: var(--sigma-spacing-xs);
+}
+
+/* Footer Bottom */
+#wrapper .sigma-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sigma-spacing-lg) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0;
+}
+
+#wrapper .sigma-footer-legal {
+  flex: 1;
+}
+
+#wrapper .sigma-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--sigma-spacing-md);
+}
+
+#wrapper .sigma-legal-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: var(--sigma-font-size-sm);
+  transition: var(--sigma-transition);
+}
+
+#wrapper .sigma-legal-links a:hover,
+#wrapper .sigma-legal-links a:focus {
+  color: var(--sigma-primary-light);
+  text-decoration: none;
+}
+
+#wrapper .sigma-footer-copyright {
+  flex: 1;
+  text-align: center;
+}
+
+#wrapper .sigma-footer-copyright p {
+  margin: 0;
+  font-size: var(--sigma-font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#wrapper .sigma-company-name {
+  font-weight: 600;
+  color: var(--sigma-white);
+}
+
+/* Back to Top Button */
+#wrapper .sigma-footer-back-to-top {
+  flex-shrink: 0;
+}
+
+#wrapper .sigma-back-to-top-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--sigma-primary);
+  border: none;
+  border-radius: var(--sigma-border-radius);
+  color: var(--sigma-white);
+  cursor: pointer;
+  transition: var(--sigma-transition);
+  box-shadow: var(--sigma-box-shadow);
+}
+
+#wrapper .sigma-back-to-top-btn:hover,
+#wrapper .sigma-back-to-top-btn:focus {
+  background: var(--sigma-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--sigma-box-shadow-lg);
+}
+
+/* Newsletter Section */
+#wrapper .sigma-footer-newsletter {
+  background: rgba(0, 0, 0, 0.2);
+  padding: var(--sigma-spacing-xl) 0;
+  margin-top: var(--sigma-spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#wrapper .sigma-newsletter-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sigma-spacing-xl);
+  align-items: center;
+}
+
+#wrapper .sigma-newsletter-info {
+  padding-right: var(--sigma-spacing-lg);
+}
+
+#wrapper .sigma-newsletter-title {
+  font-size: var(--sigma-font-size-xxl);
+  font-weight: 600;
+  margin-bottom: var(--sigma-spacing-sm);
+  color: var(--sigma-white);
+}
+
+#wrapper .sigma-newsletter-description {
+  font-size: var(--sigma-font-size-base);
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#wrapper .sigma-newsletter-form {
+  padding-left: var(--sigma-spacing-lg);
+}
+
+#wrapper .sigma-newsletter-signup {
+  display: flex;
+  width: 100%;
+}
+
+#wrapper .sigma-form-group {
+  display: flex;
+  width: 100%;
+  gap: var(--sigma-spacing-sm);
+}
+
+#wrapper .sigma-newsletter-input {
+  flex: 1;
+  padding: var(--sigma-spacing-md);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--sigma-border-radius);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--sigma-white);
+  font-size: var(--sigma-font-size-base);
+  transition: var(--sigma-transition);
+}
+
+#wrapper .sigma-newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#wrapper .sigma-newsletter-input:focus {
+  outline: none;
+  border-color: var(--sigma-primary);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(var(--sigma-primary-rgb), 0.3);
+}
+
+#wrapper .sigma-newsletter-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sigma-spacing-xs);
+  padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+  background: var(--sigma-primary);
+  border: none;
+  border-radius: var(--sigma-border-radius);
+  color: var(--sigma-white);
+  font-size: var(--sigma-font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--sigma-transition);
+  white-space: nowrap;
+}
+
+#wrapper .sigma-newsletter-btn:hover,
+#wrapper .sigma-newsletter-btn:focus {
+  background: var(--sigma-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--sigma-box-shadow);
+}
+
+#wrapper .sigma-newsletter-btn svg {
+  transition: var(--sigma-transition);
+}
+
+#wrapper .sigma-newsletter-btn:hover svg {
+  transform: translateX(2px);
+}
+
+/* Screen reader only */
+#wrapper .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  #wrapper .sigma-footer-main[data-layout="5-column"] {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sigma-spacing-lg);
+  }
+  
+  #wrapper .sigma-footer-main[data-layout="4-column"] {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  #wrapper .sigma-footer-company {
+    padding-right: 0;
+    margin-bottom: var(--sigma-spacing-lg);
+  }
+  
+  #wrapper .sigma-newsletter-content {
+    grid-template-columns: 1fr;
+    gap: var(--sigma-spacing-lg);
+    text-align: center;
+  }
+  
+  #wrapper .sigma-newsletter-info,
+  #wrapper .sigma-newsletter-form {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #wrapper .sigma-footer-main {
+    grid-template-columns: 1fr;
+    gap: var(--sigma-spacing-lg);
+  }
+  
+  #wrapper .sigma-footer-bottom {
+    flex-direction: column;
+    gap: var(--sigma-spacing-md);
+    text-align: center;
+  }
+  
+  #wrapper .sigma-legal-links {
+    justify-content: center;
+    gap: var(--sigma-spacing-sm);
+  }
+  
+  #wrapper .sigma-footer-copyright {
+    order: -1;
+  }
+  
+  #wrapper .sigma-form-group {
+    flex-direction: column;
+    gap: var(--sigma-spacing-sm);
+  }
+  
+  #wrapper .sigma-newsletter-btn {
+    justify-content: center;
+  }
+  
+  #wrapper .sigma-social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #wrapper .sigma-footer {
+    padding-top: var(--sigma-spacing-xl);
+  }
+  
+  #wrapper .sigma-footer-main {
+    gap: var(--sigma-spacing-md);
+  }
+  
+  #wrapper .sigma-legal-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sigma-spacing-xs);
+  }
+  
+  #wrapper .sigma-newsletter-title {
+    font-size: var(--sigma-font-size-xl);
+  }
+  
+  #wrapper .sigma-footer-newsletter {
+    padding: var(--sigma-spacing-lg) 0;
+  }
+}
