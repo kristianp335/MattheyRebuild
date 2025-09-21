@@ -159,32 +159,18 @@ def main():
         print(f"❌ Fragment collection directory not found: {collection_dir}")
         build_success = False
     
-    # 2. Build CSS Client Extension
-    css_extension_dir = "sigma-frontend-client-extension"
-    css_extension_zip = os.path.join(output_dir, "sigma-frontend-client-extension.zip")
+    # 2. Build Client Extension (combined CSS and JS)
+    client_extension_dir = "sigma-frontend-client-extension"
+    client_extension_zip = os.path.join(output_dir, "sigma-frontend-client-extension.zip")
     
-    if os.path.exists(css_extension_dir):
-        if validate_client_extension(css_extension_dir):
-            create_zip_from_directory(css_extension_dir, css_extension_zip)
+    if os.path.exists(client_extension_dir):
+        if validate_client_extension(client_extension_dir):
+            create_zip_from_directory(client_extension_dir, client_extension_zip)
         else:
-            print(f"❌ CSS client extension validation failed")
+            print(f"❌ Client extension validation failed")
             build_success = False
     else:
-        print(f"❌ CSS client extension directory not found: {css_extension_dir}")
-        build_success = False
-    
-    # 3. Build JS Client Extension
-    js_extension_dir = "sigma-js-client-extension"
-    js_extension_zip = os.path.join(output_dir, "sigma-js-client-extension.zip")
-    
-    if os.path.exists(js_extension_dir):
-        if validate_client_extension(js_extension_dir):
-            create_zip_from_directory(js_extension_dir, js_extension_zip)
-        else:
-            print(f"❌ JS client extension validation failed")
-            build_success = False
-    else:
-        print(f"❌ JS client extension directory not found: {js_extension_dir}")
+        print(f"❌ Client extension directory not found: {client_extension_dir}")
         build_success = False
     
     # Summary
@@ -204,8 +190,7 @@ def main():
         print(f"\nDeployment Instructions:")
         print("1. Upload sigma-pharmaceuticals-collection.zip to Liferay's Fragment Collections")
         print("2. Upload sigma-frontend-client-extension.zip to Liferay's Client Extensions")
-        print("3. Upload sigma-js-client-extension.zip to Liferay's Client Extensions")
-        print("4. Configure fragments on your Liferay pages")
+        print("3. Configure fragments on your Liferay pages")
         
     else:
         print("❌ Build failed! Please check the errors above.")

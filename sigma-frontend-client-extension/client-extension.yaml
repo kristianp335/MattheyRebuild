@@ -1,8 +1,17 @@
-name: Sigma Pharmaceuticals Frontend
-type: globalCSS
-url: global.css
-version: 1.0.0
-
 assemble:
-  - from: assemble
+  - from: assets
     into: static
+
+sigma-pharmaceuticals-global-css:
+  name: Sigma Pharmaceuticals Global CSS
+  type: globalCSS
+  url: global.css
+
+sigma-pharmaceuticals-global-js:
+  name: Sigma Pharmaceuticals Global JavaScript
+  type: globalJS
+  scriptLocation: head
+  url: global.js
+  scriptElementAttributes:
+    data-senna-track: "permanent"
+    fetchpriority: "high"
