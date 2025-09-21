@@ -1,0 +1,165 @@
+<div class="sigma-header-fragment">
+  <header class="sigma-header" data-style="${configuration.headerStyle}">
+    <div class="sigma-container">
+      <div class="sigma-header-content">
+        <!-- Logo -->
+        <div class="sigma-header-logo">
+          <a href="/" class="sigma-logo-link">
+            <img 
+              src="[resources:sigma-pharmaceuticals-logo.png]"
+              alt="Sigma Pharmaceuticals Logo"
+              class="sigma-logo"
+              data-lfr-editable-id="logo"
+              data-lfr-editable-type="image"
+              width="180"
+              height="40"
+            />
+          </a>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="sigma-nav" role="navigation" aria-label="Main navigation">
+          <ul class="sigma-nav-list" id="sigma-main-nav">
+            <!-- Navigation will be populated by JavaScript -->
+          </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="sigma-header-actions">
+          <!-- Mobile Menu Toggle -->
+          <button class="sigma-mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span class="sigma-hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+
+          [#if configuration.showSearch]
+          <!-- Search Button -->
+          <button class="sigma-header-action-btn sigma-search-btn" aria-label="Open search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+              <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+          [/#if]
+
+          [#if configuration.showUserMenu]
+          <!-- Login/User Button -->
+          [#if themeDisplay.isSignedIn()]
+            <div class="sigma-user-profile-widget">
+              [@liferay.user_personal_bar /]
+            </div>
+          [#else]
+            <button class="sigma-header-action-btn sigma-login-btn" aria-label="Sign in">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke="currentColor" stroke-width="2"/>
+                <polyline points="10,17 15,12 10,7" stroke="currentColor" stroke-width="2"/>
+                <line x1="15" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <span>Sign In</span>
+            </button>
+          [/#if]
+          [/#if]
+
+          <!-- Language Selector Dropzone -->
+          <div class="sigma-language-selector-dropzone">
+            <lfr-drop-zone data-lfr-drop-zone-id="language-selector">
+            </lfr-drop-zone>
+          </div>
+
+          <!-- Account Selector Dropzone - NEW for Sigma -->
+          <div class="sigma-account-selector-dropzone">
+            <lfr-drop-zone data-lfr-drop-zone-id="account-selector">
+            </lfr-drop-zone>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mega Menu Dropzones (Edit Mode Only) -->
+      <div class="sigma-mega-menu-dropzones sigma-edit-mode-only">
+        <div class="sigma-mega-dropzone">
+          <h4 class="sigma-mega-dropzone-label">Mega Menu Content 1</h4>
+          <div id="dropzone-mega-menu-1">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-1">
+            </lfr-drop-zone>
+          </div>
+        </div>
+        <div class="sigma-mega-dropzone">
+          <h4 class="sigma-mega-dropzone-label">Mega Menu Content 2</h4>
+          <div id="dropzone-mega-menu-2">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-2">
+            </lfr-drop-zone>
+          </div>
+        </div>
+        <div class="sigma-mega-dropzone">
+          <h4 class="sigma-mega-dropzone-label">Mega Menu Content 3</h4>
+          <div id="dropzone-mega-menu-3">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-3">
+            </lfr-drop-zone>
+          </div>
+        </div>
+        <div class="sigma-mega-dropzone">
+          <h4 class="sigma-mega-dropzone-label">Mega Menu Content 4</h4>
+          <div id="dropzone-mega-menu-4">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-4">
+            </lfr-drop-zone>
+          </div>
+        </div>
+        <div class="sigma-mega-dropzone">
+          <h4 class="sigma-mega-dropzone-label">Mega Menu Content 5</h4>
+          <div id="dropzone-mega-menu-5">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-5">
+            </lfr-drop-zone>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="sigma-mobile-nav" id="sigma-mobile-nav">
+        <ul class="sigma-mobile-nav-list">
+          <!-- Mobile navigation will be populated by JavaScript -->
+        </ul>
+        <div class="sigma-mobile-nav-actions">
+          [#if !themeDisplay.isSignedIn()]
+            <button class="sigma-btn sigma-mobile-login-btn">Sign In</button>
+          [#else]
+            <a href="/c/portal/logout" class="sigma-btn sigma-btn-secondary">Sign Out</a>
+          [/#if]
+        </div>
+      </div>
+    </div>
+  </header>
+
+  [#if configuration.showSearch]
+  <!-- Search Modal -->
+  <div id="sigma-search-overlay" class="sigma-search-overlay" style="display: none;">
+    <div class="sigma-search-modal">
+      <div class="sigma-modal-header">
+        <h3 class="sigma-modal-title" data-lfr-editable-id="search-title" data-lfr-editable-type="text">Search Sigma Pharmaceuticals</h3>
+        <button id="sigma-close-search" class="sigma-modal-close" aria-label="Close search">&times;</button>
+      </div>
+      <div class="sigma-modal-body search-content">
+        <lfr-drop-zone data-lfr-drop-zone-id="search">
+        </lfr-drop-zone>
+      </div>
+    </div>
+  </div>
+  [/#if]
+
+  <!-- Login Modal -->
+  [#if !themeDisplay.isSignedIn() && configuration.showUserMenu]
+    <div id="sigma-login-overlay" class="sigma-login-overlay" style="display: none;">
+      <div class="sigma-login-modal">
+        <div class="sigma-modal-header">
+          <h3 class="sigma-modal-title" data-lfr-editable-id="login-title" data-lfr-editable-type="text">Sign In to Sigma Pharmaceuticals</h3>
+          <button id="sigma-close-login" class="sigma-modal-close" aria-label="Close login">&times;</button>
+        </div>
+        <div class="sigma-modal-body login-content">
+          [@liferay_portlet["runtime"] portletName="com_liferay_login_web_portlet_LoginPortlet" /]
+        </div>
+      </div>
+    </div>
+  [/#if]
+</div>
