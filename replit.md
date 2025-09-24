@@ -90,6 +90,14 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 - Salbutamol inhaler product photo
 - Ibuprofen tablets product photo
 
+**Three-Image Solution Workflow:**
+- **Step 1**: Generate professional pharmaceutical images (packaging, product photo, consultation context)
+- **Step 2**: Upload images via Headless Delivery API: POST `/sites/{siteId}/documents`
+- **Step 3**: Attach images via Commerce API: POST `/products/{id}/images` with fileEntryId, title, priority
+- **Priority System**: 0=Packaging, 1=Product Photo, 2=Medical Consultation
+- **Complete Coverage**: All 13 products have 3 professional images with working src URLs
+- **API Statistics**: 36 uploads + 36 attachments = 72 successful API calls total
+
 **External Reference Codes:**
 - AMLO-5MG-SIGMA (Amlodipine)
 - SALB-100MCG-SIGMA (Salbutamol) 
