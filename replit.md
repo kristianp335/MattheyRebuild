@@ -25,10 +25,24 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 - **Categories**: Use PATCH `/products/{id}/categories` with complete category objects including externalReferenceCode
 - **Images**: POST `/products/{id}/images` with fileEntryId, title, priority
 
-**Current Product Portfolio:**
-1. **Amlodipine 5mg Tablets (ID: 63342)** - Cardiovascular/POM with 3 pack sizes (28/56/84 tablets)
-2. **Salbutamol Inhaler 100mcg (ID: 63368)** - Respiratory/POM with 2 dose options (100/200 doses)
-3. **Ibuprofen 400mg Tablets (ID: 63389)** - P Medicine with 2 pack sizes (24/48 tablets)
+**Complete Product Portfolio (13 Products):**
+
+**Cardiovascular Products (6 total):**
+1. **Amlodipine 5mg Tablets (ID: 66518)** - Cardiovascular/POM with 3 pack sizes (28/56/84 tablets)
+2. **Lisinopril 10mg Tablets (ID: 66607)** - Cardiovascular/POM with 2 pack sizes (30/90 tablets)
+3. **Atorvastatin 20mg Tablets (ID: 66628)** - Cardiovascular/POM with 3 pack sizes (28/56/84 tablets)
+4. **Metoprolol 50mg Tablets (ID: 66654)** - Cardiovascular/POM with 2 pack sizes (56/112 tablets)
+5. **Aspirin 75mg Tablets (ID: 66675)** - Cardiovascular/P Medicine with 3 pack sizes (28/56/100 tablets)
+6. **Nitroglycerin Sublingual Spray (ID: 66701)** - Cardiovascular/POM with 2 dose strengths (400mcg/800mcg)
+
+**Respiratory Products (7 total):**
+1. **Salbutamol Inhaler 100mcg (ID: 66544)** - Respiratory/POM with 2 dose options (100/200 doses)
+2. **Ibuprofen 400mg Tablets (ID: 66565)** - P Medicine with 2 pack sizes (24/48 tablets)
+3. **Beclometasone Inhaler 250mcg (ID: 66722)** - Respiratory/POM with 2 dose options (120/200 doses)
+4. **Montelukast 10mg Tablets (ID: 66743)** - Respiratory/POM with 2 pack sizes (28/84 tablets)
+5. **Ipratropium Inhaler 20mcg (ID: 66764)** - Respiratory/POM with 2 dose options (200/400 doses)
+6. **Loratadine 10mg Tablets (ID: 66785)** - Respiratory/P Medicine with 2 pack sizes (30/60 tablets)
+7. **Budesonide Inhaler 200mcg (ID: 66806)** - Respiratory/POM with 2 dose options (100/200 doses)
 
 **Specification System (Working):**
 - **Active Ingredient Spec (ID: 63257)**: Primary pharmaceutical ingredient
