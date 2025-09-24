@@ -1,96 +1,82 @@
-# Johnson Matthey Liferay Fragment Collection
+# Sigma Pharmaceuticals B2B Commerce System
 
 ## Overview
-This project delivers a comprehensive Liferay fragment collection to recreate Johnson Matthey's corporate website. It provides modular, configurable, and responsive website components such as header with navigation, hero section, news carousel, share price widget, and footer. The goal is to ensure easy content editing, deployment, and adherence to Johnson Matthey's branding guidelines and Liferay's Classic theme.
+This project delivers a comprehensive B2B pharmaceutical commerce system for Sigma Pharmaceuticals using Liferay Commerce Headless APIs. It provides a complete product catalog with authentic pharmaceutical branding, proper SKU variants for pack sizes, pharmaceutical categorization system, and working product specifications. The system focuses on creating products with multiple SKUs linked to product options, proper taxonomies for therapeutic areas and product types, and specifications that provide informational product details.
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
 Preferred name: Call user "Kris".
 
 ## System Architecture
-The project employs a modular, fragment-based architecture where each UI component is a self-contained Liferay fragment (HTML, CSS, JS, configuration). Global styles and scripts are managed via a client extension. All fragments are scoped under the `#wrapper` CSS selector and integrate seamlessly with Liferay's theme system using Liferay Classic theme tokens via CSS custom properties.
+The project employs a Liferay Commerce-based architecture using headless APIs for comprehensive product management. All products are created with enhanced descriptions, proper categorization, SKU variants, and working specifications system.
 
 **Key Architectural Decisions:**
-- **Dual-Deployment**: Client extension for global CSS/JS and fragment collection for UI components.
-- **Fragment Modularity**: Each component is an independent Liferay fragment.
-- **Color System**: Exclusive use of Liferay Classic theme frontend tokens for branding consistency.
-- **JavaScript Isolation**: IIFEs and event-driven architecture ensure proper initialization and prevent global namespace pollution.
-- **Content Management**: All content (text, images, links) is editable via Liferay's inline editing system using `data-lfr-editable` attributes.
-- **Responsive Design**: Mobile-first approach using CSS Grid and Flexbox with consistent breakpoints.
-- **Modal System**: Centralized system for login, search, and video modals, embedding Liferay portlets with extensive CSS overrides for consistent branding.
-- **Animation System**: Scroll-triggered animations using CSS transitions/transforms and JavaScript Intersection Observers.
-- **Fragment Configuration**: Uses `typeOptions.validValues` for select fields.
-**FreeMarker Syntax**: Liferay fragments use `[#` brackets instead of `<#` - configuration conditionals use `[#if condition]content[/#if]` syntax.
-- **Fragment Element Detection**: Fixed critical issue where `document.currentScript.closest()` fails in Liferay's ES module environment. All fragments now properly use the `fragmentElement` variable injected by Liferay instead of trying to find elements with `document.currentScript`.
-- **Hero Fragment Image Fix**: Fixed "Each editable image element must contain an IMG tag" error by converting inline SVG to IMG element with SVG data URL, maintaining visual design while ensuring Liferay compatibility.
-- **Header Logo Sizing**: Added fixed width="180" height="40" attributes to header logo for consistent sizing.
-- **Footer Mobile Responsiveness Fix**: Complete mobile layout overhaul with single-column design for optimal readability. Mobile (768px and below) always uses single column regardless of desktop configuration, with all content perfectly centered and proper spacing.
-- **CSS Specificity Fix**: Resolved Hero fragment visibility issue by removing `#wrapper` selector dependencies and CSS containment properties that were causing layout collapse. Fragments now use direct class selectors for maximum Liferay compatibility and guaranteed visibility on live sites.
-- **Mobile Responsiveness Enhancement**: Fixed responsive layout issues with proper mobile breakpoints, improved text contrast for accessibility (WCAG AA compliance), and optimized mobile layout flow.
-- **JM Card Fragment**:
-    - **Standalone Component**: Complete card fragment for use in mega menus and page content
-    - **Context-Aware Styling**: Automatically applies compact mode when used in mega menu dropzones
-    - **Comprehensive Configuration**: Image, category, title, description, and button options with show/hide controls
-    - **FreeMarker Integration**: Proper `configuration.variableName` syntax for all template variables
-    - **Analytics Ready**: Built-in click tracking with contextual location data
-    - **Accessibility Compliant**: WCAG AA standards with proper alt text and semantic HTML
-    - **Performance Optimized**: Lazy loading, error handling, and minimal JavaScript footprint
-- **Header Fragment**:
-    - **Comprehensive Configuration**: Options for search, user menu visibility, sticky header, style variants (white/light/primary), navigation menu ID, and site prefix.
-    - **Site Prefix Configuration**: Configurable URL prefix that replaces deprecated ThemeDisplay method for building navigation links.
-    - **Editable Logo System**: Liferay-editable logo image.
-    - **Dynamic Navigation**: Liferay Headless API integration with authentication and fallback system.
-    - **Authentication Integration**: User management via Liferay personal bar and login modals.
-    - **Search Functionality**: Embedded Liferay search portlets.
-    - **Smart Edit Mode Detection**: Comprehensive edit mode detection and visual indicators with smart dropzone system.
-    - **Language Selector Dropzone**: Positioned next to user profile for multilingual widget support.
-    - **SPA Navigation Support**: Full SennaJS compatibility.
-    - **Mobile Responsiveness**: Fixed hamburger menu and slide-out navigation with viewport-based resize handling.
-    - **Sticky Header Implementation**: Reliable `position: fixed` implementation with full-width coverage and enhanced shadow.
-    - **Mega Menu System**: 5 configurable dropzones that map to navigation items with children, featuring dynamic width sizing, content-aware display, mobile viewport visibility controls, and real-time content synchronization with mutation observers.
-- **Hero Fragment**:
-    - **Comprehensive Configuration**: Options for layout style (centered/split), background style (image/gradient/solid), show/hide stats, and show/hide video overlay.
-    - **FreeMarker Integration**: All configuration options properly implemented using `[#if condition]` syntax for conditional rendering.
-    - **Video Integration**: Modal video player with play button overlay, configurable visibility based on `showVideo` setting.
-    - **Statistics Display**: Statistics section with configurable visibility based on `showStats` setting.
-    - **Dynamic Styling**: Layout and background variants controlled through data attributes and CSS custom properties.
-    - **Performance Ultra-Optimized**: Targeting 90+ Lighthouse score with aggressive LCP optimization (sub-2.5s), CLS elimination (<0.1), inline CSS for critical rendering, eager image loading, complete mobile responsiveness, and zero debugging artifacts. Self-contained Hero fragment with inline styles for immediate rendering.
-    - **Render-Blocking Independence (Aug 16, 2025)**: Hero fragment completely immune to external CSS blocking (clay.css 900ms, global.css 794ms, main.css 300ms). LCP element `p.jm-hero-description` renders instantly with hardcoded CSS fallbacks, anti-blocking font rendering, and system font priority. Eliminates 79% render delay (2,480ms) identified in Lighthouse analysis.
-    - **Ultra-Aggressive Hardcoding (Aug 16, 2025)**: All layout-related CSS variables replaced with fixed values - spacing (10rem, 4rem, 3rem, 1.5rem, etc.), typography (3.5rem, 1.25rem, 1.125rem, etc.), font weights (900, 600, 400), and border radius (0.5rem, 0.25rem). Only color and font-family variables retained for theme compatibility. Fragment now renders with zero dependency on external CSS variables.
-    - **Direct Liferay Token Integration**: Optimized to use native Liferay theme tokens (var(--primary), var(--spacer-4), etc.) directly from the head style element, eliminating dependency on global.css client extension for instant loading performance.
-- **Footer Fragment**:
-    - **Comprehensive Configuration**: Options for newsletter signup, social media visibility, back-to-top button, company name, style variants (dark/light/primary), column layouts (5/4/3 columns), link tracking, and newsletter service integration.
-    - **Dynamic Styling System**: Three footer style variants with complete color scheme adaptation.
-    - **Flexible Column Layouts**: Responsive grid system.
-    - **Configurable Components**: Show/hide controls for newsletter section, social media links, and back-to-top functionality.
-    - **Company Branding**: Dynamic company name updates.
-    - **Newsletter Integration**: Optional newsletter signup with multiple service provider options.
-    - **Analytics Integration**: Configurable link tracking for footer navigation analytics.
+- **Product Creation Workflow**: Two-step process - create product first, then attach specifications via dedicated endpoint.
+- **SKU Option Linkage**: Complete product payload with productOptions containing inline productOptionValues and skus with skuOptions in single API call.
+- **Specification System**: POST to `/products/{id}/productSpecifications` endpoint after product creation (inline specifications during creation don't persist properly).
+- **Category System**: PATCH to `/products/{id}/categories` endpoint using existing taxonomy categories.
+- **Option Templates**: Reusable across products - pack-size (ID: 62686), dosage-strength (ID: 63140), inhaler-doses (ID: 63141).
+- **Image Management**: POST to `/products/{id}/images` using fileEntryId from uploaded documents.
+- **Specification Definitions**: Created via POST to `/specifications` with key, title, description, facetable, visible, priority.
+
+**Working API Structure:**
+- **Products**: Use complete payload with productOptions and skus arrays for full SKU variant creation
+- **Specifications**: Always use POST `/products/{id}/productSpecifications` with specificationKey, value, priority
+- **Categories**: Use PATCH `/products/{id}/categories` with complete category objects including externalReferenceCode
+- **Images**: POST `/products/{id}/images` with fileEntryId, title, priority
+
+**Current Product Portfolio:**
+1. **Amlodipine 5mg Tablets (ID: 63342)** - Cardiovascular/POM with 3 pack sizes (28/56/84 tablets)
+2. **Salbutamol Inhaler 100mcg (ID: 63368)** - Respiratory/POM with 2 dose options (100/200 doses)
+3. **Ibuprofen 400mg Tablets (ID: 63389)** - P Medicine with 2 pack sizes (24/48 tablets)
+
+**Specification System (Working):**
+- **Active Ingredient Spec (ID: 63257)**: Primary pharmaceutical ingredient
+- **Strength Spec (ID: 63339)**: Dosage strength information  
+- **Storage Conditions Spec (ID: 63340)**: Required storage conditions
+- Each product has 3 specifications properly attached and visible
+
+**Taxonomy Structure:**
+- **Therapeutic Areas Vocabulary (ID: 62442)**: Cardiovascular (62443), Respiratory (62452)
+- **Product Types Vocabulary (ID: 62461)**: POM (62462), P Medicine (62465), GSL (62468), Medical Devices (62471), Controlled Substances (62474)
+
+**Option Templates (Reusable):**
+- **pack-size (ID: 62686)**: For tablet pack variants (28, 56, 84, 24, 48 tablets)
+- **dosage-strength (ID: 63140)**: Ready for future dosage variants
+- **inhaler-doses (ID: 63141)**: For inhaler dose counts (100, 200 doses)
+
+**B2B Pricing Structure:**
+- Professional pricing with cost margins for wholesale pharmaceutical distribution
+- Varied pricing by pack size and therapeutic category
+- All products have purchasable SKUs with proper cost/price ratios
 
 ## External Dependencies
 
-**Liferay Platform:**
-- **Liferay DXP/Portal**: Core platform for fragment rendering, theme system, and content management.
-- **Liferay Classic Theme**: Provides frontend tokens and base styling.
-- **Liferay Headless Delivery API**: Used for navigation menu structure and content data.
-- **Liferay Fragment Editor**: Development and deployment environment.
+**Liferay Commerce Platform:**
+- **Liferay Commerce Headless APIs**: Core API for product, catalog, and specification management
+- **Headless Commerce Admin Catalog v1.0**: Primary API endpoints for all commerce operations
+- **Headless Admin Taxonomy API**: For category and vocabulary management
+- **Headless Delivery API**: For document and image upload
 
-**Liferay Portlets:**
-- **Login Portlet** (`com_liferay_login_web_portlet_LoginPortlet`): Embedded in modal overlays.
-- **Search Portlet**: Integrated into search modal functionality.
-- **Navigation Portlet**: Provides dynamic navigation menu structure.
+**Commerce API Endpoints:**
+- **Products**: `/o/headless-commerce-admin-catalog/v1.0/products`
+- **Product Specifications**: `/o/headless-commerce-admin-catalog/v1.0/products/{id}/productSpecifications`
+- **Product Categories**: `/o/headless-commerce-admin-catalog/v1.0/products/{id}/categories`
+- **Product Images**: `/o/headless-commerce-admin-catalog/v1.0/products/{id}/images`
+- **Specifications**: `/o/headless-commerce-admin-catalog/v1.0/specifications`
+- **Taxonomies**: `/o/headless-admin-taxonomy/v1.0/taxonomy-vocabularies/{id}/taxonomy-categories`
 
-**Browser APIs:**
-- **Intersection Observer API**: For scroll-triggered animations.
-- **Fetch API**: For asynchronous data loading.
-- **Local Storage API**: For user preferences and temporary data.
+**Authentication:**
+- Basic Auth with nick@boots.com:Gloria1234! for API access
+- Site ID: 20123, Catalog ID: 33181
 
-**Third-Party Services (Integrated):**
-- **Stock Price APIs**: For share price widget.
-- **YouTube/Vimeo APIs**: For video embedding.
-- **Newsletter Services**: Custom Integration, Mailchimp, Campaign Monitor, Constant Contact.
+**Generated Assets:**
+- Professional pharmaceutical product images via AI generation
+- Amlodipine packaging, prescription bottle, tablet images
+- Salbutamol inhaler product photo
+- Ibuprofen tablets product photo
 
-**Asset Dependencies:**
-- **SVG Icons**
-- **Google Fonts**
-- **Image Assets**: Managed through Liferay's document library.
+**External Reference Codes:**
+- AMLO-5MG-SIGMA (Amlodipine)
+- SALB-100MCG-SIGMA (Salbutamol) 
+- IBU-400MG-SIGMA (Ibuprofen)
