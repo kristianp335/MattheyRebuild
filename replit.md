@@ -25,7 +25,7 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 - **Categories**: Use PATCH `/products/{id}/categories` with complete category objects including externalReferenceCode
 - **Images**: POST `/products/{id}/images` with fileEntryId, title, priority
 
-**Complete Product Portfolio (13 Products):**
+**Complete Product Portfolio (16 Products):**
 
 **Cardiovascular Products (6 total):**
 1. **Amlodipine 5mg Tablets (ID: 66518)** - Cardiovascular/POM with 3 pack sizes (28/56/84 tablets)
@@ -44,6 +44,11 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 6. **Loratadine 10mg Tablets (ID: 66785)** - Respiratory/P Medicine with 2 pack sizes (30/60 tablets)
 7. **Budesonide Inhaler 200mcg (ID: 66806)** - Respiratory/POM with 2 dose options (100/200 doses)
 
+**Antibiotics & Anti-infectives Products (3 total):**
+1. **Amoxicillin 500mg Capsules (ID: 67457)** - Antibiotics/POM with 2 pack sizes (28/56 capsules)
+2. **Ciprofloxacin 500mg Tablets (ID: 67467)** - Antibiotics/POM with 2 pack sizes (28/56 tablets)
+3. **Azithromycin 250mg Tablets (ID: 67477)** - Antibiotics/POM with 2 pack sizes (28/84 tablets)
+
 **Specification System (Working):**
 - **Active Ingredient Spec (ID: 63257)**: Primary pharmaceutical ingredient
 - **Strength Spec (ID: 63339)**: Dosage strength information  
@@ -51,7 +56,7 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 - Each product has 3 specifications properly attached and visible
 
 **Taxonomy Structure:**
-- **Therapeutic Areas Vocabulary (ID: 62442)**: Cardiovascular (62443), Respiratory (62452)
+- **Therapeutic Areas Vocabulary (ID: 62442)**: Cardiovascular (62443), Respiratory (62452), Antibiotics & Anti-infectives (62446)
 - **Product Types Vocabulary (ID: 62461)**: POM (62462), P Medicine (62465), GSL (62468), Medical Devices (62471), Controlled Substances (62474)
 
 **Option Templates (Reusable):**
