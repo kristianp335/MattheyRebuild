@@ -25,7 +25,7 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 - **Categories**: Use PATCH `/products/{id}/categories` with complete category objects including externalReferenceCode
 - **Images**: POST `/products/{id}/images` with fileEntryId, title, priority
 
-**Complete Product Portfolio (16 Products):**
+**Complete Product Portfolio (25 Products):**
 
 **Cardiovascular Products (6 total):**
 1. **Amlodipine 5mg Tablets (ID: 66518)** - Cardiovascular/POM with 3 pack sizes (28/56/84 tablets)
@@ -35,14 +35,29 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 5. **Aspirin 75mg Tablets (ID: 66675)** - Cardiovascular/P Medicine with 3 pack sizes (28/56/100 tablets)
 6. **Nitroglycerin Sublingual Spray (ID: 66701)** - Cardiovascular/POM with 2 dose strengths (400mcg/800mcg)
 
-**Respiratory Products (7 total):**
+**Pain Relief & Anti-inflammatories Products (6 total):**
+1. **Paracetamol 500mg Tablets (ID: 67636)** - Pain Relief/P Medicine with 2 pack sizes (16/32 tablets)
+2. **Ibuprofen 200mg Tablets (ID: 67646)** - Pain Relief/P Medicine with 2 pack sizes (24/48 tablets)
+3. **Naproxen 250mg Tablets (ID: 67656)** - Pain Relief/POM with 2 pack sizes (28/56 tablets)
+4. **Ibuprofen 400mg Tablets (ID: 66565)** - Pain Relief/P Medicine with 2 pack sizes (24/48 tablets)
+
+**Respiratory Products (6 total):**
 1. **Salbutamol Inhaler 100mcg (ID: 66544)** - Respiratory/POM with 2 dose options (100/200 doses)
-2. **Ibuprofen 400mg Tablets (ID: 66565)** - P Medicine with 2 pack sizes (24/48 tablets)
-3. **Beclometasone Inhaler 250mcg (ID: 66722)** - Respiratory/POM with 2 dose options (120/200 doses)
-4. **Montelukast 10mg Tablets (ID: 66743)** - Respiratory/POM with 2 pack sizes (28/84 tablets)
-5. **Ipratropium Inhaler 20mcg (ID: 66764)** - Respiratory/POM with 2 dose options (200/400 doses)
-6. **Loratadine 10mg Tablets (ID: 66785)** - Respiratory/P Medicine with 2 pack sizes (30/60 tablets)
-7. **Budesonide Inhaler 200mcg (ID: 66806)** - Respiratory/POM with 2 dose options (100/200 doses)
+2. **Beclometasone Inhaler 250mcg (ID: 66722)** - Respiratory/POM with 2 dose options (120/200 doses)
+3. **Montelukast 10mg Tablets (ID: 66743)** - Respiratory/POM with 2 pack sizes (28/84 tablets)
+4. **Ipratropium Inhaler 20mcg (ID: 66764)** - Respiratory/POM with 2 dose options (200/400 doses)
+5. **Loratadine 10mg Tablets (ID: 66785)** - Respiratory/P Medicine with 2 pack sizes (30/60 tablets)
+6. **Budesonide Inhaler 200mcg (ID: 66806)** - Respiratory/POM with 2 dose options (100/200 doses)
+
+**Gastrointestinal Products (3 total):**
+1. **Omeprazole 20mg Capsules (ID: 67666)** - Gastrointestinal/POM with 1 pack size (28 capsules)
+2. **Loperamide 2mg Tablets (ID: 67676)** - Gastrointestinal/P Medicine with 1 pack size (30 tablets)
+3. **Domperidone 10mg Tablets (ID: 67686)** - Gastrointestinal/POM with 1 pack size (30 tablets)
+
+**Dermatological Products (3 total):**
+1. **Hydrocortisone 1% Cream (ID: 67696)** - Dermatological/P Medicine with 1 pack size (15g tube)
+2. **Clotrimazole 1% Cream (ID: 67706)** - Dermatological/P Medicine with 1 pack size (20g tube)
+3. **Betamethasone 0.1% Ointment (ID: 67716)** - Dermatological/POM with 1 pack size (30g tube)
 
 **Antibiotics & Anti-infectives Products (3 total):**
 1. **Amoxicillin 500mg Capsules (ID: 67457)** - Antibiotics/POM with 2 pack sizes (28/56 capsules)
@@ -56,7 +71,7 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 - Each product has 3 specifications properly attached and visible
 
 **Taxonomy Structure:**
-- **Therapeutic Areas Vocabulary (ID: 62442)**: Cardiovascular (62443), Respiratory (62452), Antibiotics & Anti-infectives (62446)
+- **Therapeutic Areas Vocabulary (ID: 62442)**: Cardiovascular (62443), Respiratory (62452), Antibiotics & Anti-infectives (62446), Pain Relief & Anti-inflammatories (67626), Gastrointestinal (67636), Dermatological (67646)
 - **Product Types Vocabulary (ID: 62461)**: POM (62462), P Medicine (62465), GSL (62468), Medical Devices (62471), Controlled Substances (62474)
 
 **Option Templates (Reusable):**
@@ -86,24 +101,28 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 - **Taxonomies**: `/o/headless-admin-taxonomy/v1.0/taxonomy-vocabularies/{id}/taxonomy-categories`
 
 **Authentication:**
-- Basic Auth with nick@boots.com:Gloria1234! for API access
+- Basic Auth credentials configured securely via environment variables
 - Site ID: 20123, Catalog ID: 33181
 
 **Generated Assets:**
 - Professional pharmaceutical product images via AI generation
-- Amlodipine packaging, prescription bottle, tablet images
-- Salbutamol inhaler product photo
-- Ibuprofen tablets product photo
+- Complete 3-image systems for all 25 products
+- Packaging, product photos, and consultation scenes for each therapeutic category
+- Total: 75 professional pharmaceutical images with working src URLs
 
 **Three-Image Solution Workflow:**
 - **Step 1**: Generate professional pharmaceutical images (packaging, product photo, consultation context)
 - **Step 2**: Upload images via Headless Delivery API: POST `/sites/{siteId}/documents`
 - **Step 3**: Attach images via Commerce API: POST `/products/{id}/images` with fileEntryId, title, priority
 - **Priority System**: 0=Packaging, 1=Product Photo, 2=Medical Consultation
-- **Complete Coverage**: All 13 products have 3 professional images with working src URLs
-- **API Statistics**: 36 uploads + 36 attachments = 72 successful API calls total
+- **Complete Coverage**: All 25 products have 3 professional images with working src URLs
+- **API Statistics**: 75 uploads + 75 attachments = 150 successful API calls total
 
-**External Reference Codes:**
+**External Reference Codes (Selected):**
 - AMLO-5MG-SIGMA (Amlodipine)
-- SALB-100MCG-SIGMA (Salbutamol) 
-- IBU-400MG-SIGMA (Ibuprofen)
+- SALB-100MCG-SIGMA (Salbutamol)
+- PARA-500MG-SIGMA (Paracetamol)
+- IBU-200MG-SIGMA (Ibuprofen 200mg)
+- OMEP-20MG-SIGMA (Omeprazole)
+- HYDRO-1PC-SIGMA (Hydrocortisone)
+- Plus 19 additional products with consistent naming convention
