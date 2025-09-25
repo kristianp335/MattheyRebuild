@@ -16,6 +16,8 @@
   border-bottom: 1px solid var(--sigma-gray-300);
   position: relative;
   z-index: 100;
+  /* Enhanced depth with soft box-shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
   /* CRITICAL: Removed contain properties - they block first paint and reduce Lighthouse score */
 }
 
@@ -69,6 +71,8 @@
   justify-content: space-between;
   padding: var(--sigma-spacing-md) 0;
   min-height: 60px;
+  border-bottom: 1px solid transparent;
+  background: linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.02) 50%, transparent 100%);
 }
 
 /* Logo */
@@ -84,6 +88,8 @@
   height: 40px;
   width: auto;
   transition: opacity var(--sigma-transition);
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 #wrapper .sigma-logo:hover {
@@ -115,23 +121,28 @@
   padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
   color: var(--sigma-gray-700);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--sigma-font-size-base);
   border-radius: var(--sigma-border-radius);
   transition: var(--sigma-transition);
   white-space: nowrap;
+  letter-spacing: 0.025em;
+  position: relative;
+  overflow: hidden;
 }
 
 #wrapper .sigma-nav-link:hover,
 #wrapper .sigma-nav-link:focus {
   color: var(--sigma-primary);
-  background-color: var(--sigma-gray-100);
+  background: linear-gradient(135deg, var(--sigma-gray-100) 0%, rgba(37, 99, 235, 0.08) 100%);
   text-decoration: none;
 }
 
 #wrapper .sigma-nav-item.active > .sigma-nav-link {
   color: var(--sigma-primary);
-  background-color: var(--sigma-primary-light);
+  background: linear-gradient(135deg, var(--sigma-primary-light) 0%, rgba(37, 99, 235, 0.15) 100%);
+  border-bottom: 2px solid var(--sigma-primary);
+  font-weight: 700;
 }
 
 /* Dropdown menus */
@@ -210,9 +221,10 @@
 
 #wrapper .sigma-header-action-btn:hover,
 #wrapper .sigma-header-action-btn:focus {
-  background-color: var(--sigma-gray-100);
-  border-color: var(--sigma-gray-400);
+  background: linear-gradient(135deg, var(--sigma-gray-100) 0%, rgba(37, 99, 235, 0.06) 100%);
+  border-color: var(--sigma-primary);
   color: var(--sigma-primary);
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
 }
 
 #wrapper .sigma-header-action-btn svg {
@@ -228,7 +240,8 @@
 
 #wrapper .sigma-login-btn span {
   font-size: var(--sigma-font-size-sm);
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.025em;
 }
 
 /* Dropzones */
@@ -437,8 +450,9 @@ body.has-edit-mode-menu .sigma-account-selector-dropzone lfr-drop-zone:before {
 #wrapper .sigma-modal-title {
   margin: 0;
   font-size: var(--sigma-font-size-xl);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--sigma-dark);
+  letter-spacing: 0.02em;
 }
 
 #wrapper .sigma-modal-close {
@@ -497,11 +511,11 @@ body.has-edit-mode-menu .sigma-edit-mode-only,
 
 #wrapper .sigma-mega-dropzone-label {
   font-size: var(--sigma-font-size-sm);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--sigma-gray-600);
   margin-bottom: var(--sigma-spacing-sm);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
 }
 
 /* Mega Menu Dropzone Styling */
