@@ -2,11 +2,24 @@
 (function() {
     'use strict';
     
-    // Use the fragmentElement provided by Liferay instead of document.currentScript
-    // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
-    if (!fragmentElement) {
+    console.log('📦 SIGMA HEADER SCRIPT LOADED - Finding fragment root...');
+    
+    // Resilient fragment root detection - works in Liferay and static environments
+    const root = (typeof fragmentElement !== 'undefined' && fragmentElement) || 
+                 document.querySelector('[data-fragment="sigma-header"]') || 
+                 document.querySelector('.sigma-header-fragment') ||
+                 document.querySelector('.sigma-header') ||
+                 document.currentScript?.closest('.sigma-header-root');
+    
+    if (!root) {
+        console.warn('⚠️ Sigma Header: No fragment root found; not initializing');
         return;
     }
+    
+    console.log('✅ Found fragment root:', root);
+    
+    // Use root instead of fragmentElement throughout
+    const fragmentElement = root;
     
     // Initialize on DOM ready and SPA navigation events
     function ready(fn) {
@@ -17,9 +30,20 @@
         }
     }
     
-    // Initial load
-    console.log('📦 SIGMA HEADER MODULE LOADED - Setting up initialization...');
+    // Initial load - always runs
+    console.log('🚀 SIGMA HEADER MODULE SETUP COMPLETE - Starting initialization...');
     ready(initializeHeader);
+    
+    // Add SPA re-initialization hooks for Liferay if available
+    if (typeof window !== 'undefined' && window.Liferay?.on) {
+        console.log('🔄 Setting up Liferay SPA hooks...');
+        // Ensure we only attach once
+        if (!fragmentElement._spaHooksAttached) {
+            window.Liferay.on('endNavigate', () => ready(initializeHeader));
+            fragmentElement._spaHooksAttached = true;
+            console.log('✅ Liferay SPA re-init hooks attached');
+        }
+    }
     
     function initializeHeader() {
         console.log('🔥 SIGMA HEADER FRAGMENT INITIALIZING...');
@@ -675,28 +699,33 @@
         const allDropzones = fragmentElement.querySelectorAll('lfr-drop-zone');
         console.log('Found ALL dropzones in fragment:', allDropzones.length);
         
-        megaDropzones.forEach((dropzone, index) => {
-            console.log(`Processing dropzone ${index + 1}:`, dropzone);
+        // Get dropdown nav items for position-based mapping
+        const dropdownNavItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
+        console.log('Found dropdown nav items:', dropdownNavItems.length);
+        
+        // Position-based mapping: 1st dropzone → 1st dropdown, 2nd dropzone → 2nd dropdown, etc.
+        const mappingLimit = Math.min(megaDropzones.length, dropdownNavItems.length);
+        console.log(`Mapping ${mappingLimit} dropzones to dropdown nav items`);
+        
+        for (let i = 0; i < mappingLimit; i++) {
+            const dropzone = megaDropzones[i];
+            const navItem = dropdownNavItems[i];
+            const positionBasedId = (i + 1).toString();
             
-            // Use data attribute if available, fallback to index
-            let menuId = dropzone.getAttribute('data-mega-key');
-            if (!menuId) {
-                // Fallback: extract from label or use index
-                const label = dropzone.querySelector('.sigma-mega-dropzone-label');
-                if (label) {
-                    const labelText = label.textContent.trim();
-                    console.log(`Dropzone ${index + 1} label text:`, labelText);
-                    const menuIdMatch = labelText.match(/Mega Menu (?:Content )?(\d+)/);
-                    menuId = menuIdMatch ? menuIdMatch[1] : (index + 1).toString();
-                } else {
-                    console.log(`No label found for dropzone ${index + 1}`);
-                    menuId = (index + 1).toString();
-                }
-            }
+            console.log(`\n--- Mapping dropzone ${i + 1} to nav item ${i + 1} ---`);
             
-            console.log(`Dropzone ${index + 1} mapped to menu ID:`, menuId);
-            copyDropzoneContentToMenu(menuId, dropzone);
-        });
+            // Ensure nav item has the correct data-mega-menu-id for position-based mapping
+            navItem.setAttribute('data-mega-menu-id', positionBasedId);
+            console.log(`Set nav item data-mega-menu-id="${positionBasedId}"`);
+            
+            // Copy content from dropzone to dropdown
+            copyDropzoneContentToMenu(positionBasedId, dropzone);
+        }
+        
+        // Log any unmapped dropzones
+        if (megaDropzones.length > dropdownNavItems.length) {
+            console.log(`⚠️ ${megaDropzones.length - dropdownNavItems.length} dropzones have no corresponding dropdown nav items`);
+        }
         
         console.log('=== MEGA MENU DEBUG: Content initialization complete ===');
     }
@@ -783,22 +812,23 @@
         
         console.log(`✅ Found dropdown for menu ID ${menuId}:`, dropdown);
         
-        // Get content from the dropzone - check both lfr-drop-zone and direct dropzone content
-        let dropzoneContent = dropzone.querySelector('lfr-drop-zone');
+        // Get content from the dropzone using the actual DOM structure
+        let dropzoneContent = dropzone.querySelector(`[id="dropzone-mega-menu-${menuId}"]`);
         if (!dropzoneContent) {
-            // Look for dropzone content in div with id starting with "dropzone-mega-menu-"
+            // Fallback to generic dropzone content selector  
             dropzoneContent = dropzone.querySelector('[id^="dropzone-mega-menu-"]');
             if (!dropzoneContent) {
-                // Look for any div that contains content
-                dropzoneContent = dropzone.querySelector('div:not(.sigma-mega-dropzone-label)');
+                // Fallback to lfr-drop-zone
+                dropzoneContent = dropzone.querySelector('lfr-drop-zone');
                 if (!dropzoneContent) {
-                    console.log(`❌ No dropzone content found in dropzone:`, dropzone);
+                    console.log(`❌ No dropzone content found for menu ID ${menuId} in dropzone:`, dropzone);
                     return;
                 }
             }
         }
         
         console.log(`✅ Found dropzone content:`, dropzoneContent);
+        console.log(`Dropzone content ID:`, dropzoneContent.id);
         console.log(`Dropzone children count:`, dropzoneContent.children.length);
         
         // Clear existing mega menu content (but keep original navigation children)

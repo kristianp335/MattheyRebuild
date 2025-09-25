@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma Header Fragment Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .demo-container {
+            min-height: 100vh;
+        }
+        
+        .demo-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .mega-dropzones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .sigma-mega-dropzone {
+            background: white;
+            border: 2px dashed #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 150px;
+        }
+        
+        .sigma-mega-dropzone-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        /* Simulate edit mode */
+        body.has-edit-mode-menu .sigma-mega-dropzone {
+            border-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+    </style>
+</head>
+<body class="has-edit-mode-menu">
+    <div class="demo-container">
+        <!-- Load Sigma Header Fragment -->
+        <div class="sigma-header-fragment">
+            <script>
+                // Simulate Liferay fragment context
+                const fragmentElement = document.querySelector('.sigma-header-fragment');
+                console.log('🎭 Demo page loaded - Fragment element:', fragmentElement);
+            </script>
+            
+            <!-- Load fragment CSS -->
+            <link rel="stylesheet" href="/fragment-collection/sigma-pharmaceuticals-collection/sigma-header/index.css">
+            
+            <!-- Load fragment HTML -->
+            <iframe id="header-frame" src="/fragment-collection/sigma-pharmaceuticals-collection/sigma-header/index.html" style="width: 100%; border: none; height: 100px;"></iframe>
+            
+            <!-- Mega Menu Dropzones -->
+            <div class="mega-dropzones">
+                <div class="sigma-mega-dropzone">
+                    <h4 class="sigma-mega-dropzone-label">Mega Menu Content 1</h4>
+                    <div id="dropzone-mega-menu-1">
+                        <div>Sample content for dropdown 1</div>
+                    </div>
+                </div>
+                
+                <div class="sigma-mega-dropzone">
+                    <h4 class="sigma-mega-dropzone-label">Mega Menu Content 2</h4>
+                    <div id="dropzone-mega-menu-2">
+                        <div>Sample content for dropdown 2</div>
+                    </div>
+                </div>
+                
+                <div class="sigma-mega-dropzone">
+                    <h4 class="sigma-mega-dropzone-label">Mega Menu Content 3</h4>
+                    <div id="dropzone-mega-menu-3">
+                        <div style="padding: 1rem; background: #f3f4f6; border-radius: 4px;">
+                            <h5>Orders Management</h5>
+                            <p>Quick access to order management tools and reports.</p>
+                            <button style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View Orders</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sigma-mega-dropzone">
+                    <h4 class="sigma-mega-dropzone-label">Mega Menu Content 4</h4>
+                    <div id="dropzone-mega-menu-4">
+                        <div>Sample content for dropdown 4</div>
+                    </div>
+                </div>
+                
+                <div class="sigma-mega-dropzone">
+                    <h4 class="sigma-mega-dropzone-label">Mega Menu Content 5</h4>
+                    <div id="dropzone-mega-menu-5">
+                        <div>Sample content for dropdown 5</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Load fragment JavaScript -->
+            <script src="/fragment-collection/sigma-pharmaceuticals-collection/sigma-header/index.js"></script>
+        </div>
+        
+        <div class="demo-content">
+            <div class="demo-info">
+                <h1>Sigma Header Fragment Demo</h1>
+                <p>This page demonstrates the Sigma header fragment with mega menu dropzone functionality.</p>
+                <p><strong>Open browser console to see debug logs.</strong></p>
+                
+                <h3>Expected Behavior:</h3>
+                <ul>
+                    <li>Header should load with navigation items</li>
+                    <li>Mega dropzone content should copy into dropdown menus</li>
+                    <li>Console should show debug logs for initialization and content copying</li>
+                    <li>Dropzone 1 should map to first dropdown nav item, dropzone 3 content should appear in "Orders" dropdown</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Monitor iframe load
+        document.getElementById('header-frame').onload = function() {
+            console.log('📄 Header iframe loaded');
+            // Adjust iframe height based on content
+            const iframe = this;
+            try {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const height = iframeDoc.body.scrollHeight;
+                iframe.style.height = height + 'px';
+                console.log('📏 Adjusted iframe height to:', height + 'px');
+            } catch (e) {
+                console.log('⚠️ Could not adjust iframe height:', e.message);
+                iframe.style.height = '200px'; // Fallback
+            }
+        };
+    </script>
+</body>
+</html>
