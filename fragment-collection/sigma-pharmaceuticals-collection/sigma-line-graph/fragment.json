@@ -1,5 +1,11 @@
 {
   "fragmentEntryKey": "sigma-line-graph",
   "name": "Sigma Line Graph",
-  "type": "component"
+  "type": "component",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "jsPath": "index.js",
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "icon": "chart-line"
 }

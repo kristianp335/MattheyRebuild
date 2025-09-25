@@ -1,5 +1,11 @@
 {
   "fragmentEntryKey": "sigma-bar-chart",
   "name": "Sigma Bar Chart",
-  "type": "component"
+  "type": "component",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "jsPath": "index.js",
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "icon": "chart-bar"
 }

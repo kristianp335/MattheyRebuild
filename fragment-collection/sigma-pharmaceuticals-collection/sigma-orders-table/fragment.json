@@ -1,5 +1,11 @@
 {
   "fragmentEntryKey": "sigma-orders-table",
   "name": "Sigma Orders Table",
-  "type": "component"
+  "type": "component",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "jsPath": "index.js",
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "icon": "table"
 }
