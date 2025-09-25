@@ -18,10 +18,13 @@
     }
     
     // Initial load
+    console.log('📦 SIGMA HEADER MODULE LOADED - Setting up initialization...');
     ready(initializeHeader);
     
     function initializeHeader() {
-        // Sigma Pharmaceuticals Header Fragment initializing
+        console.log('🔥 SIGMA HEADER FRAGMENT INITIALIZING...');
+        console.log('Fragment element:', fragmentElement);
+        console.log('Document body classes:', document.body.className);
         
         // Get configuration values
         const config = getFragmentConfiguration();
@@ -30,6 +33,7 @@
         const editMode = isInEditMode();
         
         if (editMode) {
+            console.log('✏️ EDIT MODE DETECTED - Initializing edit mode features');
             // Apply configuration settings even in edit mode
             applyConfiguration(config);
             // Simplified initialization for edit mode
@@ -39,7 +43,9 @@
             initializeMobileMenu();
             initializeModals();
             // Initialize mega menu content for edit mode - single call
+            console.log('🎯 CALLING initializeMegaMenuContent...');
             initializeMegaMenuContent();
+            console.log('👁️ CALLING setupMegaMenuObserver...');
             setupMegaMenuObserver();
             return;
         }
@@ -329,6 +335,9 @@
         // Count dropdown items for mega menu mapping
         let dropdownIndex = 0;
         
+        console.log('=== MEGA MENU DEBUG: Navigation Rendering ===');
+        console.log('Total navigation items:', navItems.length);
+        
         // Render each navigation item
         navItems.forEach((item, index) => {
             // Increment dropdown index for items with dropdowns
@@ -336,12 +345,20 @@
             const navItem = createNavItem(item, index, currentDropdownIndex);
             navList.appendChild(navItem);
             
+            if (currentDropdownIndex > 0) {
+                console.log(`Nav item "${item.name}" has dropdown, assigned mega-menu-id:`, currentDropdownIndex);
+            } else {
+                console.log(`Nav item "${item.name}" has no dropdown`);
+            }
+            
             // Mobile navigation
             if (mobileNavList) {
                 const mobileNavItem = createMobileNavItem(item);
                 mobileNavList.appendChild(mobileNavItem);
             }
         });
+        
+        console.log('Total dropdown items created:', dropdownIndex);
         
         // Initialize dropdowns AFTER navigation is rendered
         initializeDropdowns();
@@ -373,6 +390,7 @@
             li.classList.add('has-dropdown');
             // Use dropdownIndex for mega menu mapping (1st dropdown = 1, 2nd dropdown = 2, etc.)
             li.setAttribute('data-mega-menu-id', dropdownIndex);
+            console.log(`🔗 Set data-mega-menu-id="${dropdownIndex}" on "${item.name}" nav item`);
             
             // Create dropdown menu
             const dropdown = document.createElement('div');
@@ -647,10 +665,19 @@
      * Initialize mega menu content for edit mode
      */
     function initializeMegaMenuContent() {
+        console.log('=== MEGA MENU DEBUG: Initialize Content ===');
+        
         // Copy content from mega menu dropzones into the actual dropdown menus
         const megaDropzones = fragmentElement.querySelectorAll('.sigma-mega-dropzone');
+        console.log('Found mega dropzones:', megaDropzones.length);
+        
+        // Also check for any dropzones at all
+        const allDropzones = fragmentElement.querySelectorAll('lfr-drop-zone');
+        console.log('Found ALL dropzones in fragment:', allDropzones.length);
         
         megaDropzones.forEach((dropzone, index) => {
+            console.log(`Processing dropzone ${index + 1}:`, dropzone);
+            
             // Use data attribute if available, fallback to index
             let menuId = dropzone.getAttribute('data-mega-key');
             if (!menuId) {
@@ -658,15 +685,20 @@
                 const label = dropzone.querySelector('.sigma-mega-dropzone-label');
                 if (label) {
                     const labelText = label.textContent.trim();
-                    const menuIdMatch = labelText.match(/Mega Menu (\d+)/);
+                    console.log(`Dropzone ${index + 1} label text:`, labelText);
+                    const menuIdMatch = labelText.match(/Mega Menu (?:Content )?(\d+)/);
                     menuId = menuIdMatch ? menuIdMatch[1] : (index + 1).toString();
                 } else {
+                    console.log(`No label found for dropzone ${index + 1}`);
                     menuId = (index + 1).toString();
                 }
             }
             
+            console.log(`Dropzone ${index + 1} mapped to menu ID:`, menuId);
             copyDropzoneContentToMenu(menuId, dropzone);
         });
+        
+        console.log('=== MEGA MENU DEBUG: Content initialization complete ===');
     }
 
     /**
@@ -680,7 +712,7 @@
         fragmentElement._megaMenuObservers = [];
         
         // Set up mutation observer to watch for changes in mega menu dropzones
-        const megaDropzones = fragmentElement.querySelectorAll('.sigma-mega-dropzone lfr-drop-zone');
+        const megaDropzones = fragmentElement.querySelectorAll('.sigma-mega-dropzone [id^="dropzone-mega-menu-"], .sigma-mega-dropzone lfr-drop-zone');
         
         megaDropzones.forEach(dropzone => {
             const observer = new MutationObserver(function(mutations) {
@@ -695,7 +727,7 @@
                                 const label = megaDropzone.querySelector('.sigma-mega-dropzone-label');
                                 if (label) {
                                     const labelText = label.textContent.trim();
-                                    const menuIdMatch = labelText.match(/Mega Menu (\d+)/);
+                                    const menuIdMatch = labelText.match(/Mega Menu (?:Content )?(\d+)/);
                                     menuId = menuIdMatch ? menuIdMatch[1] : null;
                                 }
                             }
@@ -722,17 +754,52 @@
      * Copy content from mega menu dropzone to the corresponding dropdown menu
      */
     function copyDropzoneContentToMenu(menuId, dropzone) {
+        console.log(`=== COPYING CONTENT: Menu ID ${menuId} ===`);
+        
         // Find the navigation item with the matching mega menu ID
         const navItem = fragmentElement.querySelector(`[data-mega-menu-id="${menuId}"]`);
-        if (!navItem) return;
+        if (!navItem) {
+            console.log(`❌ No nav item found with data-mega-menu-id="${menuId}"`);
+            
+            // Debug: show all nav items with their IDs
+            const allNavItems = fragmentElement.querySelectorAll('[data-mega-menu-id]');
+            console.log('Available nav items with mega-menu-id:');
+            allNavItems.forEach(item => {
+                const id = item.getAttribute('data-mega-menu-id');
+                const name = item.querySelector('.sigma-nav-link')?.textContent;
+                console.log(`  - ID: ${id}, Name: ${name}`);
+            });
+            return;
+        }
+        
+        console.log(`✅ Found nav item for menu ID ${menuId}:`, navItem);
         
         // Get the dropdown menu within this nav item
         let dropdown = navItem.querySelector('.sigma-dropdown-menu');
-        if (!dropdown) return;
+        if (!dropdown) {
+            console.log(`❌ No dropdown found in nav item with data-mega-menu-id="${menuId}"`);
+            return;
+        }
         
-        // Get content from the dropzone
-        const dropzoneContent = dropzone.querySelector('lfr-drop-zone');
-        if (!dropzoneContent) return;
+        console.log(`✅ Found dropdown for menu ID ${menuId}:`, dropdown);
+        
+        // Get content from the dropzone - check both lfr-drop-zone and direct dropzone content
+        let dropzoneContent = dropzone.querySelector('lfr-drop-zone');
+        if (!dropzoneContent) {
+            // Look for dropzone content in div with id starting with "dropzone-mega-menu-"
+            dropzoneContent = dropzone.querySelector('[id^="dropzone-mega-menu-"]');
+            if (!dropzoneContent) {
+                // Look for any div that contains content
+                dropzoneContent = dropzone.querySelector('div:not(.sigma-mega-dropzone-label)');
+                if (!dropzoneContent) {
+                    console.log(`❌ No dropzone content found in dropzone:`, dropzone);
+                    return;
+                }
+            }
+        }
+        
+        console.log(`✅ Found dropzone content:`, dropzoneContent);
+        console.log(`Dropzone children count:`, dropzoneContent.children.length);
         
         // Clear existing mega menu content (but keep original navigation children)
         const existingMegaContent = dropdown.querySelector('.sigma-mega-menu-content');
@@ -741,44 +808,68 @@
         }
         
         // Count actual content children (exclude placeholders and empty elements)
+        console.log('Analyzing dropzone children:');
+        Array.from(dropzoneContent.children).forEach((child, i) => {
+            console.log(`  Child ${i}:`, child.tagName, child.className, `"${child.textContent.trim()}"`);
+        });
+        
         const contentChildren = Array.from(dropzoneContent.children).filter(child => {
             // Skip empty elements and Liferay placeholder content
-            if (child.textContent.trim().length === 0) return false;
+            if (child.textContent.trim().length === 0) {
+                console.log(`  Excluding child (empty):`, child);
+                return false;
+            }
             
             // Skip if it's just placeholder text like "Drop content here"
-            if (child.textContent.trim().includes('Drop content here')) return false;
+            if (child.textContent.trim().includes('Drop content here')) {
+                console.log(`  Excluding child (placeholder):`, child);
+                return false;
+            }
             
             // Include portlets that have actual content
             if (child.classList.contains('portlet-boundary')) {
                 const portletContent = child.querySelector('.portlet-content');
-                return portletContent && portletContent.textContent.trim().length > 0;
+                const hasContent = portletContent && portletContent.textContent.trim().length > 0;
+                console.log(`  Portlet child ${hasContent ? 'included' : 'excluded'}:`, child);
+                return hasContent;
             }
             
             // Include fragments and other elements with content
+            console.log(`  Including child:`, child);
             return true;
         });
         
+        console.log(`Filtered content children count: ${contentChildren.length} of ${dropzoneContent.children.length}`);
+        
         // Only add mega content if dropzone has actual content
         if (contentChildren.length > 0) {
+            console.log(`✅ Adding ${contentChildren.length} content children to dropdown`);
+            
             // Create container for mega menu content
             const megaContentContainer = document.createElement('div');
             megaContentContainer.className = 'sigma-mega-menu-content';
             
             // Clone the dropzone content (ensure deep clone)
-            contentChildren.forEach(child => {
+            contentChildren.forEach((child, i) => {
+                console.log(`  Cloning child ${i}:`, child);
                 const clonedChild = child.cloneNode(true);
                 megaContentContainer.appendChild(clonedChild);
             });
             
             // Add mega content to the dropdown
             dropdown.appendChild(megaContentContainer);
+            console.log(`✅ Mega content container added to dropdown:`, megaContentContainer);
             
             // Add mega menu class to the dropdown for styling
             dropdown.classList.add('has-mega-content');
+            console.log(`✅ Added has-mega-content class to dropdown`);
         } else {
+            console.log(`⚠️ No content children found, removing mega content`);
             // Remove mega menu class if no content
             dropdown.classList.remove('has-mega-content');
         }
+        
+        console.log(`=== COPY COMPLETE: Menu ID ${menuId} ===`);
     }
     
 })();
