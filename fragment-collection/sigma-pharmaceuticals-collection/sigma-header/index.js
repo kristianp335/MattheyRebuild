@@ -148,7 +148,7 @@
     }
     
     function isInEditMode() {
-        // Simplified edit mode detection - check for key indicators
+        // Enhanced edit mode detection - check for multiple indicators
         const body = document.body;
         
         // Check for specific Liferay edit mode indicators
@@ -159,6 +159,20 @@
         const hasFragmentEntryProcessorEditable = document.querySelector('.fragment-entry-processor-editable');
         const hasEditableElements = document.querySelector('[contenteditable="true"], .lfr-editable-field');
         
+        // Additional edit mode indicators
+        const hasPageDesignMode = document.querySelector('[data-qa-id="pageDesign"], .page-design');
+        const hasFragmentConfigPanel = document.querySelector('.fragment-configuration-panel, .sidebar-panel');
+        const hasComponentsPanel = document.querySelector('.components-panel, .fragment-sidebar');
+        const hasEditableFields = document.querySelector('.lfr-editable, .editable-field');
+        const hasFragmentEntryLinks = document.querySelectorAll('.lfr-fragment-entry-link').length > 0;
+        const hasLiferayEditorEnabled = document.querySelector('[data-editor-enabled="true"]') || 
+                                       document.documentElement.getAttribute('data-editor-enabled') === 'true';
+        
+        // Check URL for edit mode indicators
+        const urlContainsEdit = window.location.href.includes('/edit') || 
+                               window.location.href.includes('p_l_mode=edit') ||
+                               window.location.href.includes('pageDesign');
+        
         console.log('🎯 SIGMA HEADER: Edit mode indicators:', {
             hasEditModeMenu,
             isEditMode,
@@ -166,11 +180,26 @@
             hasPageEditor: !!hasPageEditor,
             hasFragmentEntryProcessorEditable: !!hasFragmentEntryProcessorEditable,
             hasEditableElements: !!hasEditableElements,
-            bodyClasses: body.className
+            hasPageDesignMode: !!hasPageDesignMode,
+            hasFragmentConfigPanel: !!hasFragmentConfigPanel,
+            hasComponentsPanel: !!hasComponentsPanel,
+            hasEditableFields: !!hasEditableFields,
+            hasFragmentEntryLinks,
+            hasLiferayEditorEnabled: !!hasLiferayEditorEnabled,
+            urlContainsEdit,
+            bodyClasses: body.className,
+            currentURL: window.location.href
         });
         
-        // Must have both control menu AND active page editor OR actively editable elements
-        const inEditMode = (hasEditModeMenu || isEditMode) && (hasPageEditor || hasEditableElements);
+        // More flexible edit mode detection
+        const inEditMode = hasEditModeMenu || 
+                          isEditMode || 
+                          hasPageDesignMode ||
+                          hasFragmentConfigPanel ||
+                          hasComponentsPanel ||
+                          hasLiferayEditorEnabled ||
+                          urlContainsEdit ||
+                          (hasFragmentEntryLinks && (hasEditableFields || hasEditableElements));
         
         console.log('🎯 SIGMA HEADER: Final edit mode result:', inEditMode);
         
