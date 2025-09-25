@@ -52,7 +52,15 @@
   color: var(--sigma-white, #ffffff) !important;
 }
 
+#wrapper .sigma-title-container[data-text-color="white"] .sigma-title-heading {
+  color: var(--sigma-white, #ffffff) !important;
+}
+
 #wrapper .sigma-title-container[data-text-color="dark-gray"] {
+  color: var(--sigma-gray-800, #374151) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-heading {
   color: var(--sigma-gray-800, #374151) !important;
 }
 
@@ -60,11 +68,23 @@
   color: var(--sigma-gray-400, #9ca3af) !important;
 }
 
+#wrapper .sigma-title-container[data-text-color="light-gray"] .sigma-title-heading {
+  color: var(--sigma-gray-400, #9ca3af) !important;
+}
+
 #wrapper .sigma-title-container[data-text-color="primary"] {
   color: var(--sigma-primary, #2563eb) !important;
 }
 
+#wrapper .sigma-title-container[data-text-color="primary"] .sigma-title-heading {
+  color: var(--sigma-primary, #2563eb) !important;
+}
+
 #wrapper .sigma-title-container[data-text-color="black"] {
+  color: #000000 !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="black"] .sigma-title-heading {
   color: #000000 !important;
 }
 
