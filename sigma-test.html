@@ -70,61 +70,96 @@
             border-radius: 4px;
             font-family: monospace;
             margin: 1rem 0;
-            max-height: 200px;
+            max-height: 300px;
             overflow-y: auto;
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+        
+        .status-indicator {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+        
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .status-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fbbf24;
+        }
+        
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
         }
     </style>
 </head>
 <body class="has-edit-mode-menu">
     <div class="test-info">
-        Sigma Header Fragment Test - Open Console to See Debug Logs
+        Sigma Header Fragment Test - Mega Menu Dropzone Functionality
     </div>
     
-    <!-- Simulate the exact DOM structure with mega dropzones -->
+    <!-- Fragment Test Container -->
     <div class="sigma-header-fragment" id="test-fragment">
-        <!-- Mega Menu Dropzones -->
+        <!-- Mega Menu Dropzones (Direct Approach) -->
         <div class="mega-dropzones-container">
-            <h3>Mega Menu Dropzones</h3>
-            <p>These dropzones should have their content copied into navigation dropdown menus.</p>
+            <h3>🎯 Direct Dropzones (Primary Approach)</h3>
+            <p>These are direct dropzone elements that should be detected first.</p>
             
             <div class="mega-dropzones">
-                <div class="sigma-mega-dropzone">
-                    <h4 class="sigma-mega-dropzone-label">Mega Menu Content 1</h4>
+                <div>
+                    <h4>Dropzone 1</h4>
                     <div id="dropzone-mega-menu-1">
                         <div class="test-content">
                             <strong>Dashboard Content</strong><br>
-                            Quick dashboard overview
+                            Quick dashboard overview and analytics
                         </div>
                     </div>
                 </div>
                 
-                <div class="sigma-mega-dropzone">
-                    <h4 class="sigma-mega-dropzone-label">Mega Menu Content 2</h4>
+                <div>
+                    <h4>Dropzone 2</h4>
                     <div id="dropzone-mega-menu-2">
                         <div class="test-content">
                             <strong>Catalogue Content</strong><br>
-                            Browse our product catalogue
+                            Browse our pharmaceutical product catalogue
                         </div>
                     </div>
                 </div>
                 
-                <div class="sigma-mega-dropzone">
-                    <h4 class="sigma-mega-dropzone-label">Mega Menu Content 3</h4>
+                <div>
+                    <h4>Dropzone 3</h4>
                     <div id="dropzone-mega-menu-3">
                         <div class="test-content">
                             <strong>Orders Management</strong><br>
-                            Manage your orders here<br>
-                            <button style="margin-top: 0.5rem; padding: 0.25rem 0.5rem; background: #3b82f6; color: white; border: none; border-radius: 3px;">View Orders</button>
+                            Comprehensive order management tools<br>
+                            <button style="margin-top: 0.5rem; padding: 0.25rem 0.5rem; background: #3b82f6; color: white; border: none; border-radius: 3px; cursor: pointer;">Manage Orders</button>
                         </div>
                     </div>
                 </div>
-                
+            </div>
+        </div>
+        
+        <!-- Wrapper Dropzones (Fallback Approach) -->
+        <div class="mega-dropzones-container">
+            <h3>📦 Wrapper Dropzones (Fallback Approach)</h3>
+            <p>These are wrapper-style dropzones that should be used as fallback.</p>
+            
+            <div class="mega-dropzones">
                 <div class="sigma-mega-dropzone">
                     <h4 class="sigma-mega-dropzone-label">Mega Menu Content 4</h4>
                     <div id="dropzone-mega-menu-4">
                         <div class="test-content">
                             <strong>Reports Content</strong><br>
-                            Access reports and analytics
+                            Access comprehensive reports and analytics
                         </div>
                     </div>
                 </div>
@@ -134,65 +169,128 @@
                     <div id="dropzone-mega-menu-5">
                         <div class="test-content">
                             <strong>Settings Content</strong><br>
-                            Account and system settings
+                            Account and system configuration
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Console output display -->
+        <!-- Status and Console -->
         <div class="mega-dropzones-container">
-            <h3>Console Output</h3>
+            <h3>📊 Test Status</h3>
+            <div id="status-container">
+                <div class="status-indicator status-warning">
+                    ⏳ Initializing fragment...
+                </div>
+            </div>
+            
+            <h3>🖥️ Console Output</h3>
             <div class="console-output" id="console-output">
-                Console messages will appear here...
+                📝 Console messages will appear here...<br>
+                🔍 Look for initialization logs and mapping information<br>
             </div>
         </div>
     </div>
     
     <script>
-        // Simulate Liferay environment
         console.log('🎭 Test page initializing...');
+        
+        // Status tracking
+        let initializationStarted = false;
+        let fragmentLoaded = false;
         
         // Capture console logs for display
         const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
         const consoleOutput = document.getElementById('console-output');
+        const statusContainer = document.getElementById('status-container');
         
-        console.log = function(...args) {
-            originalLog.apply(console, args);
+        function addLogEntry(level, args) {
             const message = args.map(arg => 
                 typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
             ).join(' ');
             
             const logEntry = document.createElement('div');
-            logEntry.textContent = new Date().toLocaleTimeString() + ' - ' + message;
+            const timestamp = new Date().toLocaleTimeString();
+            const levelIcon = level === 'error' ? '❌' : level === 'warn' ? '⚠️' : '📝';
+            logEntry.innerHTML = `<span style="color: #9ca3af;">${timestamp}</span> ${levelIcon} ${message}`;
             logEntry.style.marginBottom = '0.25rem';
+            
+            if (level === 'error') logEntry.style.color = '#ef4444';
+            if (level === 'warn') logEntry.style.color = '#f59e0b';
+            
             consoleOutput.appendChild(logEntry);
             consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            
+            // Update status based on log content
+            if (message.includes('SIGMA HEADER SCRIPT LOADED')) {
+                updateStatus('success', '✅ Fragment script loaded successfully');
+            } else if (message.includes('SIGMA HEADER FRAGMENT INITIALIZING')) {
+                initializationStarted = true;
+                updateStatus('success', '🚀 Fragment initialization started');
+            } else if (message.includes('Using direct dropzone approach')) {
+                updateStatus('success', '🎯 Direct dropzone approach detected');
+            } else if (message.includes('Using wrapper dropzone approach')) {
+                updateStatus('warning', '📦 Using wrapper dropzone fallback');
+            } else if (message.includes('No dropzones found')) {
+                updateStatus('error', '❌ No dropzones detected');
+            }
+        }
+        
+        function updateStatus(type, message) {
+            statusContainer.innerHTML = `<div class="status-indicator status-${type}">${message}</div>`;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addLogEntry('log', args);
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addLogEntry('error', args);
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addLogEntry('warn', args);
         };
         
         // Set up fragmentElement before loading the fragment script
         const fragmentElement = document.querySelector('.sigma-header-fragment');
-        console.log('🔧 Set fragmentElement:', fragmentElement);
+        console.log('🔧 Set fragmentElement:', fragmentElement ? 'Found' : 'Not Found');
         
         // Load the fragment CSS first
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = '/fragment-collection/sigma-pharmaceuticals-collection/sigma-header/index.css';
+        link.onload = () => console.log('📄 Fragment CSS loaded');
+        link.onerror = () => console.error('❌ Failed to load fragment CSS');
         document.head.appendChild(link);
-        console.log('📄 Loading fragment CSS...');
         
         // Load the fragment JavaScript
         const script = document.createElement('script');
         script.src = '/fragment-collection/sigma-pharmaceuticals-collection/sigma-header/index.js';
         script.onload = function() {
+            fragmentLoaded = true;
             console.log('✅ Fragment JavaScript loaded successfully');
+            
+            // Wait a bit for initialization then check results
+            setTimeout(() => {
+                if (!initializationStarted) {
+                    updateStatus('error', '❌ Fragment initialization did not start');
+                }
+            }, 2000);
         };
         script.onerror = function() {
             console.error('❌ Failed to load fragment JavaScript');
+            updateStatus('error', '❌ Failed to load fragment script');
         };
         document.head.appendChild(script);
-        console.log('📜 Loading fragment JavaScript...');
+        
+        console.log('📜 Loading fragment assets...');
     </script>
 </body>
 </html>

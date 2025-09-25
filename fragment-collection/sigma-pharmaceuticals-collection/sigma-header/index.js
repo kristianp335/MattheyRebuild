@@ -557,25 +557,32 @@
         
         if (!mobileToggle || !mobileNav) return;
         
-        mobileToggle.addEventListener('click', () => {
-            const isOpen = mobileNav.classList.contains('show');
-            
-            if (isOpen) {
-                mobileNav.classList.remove('show');
-                mobileToggle.setAttribute('aria-expanded', 'false');
-            } else {
-                mobileNav.classList.add('show');
-                mobileToggle.setAttribute('aria-expanded', 'true');
-            }
-        });
+        // Guard against duplicate toggle listeners
+        if (!fragmentElement._mobileToggleAttached) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = mobileNav.classList.contains('show');
+                
+                if (isOpen) {
+                    mobileNav.classList.remove('show');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                } else {
+                    mobileNav.classList.add('show');
+                    mobileToggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+            fragmentElement._mobileToggleAttached = true;
+        }
         
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.sigma-mobile-menu-toggle') && !e.target.closest('.sigma-mobile-nav')) {
-                mobileNav.classList.remove('show');
-                mobileToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
+        // Guard against duplicate outside click listeners
+        if (!fragmentElement._mobileOutsideHandlerAttached) {
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.sigma-mobile-menu-toggle') && !e.target.closest('.sigma-mobile-nav')) {
+                    mobileNav.classList.remove('show');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+            fragmentElement._mobileOutsideHandlerAttached = true;
+        }
     }
 
     /**
@@ -596,16 +603,21 @@
         
         if (!searchBtn || !searchOverlay) return;
         
-        searchBtn.addEventListener('click', () => {
-            searchOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
+        // Guard against duplicate search button listeners
+        if (!fragmentElement._searchBtnAttached) {
+            searchBtn.addEventListener('click', () => {
+                searchOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+            fragmentElement._searchBtnAttached = true;
+        }
         
-        if (closeSearchBtn) {
+        if (closeSearchBtn && !fragmentElement._searchCloseAttached) {
             closeSearchBtn.addEventListener('click', () => {
                 searchOverlay.style.display = 'none';
                 document.body.style.overflow = '';
             });
+            fragmentElement._searchCloseAttached = true;
         }
         
         // Close on overlay click
@@ -691,28 +703,46 @@
     function initializeMegaMenuContent() {
         console.log('=== MEGA MENU DEBUG: Initialize Content ===');
         
-        // Copy content from mega menu dropzones into the actual dropdown menus
-        const megaDropzones = fragmentElement.querySelectorAll('.sigma-mega-dropzone');
-        console.log('Found mega dropzones:', megaDropzones.length);
+        // Hardened dropzone selection: find dropzones directly, not via wrappers
+        const directDropzones = fragmentElement.querySelectorAll('[id^="dropzone-mega-menu-"]');
+        const lfrDropzones = fragmentElement.querySelectorAll('lfr-drop-zone');
+        const wrapperDropzones = fragmentElement.querySelectorAll('.sigma-mega-dropzone');
         
-        // Also check for any dropzones at all
-        const allDropzones = fragmentElement.querySelectorAll('lfr-drop-zone');
-        console.log('Found ALL dropzones in fragment:', allDropzones.length);
+        console.log('Found direct dropzones [id^="dropzone-mega-menu-"]:', directDropzones.length);
+        console.log('Found lfr-drop-zone elements:', lfrDropzones.length);
+        console.log('Found wrapper dropzones (.sigma-mega-dropzone):', wrapperDropzones.length);
+        
+        // Use direct dropzones primarily, fallback to wrapper approach
+        let dropzones = [];
+        if (directDropzones.length > 0) {
+            console.log('✅ Using direct dropzone approach');
+            dropzones = Array.from(directDropzones);
+        } else if (lfrDropzones.length > 0) {
+            console.log('✅ Using lfr-drop-zone approach');
+            dropzones = Array.from(lfrDropzones);
+        } else if (wrapperDropzones.length > 0) {
+            console.log('✅ Using wrapper dropzone approach (fallback)');
+            dropzones = Array.from(wrapperDropzones);
+        } else {
+            console.log('❌ No dropzones found in fragment');
+            return;
+        }
         
         // Get dropdown nav items for position-based mapping
         const dropdownNavItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
         console.log('Found dropdown nav items:', dropdownNavItems.length);
         
         // Position-based mapping: 1st dropzone → 1st dropdown, 2nd dropzone → 2nd dropdown, etc.
-        const mappingLimit = Math.min(megaDropzones.length, dropdownNavItems.length);
+        const mappingLimit = Math.min(dropzones.length, dropdownNavItems.length);
         console.log(`Mapping ${mappingLimit} dropzones to dropdown nav items`);
         
         for (let i = 0; i < mappingLimit; i++) {
-            const dropzone = megaDropzones[i];
+            const dropzone = dropzones[i];
             const navItem = dropdownNavItems[i];
             const positionBasedId = (i + 1).toString();
             
             console.log(`\n--- Mapping dropzone ${i + 1} to nav item ${i + 1} ---`);
+            console.log(`Dropzone element:`, dropzone.tagName, dropzone.id, dropzone.className);
             
             // Ensure nav item has the correct data-mega-menu-id for position-based mapping
             navItem.setAttribute('data-mega-menu-id', positionBasedId);
@@ -723,8 +753,8 @@
         }
         
         // Log any unmapped dropzones
-        if (megaDropzones.length > dropdownNavItems.length) {
-            console.log(`⚠️ ${megaDropzones.length - dropdownNavItems.length} dropzones have no corresponding dropdown nav items`);
+        if (dropzones.length > dropdownNavItems.length) {
+            console.log(`⚠️ ${dropzones.length - dropdownNavItems.length} dropzones have no corresponding dropdown nav items`);
         }
         
         console.log('=== MEGA MENU DEBUG: Content initialization complete ===');
