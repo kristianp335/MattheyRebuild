@@ -1,0 +1,173 @@
+/* Sigma Bar Chart Fragment Styles */
+
+.sigma-bar-chart-container {
+  background: var(--sigma-white);
+  border-radius: var(--sigma-border-radius-lg);
+  box-shadow: var(--sigma-box-shadow-sm);
+  border: 1px solid var(--sigma-gray-200);
+  overflow: hidden;
+}
+
+/* Padding variants */
+.sigma-bar-chart-container[data-padding="none"] {
+  padding: 0;
+}
+
+.sigma-bar-chart-container[data-padding="sm"] {
+  padding: var(--sigma-spacing-md);
+}
+
+.sigma-bar-chart-container[data-padding="md"] {
+  padding: var(--sigma-spacing-lg);
+}
+
+.sigma-bar-chart-container[data-padding="lg"] {
+  padding: var(--sigma-spacing-xl);
+}
+
+.sigma-bar-chart-container[data-padding="xl"] {
+  padding: var(--sigma-spacing-2xl);
+}
+
+/* Chart Header */
+.sigma-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sigma-spacing-lg);
+  padding-bottom: var(--sigma-spacing-md);
+  border-bottom: 1px solid var(--sigma-gray-200);
+}
+
+.sigma-chart-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--sigma-gray-900);
+  font-family: var(--sigma-font-family);
+}
+
+.sigma-chart-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sigma-spacing-md);
+}
+
+/* Dataset Toggle */
+.sigma-dataset-toggle {
+  display: flex;
+  background: var(--sigma-gray-100);
+  border-radius: var(--sigma-border-radius);
+  padding: 2px;
+}
+
+.sigma-dataset-btn {
+  padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--sigma-border-radius) - 2px);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sigma-gray-600);
+  cursor: pointer;
+  transition: var(--sigma-transition);
+  white-space: nowrap;
+}
+
+.sigma-dataset-btn:hover {
+  color: var(--sigma-gray-900);
+}
+
+.sigma-dataset-btn.active {
+  background: var(--sigma-white);
+  color: var(--sigma-primary);
+  box-shadow: var(--sigma-box-shadow-xs);
+}
+
+/* Chart Wrapper */
+.sigma-chart-wrapper {
+  position: relative;
+  margin-bottom: var(--sigma-spacing-lg);
+}
+
+.sigma-chart-canvas {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* Legend */
+.sigma-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sigma-spacing-md);
+  justify-content: center;
+  padding-top: var(--sigma-spacing-md);
+  border-top: 1px solid var(--sigma-gray-200);
+}
+
+.sigma-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sigma-spacing-xs);
+}
+
+.sigma-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.sigma-legend-label {
+  font-size: 0.875rem;
+  color: var(--sigma-gray-700);
+  font-weight: 500;
+}
+
+/* Therapeutic Category Colors */
+.sigma-legend-cardiovascular {
+  background: var(--sigma-primary);
+}
+
+.sigma-legend-respiratory {
+  background: var(--sigma-info);
+}
+
+.sigma-legend-pain-relief {
+  background: var(--sigma-success);
+}
+
+.sigma-legend-antibiotics {
+  background: var(--sigma-warning);
+}
+
+.sigma-legend-gastrointestinal {
+  background: var(--sigma-secondary);
+}
+
+.sigma-legend-dermatological {
+  background: var(--sigma-purple);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sigma-chart-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sigma-spacing-md);
+  }
+  
+  .sigma-chart-controls {
+    justify-content: center;
+  }
+  
+  .sigma-chart-legend {
+    gap: var(--sigma-spacing-sm);
+  }
+  
+  .sigma-legend-item {
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 120px;
+  }
+}

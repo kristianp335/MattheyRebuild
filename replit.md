@@ -7,6 +7,25 @@ This project delivers a comprehensive B2B pharmaceutical commerce system for Sig
 Preferred communication style: Simple, everyday language.
 Preferred name: Call user "Kris".
 
+## Recent Changes
+
+**September 25, 2025 - Data Visualization Fragment Suite**
+- Created sophisticated sigma-bar-chart fragment with therapeutic category sales comparison and A/B dataset switching (Current Quarter vs Previous Quarter)
+- Developed sigma-line-graph fragment with 12-month sales trends, seasonal analysis, and insights cards showing peak months and growth rates
+- Built sigma-orders-table fragment with detailed order history, search/sort/pagination functionality, and customer segmentation (Hospital vs Pharmacy orders)
+- Implemented Chart.js integration with dynamic loading and proper chart lifecycle management
+- Added realistic pharmaceutical data using actual Sigma products (Amlodipine, Salbutamol, Paracetamol, etc.) with authentic B2B pricing and volumes
+- Fixed fragmentElement scoping issues and eliminated ID collisions by using data attributes instead of fragment-specific IDs
+- Ensured dataset toggle state synchronization with fragment configuration defaults
+- **Fragment Collection Status**: Now contains 8 total fragments (5 existing + 3 new data visualization)
+
+**Previous Updates:**
+- Enhanced header fragment with visual improvements including soft box-shadows, gradient overlays, and brand-colored border treatments
+- Successfully resolved critical dropdown functionality issue on live site through CSS scoping fixes and timing adjustments
+- Fixed dropdown hover/click behavior by adding fallback CSS rules that work without #wrapper requirement
+- Identified and resolved initialization timing issue where dropdown handlers ran before navigation was rendered
+- Created sigma-title, sigma-panel, and sigma-header fragments with configurable padding using proper Sigma spacing tokens
+
 ## System Architecture
 The project employs a Liferay Commerce-based architecture using headless APIs for comprehensive product management. All products are created with enhanced descriptions, proper categorization, SKU variants, and working specifications system.
 

@@ -1,0 +1,72 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "Monthly Sales by Therapeutic Category",
+          "label": "Chart Title",
+          "name": "chartTitle",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "400px",
+          "label": "Chart Height",
+          "name": "chartHeight",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "dataset-a",
+          "label": "Default Dataset",
+          "name": "defaultDataset",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Current Quarter (Q3 2025)",
+                "value": "dataset-a"
+              },
+              {
+                "label": "Previous Quarter (Q2 2025)",
+                "value": "dataset-b"
+              }
+            ]
+          }
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "sm",
+          "label": "Container Padding",
+          "name": "containerPadding",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "None",
+                "value": "none"
+              },
+              {
+                "label": "Small",
+                "value": "sm"
+              },
+              {
+                "label": "Medium",
+                "value": "md"
+              },
+              {
+                "label": "Large",
+                "value": "lg"
+              },
+              {
+                "label": "Extra Large",
+                "value": "xl"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

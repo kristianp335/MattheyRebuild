@@ -1,0 +1,87 @@
+<div class="sigma-orders-table-container" data-padding="[#if containerPadding??]${containerPadding}[#else]sm[/#if]">
+  <div class="sigma-table-header">
+    <h3 class="sigma-table-title">[#if tableTitle??]${tableTitle}[#else]Recent Orders[/#if]</h3>
+    <div class="sigma-table-controls">
+      <div class="sigma-dataset-toggle">
+        <button class="sigma-btn sigma-btn-sm sigma-dataset-btn active" data-dataset="hospital-orders">
+          Hospital/Clinic Orders
+        </button>
+        <button class="sigma-btn sigma-btn-sm sigma-dataset-btn" data-dataset="pharmacy-orders">
+          Pharmacy Orders
+        </button>
+      </div>
+      <div class="sigma-search-box">
+        <input type="text" class="sigma-search-input" placeholder="Search orders..." aria-label="Search orders">
+        <svg class="sigma-search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="m11.5 6.5a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" stroke="currentColor" stroke-width="1.5"/>
+          <path d="m13.25 13.25-3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <div class="sigma-table-wrapper">
+    <table class="sigma-orders-table">
+      <thead>
+        <tr>
+          <th class="sigma-th sortable" data-sort="orderDate">
+            Order Date
+            <svg class="sigma-sort-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4 7L6 9L8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M4 5L6 3L8 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </th>
+          <th class="sigma-th sortable" data-sort="customer">
+            Customer
+            <svg class="sigma-sort-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4 7L6 9L8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M4 5L6 3L8 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </th>
+          <th class="sigma-th">Products</th>
+          <th class="sigma-th sortable" data-sort="quantity">
+            Quantity
+            <svg class="sigma-sort-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4 7L6 9L8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M4 5L6 3L8 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </th>
+          <th class="sigma-th sortable" data-sort="total">
+            Total Value
+            <svg class="sigma-sort-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4 7L6 9L8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M4 5L6 3L8 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </th>
+          <th class="sigma-th">Status</th>
+        </tr>
+      </thead>
+      <tbody class="sigma-table-body">
+        <!-- Data will be populated by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="sigma-table-footer">
+    <div class="sigma-table-info">
+      <span class="sigma-showing-text">Showing <span data-info="showing-start">1</span>-<span data-info="showing-end">10</span> of <span data-info="total-orders">0</span> orders</span>
+    </div>
+    <div class="sigma-pagination">
+      <button class="sigma-btn sigma-btn-sm sigma-page-btn" data-action="prev-page" disabled>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Previous
+      </button>
+      <span class="sigma-page-numbers" data-container="page-numbers">
+        <!-- Page numbers will be populated by JavaScript -->
+      </span>
+      <button class="sigma-btn sigma-btn-sm sigma-page-btn" data-action="next-page">
+        Next
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

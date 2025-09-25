@@ -1,0 +1,72 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "12-Month Sales Trends",
+          "label": "Chart Title",
+          "name": "chartTitle",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "450px",
+          "label": "Chart Height",
+          "name": "chartHeight",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "trend-2024",
+          "label": "Default Dataset",
+          "name": "defaultDataset",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "2024 Performance Data",
+                "value": "trend-2024"
+              },
+              {
+                "label": "2025 Performance Data",
+                "value": "trend-2025"
+              }
+            ]
+          }
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "sm",
+          "label": "Container Padding",
+          "name": "containerPadding",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "None",
+                "value": "none"
+              },
+              {
+                "label": "Small",
+                "value": "sm"
+              },
+              {
+                "label": "Medium",
+                "value": "md"
+              },
+              {
+                "label": "Large",
+                "value": "lg"
+              },
+              {
+                "label": "Extra Large",
+                "value": "xl"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

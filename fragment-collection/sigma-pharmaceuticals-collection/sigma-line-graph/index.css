@@ -1,0 +1,155 @@
+/* Sigma Line Graph Fragment Styles */
+
+.sigma-line-graph-container {
+  background: var(--sigma-white);
+  border-radius: var(--sigma-border-radius-lg);
+  box-shadow: var(--sigma-box-shadow-sm);
+  border: 1px solid var(--sigma-gray-200);
+  overflow: hidden;
+}
+
+/* Padding variants */
+.sigma-line-graph-container[data-padding="none"] {
+  padding: 0;
+}
+
+.sigma-line-graph-container[data-padding="sm"] {
+  padding: var(--sigma-spacing-md);
+}
+
+.sigma-line-graph-container[data-padding="md"] {
+  padding: var(--sigma-spacing-lg);
+}
+
+.sigma-line-graph-container[data-padding="lg"] {
+  padding: var(--sigma-spacing-xl);
+}
+
+.sigma-line-graph-container[data-padding="xl"] {
+  padding: var(--sigma-spacing-2xl);
+}
+
+/* Chart Header */
+.sigma-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sigma-spacing-lg);
+  padding-bottom: var(--sigma-spacing-md);
+  border-bottom: 1px solid var(--sigma-gray-200);
+}
+
+.sigma-chart-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--sigma-gray-900);
+  font-family: var(--sigma-font-family);
+}
+
+.sigma-chart-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sigma-spacing-md);
+}
+
+/* Dataset Toggle */
+.sigma-dataset-toggle {
+  display: flex;
+  background: var(--sigma-gray-100);
+  border-radius: var(--sigma-border-radius);
+  padding: 2px;
+}
+
+.sigma-dataset-btn {
+  padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--sigma-border-radius) - 2px);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sigma-gray-600);
+  cursor: pointer;
+  transition: var(--sigma-transition);
+  white-space: nowrap;
+}
+
+.sigma-dataset-btn:hover {
+  color: var(--sigma-gray-900);
+}
+
+.sigma-dataset-btn.active {
+  background: var(--sigma-white);
+  color: var(--sigma-primary);
+  box-shadow: var(--sigma-box-shadow-xs);
+}
+
+/* Chart Wrapper */
+.sigma-chart-wrapper {
+  position: relative;
+  margin-bottom: var(--sigma-spacing-lg);
+}
+
+.sigma-chart-canvas {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* Insights Cards */
+.sigma-chart-insights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--sigma-spacing-md);
+  padding-top: var(--sigma-spacing-md);
+  border-top: 1px solid var(--sigma-gray-200);
+}
+
+.sigma-insight-card {
+  text-align: center;
+  padding: var(--sigma-spacing-md);
+  background: var(--sigma-gray-50);
+  border-radius: var(--sigma-border-radius);
+  border: 1px solid var(--sigma-gray-200);
+}
+
+.sigma-insight-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sigma-primary);
+  margin-bottom: var(--sigma-spacing-xs);
+  font-family: var(--sigma-font-family);
+}
+
+.sigma-insight-label {
+  font-size: 0.75rem;
+  color: var(--sigma-gray-600);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sigma-chart-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sigma-spacing-md);
+  }
+  
+  .sigma-chart-controls {
+    justify-content: center;
+  }
+  
+  .sigma-chart-insights {
+    grid-template-columns: 1fr;
+    gap: var(--sigma-spacing-sm);
+  }
+  
+  .sigma-insight-card {
+    padding: var(--sigma-spacing-sm);
+  }
+  
+  .sigma-insight-value {
+    font-size: 1.25rem;
+  }
+}

@@ -1,0 +1,38 @@
+<div class="sigma-line-graph-container" data-padding="[#if containerPadding??]${containerPadding}[#else]sm[/#if]">
+  <div class="sigma-chart-header">
+    <h3 class="sigma-chart-title">[#if chartTitle??]${chartTitle}[#else]12-Month Sales Trends[/#if]</h3>
+    <div class="sigma-chart-controls">
+      <div class="sigma-dataset-toggle">
+        <button class="sigma-btn sigma-btn-sm sigma-dataset-btn active" data-dataset="trend-2024">
+          2024 Data
+        </button>
+        <button class="sigma-btn sigma-btn-sm sigma-dataset-btn" data-dataset="trend-2025">
+          2025 Data
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="sigma-chart-wrapper">
+    <canvas 
+      class="sigma-chart-canvas" 
+      style="height: [#if chartHeight??]${chartHeight}[#else]450px[/#if];"
+      aria-label="Line graph showing pharmaceutical sales trends over time">
+    </canvas>
+  </div>
+  
+  <div class="sigma-chart-insights">
+    <div class="sigma-insight-card">
+      <div class="sigma-insight-value" data-insight="peak-month">--</div>
+      <div class="sigma-insight-label">Peak Sales Month</div>
+    </div>
+    <div class="sigma-insight-card">
+      <div class="sigma-insight-value" data-insight="growth-rate">--</div>
+      <div class="sigma-insight-label">YoY Growth Rate</div>
+    </div>
+    <div class="sigma-insight-card">
+      <div class="sigma-insight-value" data-insight="seasonal-trend">--</div>
+      <div class="sigma-insight-label">Seasonal Pattern</div>
+    </div>
+  </div>
+</div>

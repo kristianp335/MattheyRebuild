@@ -1,0 +1,92 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "dataType": "string",
+          "defaultValue": "Recent Orders",
+          "label": "Table Title",
+          "name": "tableTitle",
+          "type": "text"
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "hospital-orders",
+          "label": "Default Dataset",
+          "name": "defaultDataset",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Hospital/Clinic Orders",
+                "value": "hospital-orders"
+              },
+              {
+                "label": "Pharmacy Orders",
+                "value": "pharmacy-orders"
+              }
+            ]
+          }
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "10",
+          "label": "Rows Per Page",
+          "name": "rowsPerPage",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "5 rows",
+                "value": "5"
+              },
+              {
+                "label": "10 rows",
+                "value": "10"
+              },
+              {
+                "label": "20 rows",
+                "value": "20"
+              },
+              {
+                "label": "50 rows",
+                "value": "50"
+              }
+            ]
+          }
+        },
+        {
+          "dataType": "string",
+          "defaultValue": "sm",
+          "label": "Container Padding",
+          "name": "containerPadding",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "None",
+                "value": "none"
+              },
+              {
+                "label": "Small",
+                "value": "sm"
+              },
+              {
+                "label": "Medium",
+                "value": "md"
+              },
+              {
+                "label": "Large",
+                "value": "lg"
+              },
+              {
+                "label": "Extra Large",
+                "value": "xl"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
