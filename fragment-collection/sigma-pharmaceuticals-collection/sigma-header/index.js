@@ -4,9 +4,15 @@
     
     try {
         // Defensive fragment element detection
-        const root = (typeof fragmentElement !== 'undefined' && fragmentElement) || 
-                     (document.currentScript && document.currentScript.closest('.lfr-fragment-entry-link')) || 
-                     null;
+        let root;
+        try {
+            root = (typeof fragmentElement !== 'undefined' && fragmentElement) || 
+                   (document.currentScript && document.currentScript.closest('.lfr-fragment-entry-link')) || 
+                   null;
+        } catch (e) {
+            console.log('🎯 SIGMA HEADER: Fragment element access error, trying fallback:', e.message);
+            root = (document.currentScript && document.currentScript.closest('.lfr-fragment-entry-link')) || null;
+        }
         
         console.log('🎯 SIGMA HEADER: Fragment element check:', {
             fragmentElement: root,
@@ -20,7 +26,7 @@
             return;
         }
         
-        // Use root instead of fragmentElement throughout
+        // Use root as our fragment element throughout
         const fragmentElement = root;
     
     // Initialize on DOM ready and SPA navigation events
