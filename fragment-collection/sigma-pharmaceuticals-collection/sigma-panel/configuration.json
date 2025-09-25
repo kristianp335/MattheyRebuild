@@ -1,0 +1,64 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "name": "panelTitle",
+          "label": "Panel Title",
+          "description": "The title text displayed in the panel header",
+          "type": "text",
+          "defaultValue": "Product Information Panel"
+        },
+        {
+          "name": "panelIcon",
+          "label": "Panel Icon",
+          "description": "Select the icon that best represents the panel content",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "options", "label": "Options (Pills/Variants)"},
+              {"value": "categories", "label": "Categories (Medical Classification)"},
+              {"value": "specifications", "label": "Specifications (Product Details)"}
+            ]
+          },
+          "defaultValue": "options"
+        },
+        {
+          "name": "isOpenByDefault",
+          "label": "Open by Default",
+          "description": "Display the panel in expanded state when page loads",
+          "type": "checkbox",
+          "defaultValue": false
+        },
+        {
+          "name": "panelStyle",
+          "label": "Panel Style",
+          "description": "Visual style variant for the panel",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "primary", "label": "Primary (Blue)"},
+              {"value": "secondary", "label": "Secondary (Gray)"},
+              {"value": "light", "label": "Light (White)"}
+            ]
+          },
+          "defaultValue": "primary"
+        },
+        {
+          "name": "showBadge",
+          "label": "Show Count Badge",
+          "description": "Display a count badge next to the panel title",
+          "type": "checkbox",
+          "defaultValue": false
+        },
+        {
+          "name": "badgeCount",
+          "label": "Badge Count",
+          "description": "Number to display in the badge (only shown if Show Count Badge is enabled)",
+          "type": "text",
+          "defaultValue": "0"
+        }
+      ]
+    }
+  ]
+}

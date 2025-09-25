@@ -1,0 +1,268 @@
+/* Sigma Panel Fragment - Professional Pharmaceutical Panel with Dropzone */
+
+/* Panel Container */
+#wrapper .sigma-panel-fragment {
+  position: relative;
+  margin-bottom: var(--sigma-spacing-lg);
+}
+
+#wrapper .sigma-panel {
+  background: var(--sigma-white);
+  border: 1px solid var(--sigma-gray-300);
+  border-radius: var(--sigma-border-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all var(--sigma-transition);
+}
+
+#wrapper .sigma-panel:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Panel Style Variants */
+#wrapper .sigma-panel[data-style="primary"] .sigma-panel-header {
+  background: linear-gradient(135deg, var(--sigma-primary), var(--sigma-primary-dark));
+  color: var(--sigma-white);
+  border-bottom: 1px solid var(--sigma-primary-dark);
+}
+
+#wrapper .sigma-panel[data-style="secondary"] .sigma-panel-header {
+  background: linear-gradient(135deg, var(--sigma-gray-700), var(--sigma-gray-800));
+  color: var(--sigma-white);
+  border-bottom: 1px solid var(--sigma-gray-600);
+}
+
+#wrapper .sigma-panel[data-style="light"] .sigma-panel-header {
+  background: var(--sigma-gray-50);
+  color: var(--sigma-gray-800);
+  border-bottom: 1px solid var(--sigma-gray-200);
+}
+
+/* Panel Header */
+#wrapper .sigma-panel-header {
+  display: flex;
+  align-items: center;
+  padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--sigma-transition);
+  min-height: 60px;
+}
+
+#wrapper .sigma-panel-header:hover {
+  filter: brightness(1.05);
+}
+
+#wrapper .sigma-panel-header:focus {
+  outline: 2px solid var(--sigma-primary);
+  outline-offset: -2px;
+}
+
+/* Panel Icon */
+#wrapper .sigma-panel-icon {
+  flex-shrink: 0;
+  margin-right: var(--sigma-spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--sigma-border-radius-md);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#wrapper .sigma-panel[data-style="light"] .sigma-panel-icon {
+  background: var(--sigma-primary);
+  color: var(--sigma-white);
+}
+
+#wrapper .sigma-panel-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Panel Title */
+#wrapper .sigma-panel-title {
+  flex: 1;
+  font-size: var(--sigma-font-size-lg);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Panel Badge */
+#wrapper .sigma-panel-badge {
+  flex-shrink: 0;
+  margin-left: var(--sigma-spacing-md);
+  margin-right: var(--sigma-spacing-md);
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+  padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
+  border-radius: var(--sigma-border-radius-full);
+  font-size: var(--sigma-font-size-sm);
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+#wrapper .sigma-panel[data-style="light"] .sigma-panel-badge {
+  background: var(--sigma-primary);
+  color: var(--sigma-white);
+}
+
+/* Panel Toggle */
+#wrapper .sigma-panel-toggle {
+  flex-shrink: 0;
+  margin-left: var(--sigma-spacing-md);
+  transition: transform var(--sigma-transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#wrapper .sigma-panel-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Expanded State */
+#wrapper .sigma-panel.expanded .sigma-panel-toggle {
+  transform: rotate(180deg);
+}
+
+/* Panel Body */
+#wrapper .sigma-panel-body {
+  overflow: hidden;
+  transition: all var(--sigma-transition);
+}
+
+#wrapper .sigma-panel-content {
+  padding: var(--sigma-spacing-xl);
+  background: var(--sigma-white);
+}
+
+/* Dropzone Styling */
+#wrapper .sigma-panel-content lfr-drop-zone {
+  display: block;
+  min-height: 120px;
+  border: 2px dashed transparent;
+  border-radius: var(--sigma-border-radius-md);
+  padding: var(--sigma-spacing-lg);
+  transition: all var(--sigma-transition);
+  background: var(--sigma-gray-50);
+  position: relative;
+}
+
+/* Edit Mode Dropzone Visibility */
+#wrapper .sigma-panel-content lfr-drop-zone[data-editor-enabled="true"],
+#wrapper .is-edit-mode .sigma-panel-content lfr-drop-zone,
+body.has-edit-mode-menu .sigma-panel-content lfr-drop-zone {
+  border-color: var(--sigma-primary) !important;
+  background: rgba(var(--sigma-primary-rgb), 0.05) !important;
+  min-height: 120px !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Dropzone Placeholder Text */
+#wrapper .sigma-panel-content lfr-drop-zone[data-editor-enabled="true"]:before,
+#wrapper .is-edit-mode .sigma-panel-content lfr-drop-zone:before,
+body.has-edit-mode-menu .sigma-panel-content lfr-drop-zone:before {
+  content: "Drop pharmaceutical content here";
+  color: var(--sigma-primary);
+  font-size: var(--sigma-font-size-sm);
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+  display: block !important;
+}
+
+/* Hide placeholder when content is present */
+#wrapper .sigma-panel-content lfr-drop-zone:not(:empty):before {
+  display: none !important;
+}
+
+/* Animation for Panel Body */
+#wrapper .sigma-panel-body.opening {
+  animation: sigmaSlideDown 0.3s ease-out forwards;
+}
+
+#wrapper .sigma-panel-body.closing {
+  animation: sigmaSlideUp 0.3s ease-out forwards;
+}
+
+@keyframes sigmaSlideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+@keyframes sigmaSlideUp {
+  from {
+    max-height: 500px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #wrapper .sigma-panel-header {
+    padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+    min-height: 50px;
+  }
+  
+  #wrapper .sigma-panel-title {
+    font-size: var(--sigma-font-size-base);
+  }
+  
+  #wrapper .sigma-panel-content {
+    padding: var(--sigma-spacing-lg);
+  }
+  
+  #wrapper .sigma-panel-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: var(--sigma-spacing-sm);
+  }
+  
+  #wrapper .sigma-panel-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Accessibility Enhancements */
+#wrapper .sigma-panel-header:focus-visible {
+  outline: 2px solid var(--sigma-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  #wrapper .sigma-panel,
+  #wrapper .sigma-panel-header,
+  #wrapper .sigma-panel-toggle,
+  #wrapper .sigma-panel-body,
+  #wrapper .sigma-panel-content lfr-drop-zone {
+    transition: none;
+  }
+  
+  #wrapper .sigma-panel-body.opening,
+  #wrapper .sigma-panel-body.closing {
+    animation: none;
+  }
+}
