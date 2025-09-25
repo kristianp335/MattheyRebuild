@@ -632,14 +632,124 @@
      * Initialize mega menu content for edit mode
      */
     function initializeMegaMenuContent() {
-        // Mega menu functionality placeholder for future implementation
+        // Show mega menu dropzones in edit mode
+        if (isEditMode()) {
+            const megaMenuContainer = fragmentElement.querySelector('.sigma-mega-menu-dropzones');
+            if (megaMenuContainer) {
+                megaMenuContainer.style.display = 'block';
+            }
+        }
+        
+        // Setup mega menu content mapping to dropdowns
+        setupMegaMenuMapping();
     }
 
     /**
      * Setup mega menu observer for edit mode
      */
     function setupMegaMenuObserver() {
-        // Observer setup placeholder for future implementation
+        // Create mutation observer to watch for edit mode changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && 
+                    (mutation.attributeName === 'class' || mutation.attributeName === 'data-editor-enabled')) {
+                    initializeMegaMenuContent();
+                }
+            });
+        });
+
+        // Observe body and wrapper for edit mode class changes
+        observer.observe(document.body, { 
+            attributes: true, 
+            attributeFilter: ['class', 'data-editor-enabled'] 
+        });
+        
+        const wrapper = document.getElementById('wrapper');
+        if (wrapper) {
+            observer.observe(wrapper, { 
+                attributes: true, 
+                attributeFilter: ['class', 'data-editor-enabled'] 
+            });
+        }
+    }
+
+    /**
+     * Setup mapping between menu items and mega menu content
+     */
+    function setupMegaMenuMapping() {
+        const dropdownItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
+        
+        dropdownItems.forEach((item, index) => {
+            const menuIndex = index + 1; // 1-based indexing
+            const dropdown = item.querySelector('.sigma-dropdown-menu');
+            const megaContentId = `dropzone-mega-menu-${menuIndex}`;
+            const megaContent = fragmentElement.querySelector(`#${megaContentId}`);
+            
+            if (dropdown && megaContent) {
+                // Clone mega menu content to show in dropdown
+                const megaContentClone = megaContent.cloneNode(true);
+                megaContentClone.id = `${megaContentId}-dropdown`;
+                megaContentClone.style.display = 'block';
+                
+                // Insert mega content at the top of dropdown
+                dropdown.insertBefore(megaContentClone, dropdown.firstChild);
+                
+                // Add data attribute to link them
+                item.setAttribute('data-mega-menu-id', menuIndex);
+                
+                // Update dropdown hover/click handlers to show mega content
+                setupMegaMenuEvents(item, megaContentClone);
+            }
+        });
+    }
+
+    /**
+     * Setup events for mega menu functionality
+     */
+    function setupMegaMenuEvents(navItem, megaContent) {
+        const dropdown = navItem.querySelector('.sigma-dropdown-menu');
+        
+        if (!dropdown || !megaContent) return;
+        
+        // Show/hide mega content based on dropdown state
+        navItem.addEventListener('mouseenter', () => {
+            if (!isEditMode()) {
+                megaContent.style.display = 'block';
+            }
+        });
+        
+        navItem.addEventListener('mouseleave', () => {
+            if (!isEditMode()) {
+                megaContent.style.display = 'none';
+            }
+        });
+        
+        // Handle click events
+        const link = navItem.querySelector('.sigma-nav-link');
+        if (link) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isOpen = navItem.classList.contains('show');
+                
+                closeAllDropdowns();
+                
+                if (!isOpen && !isEditMode()) {
+                    navItem.classList.add('show');
+                    dropdown.classList.add('show');
+                    megaContent.style.display = 'block';
+                }
+            });
+        }
+    }
+
+    /**
+     * Check if we're in edit mode
+     */
+    function isEditMode() {
+        return document.body.classList.contains('has-edit-mode-menu') ||
+               document.querySelector('#wrapper.is-edit-mode') ||
+               document.querySelector('[data-editor-enabled="true"]') ||
+               fragmentElement.closest('[data-editor-enabled="true"]');
     }
     
 })();

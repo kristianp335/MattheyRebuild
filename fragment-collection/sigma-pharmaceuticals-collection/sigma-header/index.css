@@ -568,6 +568,26 @@ body.has-edit-mode-menu .sigma-mega-dropzone lfr-drop-zone:before,
   display: none;
 }
 
+/* Mega Menu Content Integration with Dropdowns */
+#wrapper .sigma-dropdown-menu .sigma-mega-dropzone {
+  background: var(--sigma-gray-50);
+  border: 1px solid var(--sigma-gray-200);
+  border-radius: var(--sigma-border-radius);
+  margin-bottom: var(--sigma-spacing-md);
+  padding: var(--sigma-spacing-md);
+}
+
+#wrapper .sigma-dropdown-menu .sigma-mega-dropzone:last-child {
+  margin-bottom: 0;
+}
+
+/* Hide mega menu content in edit mode dropdowns */
+body.has-edit-mode-menu .sigma-dropdown-menu .sigma-mega-dropzone,
+#wrapper .is-edit-mode .sigma-dropdown-menu .sigma-mega-dropzone,
+[data-editor-enabled="true"] .sigma-dropdown-menu .sigma-mega-dropzone {
+  display: none !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   #wrapper .sigma-nav {
