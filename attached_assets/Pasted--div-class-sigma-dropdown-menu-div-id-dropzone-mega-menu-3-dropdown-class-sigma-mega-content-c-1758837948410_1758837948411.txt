@@ -1,0 +1,1262 @@
+<div class="sigma-dropdown-menu"><div id="dropzone-mega-menu-3-dropdown" class="sigma-mega-content-clone" style="display: none;">
+            <div><div class="lfr-layout-structure-item-cf2843cf-1f94-3123-bf3c-cbae63e40b08 lfr-layout-structure-item-container " data-layout-structure-item-id="cf2843cf-1f94-3123-bf3c-cbae63e40b08"><div class="lfr-layout-structure-item-sigma-title lfr-layout-structure-item-d5c2a8ec-8e36-f895-3c80-8cfb6f85f01c " data-layout-structure-item-id="d5c2a8ec-8e36-f895-3c80-8cfb6f85f01c"><div id="fragment-38ae77b8-788c-7c59-e72d-97df0b1d9c8c">
+<div id="uhhn-sigma-title" class="sigma-title-fragment">
+  <div class="sigma-title-container" data-background="gradient-primary" data-alignment="left" data-compact="false" data-text-color="white" data-padding="sm" role="banner" aria-label="Section heading">
+    
+    <div class="sigma-title-content">
+      <!-- Title with Icon -->
+      <div class="sigma-title-wrapper">
+          <div class="sigma-title-icon" style="display: flex;">
+              <!-- Pharmaceutical Icon - Company/Industry -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7Z" stroke="currentColor" stroke-width="2"></path>
+                <path d="M8 9V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M16 9V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                <path d="M12 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"></circle>
+                <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
+              </svg>
+          </div>
+        
+        <!-- Editable Title -->
+        <h3 class="sigma-title-heading" data-lfr-editable-id="titleText" data-lfr-editable-type="text" role="heading" aria-level="3">Promoted product</h3>
+      </div>
+      
+      <!-- Optional Bottom Divider -->
+    </div>
+  </div>
+</div></div><style>/* Sigma Title Fragment - Full-width pharmaceutical title with configurable backgrounds */
+
+/* Title Container - Full Width */
+#wrapper .sigma-title-fragment {
+  width: 100%;
+  margin-bottom: var(--sigma-spacing-xl);
+}
+
+#wrapper .sigma-title-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--sigma-border-radius-lg);
+  transition: all var(--sigma-transition);
+}
+
+/* Background Style Variants */
+#wrapper .sigma-title-container[data-background="gradient-primary"] {
+  background: linear-gradient(135deg, var(--sigma-primary, #2563eb), var(--sigma-primary-dark, #1d4ed8));
+  color: var(--sigma-white, #ffffff);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+#wrapper .sigma-title-container[data-background="gradient-secondary"] {
+  background: linear-gradient(135deg, var(--sigma-gray-700, #374151), var(--sigma-gray-800, #1f2937));
+  color: var(--sigma-white, #ffffff);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#wrapper .sigma-title-container[data-background="solid-primary"] {
+  background: var(--sigma-primary, #2563eb);
+  color: var(--sigma-white, #ffffff);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+#wrapper .sigma-title-container[data-background="solid-light"] {
+  background: var(--sigma-gray-100, #f3f4f6);
+  color: var(--sigma-gray-800, #1f2937);
+  border: 1px solid var(--sigma-gray-200, #e5e7eb);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#wrapper .sigma-title-container[data-background="transparent"] {
+  background: transparent;
+  color: var(--sigma-gray-800, #1f2937);
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Text Color Overrides */
+#wrapper .sigma-title-container[data-text-color="white"] {
+  color: var(--sigma-white, #ffffff) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="white"] .sigma-title-heading {
+  color: var(--sigma-white, #ffffff) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="dark-gray"] {
+  color: var(--sigma-gray-800, #374151) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-heading {
+  color: var(--sigma-gray-800, #374151) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="light-gray"] {
+  color: var(--sigma-gray-400, #9ca3af) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="light-gray"] .sigma-title-heading {
+  color: var(--sigma-gray-400, #9ca3af) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="primary"] {
+  color: var(--sigma-primary, #2563eb) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="primary"] .sigma-title-heading {
+  color: var(--sigma-primary, #2563eb) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="black"] {
+  color: #000000 !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="black"] .sigma-title-heading {
+  color: #000000 !important;
+}
+
+/* Icon color inheritance for custom text colors */
+#wrapper .sigma-title-container[data-text-color="white"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="light-gray"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="primary"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="black"] .sigma-title-icon {
+  background: rgba(255, 255, 255, 0.15);
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Special handling for dark text on light backgrounds */
+#wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="black"] .sigma-title-icon {
+  background: var(--sigma-primary, #2563eb);
+  color: var(--sigma-white, #ffffff);
+  border: 1px solid var(--sigma-primary, #2563eb);
+}
+
+/* Divider color adjustments for custom text colors */
+#wrapper .sigma-title-container[data-text-color="white"] .sigma-title-divider,
+#wrapper .sigma-title-container[data-text-color="light-gray"] .sigma-title-divider {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-divider,
+#wrapper .sigma-title-container[data-text-color="black"] .sigma-title-divider {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#wrapper .sigma-title-container[data-text-color="primary"] .sigma-title-divider {
+  background: var(--sigma-primary, #2563eb);
+  opacity: 0.3;
+}
+
+/* Title Content - Default Padding */
+#wrapper .sigma-title-content {
+  position: relative;
+}
+
+/* Padding Size Variants */
+#wrapper .sigma-title-container[data-padding="sm"] .sigma-title-content {
+  padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
+}
+
+#wrapper .sigma-title-container[data-padding="md"] .sigma-title-content {
+  padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
+}
+
+#wrapper .sigma-title-container[data-padding="lg"] .sigma-title-content {
+  padding: var(--sigma-spacing-xl) var(--sigma-spacing-xxl);
+}
+
+/* Compact Mode Override (reduces padding further) */
+#wrapper .sigma-title-container[data-compact="true"][data-padding="sm"] .sigma-title-content {
+  padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
+}
+
+#wrapper .sigma-title-container[data-compact="true"][data-padding="md"] .sigma-title-content {
+  padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+}
+
+#wrapper .sigma-title-container[data-compact="true"][data-padding="lg"] .sigma-title-content {
+  padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
+}
+
+/* Title Wrapper - Flex Container */
+#wrapper .sigma-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sigma-spacing-lg);
+  position: relative;
+}
+
+/* Text Alignment */
+#wrapper .sigma-title-container[data-alignment="center"] .sigma-title-wrapper {
+  justify-content: center;
+  text-align: center;
+}
+
+#wrapper .sigma-title-container[data-alignment="right"] .sigma-title-wrapper {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+#wrapper .sigma-title-container[data-alignment="left"] .sigma-title-wrapper {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Title Icon */
+#wrapper .sigma-title-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--sigma-border-radius-lg);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Icon styling for different backgrounds */
+#wrapper .sigma-title-container[data-background="solid-light"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-background="transparent"] .sigma-title-icon {
+  background: var(--sigma-primary, #2563eb);
+  color: var(--sigma-white, #ffffff);
+  border: 1px solid var(--sigma-primary, #2563eb);
+}
+
+#wrapper .sigma-title-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke-width: 1.5;
+}
+
+/* Title Heading */
+#wrapper .sigma-title-heading {
+  flex: 1;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-family: var(--sigma-font-family-heading);
+}
+
+/* Heading Size Variants */
+#wrapper .sigma-title-heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+#wrapper h2.sigma-title-heading {
+  font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+}
+
+#wrapper h3.sigma-title-heading {
+    font-size: clamp(1.2rem, 3vw, 1.2rem);
+}
+
+/* Title Divider */
+#wrapper .sigma-title-divider {
+  margin-top: var(--sigma-spacing-lg);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--sigma-border-radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Divider for light backgrounds */
+#wrapper .sigma-title-container[data-background="solid-light"] .sigma-title-divider,
+#wrapper .sigma-title-container[data-background="transparent"] .sigma-title-divider {
+  background: var(--sigma-primary);
+  opacity: 0.3;
+}
+
+/* Animated Divider Effect */
+#wrapper .sigma-title-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Reduce padding on mobile for all sizes */
+  #wrapper .sigma-title-container[data-padding="sm"] .sigma-title-content {
+    padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
+  }
+
+  #wrapper .sigma-title-container[data-padding="md"] .sigma-title-content {
+    padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+  }
+
+  #wrapper .sigma-title-container[data-padding="lg"] .sigma-title-content {
+    padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
+  }
+
+  /* Compact mode mobile adjustments */
+  #wrapper .sigma-title-container[data-compact="true"][data-padding="sm"] .sigma-title-content {
+    padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
+  }
+
+  #wrapper .sigma-title-container[data-compact="true"][data-padding="md"] .sigma-title-content {
+    padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
+  }
+
+  #wrapper .sigma-title-container[data-compact="true"][data-padding="lg"] .sigma-title-content {
+    padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+  }
+  
+  #wrapper .sigma-title-wrapper {
+    gap: var(--sigma-spacing-md);
+  }
+  
+  #wrapper .sigma-title-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  #wrapper .sigma-title-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Stack icon above title on very small screens */
+  @media (max-width: 480px) {
+    #wrapper .sigma-title-container[data-alignment="center"] .sigma-title-wrapper {
+      flex-direction: column;
+      gap: var(--sigma-spacing-sm);
+    }
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  #wrapper .sigma-title-container[data-background="solid-light"] {
+    background: var(--sigma-gray-800);
+    color: var(--sigma-white);
+    border-color: var(--sigma-gray-700);
+  }
+  
+  #wrapper .sigma-title-container[data-background="transparent"] {
+    color: var(--sigma-white);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  #wrapper .sigma-title-container {
+    border: 2px solid currentColor;
+  }
+  
+  #wrapper .sigma-title-icon {
+    border: 2px solid currentColor;
+  }
+  
+  #wrapper .sigma-title-divider {
+    background: currentColor;
+    opacity: 1;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  #wrapper .sigma-title-container,
+  #wrapper .sigma-title-divider::after {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Focus Management for Accessibility */
+#wrapper .sigma-title-heading:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+  border-radius: var(--sigma-border-radius-sm);
+}
+
+#wrapper .sigma-title-container[data-background="solid-light"] .sigma-title-heading:focus,
+#wrapper .sigma-title-container[data-background="transparent"] .sigma-title-heading:focus {
+  outline-color: var(--sigma-primary);
+}
+
+/* Print Styles */
+@media print {
+  #wrapper .sigma-title-container {
+    background: none !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+  
+  #wrapper .sigma-title-icon {
+    background: none !important;
+    border: 1px solid #000 !important;
+  }
+  
+  #wrapper .sigma-title-divider::after {
+    display: none;
+  }
+}</style></div><div class="lfr-layout-structure-item-com-liferay-commerce-product-content-web-internal-portlet-cppublisherportlet lfr-layout-structure-item-f97f959f-51ae-241d-13fe-d7f385f8f102 " data-layout-structure-item-id="f97f959f-51ae-241d-13fe-d7f385f8f102"><div id="fragment-6b2e6c8f-ac97-d5c8-172d-eb3186baf86d"><link href="/combo?browserId=chrome&amp;minifierType=css&amp;themeId=classic_WAR_classictheme&amp;languageId=en_US&amp;com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl:%2Fo%2Fcommerce-product-content-web%2Fproduct_publisher%2Fcss%2Fmain.css&amp;t=1755088934000" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_  portlet-static portlet-static-end portlet-borderless portlet-commerce-product-publisher " id="p_p_id_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl_">
+		<span id="p_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl">
+
+	<div class="portlet-content">
+
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="product-card-tiles">
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="cp-renderer">
+	
+
+	<div class="card d-flex flex-column product-card">
+		<div class="card-item-first position-relative">
+
+			
+
+			<a href="https://webserver-lctbootsopticians-prd.lfr.cloud/web/sigma-pharma/p/amlodipine-5mg-tablets">
+
+				
+
+				
+					
+					
+						<picture data-fileentryid="62627"><source media="(max-width:300px)" srcset="/o/adaptive-media/image/62627/Thumbnail-300x300/Amlodipine_tablet_packaging_box_64bd7e23.png?t=1758715646129"><source media="(max-width:1000px) and (min-width:300px)" srcset="/o/adaptive-media/image/62627/Preview-1000x0/Amlodipine_tablet_packaging_box_64bd7e23.png?t=1758715646129"><img alt="thumbnail" class="img-fluid product-card-picture" src="https://webserver-lctbootsopticians-prd.lfr.cloud/documents/20123/62625/Amlodipine_tablet_packaging_box_64bd7e23.png/22f6a2e3-92ff-ea56-77b3-0f7d31a60968?version=1.0&amp;t=1758715646129"></picture>
+					
+				
+
+				<div class="aspect-ratio-item-bottom-left">
+					
+				</div>
+			</a>
+		</div>
+
+		<div class="card-body d-flex flex-column justify-content-between py-2">
+			<div class="cp-information">
+
+				
+
+				<p class="card-subtitle" title="">
+					<span class="text-truncate-inline">
+						<span class="text-truncate"></span>
+					</span>
+				</p>
+
+				<p class="card-title" title="Amlodipine 5mg Tablets">
+					<a href="https://webserver-lctbootsopticians-prd.lfr.cloud/web/sigma-pharma/p/amlodipine-5mg-tablets">
+						<span class="text-truncate-inline">
+							<span class="text-truncate">Amlodipine 5mg Tablets</span>
+						</span>
+					</a>
+				</p>
+
+				<p class="card-text">
+					<span class="text-truncate-inline">
+						<span class="d-flex flex-row text-truncate">
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="price compact" id="">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="price-label">
+	List Price
+</span>
+<span class="price-value">
+	
+		
+		
+			From $ 12.50
+		
+	
+</span>
+
+	
+		
+			
+				
+					
+						
+					
+					
+				
+			
+			
+		
+	
+</span>
+
+
+						</span>
+					</span>
+				</p>
+			</div>
+
+			<div>
+				
+					
+					
+						<div class="add-to-cart d-flex my-2 pt-5" id="ggzi___add_to_cart">
+							<a class="btn btn-block btn-secondary mt-2" href="https://webserver-lctbootsopticians-prd.lfr.cloud/web/sigma-pharma/p/amlodipine-5mg-tablets" role="button">
+								View all variants
+							</a>
+						</div>
+					
+				
+
+				<div class="autofit-float autofit-row autofit-row-center compare-wishlist">
+					<div class="autofit-col autofit-col-expand compare-checkbox">
+						<div class="autofit-section">
+							<div class="custom-checkbox custom-control custom-control-primary">
+								<div class="custom-checkbox custom-control">
+									
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="compare-checkbox-root lfr-tooltip-scope" id="vncb___compare-checkbox"><div class="custom-control custom-checkbox custom-control-outside"><label><input aria-label="Compare" class="custom-control-input compare-checkbox-component" type="checkbox"><span class="custom-control-label"><span class="custom-control-label-text">Compare</span></span></label></div></div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="autofit-col">
+						<div class="autofit-section">
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="add-to-wish-list lfr-tooltip-scope" id="zjob___add_to_wish_list"><button class="btn-outline-borderless btn-sm btn btn-secondary" type="button"><span class="text-truncate-inline"><span class="font-weight-normal text-truncate">Add to List</span></span><span class="wish-list-icon"><svg class="lexicon-icon lexicon-icon-heart" role="presentation"><use href="https://webserver-lctbootsopticians-prd.lfr.cloud/o/classic-theme/images/clay/icons.svg#heart"></use></svg></span></button></div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+</div>
+
+	
+
+</div>
+
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="" class="form  " data-fm-namespace="_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl_" id="_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl_fm" method="post" name="_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl_fm">
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+
+		
+			
+				
+					<input class="field form-control" id="_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl_formDate" name="_com_liferay_commerce_product_content_web_internal_portlet_CPPublisherPortlet_INSTANCE_stgl_formDate" type="hidden" value="1758837723795">
+				
+			
+		
+
+		
+	
+
+
+
+
+
+
+
+
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+</form>
+
+
+
+
+		
+	
+	
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div></div></div></div>
+          </div><a href="/web/sigma-pharma/pending-orders" class="sigma-dropdown-item">Pending orders</a><a href="/web/sigma-pharma/placed-orders" class="sigma-dropdown-item">Placed orders</a></div>

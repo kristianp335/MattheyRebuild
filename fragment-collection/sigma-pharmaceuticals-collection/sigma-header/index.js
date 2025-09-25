@@ -8,14 +8,12 @@
         try {
             root = (typeof fragmentElement !== 'undefined' && fragmentElement) || null;
         } catch (e) {
-            console.log('🎯 SIGMA HEADER: Fragment element access error, trying fallbacks:', e.message);
             root = null;
         }
         
         // Fallback 1: Try document.currentScript approach
         if (!root && document.currentScript) {
             root = document.currentScript.closest('.lfr-fragment-entry-link');
-            console.log('🎯 SIGMA HEADER: Trying document.currentScript fallback:', !!root);
         }
         
         // Fallback 2: Look for sigma header fragments in DOM
@@ -23,7 +21,6 @@
             const sigmaHeaders = document.querySelectorAll('[data-fragment-entry-key*="sigma-header"]');
             if (sigmaHeaders.length > 0) {
                 root = sigmaHeaders[0];
-                console.log('🎯 SIGMA HEADER: Found via data-fragment-entry-key:', !!root);
             }
         }
         
@@ -32,7 +29,6 @@
             const headerElements = document.querySelectorAll('.sigma-header-container, .sigma-header');
             if (headerElements.length > 0) {
                 root = headerElements[0].closest('.lfr-fragment-entry-link') || headerElements[0];
-                console.log('🎯 SIGMA HEADER: Found via sigma header classes:', !!root);
             }
         }
         
@@ -42,18 +38,10 @@
             for (const fragment of allFragments) {
                 if (fragment.querySelector('.sigma-nav, .sigma-logo, .sigma-header-container')) {
                     root = fragment;
-                    console.log('🎯 SIGMA HEADER: Found via header element search:', !!root);
                     break;
                 }
             }
         }
-        
-        console.log('🎯 SIGMA HEADER: Fragment element check:', {
-            fragmentElement: root,
-            fragmentElementExists: !!root,
-            fragmentElementId: root ? root.id : 'N/A',
-            fragmentElementClass: root ? root.className : 'N/A'
-        });
         
         if (!root) {
             console.warn('🎯 SIGMA HEADER: no root/fragmentElement found - exiting');
@@ -95,19 +83,12 @@
     }
     
     function initializeHeader() {
-        console.log('🎯 SIGMA HEADER: Starting initialization', {
-            fragmentElement: fragmentElement,
-            fragmentElementClass: fragmentElement ? fragmentElement.className : 'NOT FOUND',
-            documentReadyState: document.readyState
-        });
         
         // Get configuration values
         const config = getFragmentConfiguration();
-        console.log('🎯 SIGMA HEADER: Configuration loaded', config);
         
         // Check if we're in edit mode - more specific detection
         const editMode = isInEditMode();
-        console.log('🎯 SIGMA HEADER: Edit mode detection result:', editMode);
         
         if (editMode) {
             // Apply configuration settings even in edit mode
@@ -145,7 +126,6 @@
         // NOTE: initializeDropdowns() now called AFTER navigation renders
         
         // Initialize mega menu mapping for normal mode - with delay to wait for navigation
-        console.log('🎯 SIGMA HEADER: Initializing mega menu mapping for normal mode');
         setupMegaMenuMappingWithRetry();
         
         // Sigma Pharmaceuticals Header Fragment initialized
@@ -177,24 +157,6 @@
                                window.location.href.includes('p_l_mode=edit') ||
                                window.location.href.includes('pageDesign');
         
-        console.log('🎯 SIGMA HEADER: Edit mode indicators:', {
-            hasEditModeMenu,
-            isEditMode,
-            hasControlMenu: !!hasControlMenu,
-            hasPageEditor: !!hasPageEditor,
-            hasFragmentEntryProcessorEditable: !!hasFragmentEntryProcessorEditable,
-            hasEditableElements: !!hasEditableElements,
-            hasPageDesignMode: !!hasPageDesignMode,
-            hasFragmentConfigPanel: !!hasFragmentConfigPanel,
-            hasComponentsPanel: !!hasComponentsPanel,
-            hasEditableFields: !!hasEditableFields,
-            hasFragmentEntryLinks,
-            hasLiferayEditorEnabled: !!hasLiferayEditorEnabled,
-            urlContainsEdit,
-            bodyClasses: body.className,
-            currentURL: window.location.href
-        });
-        
         // More flexible edit mode detection
         const inEditMode = hasEditModeMenu || 
                           isEditMode || 
@@ -205,17 +167,14 @@
                           urlContainsEdit ||
                           (hasFragmentEntryLinks && (hasEditableFields || hasEditableElements));
         
-        console.log('🎯 SIGMA HEADER: Final edit mode result:', inEditMode);
         
         // Add/remove body class to help with mega menu dropzone visibility
         if (inEditMode) {
             body.classList.add('has-edit-mode-menu');
             fragmentElement.classList.add('sigma-edit-mode');
-            console.log('🎯 SIGMA HEADER: Added edit mode classes to body and fragment');
         } else {
             body.classList.remove('has-edit-mode-menu');
             fragmentElement.classList.remove('sigma-edit-mode');
-            console.log('🎯 SIGMA HEADER: Removed edit mode classes from body and fragment');
         }
         
         return inEditMode;
@@ -759,34 +718,23 @@
      * Initialize mega menu content for edit mode
      */
     function initializeMegaMenuContent() {
-        console.log('🎯 SIGMA HEADER: Initializing mega menu content');
         
         const editModeStatus = isInEditMode();
-        console.log('🎯 SIGMA HEADER: Current edit mode status:', editModeStatus);
         
         // Show mega menu dropzones in edit mode
         if (editModeStatus) {
             const megaMenuContainer = fragmentElement.querySelector('.sigma-mega-menu-dropzones');
-            console.log('🎯 SIGMA HEADER: Mega menu container found:', !!megaMenuContainer);
             
             if (megaMenuContainer) {
                 megaMenuContainer.style.display = 'block';
-                console.log('🎯 SIGMA HEADER: Set mega menu container display to block');
                 
                 // Check all dropzones
                 const dropzones = megaMenuContainer.querySelectorAll('.sigma-mega-dropzone');
-                console.log('🎯 SIGMA HEADER: Found dropzones:', dropzones.length);
                 
                 dropzones.forEach((zone, index) => {
-                    console.log(`🎯 SIGMA HEADER: Dropzone ${index + 1}:`, {
-                        id: zone.id || 'no-id',
-                        menuItem: zone.getAttribute('data-menu-item'),
-                        visible: zone.style.display !== 'none'
-                    });
+                    // Process each dropzone
                 });
             }
-        } else {
-            console.log('🎯 SIGMA HEADER: Not in edit mode, skipping dropzone display');
         }
         
         // Setup mega menu content mapping to dropdowns
@@ -797,16 +745,13 @@
      * Setup mega menu observer for edit mode
      */
     function setupMegaMenuObserver() {
-        console.log('🎯 SIGMA HEADER: Setting up mega menu observer');
         
         // Create mutation observer to watch for edit mode changes
         const observer = new MutationObserver((mutations) => {
-            console.log('🎯 SIGMA HEADER: Mutation observed:', mutations.length, 'mutations');
             
             mutations.forEach((mutation) => {
                 if (mutation.type === 'attributes' && 
                     (mutation.attributeName === 'class' || mutation.attributeName === 'data-editor-enabled')) {
-                    console.log('🎯 SIGMA HEADER: Edit mode class/attribute changed, re-initializing mega menu');
                     initializeMegaMenuContent();
                 }
             });
@@ -817,7 +762,6 @@
             attributes: true, 
             attributeFilter: ['class', 'data-editor-enabled'] 
         });
-        console.log('🎯 SIGMA HEADER: Observing body for edit mode changes');
         
         const wrapper = document.getElementById('wrapper');
         if (wrapper) {
@@ -825,9 +769,6 @@
                 attributes: true, 
                 attributeFilter: ['class', 'data-editor-enabled'] 
             });
-            console.log('🎯 SIGMA HEADER: Observing wrapper for edit mode changes');
-        } else {
-            console.log('🎯 SIGMA HEADER: No wrapper element found to observe');
         }
     }
 
@@ -835,22 +776,17 @@
      * Setup mega menu mapping with retry mechanism for timing issues
      */
     function setupMegaMenuMappingWithRetry(attempt = 1, maxAttempts = 10) {
-        console.log(`🎯 SIGMA HEADER: Attempting mega menu mapping (attempt ${attempt}/${maxAttempts})`);
-        
         const navItems = fragmentElement.querySelectorAll('.sigma-nav-item');
         const dropdownMenus = fragmentElement.querySelectorAll('.sigma-dropdown-menu');
         
         if (navItems.length > 0 || dropdownMenus.length > 0) {
-            console.log('🎯 SIGMA HEADER: Navigation found, proceeding with mapping');
             setupMegaMenuMapping();
         } else if (attempt < maxAttempts) {
-            console.log(`🎯 SIGMA HEADER: Navigation not ready, retrying in ${attempt * 100}ms`);
             setTimeout(() => {
                 setupMegaMenuMappingWithRetry(attempt + 1, maxAttempts);
             }, attempt * 100);
         } else {
-            console.log('🎯 SIGMA HEADER: Max attempts reached, navigation may not have dropdown items');
-            setupMegaMenuMapping(); // Try anyway to show debug info
+            setupMegaMenuMapping(); // Try anyway
         }
     }
 
@@ -858,36 +794,7 @@
      * Setup mapping between menu items and mega menu content
      */
     function setupMegaMenuMapping() {
-        console.log('🎯 SIGMA HEADER: Setting up mega menu mapping');
-        
-        // Debug: Check what navigation structure exists
-        const allNavItems = fragmentElement.querySelectorAll('.sigma-nav-item');
-        const hasDropdownItems = fragmentElement.querySelectorAll('.has-dropdown');
-        const dropdownMenus = fragmentElement.querySelectorAll('.sigma-dropdown-menu');
-        const navElement = fragmentElement.querySelector('.sigma-nav');
-        
-        console.log('🎯 SIGMA HEADER: Navigation structure debug:', {
-            allNavItems: allNavItems.length,
-            hasDropdownItems: hasDropdownItems.length,
-            dropdownMenus: dropdownMenus.length,
-            hasNavElement: !!navElement,
-            navHTML: navElement ? navElement.innerHTML.substring(0, 200) + '...' : 'N/A'
-        });
-        
         const dropdownItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
-        console.log('🎯 SIGMA HEADER: Found dropdown items:', dropdownItems.length);
-        
-        // Debug: Check all mega menu dropzones
-        const allDropzones = fragmentElement.querySelectorAll('[id^="dropzone-mega-menu-"]');
-        console.log('🎯 SIGMA HEADER: All mega menu dropzones found:', allDropzones.length);
-        allDropzones.forEach((zone, index) => {
-            console.log(`🎯 SIGMA HEADER: Dropzone ${index + 1}:`, {
-                id: zone.id,
-                hasContent: zone.children.length > 0,
-                innerHTML: zone.innerHTML.substring(0, 100) + (zone.innerHTML.length > 100 ? '...' : ''),
-                visible: zone.style.display !== 'none'
-            });
-        });
         
         dropdownItems.forEach((item, index) => {
             // Find the actual position of this dropdown item within all nav items
@@ -899,15 +806,6 @@
             const megaContentId = `dropzone-mega-menu-${menuIndex}`;
             const megaContent = fragmentElement.querySelector(`#${megaContentId}`);
             
-            console.log(`🎯 SIGMA HEADER: Processing dropdown at position ${menuIndex} (found index ${index}):`, {
-                hasDropdown: !!dropdown,
-                megaContentId,
-                hasMegaContent: !!megaContent,
-                actualPosition,
-                totalNavItems: allNavItems.length,
-                megaContentHTML: megaContent ? megaContent.innerHTML.substring(0, 100) + '...' : 'N/A',
-                dropdownCurrentHTML: dropdown ? dropdown.innerHTML.substring(0, 100) + '...' : 'N/A'
-            });
             
             if (dropdown && megaContent && megaContent.children.length > 0) {
                 // Only map if mega content actually has content
@@ -920,25 +818,15 @@
                 const existingClones = dropdown.querySelectorAll('.sigma-mega-content-clone');
                 existingClones.forEach(clone => clone.remove());
                 
-                // Insert mega content at the top of dropdown
-                dropdown.insertBefore(megaContentClone, dropdown.firstChild);
+                // Append mega content AFTER existing dropdown content (Pending orders, Place orders, etc.)
+                dropdown.appendChild(megaContentClone);
                 
                 // Add data attribute to link them
                 item.setAttribute('data-mega-menu-id', menuIndex);
                 
-                console.log(`🎯 SIGMA HEADER: Successfully mapped mega menu ${menuIndex} to dropdown`, {
-                    clonedContent: megaContentClone.innerHTML.substring(0, 100) + '...',
-                    insertedIntoDropdown: true
-                });
                 
                 // Update dropdown hover/click handlers to show mega content
                 setupMegaMenuEvents(item, megaContentClone);
-            } else {
-                console.log(`🎯 SIGMA HEADER: Skipping dropdown ${menuIndex}:`, {
-                    reason: !dropdown ? 'No dropdown found' : 
-                           !megaContent ? 'No mega content found' : 
-                           'Mega content is empty'
-                });
             }
         });
     }
@@ -992,14 +880,6 @@
         const fragmentEditor = fragmentElement ? fragmentElement.closest('[data-editor-enabled="true"]') : null;
         
         const result = hasEditModeMenu || !!wrapperEditMode || !!editorEnabled || !!fragmentEditor;
-        
-        console.log('🎯 SIGMA HEADER: isEditMode check:', {
-            hasEditModeMenu,
-            wrapperEditMode: !!wrapperEditMode,
-            editorEnabled: !!editorEnabled,
-            fragmentEditor: !!fragmentEditor,
-            result
-        });
         
         return result;
     }
