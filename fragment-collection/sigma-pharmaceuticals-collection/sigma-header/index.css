@@ -568,41 +568,6 @@ body.has-edit-mode-menu .sigma-mega-dropzone lfr-drop-zone:before,
   display: none;
 }
 
-/* Mega Menu Content Styling */
-#wrapper .sigma-mega-menu-content {
-  border-top: 1px solid var(--sigma-gray-200);
-  margin-top: var(--sigma-spacing-sm);
-  padding-top: var(--sigma-spacing-sm);
-}
-
-/* Enhanced dropdown styling for mega menus */
-#wrapper .sigma-dropdown-menu.has-mega-content {
-  min-width: 300px;
-  max-width: 600px;
-  padding: var(--sigma-spacing-lg);
-}
-
-/* Mega menu content should inherit proper styling */
-#wrapper .sigma-mega-menu-content * {
-  max-width: 100%;
-}
-
-/* Ensure dropzone content displays properly in dropdown */
-#wrapper .sigma-mega-menu-content .portlet,
-#wrapper .sigma-mega-menu-content .fragment-entry {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Style any fragments or portlets within mega menu */
-#wrapper .sigma-mega-menu-content .portlet-content,
-#wrapper .sigma-mega-menu-content .fragment-content {
-  padding: 0;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   #wrapper .sigma-nav {
