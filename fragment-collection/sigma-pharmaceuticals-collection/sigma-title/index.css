@@ -47,6 +47,62 @@
   border-radius: 0;
 }
 
+/* Text Color Overrides */
+#wrapper .sigma-title-container[data-text-color="white"] {
+  color: var(--sigma-white) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="dark-gray"] {
+  color: var(--sigma-gray-800) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="light-gray"] {
+  color: var(--sigma-gray-400) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="primary"] {
+  color: var(--sigma-primary) !important;
+}
+
+#wrapper .sigma-title-container[data-text-color="black"] {
+  color: #000000 !important;
+}
+
+/* Icon color inheritance for custom text colors */
+#wrapper .sigma-title-container[data-text-color="white"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="light-gray"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="primary"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="black"] .sigma-title-icon {
+  background: rgba(255, 255, 255, 0.15);
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Special handling for dark text on light backgrounds */
+#wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-text-color="black"] .sigma-title-icon {
+  background: var(--sigma-primary);
+  color: var(--sigma-white);
+  border: 1px solid var(--sigma-primary);
+}
+
+/* Divider color adjustments for custom text colors */
+#wrapper .sigma-title-container[data-text-color="white"] .sigma-title-divider,
+#wrapper .sigma-title-container[data-text-color="light-gray"] .sigma-title-divider {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-divider,
+#wrapper .sigma-title-container[data-text-color="black"] .sigma-title-divider {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#wrapper .sigma-title-container[data-text-color="primary"] .sigma-title-divider {
+  background: var(--sigma-primary);
+  opacity: 0.3;
+}
+
 /* Title Content */
 #wrapper .sigma-title-content {
   padding: var(--sigma-spacing-xl) var(--sigma-spacing-xxl);

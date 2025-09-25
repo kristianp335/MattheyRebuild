@@ -71,6 +71,23 @@
           "defaultValue": true
         },
         {
+          "name": "textColor",
+          "label": "Text Color",
+          "description": "Color of the title text and icon",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "auto", "label": "Auto (Based on Background)"},
+              {"value": "white", "label": "White"},
+              {"value": "dark-gray", "label": "Dark Gray"},
+              {"value": "light-gray", "label": "Light Gray"},
+              {"value": "primary", "label": "Primary Blue"},
+              {"value": "black", "label": "Black"}
+            ]
+          },
+          "defaultValue": "auto"
+        },
+        {
           "name": "compactMode",
           "label": "Compact Mode",
           "description": "Reduce padding for smaller title sections",

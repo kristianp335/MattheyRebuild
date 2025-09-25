@@ -29,6 +29,7 @@
                     titleIcon: configuration.titleIcon || 'pharmaceutical',
                     backgroundStyle: configuration.backgroundStyle || 'gradient-primary',
                     textAlignment: configuration.textAlignment || 'left',
+                    textColor: configuration.textColor || 'auto',
                     showDivider: configuration.showDivider !== undefined ? configuration.showDivider : true,
                     compactMode: configuration.compactMode !== undefined ? configuration.compactMode : false
                 };
@@ -39,6 +40,7 @@
                     titleIcon: 'pharmaceutical',
                     backgroundStyle: 'gradient-primary',
                     textAlignment: 'left',
+                    textColor: 'auto',
                     showDivider: true,
                     compactMode: false
                 };
@@ -50,6 +52,7 @@
                 titleIcon: 'pharmaceutical',
                 backgroundStyle: 'gradient-primary',
                 textAlignment: 'left',
+                textColor: 'auto',
                 showDivider: true,
                 compactMode: false
             };
@@ -73,6 +76,7 @@
             container.setAttribute('data-background', config.backgroundStyle);
             container.setAttribute('data-alignment', config.textAlignment);
             container.setAttribute('data-compact', config.compactMode.toString());
+            container.setAttribute('data-text-color', config.textColor);
         }
         
         // Show/hide divider based on configuration
