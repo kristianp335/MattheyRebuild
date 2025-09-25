@@ -890,15 +890,21 @@
         });
         
         dropdownItems.forEach((item, index) => {
-            const menuIndex = index + 1; // 1-based indexing
+            // Find the actual position of this dropdown item within all nav items
+            const allNavItems = Array.from(fragmentElement.querySelectorAll('.sigma-nav-item, .sigma-nav li, .nav-item'));
+            const actualPosition = allNavItems.indexOf(item) + 1; // 1-based indexing
+            const menuIndex = actualPosition > 0 ? actualPosition : index + 1; // Fallback to old method if position not found
+            
             const dropdown = item.querySelector('.sigma-dropdown-menu');
             const megaContentId = `dropzone-mega-menu-${menuIndex}`;
             const megaContent = fragmentElement.querySelector(`#${megaContentId}`);
             
-            console.log(`🎯 SIGMA HEADER: Processing dropdown ${menuIndex}:`, {
+            console.log(`🎯 SIGMA HEADER: Processing dropdown at position ${menuIndex} (found index ${index}):`, {
                 hasDropdown: !!dropdown,
                 megaContentId,
                 hasMegaContent: !!megaContent,
+                actualPosition,
+                totalNavItems: allNavItems.length,
                 megaContentHTML: megaContent ? megaContent.innerHTML.substring(0, 100) + '...' : 'N/A',
                 dropdownCurrentHTML: dropdown ? dropdown.innerHTML.substring(0, 100) + '...' : 'N/A'
             });
