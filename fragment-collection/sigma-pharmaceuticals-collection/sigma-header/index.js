@@ -91,17 +91,22 @@
         const editMode = isInEditMode();
         
         if (editMode) {
-            // Apply configuration settings even in edit mode
-            applyConfiguration(config);
-            // Simplified initialization for edit mode
-            const sampleNav = getSampleNavigation();
-            renderNavigation(sampleNav);
-            // Initialize mobile menu and modals for edit mode
-            initializeMobileMenu();
-            initializeModals();
-            // Initialize mega menu content for edit mode - single call
-            initializeMegaMenuContent();
-            setupMegaMenuObserver();
+            // Minimal initialization for edit mode to prevent hanging
+            try {
+                applyConfiguration(config);
+                const sampleNav = getSampleNavigation();
+                renderNavigation(sampleNav);
+                initializeMobileMenu();
+                initializeModals();
+                // Show mega menu dropzones only, no complex logic
+                const megaMenuContainer = fragmentElement.querySelector('.sigma-mega-menu-dropzones');
+                if (megaMenuContainer) {
+                    megaMenuContainer.style.display = 'block';
+                }
+                // NO observer in edit mode to prevent hanging
+            } catch (e) {
+                console.error('Error in edit mode initialization:', e);
+            }
             return;
         }
         
@@ -132,47 +137,26 @@
     }
     
     function isInEditMode() {
-        // Enhanced edit mode detection - check for multiple indicators
+        // Simplified, faster edit mode detection - avoid expensive DOM queries
         const body = document.body;
         
-        // Check for specific Liferay edit mode indicators
+        // Check most reliable indicators first (fastest)
         const hasEditModeMenu = body.classList.contains('has-edit-mode-menu');
         const isEditMode = body.classList.contains('is-edit-mode');
-        const hasControlMenu = document.querySelector('.control-menu');
-        const hasPageEditor = document.querySelector('.page-editor__sidebar, .page-editor-sidebar, [data-qa-id="pageEditor"]');
-        const hasFragmentEntryProcessorEditable = document.querySelector('.fragment-entry-processor-editable');
-        const hasEditableElements = document.querySelector('[contenteditable="true"], .lfr-editable-field');
+        const hasEditorEnabled = document.documentElement.getAttribute('data-editor-enabled') === 'true';
         
-        // Additional edit mode indicators
-        const hasPageDesignMode = document.querySelector('[data-qa-id="pageDesign"], .page-design');
-        const hasFragmentConfigPanel = document.querySelector('.fragment-configuration-panel, .sidebar-panel');
-        const hasComponentsPanel = document.querySelector('.components-panel, .fragment-sidebar');
-        const hasEditableFields = document.querySelector('.lfr-editable, .editable-field');
-        const hasFragmentEntryLinks = document.querySelectorAll('.lfr-fragment-entry-link').length > 0;
-        const hasLiferayEditorEnabled = document.querySelector('[data-editor-enabled="true"]') || 
-                                       document.documentElement.getAttribute('data-editor-enabled') === 'true';
-        
-        // Check URL for edit mode indicators
-        const urlContainsEdit = window.location.href.includes('/edit') || 
-                               window.location.href.includes('p_l_mode=edit') ||
+        // Quick URL check
+        const urlContainsEdit = window.location.href.includes('p_l_mode=edit') ||
                                window.location.href.includes('pageDesign');
         
-        // More flexible edit mode detection
-        const inEditMode = hasEditModeMenu || 
-                          isEditMode || 
-                          hasPageDesignMode ||
-                          hasFragmentConfigPanel ||
-                          hasComponentsPanel ||
-                          hasLiferayEditorEnabled ||
-                          urlContainsEdit ||
-                          (hasFragmentEntryLinks && (hasEditableFields || hasEditableElements));
+        // Simple, fast detection
+        const inEditMode = hasEditModeMenu || isEditMode || hasEditorEnabled || urlContainsEdit;
         
-        
-        // Add/remove body class to help with mega menu dropzone visibility
-        if (inEditMode) {
+        // Only add classes if state changed to prevent unnecessary DOM mutations
+        if (inEditMode && !fragmentElement.classList.contains('sigma-edit-mode')) {
             body.classList.add('has-edit-mode-menu');
             fragmentElement.classList.add('sigma-edit-mode');
-        } else {
+        } else if (!inEditMode && fragmentElement.classList.contains('sigma-edit-mode')) {
             body.classList.remove('has-edit-mode-menu');
             fragmentElement.classList.remove('sigma-edit-mode');
         }
@@ -718,41 +702,18 @@
      * Initialize mega menu content for edit mode
      */
     function initializeMegaMenuContent() {
-        // Add guard to prevent recursive calls
-        if (fragmentElement.dataset.megaMenuInitializing === 'true') {
-            return;
-        }
+        // Simple function - no recursive guards needed since observer is removed
+        const editModeStatus = isInEditMode();
         
-        try {
-            fragmentElement.dataset.megaMenuInitializing = 'true';
-            
-            const editModeStatus = isInEditMode();
-            
-            // Show mega menu dropzones in edit mode
-            if (editModeStatus) {
-                const megaMenuContainer = fragmentElement.querySelector('.sigma-mega-menu-dropzones');
-                
-                if (megaMenuContainer) {
-                    megaMenuContainer.style.display = 'block';
-                    
-                    // Check all dropzones
-                    const dropzones = megaMenuContainer.querySelectorAll('.sigma-mega-dropzone');
-                    
-                    dropzones.forEach((zone, index) => {
-                        // Process each dropzone
-                    });
-                }
+        // Show mega menu dropzones in edit mode only
+        if (editModeStatus) {
+            const megaMenuContainer = fragmentElement.querySelector('.sigma-mega-menu-dropzones');
+            if (megaMenuContainer) {
+                megaMenuContainer.style.display = 'block';
             }
-            
-            // Only setup mega menu mapping in normal mode, not edit mode
-            if (!editModeStatus) {
-                setupMegaMenuMapping();
-            }
-        } finally {
-            // Reset the guard after processing
-            setTimeout(() => {
-                fragmentElement.dataset.megaMenuInitializing = 'false';
-            }, 100);
+        } else {
+            // Only setup mega menu mapping in normal mode
+            setupMegaMenuMapping();
         }
     }
 
