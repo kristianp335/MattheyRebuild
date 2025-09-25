@@ -59,6 +59,7 @@
 /* Dataset Toggle */
 .sigma-dataset-toggle {
   display: flex;
+  gap: var(--sigma-spacing-xs);
   background: var(--sigma-gray-100);
   border-radius: var(--sigma-border-radius);
   padding: 2px;
