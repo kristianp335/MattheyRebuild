@@ -4,6 +4,79 @@
 
 This comprehensive guide provides best practices, architectural patterns, and optimization techniques for creating production-ready Liferay fragments and client extensions. It covers responsive design, performance optimization, advanced functionality integration, and proven patterns from Johnson Matthey and Vanden Recycling implementations.
 
+## Fragment.json Structure Requirements
+
+### Critical Configuration File
+
+Every fragment **must** include a properly structured `fragment.json` file that tells Liferay where to find all fragment assets. Missing or incomplete fragment.json files will cause **"HTML content must not be empty"** import errors.
+
+### Required Fragment.json Structure
+
+```json
+{
+  "fragmentEntryKey": "sigma-bar-chart",
+  "name": "Sigma Bar Chart",
+  "type": "component",
+  "htmlPath": "index.html",
+  "cssPath": "index.css", 
+  "jsPath": "index.js",
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "icon": "chart-bar"
+}
+```
+
+### Critical Fields Explained
+
+- **fragmentEntryKey**: Unique identifier for the fragment
+- **name**: Display name shown in Liferay fragment library
+- **type**: Either `"component"` or `"section"` 
+- **htmlPath**: Path to HTML file (required - must be "index.html")
+- **cssPath**: Path to CSS file (required - must be "index.css")
+- **jsPath**: Path to JavaScript file (required - must be "index.js")
+- **configurationPath**: Path to configuration file (required - must be "configuration.json")
+- **thumbnailPath**: Path to thumbnail image (required - must be "thumbnail.png")
+- **icon**: Liferay icon identifier for fragment library display
+
+### Common Import Error
+
+❌ **Incomplete fragment.json** (causes "HTML content must not be empty"):
+```json
+{
+  "fragmentEntryKey": "sigma-bar-chart",
+  "name": "Sigma Bar Chart",
+  "type": "component"
+}
+```
+
+✅ **Complete fragment.json** (imports successfully):
+```json
+{
+  "fragmentEntryKey": "sigma-bar-chart", 
+  "name": "Sigma Bar Chart",
+  "type": "component",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "jsPath": "index.js", 
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "icon": "chart-bar"
+}
+```
+
+### Fragment File Structure
+
+Each fragment directory must contain:
+```
+sigma-bar-chart/
+├── fragment.json           # Fragment metadata (required)
+├── configuration.json      # Fragment configuration options
+├── index.html             # Fragment HTML template
+├── index.css              # Fragment styles 
+├── index.js               # Fragment JavaScript
+└── thumbnail.png          # Fragment thumbnail image
+```
+
 ## FragmentElement: Core Concept for Multi-Instance Fragments
 
 ### Overview
