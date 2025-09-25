@@ -84,6 +84,12 @@ The project employs a Liferay Commerce-based architecture using headless APIs fo
 - Varied pricing by pack size and therapeutic category
 - All products have purchasable SKUs with proper cost/price ratios
 
+**Recent Changes (September 2025):**
+- **SKU Regeneration Fix**: Resolved "From 0.00" pricing display issue for 9 products by regenerating SKUs with proper structure
+- **Affected Products**: Omeprazole (68842), Loperamide (68845), Domperidone (68848), Hydrocortisone (68851), Betamethasone (68854), Clotrimazole (68857), Paracetamol (68860), Naproxen (68863), Ibuprofen 200mg (68866)
+- **Solution Applied**: Used simplified single-SKU approach for immediate functionality restoration instead of complex multi-variant productOptions due to API constraints
+- **Result**: All 25 products now display proper B2B pricing instead of "From 0.00"
+
 ## External Dependencies
 
 **Liferay Commerce Platform:**
