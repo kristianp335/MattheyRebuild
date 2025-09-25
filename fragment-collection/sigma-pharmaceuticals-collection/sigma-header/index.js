@@ -144,6 +144,10 @@
         
         // NOTE: initializeDropdowns() now called AFTER navigation renders
         
+        // Initialize mega menu mapping for normal mode
+        console.log('🎯 SIGMA HEADER: Initializing mega menu mapping for normal mode');
+        setupMegaMenuMapping();
+        
         // Sigma Pharmaceuticals Header Fragment initialized
     }
     
