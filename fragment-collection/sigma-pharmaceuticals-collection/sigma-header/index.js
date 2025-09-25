@@ -718,76 +718,130 @@
      * Initialize mega menu content for edit mode
      */
     function initializeMegaMenuContent() {
-        
-        const editModeStatus = isInEditMode();
-        
-        // Show mega menu dropzones in edit mode
-        if (editModeStatus) {
-            const megaMenuContainer = fragmentElement.querySelector('.sigma-mega-menu-dropzones');
-            
-            if (megaMenuContainer) {
-                megaMenuContainer.style.display = 'block';
-                
-                // Check all dropzones
-                const dropzones = megaMenuContainer.querySelectorAll('.sigma-mega-dropzone');
-                
-                dropzones.forEach((zone, index) => {
-                    // Process each dropzone
-                });
-            }
+        // Add guard to prevent recursive calls
+        if (fragmentElement.dataset.megaMenuInitializing === 'true') {
+            return;
         }
         
-        // Setup mega menu content mapping to dropdowns
-        setupMegaMenuMapping();
+        try {
+            fragmentElement.dataset.megaMenuInitializing = 'true';
+            
+            const editModeStatus = isInEditMode();
+            
+            // Show mega menu dropzones in edit mode
+            if (editModeStatus) {
+                const megaMenuContainer = fragmentElement.querySelector('.sigma-mega-menu-dropzones');
+                
+                if (megaMenuContainer) {
+                    megaMenuContainer.style.display = 'block';
+                    
+                    // Check all dropzones
+                    const dropzones = megaMenuContainer.querySelectorAll('.sigma-mega-dropzone');
+                    
+                    dropzones.forEach((zone, index) => {
+                        // Process each dropzone
+                    });
+                }
+            }
+            
+            // Only setup mega menu mapping in normal mode, not edit mode
+            if (!editModeStatus) {
+                setupMegaMenuMapping();
+            }
+        } finally {
+            // Reset the guard after processing
+            setTimeout(() => {
+                fragmentElement.dataset.megaMenuInitializing = 'false';
+            }, 100);
+        }
     }
 
     /**
      * Setup mega menu observer for edit mode
      */
     function setupMegaMenuObserver() {
+        // Prevent recursive calls with a debounce mechanism
+        let observerTimeout;
+        let isProcessing = false;
         
         // Create mutation observer to watch for edit mode changes
         const observer = new MutationObserver((mutations) => {
+            // Prevent recursive calls
+            if (isProcessing) return;
             
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && 
-                    (mutation.attributeName === 'class' || mutation.attributeName === 'data-editor-enabled')) {
-                    initializeMegaMenuContent();
+            // Clear existing timeout
+            if (observerTimeout) {
+                clearTimeout(observerTimeout);
+            }
+            
+            // Debounce the observer to prevent rapid firing
+            observerTimeout = setTimeout(() => {
+                let shouldReinitialize = false;
+                
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && 
+                        (mutation.attributeName === 'class' || mutation.attributeName === 'data-editor-enabled')) {
+                        // Only reinitialize if the edit mode actually changed
+                        const target = mutation.target;
+                        const currentClasses = target.className || '';
+                        const hasEditClass = currentClasses.includes('has-edit-mode-menu') || 
+                                           currentClasses.includes('is-edit-mode');
+                        
+                        // Only trigger if this is a meaningful edit mode change
+                        if (hasEditClass && !shouldReinitialize) {
+                            shouldReinitialize = true;
+                        }
+                    }
+                });
+                
+                if (shouldReinitialize) {
+                    isProcessing = true;
+                    try {
+                        initializeMegaMenuContent();
+                    } catch (e) {
+                        console.error('Error in mega menu observer:', e);
+                    } finally {
+                        // Reset processing flag after a delay
+                        setTimeout(() => {
+                            isProcessing = false;
+                        }, 500);
+                    }
                 }
-            });
+            }, 100); // Debounce for 100ms
         });
 
-        // Observe body and wrapper for edit mode class changes
+        // Observe body for edit mode class changes only
         observer.observe(document.body, { 
             attributes: true, 
-            attributeFilter: ['class', 'data-editor-enabled'] 
+            attributeFilter: ['class'] // Only watch class changes, not data-editor-enabled
         });
-        
-        const wrapper = document.getElementById('wrapper');
-        if (wrapper) {
-            observer.observe(wrapper, { 
-                attributes: true, 
-                attributeFilter: ['class', 'data-editor-enabled'] 
-            });
-        }
     }
 
     /**
      * Setup mega menu mapping with retry mechanism for timing issues
      */
-    function setupMegaMenuMappingWithRetry(attempt = 1, maxAttempts = 10) {
+    function setupMegaMenuMappingWithRetry(attempt = 1, maxAttempts = 5) {
+        // Add safety check to prevent runaway retries
+        if (isInEditMode()) {
+            return; // Don't setup mega menu mapping in edit mode
+        }
+        
         const navItems = fragmentElement.querySelectorAll('.sigma-nav-item');
         const dropdownMenus = fragmentElement.querySelectorAll('.sigma-dropdown-menu');
         
         if (navItems.length > 0 || dropdownMenus.length > 0) {
             setupMegaMenuMapping();
         } else if (attempt < maxAttempts) {
+            // Exponential backoff to prevent rapid retries
+            const delay = Math.min(attempt * 200, 1000); // Max 1 second delay
             setTimeout(() => {
-                setupMegaMenuMappingWithRetry(attempt + 1, maxAttempts);
-            }, attempt * 100);
-        } else {
-            setupMegaMenuMapping(); // Try anyway
+                // Check again if we're still not in edit mode
+                if (!isInEditMode()) {
+                    setupMegaMenuMappingWithRetry(attempt + 1, maxAttempts);
+                }
+            }, delay);
         }
+        // Removed the fallback "try anyway" to prevent issues when elements don't exist
     }
 
     /**
