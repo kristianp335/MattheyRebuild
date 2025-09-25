@@ -837,6 +837,20 @@
     function setupMegaMenuMapping() {
         console.log('🎯 SIGMA HEADER: Setting up mega menu mapping');
         
+        // Debug: Check what navigation structure exists
+        const allNavItems = fragmentElement.querySelectorAll('.sigma-nav-item');
+        const hasDropdownItems = fragmentElement.querySelectorAll('.has-dropdown');
+        const dropdownMenus = fragmentElement.querySelectorAll('.sigma-dropdown-menu');
+        const navElement = fragmentElement.querySelector('.sigma-nav');
+        
+        console.log('🎯 SIGMA HEADER: Navigation structure debug:', {
+            allNavItems: allNavItems.length,
+            hasDropdownItems: hasDropdownItems.length,
+            dropdownMenus: dropdownMenus.length,
+            hasNavElement: !!navElement,
+            navHTML: navElement ? navElement.innerHTML.substring(0, 200) + '...' : 'N/A'
+        });
+        
         const dropdownItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
         console.log('🎯 SIGMA HEADER: Found dropdown items:', dropdownItems.length);
         
