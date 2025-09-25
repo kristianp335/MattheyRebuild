@@ -415,27 +415,16 @@
      * Initialize dropdown functionality
      */
     function initializeDropdowns() {
-        console.log('initializeDropdowns called');
         const dropdownItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
-        console.log('Found dropdown items:', dropdownItems.length);
         
-        dropdownItems.forEach((item, index) => {
-            console.log('Processing dropdown item', index, ':', item.textContent.trim());
+        dropdownItems.forEach(item => {
             const link = item.querySelector('.sigma-nav-link');
             const dropdown = item.querySelector('.sigma-dropdown-menu');
-            console.log('Link found:', !!link, 'Dropdown found:', !!dropdown);
             
-            if (!link || !dropdown) {
-                console.error('Missing link or dropdown for item:', item.textContent.trim());
-                return;
-            }
+            if (!link || !dropdown) return;
             
             // Hover events
             item.addEventListener('mouseenter', () => {
-                console.log('Mouseenter triggered on:', item.textContent.trim());
-                console.log('Dropdown element found:', dropdown);
-                console.log('Dropdown classes before:', dropdown ? dropdown.className : 'NO DROPDOWN');
-                
                 // Close other dropdowns, but not this one
                 const otherItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown.show');
                 otherItems.forEach(otherItem => {
@@ -450,12 +439,7 @@
                 
                 // Show this dropdown
                 item.classList.add('show');
-                if (dropdown) {
-                    dropdown.classList.add('show');
-                    console.log('Added show class. Dropdown classes after:', dropdown.className);
-                } else {
-                    console.error('No dropdown element found to add show class to!');
-                }
+                dropdown.classList.add('show');
             });
             
             item.addEventListener('mouseleave', () => {

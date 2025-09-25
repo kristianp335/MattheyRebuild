@@ -178,7 +178,8 @@
   margin-top: var(--sigma-spacing-xs);
 }
 
-#wrapper .sigma-dropdown-menu.show {
+#wrapper .sigma-dropdown-menu.show,
+.sigma-dropdown-menu.show {
   display: block;
 }
 
