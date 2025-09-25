@@ -326,9 +326,14 @@
             mobileNavList.innerHTML = '';
         }
         
+        // Count dropdown items for mega menu mapping
+        let dropdownIndex = 0;
+        
         // Render each navigation item
         navItems.forEach((item, index) => {
-            const navItem = createNavItem(item, index);
+            // Increment dropdown index for items with dropdowns
+            const currentDropdownIndex = item.children && item.children.length > 0 ? ++dropdownIndex : 0;
+            const navItem = createNavItem(item, index, currentDropdownIndex);
             navList.appendChild(navItem);
             
             // Mobile navigation
@@ -343,12 +348,15 @@
         
         // Initialize mega menu content for both edit and live modes
         initializeMegaMenuContent();
+        
+        // Setup observer for edit mode content changes
+        setupMegaMenuObserver();
     }
 
     /**
      * Create a navigation item
      */
-    function createNavItem(item, index) {
+    function createNavItem(item, index, dropdownIndex = 0) {
         const li = document.createElement('li');
         li.className = 'sigma-nav-item';
         
@@ -363,7 +371,8 @@
         // Add dropdown indicator if has children
         if (item.children && item.children.length > 0) {
             li.classList.add('has-dropdown');
-            li.setAttribute('data-mega-menu-id', index + 1);
+            // Use dropdownIndex for mega menu mapping (1st dropdown = 1, 2nd dropdown = 2, etc.)
+            li.setAttribute('data-mega-menu-id', dropdownIndex);
             
             // Create dropdown menu
             const dropdown = document.createElement('div');
@@ -733,10 +742,20 @@
         
         // Count actual content children (exclude placeholders and empty elements)
         const contentChildren = Array.from(dropzoneContent.children).filter(child => {
-            // Skip Liferay placeholder elements and empty content
-            return !child.classList.contains('portlet-boundary') ||
-                   child.querySelector('.portlet-content') ||
-                   child.textContent.trim().length > 0;
+            // Skip empty elements and Liferay placeholder content
+            if (child.textContent.trim().length === 0) return false;
+            
+            // Skip if it's just placeholder text like "Drop content here"
+            if (child.textContent.trim().includes('Drop content here')) return false;
+            
+            // Include portlets that have actual content
+            if (child.classList.contains('portlet-boundary')) {
+                const portletContent = child.querySelector('.portlet-content');
+                return portletContent && portletContent.textContent.trim().length > 0;
+            }
+            
+            // Include fragments and other elements with content
+            return true;
         });
         
         // Only add mega content if dropzone has actual content
