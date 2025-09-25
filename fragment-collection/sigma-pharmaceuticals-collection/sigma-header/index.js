@@ -62,8 +62,7 @@
         // Initialize modals
         initializeModals();
         
-        // Initialize dropdowns immediately - no delay needed
-        initializeDropdowns();
+        // NOTE: initializeDropdowns() now called AFTER navigation renders
         
         // Sigma Pharmaceuticals Header Fragment initialized
     }
@@ -338,6 +337,9 @@
                 mobileNavList.appendChild(mobileNavItem);
             }
         });
+        
+        // Initialize dropdowns AFTER navigation is rendered
+        initializeDropdowns();
     }
 
     /**
