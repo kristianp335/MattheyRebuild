@@ -16,52 +16,52 @@
 
 /* Background Style Variants */
 #wrapper .sigma-title-container[data-background="gradient-primary"] {
-  background: linear-gradient(135deg, var(--sigma-primary), var(--sigma-primary-dark));
-  color: var(--sigma-white);
-  box-shadow: 0 4px 12px rgba(var(--sigma-primary-rgb), 0.3);
+  background: linear-gradient(135deg, var(--sigma-primary, #2563eb), var(--sigma-primary-dark, #1d4ed8));
+  color: var(--sigma-white, #ffffff);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 #wrapper .sigma-title-container[data-background="gradient-secondary"] {
-  background: linear-gradient(135deg, var(--sigma-gray-700), var(--sigma-gray-800));
-  color: var(--sigma-white);
+  background: linear-gradient(135deg, var(--sigma-gray-700, #374151), var(--sigma-gray-800, #1f2937));
+  color: var(--sigma-white, #ffffff);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 #wrapper .sigma-title-container[data-background="solid-primary"] {
-  background: var(--sigma-primary);
-  color: var(--sigma-white);
-  box-shadow: 0 2px 8px rgba(var(--sigma-primary-rgb), 0.2);
+  background: var(--sigma-primary, #2563eb);
+  color: var(--sigma-white, #ffffff);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
 }
 
 #wrapper .sigma-title-container[data-background="solid-light"] {
-  background: var(--sigma-gray-100);
-  color: var(--sigma-gray-800);
-  border: 1px solid var(--sigma-gray-200);
+  background: var(--sigma-gray-100, #f3f4f6);
+  color: var(--sigma-gray-800, #1f2937);
+  border: 1px solid var(--sigma-gray-200, #e5e7eb);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #wrapper .sigma-title-container[data-background="transparent"] {
   background: transparent;
-  color: var(--sigma-gray-800);
+  color: var(--sigma-gray-800, #1f2937);
   box-shadow: none;
   border-radius: 0;
 }
 
 /* Text Color Overrides */
 #wrapper .sigma-title-container[data-text-color="white"] {
-  color: var(--sigma-white) !important;
+  color: var(--sigma-white, #ffffff) !important;
 }
 
 #wrapper .sigma-title-container[data-text-color="dark-gray"] {
-  color: var(--sigma-gray-800) !important;
+  color: var(--sigma-gray-800, #374151) !important;
 }
 
 #wrapper .sigma-title-container[data-text-color="light-gray"] {
-  color: var(--sigma-gray-400) !important;
+  color: var(--sigma-gray-400, #9ca3af) !important;
 }
 
 #wrapper .sigma-title-container[data-text-color="primary"] {
-  color: var(--sigma-primary) !important;
+  color: var(--sigma-primary, #2563eb) !important;
 }
 
 #wrapper .sigma-title-container[data-text-color="black"] {
@@ -82,9 +82,9 @@
 /* Special handling for dark text on light backgrounds */
 #wrapper .sigma-title-container[data-text-color="dark-gray"] .sigma-title-icon,
 #wrapper .sigma-title-container[data-text-color="black"] .sigma-title-icon {
-  background: var(--sigma-primary);
-  color: var(--sigma-white);
-  border: 1px solid var(--sigma-primary);
+  background: var(--sigma-primary, #2563eb);
+  color: var(--sigma-white, #ffffff);
+  border: 1px solid var(--sigma-primary, #2563eb);
 }
 
 /* Divider color adjustments for custom text colors */
@@ -99,7 +99,7 @@
 }
 
 #wrapper .sigma-title-container[data-text-color="primary"] .sigma-title-divider {
-  background: var(--sigma-primary);
+  background: var(--sigma-primary, #2563eb);
   opacity: 0.3;
 }
 
@@ -155,9 +155,9 @@
 /* Icon styling for different backgrounds */
 #wrapper .sigma-title-container[data-background="solid-light"] .sigma-title-icon,
 #wrapper .sigma-title-container[data-background="transparent"] .sigma-title-icon {
-  background: var(--sigma-primary);
-  color: var(--sigma-white);
-  border: 1px solid var(--sigma-primary);
+  background: var(--sigma-primary, #2563eb);
+  color: var(--sigma-white, #ffffff);
+  border: 1px solid var(--sigma-primary, #2563eb);
 }
 
 #wrapper .sigma-title-icon svg {
