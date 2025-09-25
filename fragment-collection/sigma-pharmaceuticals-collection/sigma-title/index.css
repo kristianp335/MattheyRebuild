@@ -130,28 +130,28 @@
 
 /* Padding Size Variants */
 #wrapper .sigma-title-container[data-padding="sm"] .sigma-title-content {
-  padding: 1rem 1.5rem;
+  padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
 }
 
 #wrapper .sigma-title-container[data-padding="md"] .sigma-title-content {
-  padding: 1.5rem 2rem;
+  padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
 }
 
 #wrapper .sigma-title-container[data-padding="lg"] .sigma-title-content {
-  padding: 2rem 2.5rem;
+  padding: var(--sigma-spacing-xl) var(--sigma-spacing-xxl);
 }
 
 /* Compact Mode Override (reduces padding further) */
 #wrapper .sigma-title-container[data-compact="true"][data-padding="sm"] .sigma-title-content {
-  padding: 0.75rem 1rem;
+  padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
 }
 
 #wrapper .sigma-title-container[data-compact="true"][data-padding="md"] .sigma-title-content {
-  padding: 1rem 1.5rem;
+  padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
 }
 
 #wrapper .sigma-title-container[data-compact="true"][data-padding="lg"] .sigma-title-content {
-  padding: 1.5rem 2rem;
+  padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
 }
 
 /* Title Wrapper - Flex Container */
@@ -271,28 +271,28 @@
 @media (max-width: 768px) {
   /* Reduce padding on mobile for all sizes */
   #wrapper .sigma-title-container[data-padding="sm"] .sigma-title-content {
-    padding: 0.75rem 1rem;
+    padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
   }
 
   #wrapper .sigma-title-container[data-padding="md"] .sigma-title-content {
-    padding: 1rem 1.5rem;
+    padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
   }
 
   #wrapper .sigma-title-container[data-padding="lg"] .sigma-title-content {
-    padding: 1.5rem 2rem;
+    padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
   }
 
   /* Compact mode mobile adjustments */
   #wrapper .sigma-title-container[data-compact="true"][data-padding="sm"] .sigma-title-content {
-    padding: 0.5rem 0.75rem;
+    padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
   }
 
   #wrapper .sigma-title-container[data-compact="true"][data-padding="md"] .sigma-title-content {
-    padding: 0.75rem 1rem;
+    padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
   }
 
   #wrapper .sigma-title-container[data-compact="true"][data-padding="lg"] .sigma-title-content {
-    padding: 1rem 1.5rem;
+    padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
   }
   
   #wrapper .sigma-title-wrapper {
