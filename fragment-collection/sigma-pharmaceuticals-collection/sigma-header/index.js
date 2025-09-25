@@ -836,6 +836,18 @@
         const dropdownItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
         console.log('🎯 SIGMA HEADER: Found dropdown items:', dropdownItems.length);
         
+        // Debug: Check all mega menu dropzones
+        const allDropzones = fragmentElement.querySelectorAll('[id^="dropzone-mega-menu-"]');
+        console.log('🎯 SIGMA HEADER: All mega menu dropzones found:', allDropzones.length);
+        allDropzones.forEach((zone, index) => {
+            console.log(`🎯 SIGMA HEADER: Dropzone ${index + 1}:`, {
+                id: zone.id,
+                hasContent: zone.children.length > 0,
+                innerHTML: zone.innerHTML.substring(0, 100) + (zone.innerHTML.length > 100 ? '...' : ''),
+                visible: zone.style.display !== 'none'
+            });
+        });
+        
         dropdownItems.forEach((item, index) => {
             const menuIndex = index + 1; // 1-based indexing
             const dropdown = item.querySelector('.sigma-dropdown-menu');
@@ -845,14 +857,21 @@
             console.log(`🎯 SIGMA HEADER: Processing dropdown ${menuIndex}:`, {
                 hasDropdown: !!dropdown,
                 megaContentId,
-                hasMegaContent: !!megaContent
+                hasMegaContent: !!megaContent,
+                megaContentHTML: megaContent ? megaContent.innerHTML.substring(0, 100) + '...' : 'N/A',
+                dropdownCurrentHTML: dropdown ? dropdown.innerHTML.substring(0, 100) + '...' : 'N/A'
             });
             
-            if (dropdown && megaContent) {
-                // Clone mega menu content to show in dropdown
+            if (dropdown && megaContent && megaContent.children.length > 0) {
+                // Only map if mega content actually has content
                 const megaContentClone = megaContent.cloneNode(true);
                 megaContentClone.id = `${megaContentId}-dropdown`;
                 megaContentClone.style.display = 'block';
+                megaContentClone.classList.add('sigma-mega-content-clone');
+                
+                // Remove any existing mega content clones first
+                const existingClones = dropdown.querySelectorAll('.sigma-mega-content-clone');
+                existingClones.forEach(clone => clone.remove());
                 
                 // Insert mega content at the top of dropdown
                 dropdown.insertBefore(megaContentClone, dropdown.firstChild);
@@ -860,12 +879,19 @@
                 // Add data attribute to link them
                 item.setAttribute('data-mega-menu-id', menuIndex);
                 
-                console.log(`🎯 SIGMA HEADER: Successfully mapped mega menu ${menuIndex} to dropdown`);
+                console.log(`🎯 SIGMA HEADER: Successfully mapped mega menu ${menuIndex} to dropdown`, {
+                    clonedContent: megaContentClone.innerHTML.substring(0, 100) + '...',
+                    insertedIntoDropdown: true
+                });
                 
                 // Update dropdown hover/click handlers to show mega content
                 setupMegaMenuEvents(item, megaContentClone);
             } else {
-                console.log(`🎯 SIGMA HEADER: Skipping dropdown ${menuIndex} - missing dropdown or mega content`);
+                console.log(`🎯 SIGMA HEADER: Skipping dropdown ${menuIndex}:`, {
+                    reason: !dropdown ? 'No dropdown found' : 
+                           !megaContent ? 'No mega content found' : 
+                           'Mega content is empty'
+                });
             }
         });
     }
