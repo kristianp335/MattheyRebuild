@@ -352,6 +352,9 @@
         link.className = 'sigma-nav-link';
         link.textContent = item.name;
         
+        // Add the link first
+        li.appendChild(link);
+        
         // Add dropdown indicator if has children
         if (item.children && item.children.length > 0) {
             li.classList.add('has-dropdown');
@@ -369,10 +372,9 @@
                 dropdown.appendChild(childLink);
             });
             
+            // Add dropdown after the link
             li.appendChild(dropdown);
         }
-        
-        li.appendChild(link);
         return li;
     }
 
