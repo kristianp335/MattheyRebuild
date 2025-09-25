@@ -413,13 +413,20 @@
      * Initialize dropdown functionality
      */
     function initializeDropdowns() {
+        console.log('initializeDropdowns called');
         const dropdownItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
+        console.log('Found dropdown items:', dropdownItems.length);
         
-        dropdownItems.forEach(item => {
+        dropdownItems.forEach((item, index) => {
+            console.log('Processing dropdown item', index, ':', item.textContent.trim());
             const link = item.querySelector('.sigma-nav-link');
             const dropdown = item.querySelector('.sigma-dropdown-menu');
+            console.log('Link found:', !!link, 'Dropdown found:', !!dropdown);
             
-            if (!link || !dropdown) return;
+            if (!link || !dropdown) {
+                console.error('Missing link or dropdown for item:', item.textContent.trim());
+                return;
+            }
             
             // Hover events
             item.addEventListener('mouseenter', () => {
