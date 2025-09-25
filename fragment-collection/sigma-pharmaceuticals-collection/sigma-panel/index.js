@@ -29,6 +29,7 @@
                     panelIcon: configuration.panelIcon || 'options',
                     isOpenByDefault: configuration.isOpenByDefault !== undefined ? configuration.isOpenByDefault : false,
                     panelStyle: configuration.panelStyle || 'primary',
+                    paddingSize: configuration.paddingSize || 'md',
                     showBadge: configuration.showBadge !== undefined ? configuration.showBadge : false,
                     badgeCount: configuration.badgeCount || '0'
                 };
@@ -39,6 +40,7 @@
                     panelIcon: 'options',
                     isOpenByDefault: false,
                     panelStyle: 'primary',
+                    paddingSize: 'md',
                     showBadge: false,
                     badgeCount: '0'
                 };
@@ -50,6 +52,7 @@
                 panelIcon: 'options',
                 isOpenByDefault: false,
                 panelStyle: 'primary',
+                paddingSize: 'md',
                 showBadge: false,
                 badgeCount: '0'
             };
@@ -178,9 +181,10 @@
         const panel = fragmentElement.querySelector('.sigma-panel');
         const badge = fragmentElement.querySelector('.sigma-panel-badge');
         
-        // Apply panel style
+        // Apply panel style and padding
         if (panel) {
             panel.setAttribute('data-style', config.panelStyle);
+            panel.setAttribute('data-padding', config.paddingSize);
         }
         
         // Show/hide badge based on configuration

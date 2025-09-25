@@ -38,15 +38,30 @@
   border-bottom: 1px solid var(--sigma-gray-200);
 }
 
-/* Panel Header */
+/* Panel Header - Default Padding */
 #wrapper .sigma-panel-header {
   display: flex;
   align-items: center;
-  padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
   cursor: pointer;
   user-select: none;
   transition: all var(--sigma-transition);
   min-height: 60px;
+}
+
+/* Header Padding Size Variants */
+#wrapper .sigma-panel[data-padding="sm"] .sigma-panel-header {
+  padding: 0.75rem 1rem;
+  min-height: 50px;
+}
+
+#wrapper .sigma-panel[data-padding="md"] .sigma-panel-header {
+  padding: 1rem 1.5rem;
+  min-height: 60px;
+}
+
+#wrapper .sigma-panel[data-padding="lg"] .sigma-panel-header {
+  padding: 1.5rem 2rem;
+  min-height: 70px;
 }
 
 #wrapper .sigma-panel-header:hover {
@@ -137,8 +152,20 @@
 }
 
 #wrapper .sigma-panel-content {
-  padding: var(--sigma-spacing-xl);
   background: var(--sigma-white);
+}
+
+/* Content Padding Size Variants */
+#wrapper .sigma-panel[data-padding="sm"] .sigma-panel-content {
+  padding: 1rem;
+}
+
+#wrapper .sigma-panel[data-padding="md"] .sigma-panel-content {
+  padding: 1.5rem;
+}
+
+#wrapper .sigma-panel[data-padding="lg"] .sigma-panel-content {
+  padding: 2rem;
 }
 
 /* Dropzone Styling */
@@ -220,17 +247,37 @@ body.has-edit-mode-menu .sigma-panel-content lfr-drop-zone:before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  #wrapper .sigma-panel-header {
-    padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+  /* Mobile header padding adjustments */
+  #wrapper .sigma-panel[data-padding="sm"] .sigma-panel-header {
+    padding: 0.5rem 0.75rem;
+    min-height: 45px;
+  }
+
+  #wrapper .sigma-panel[data-padding="md"] .sigma-panel-header {
+    padding: 0.75rem 1rem;
     min-height: 50px;
+  }
+
+  #wrapper .sigma-panel[data-padding="lg"] .sigma-panel-header {
+    padding: 1rem 1.5rem;
+    min-height: 60px;
+  }
+
+  /* Mobile content padding adjustments */
+  #wrapper .sigma-panel[data-padding="sm"] .sigma-panel-content {
+    padding: 0.75rem;
+  }
+
+  #wrapper .sigma-panel[data-padding="md"] .sigma-panel-content {
+    padding: 1rem;
+  }
+
+  #wrapper .sigma-panel[data-padding="lg"] .sigma-panel-content {
+    padding: 1.5rem;
   }
   
   #wrapper .sigma-panel-title {
     font-size: var(--sigma-font-size-base);
-  }
-  
-  #wrapper .sigma-panel-content {
-    padding: var(--sigma-spacing-lg);
   }
   
   #wrapper .sigma-panel-icon {

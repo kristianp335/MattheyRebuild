@@ -88,6 +88,20 @@
           "defaultValue": "auto"
         },
         {
+          "name": "paddingSize",
+          "label": "Padding Size",
+          "description": "Amount of internal spacing around the title content",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "sm", "label": "Small Padding"},
+              {"value": "md", "label": "Medium Padding"},
+              {"value": "lg", "label": "Large Padding"}
+            ]
+          },
+          "defaultValue": "md"
+        },
+        {
           "name": "compactMode",
           "label": "Compact Mode",
           "description": "Reduce padding for smaller title sections",

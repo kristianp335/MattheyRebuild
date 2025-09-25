@@ -1,7 +1,9 @@
 [#-- Sigma Panel Fragment - Collapsible panel with Liferay dropzone --]
 
 <div id="${fragmentEntryLinkNamespace}-sigma-panel" class="sigma-panel-fragment">
-  <div class="sigma-panel" data-style="${configuration.panelStyle!'primary'}">
+  <div class="sigma-panel" 
+       data-style="${configuration.panelStyle!'primary'}"
+       data-padding="${configuration.paddingSize!'md'}">
     <!-- Panel Header (Clickable) -->
     <div class="sigma-panel-header" role="button" tabindex="0" aria-expanded="${configuration.isOpenByDefault?string('true', 'false')}">
       <!-- Panel Icon -->

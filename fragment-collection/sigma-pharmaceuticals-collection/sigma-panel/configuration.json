@@ -45,6 +45,20 @@
           "defaultValue": "primary"
         },
         {
+          "name": "paddingSize",
+          "label": "Padding Size",
+          "description": "Amount of internal spacing around the panel content",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "sm", "label": "Small Padding"},
+              {"value": "md", "label": "Medium Padding"},
+              {"value": "lg", "label": "Large Padding"}
+            ]
+          },
+          "defaultValue": "md"
+        },
+        {
           "name": "showBadge",
           "label": "Show Count Badge",
           "description": "Display a count badge next to the panel title",

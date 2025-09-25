@@ -30,6 +30,7 @@
                     backgroundStyle: configuration.backgroundStyle || 'gradient-primary',
                     textAlignment: configuration.textAlignment || 'left',
                     textColor: configuration.textColor || 'auto',
+                    paddingSize: configuration.paddingSize || 'md',
                     showDivider: configuration.showDivider !== undefined ? configuration.showDivider : true,
                     compactMode: configuration.compactMode !== undefined ? configuration.compactMode : false
                 };
@@ -41,6 +42,7 @@
                     backgroundStyle: 'gradient-primary',
                     textAlignment: 'left',
                     textColor: 'auto',
+                    paddingSize: 'md',
                     showDivider: true,
                     compactMode: false
                 };
@@ -53,6 +55,7 @@
                 backgroundStyle: 'gradient-primary',
                 textAlignment: 'left',
                 textColor: 'auto',
+                paddingSize: 'md',
                 showDivider: true,
                 compactMode: false
             };
@@ -77,6 +80,7 @@
             container.setAttribute('data-alignment', config.textAlignment);
             container.setAttribute('data-compact', config.compactMode.toString());
             container.setAttribute('data-text-color', config.textColor);
+            container.setAttribute('data-padding', config.paddingSize);
         }
         
         // Show/hide divider based on configuration

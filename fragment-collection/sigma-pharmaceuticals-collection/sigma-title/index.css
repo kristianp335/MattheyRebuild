@@ -123,15 +123,35 @@
   opacity: 0.3;
 }
 
-/* Title Content */
+/* Title Content - Default Padding */
 #wrapper .sigma-title-content {
-  padding: var(--sigma-spacing-xl) var(--sigma-spacing-xxl);
   position: relative;
 }
 
-/* Compact Mode */
-#wrapper .sigma-title-container[data-compact="true"] .sigma-title-content {
-  padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
+/* Padding Size Variants */
+#wrapper .sigma-title-container[data-padding="sm"] .sigma-title-content {
+  padding: 1rem 1.5rem;
+}
+
+#wrapper .sigma-title-container[data-padding="md"] .sigma-title-content {
+  padding: 1.5rem 2rem;
+}
+
+#wrapper .sigma-title-container[data-padding="lg"] .sigma-title-content {
+  padding: 2rem 2.5rem;
+}
+
+/* Compact Mode Override (reduces padding further) */
+#wrapper .sigma-title-container[data-compact="true"][data-padding="sm"] .sigma-title-content {
+  padding: 0.75rem 1rem;
+}
+
+#wrapper .sigma-title-container[data-compact="true"][data-padding="md"] .sigma-title-content {
+  padding: 1rem 1.5rem;
+}
+
+#wrapper .sigma-title-container[data-compact="true"][data-padding="lg"] .sigma-title-content {
+  padding: 1.5rem 2rem;
 }
 
 /* Title Wrapper - Flex Container */
@@ -249,12 +269,30 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  #wrapper .sigma-title-content {
-    padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
+  /* Reduce padding on mobile for all sizes */
+  #wrapper .sigma-title-container[data-padding="sm"] .sigma-title-content {
+    padding: 0.75rem 1rem;
   }
-  
-  #wrapper .sigma-title-container[data-compact="true"] .sigma-title-content {
-    padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+
+  #wrapper .sigma-title-container[data-padding="md"] .sigma-title-content {
+    padding: 1rem 1.5rem;
+  }
+
+  #wrapper .sigma-title-container[data-padding="lg"] .sigma-title-content {
+    padding: 1.5rem 2rem;
+  }
+
+  /* Compact mode mobile adjustments */
+  #wrapper .sigma-title-container[data-compact="true"][data-padding="sm"] .sigma-title-content {
+    padding: 0.5rem 0.75rem;
+  }
+
+  #wrapper .sigma-title-container[data-compact="true"][data-padding="md"] .sigma-title-content {
+    padding: 0.75rem 1rem;
+  }
+
+  #wrapper .sigma-title-container[data-compact="true"][data-padding="lg"] .sigma-title-content {
+    padding: 1rem 1.5rem;
   }
   
   #wrapper .sigma-title-wrapper {
