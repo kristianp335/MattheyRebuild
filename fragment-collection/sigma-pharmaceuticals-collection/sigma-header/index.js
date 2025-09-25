@@ -144,9 +144,9 @@
         
         // NOTE: initializeDropdowns() now called AFTER navigation renders
         
-        // Initialize mega menu mapping for normal mode
+        // Initialize mega menu mapping for normal mode - with delay to wait for navigation
         console.log('🎯 SIGMA HEADER: Initializing mega menu mapping for normal mode');
-        setupMegaMenuMapping();
+        setupMegaMenuMappingWithRetry();
         
         // Sigma Pharmaceuticals Header Fragment initialized
     }
@@ -828,6 +828,29 @@
             console.log('🎯 SIGMA HEADER: Observing wrapper for edit mode changes');
         } else {
             console.log('🎯 SIGMA HEADER: No wrapper element found to observe');
+        }
+    }
+
+    /**
+     * Setup mega menu mapping with retry mechanism for timing issues
+     */
+    function setupMegaMenuMappingWithRetry(attempt = 1, maxAttempts = 10) {
+        console.log(`🎯 SIGMA HEADER: Attempting mega menu mapping (attempt ${attempt}/${maxAttempts})`);
+        
+        const navItems = fragmentElement.querySelectorAll('.sigma-nav-item');
+        const dropdownMenus = fragmentElement.querySelectorAll('.sigma-dropdown-menu');
+        
+        if (navItems.length > 0 || dropdownMenus.length > 0) {
+            console.log('🎯 SIGMA HEADER: Navigation found, proceeding with mapping');
+            setupMegaMenuMapping();
+        } else if (attempt < maxAttempts) {
+            console.log(`🎯 SIGMA HEADER: Navigation not ready, retrying in ${attempt * 100}ms`);
+            setTimeout(() => {
+                setupMegaMenuMappingWithRetry(attempt + 1, maxAttempts);
+            }, attempt * 100);
+        } else {
+            console.log('🎯 SIGMA HEADER: Max attempts reached, navigation may not have dropdown items');
+            setupMegaMenuMapping(); // Try anyway to show debug info
         }
     }
 

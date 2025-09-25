@@ -1,0 +1,24 @@
+catalogue:5996 🎯 SIGMA HEADER: Fragment element access error, trying fallbacks: Cannot access 'fragmentElement' before initialization
+catalogue:6020 🎯 SIGMA HEADER: Found via sigma header classes: true
+catalogue:6036 🎯 SIGMA HEADER: Fragment element check: {fragmentElement: header.sigma-header, fragmentElementExists: true, fragmentElementId: '', fragmentElementClass: 'sigma-header'}
+catalogue:6083 🎯 SIGMA HEADER: Starting initialization {fragmentElement: header.sigma-header, fragmentElementClass: 'sigma-header', documentReadyState: 'interactive'}
+catalogue:6091 🎯 SIGMA HEADER: Configuration loaded {showSearch: true, showUserMenu: true, navigationMenuId: '61639', sitePrefix: '/web/sigma-pharma', headerStyle: 'white'}
+catalogue:6165 🎯 SIGMA HEADER: Edit mode indicators: {hasEditModeMenu: false, isEditMode: false, hasControlMenu: true, hasPageEditor: false, hasFragmentEntryProcessorEditable: false, …}
+catalogue:6193 🎯 SIGMA HEADER: Final edit mode result: false
+catalogue:6203 🎯 SIGMA HEADER: Removed edit mode classes from body and fragment
+catalogue:6095 🎯 SIGMA HEADER: Edit mode detection result: false
+catalogue:6133 🎯 SIGMA HEADER: Initializing mega menu mapping for normal mode
+catalogue:6823 🎯 SIGMA HEADER: Setting up mega menu mapping
+catalogue:6831 🎯 SIGMA HEADER: Navigation structure debug: {allNavItems: 0, hasDropdownItems: 0, dropdownMenus: 0, hasNavElement: true, navHTML: '\n          <ul class="sigma-nav-list" id="sigma-ma…ted by JavaScript -->\n          </ul>\n        ...'}
+catalogue:6840 🎯 SIGMA HEADER: Found dropdown items: 0
+catalogue:6844 🎯 SIGMA HEADER: All mega menu dropzones found: 8
+catalogue:6846 🎯 SIGMA HEADER: Dropzone 1: {id: 'dropzone-mega-menu-1', hasContent: true, innerHTML: '\n            <div></div>\n          ', visible: true}
+catalogue:6846 🎯 SIGMA HEADER: Dropzone 2: {id: 'dropzone-mega-menu-2', hasContent: true, innerHTML: '\n            <div></div>\n          ', visible: true}
+catalogue:6846 🎯 SIGMA HEADER: Dropzone 3: {id: 'dropzone-mega-menu-3', hasContent: true, innerHTML: '\n            <div><div class="lfr-layout-structure…m-cf2843cf-1f94-3123-bf3c-cbae63e40b08 lfr-lay...', visible: true}
+catalogue:6846 🎯 SIGMA HEADER: Dropzone 4: {id: 'dropzone-mega-menu-4', hasContent: true, innerHTML: '\n            <div></div>\n          ', visible: true}
+catalogue:6846 🎯 SIGMA HEADER: Dropzone 5: {id: 'dropzone-mega-menu-5', hasContent: true, innerHTML: '\n            <div></div>\n          ', visible: true}
+catalogue:6846 🎯 SIGMA HEADER: Dropzone 6: {id: 'dropzone-mega-menu-6', hasContent: true, innerHTML: '\n            <div></div>\n          ', visible: true}
+catalogue:6846 🎯 SIGMA HEADER: Dropzone 7: {id: 'dropzone-mega-menu-7', hasContent: true, innerHTML: '\n            <div></div>\n          ', visible: true}
+catalogue:6846 🎯 SIGMA HEADER: Dropzone 8: {id: 'dropzone-mega-menu-8', hasContent: true, innerHTML: '\n            <div></div>\n          ', visible: true}
+global.js:280 Sigma Pharmaceuticals - Page Load Time: 1590ms
+global.js:280 Sigma Pharmaceuticals - Page Load Time: 1590ms
