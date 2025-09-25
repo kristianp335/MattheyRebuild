@@ -423,6 +423,10 @@
             
             // Hover events
             item.addEventListener('mouseenter', () => {
+                console.log('Mouseenter triggered on:', item.textContent.trim());
+                console.log('Dropdown element found:', dropdown);
+                console.log('Dropdown classes before:', dropdown ? dropdown.className : 'NO DROPDOWN');
+                
                 // Close other dropdowns, but not this one
                 const otherItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown.show');
                 otherItems.forEach(otherItem => {
@@ -437,7 +441,12 @@
                 
                 // Show this dropdown
                 item.classList.add('show');
-                dropdown.classList.add('show');
+                if (dropdown) {
+                    dropdown.classList.add('show');
+                    console.log('Added show class. Dropdown classes after:', dropdown.className);
+                } else {
+                    console.error('No dropdown element found to add show class to!');
+                }
             });
             
             item.addEventListener('mouseleave', () => {
