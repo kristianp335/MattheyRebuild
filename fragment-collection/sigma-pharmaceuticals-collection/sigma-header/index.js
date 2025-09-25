@@ -738,33 +738,51 @@
             return;
         }
         
-        // Get dropdown nav items for position-based mapping
-        const dropdownNavItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown');
-        console.log('Found dropdown nav items:', dropdownNavItems.length);
+        // Get ALL nav items to map by actual position
+        const allNavItems = fragmentElement.querySelectorAll('.sigma-nav-item');
+        console.log('Found total nav items:', allNavItems.length);
         
-        // Position-based mapping: 1st dropzone → 1st dropdown, 2nd dropzone → 2nd dropdown, etc.
-        const mappingLimit = Math.min(dropzones.length, dropdownNavItems.length);
-        console.log(`Mapping ${mappingLimit} dropzones to dropdown nav items`);
+        // Map each navigation item to its corresponding dropzone by position
+        allNavItems.forEach((navItem, navIndex) => {
+            const navPosition = navIndex + 1; // 1-based position
+            const hasDropdown = navItem.classList.contains('has-dropdown');
+            
+            console.log(`\n--- Nav item ${navPosition}: ${navItem.textContent.trim()} ${hasDropdown ? '(has dropdown)' : '(no dropdown)'} ---`);
+            
+            if (hasDropdown) {
+                // Look for the corresponding dropzone by position number
+                const correspondingDropzone = dropzones.find(dropzone => {
+                    // Extract number from dropzone ID or use position
+                    const dropzoneId = dropzone.id || '';
+                    const match = dropzoneId.match(/dropzone-mega-menu-(\d+)/);
+                    if (match) {
+                        return parseInt(match[1]) === navPosition;
+                    }
+                    return false;
+                });
+                
+                if (correspondingDropzone) {
+                    console.log(`✅ Found dropzone ${navPosition} for nav item ${navPosition}`);
+                    console.log(`Dropzone element:`, correspondingDropzone.tagName, correspondingDropzone.id, correspondingDropzone.className);
+                    
+                    // Set the correct data-mega-menu-id based on navigation position
+                    navItem.setAttribute('data-mega-menu-id', navPosition.toString());
+                    console.log(`Set nav item data-mega-menu-id="${navPosition}"`);
+                    
+                    // Copy content from dropzone to dropdown
+                    copyDropzoneContentToMenu(navPosition.toString(), correspondingDropzone);
+                } else {
+                    console.log(`⚠️ No dropzone found for nav item ${navPosition} (expected dropzone-mega-menu-${navPosition})`);
+                }
+            }
+        });
         
-        for (let i = 0; i < mappingLimit; i++) {
-            const dropzone = dropzones[i];
-            const navItem = dropdownNavItems[i];
-            const positionBasedId = (i + 1).toString();
-            
-            console.log(`\n--- Mapping dropzone ${i + 1} to nav item ${i + 1} ---`);
-            console.log(`Dropzone element:`, dropzone.tagName, dropzone.id, dropzone.className);
-            
-            // Ensure nav item has the correct data-mega-menu-id for position-based mapping
-            navItem.setAttribute('data-mega-menu-id', positionBasedId);
-            console.log(`Set nav item data-mega-menu-id="${positionBasedId}"`);
-            
-            // Copy content from dropzone to dropdown
-            copyDropzoneContentToMenu(positionBasedId, dropzone);
-        }
+        // Count how many dropdown nav items we found
+        const dropdownNavItemsCount = allNavItems.filter(item => item.classList.contains('has-dropdown')).length;
         
         // Log any unmapped dropzones
-        if (dropzones.length > dropdownNavItems.length) {
-            console.log(`⚠️ ${dropzones.length - dropdownNavItems.length} dropzones have no corresponding dropdown nav items`);
+        if (dropzones.length > dropdownNavItemsCount) {
+            console.log(`⚠️ ${dropzones.length - dropdownNavItemsCount} dropzones have no corresponding dropdown nav items`);
         }
         
         console.log('=== MEGA MENU DEBUG: Content initialization complete ===');
