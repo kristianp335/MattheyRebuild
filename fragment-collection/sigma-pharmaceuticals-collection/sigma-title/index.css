@@ -130,7 +130,7 @@
 
 /* Padding Size Variants */
 #wrapper .sigma-title-container[data-padding="sm"] .sigma-title-content {
-  padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+  padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
 }
 
 #wrapper .sigma-title-container[data-padding="md"] .sigma-title-content {
@@ -143,7 +143,7 @@
 
 /* Compact Mode Override (reduces padding further) */
 #wrapper .sigma-title-container[data-compact="true"][data-padding="sm"] .sigma-title-content {
-  padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
+  padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
 }
 
 #wrapper .sigma-title-container[data-compact="true"][data-padding="md"] .sigma-title-content {
@@ -271,7 +271,7 @@
 @media (max-width: 768px) {
   /* Reduce padding on mobile for all sizes */
   #wrapper .sigma-title-container[data-padding="sm"] .sigma-title-content {
-    padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
+    padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
   }
 
   #wrapper .sigma-title-container[data-padding="md"] .sigma-title-content {

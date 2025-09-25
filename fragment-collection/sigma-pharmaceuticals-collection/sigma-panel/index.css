@@ -50,7 +50,7 @@
 
 /* Header Padding Size Variants */
 #wrapper .sigma-panel[data-padding="sm"] .sigma-panel-header {
-  padding: var(--sigma-spacing-sm) var(--sigma-spacing-md);
+  padding: var(--sigma-spacing-xs) var(--sigma-spacing-sm);
   min-height: 50px;
 }
 
@@ -157,7 +157,7 @@
 
 /* Content Padding Size Variants */
 #wrapper .sigma-panel[data-padding="sm"] .sigma-panel-content {
-  padding: var(--sigma-spacing-md);
+  padding: var(--sigma-spacing-sm);
 }
 
 #wrapper .sigma-panel[data-padding="md"] .sigma-panel-content {
