@@ -340,6 +340,9 @@
         
         // Initialize dropdowns AFTER navigation is rendered
         initializeDropdowns();
+        
+        // Initialize mega menu content for both edit and live modes
+        initializeMegaMenuContent();
     }
 
     /**
@@ -454,12 +457,15 @@
             });
         });
         
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.sigma-nav-item.has-dropdown')) {
-                closeAllDropdowns();
-            }
-        });
+        // Close dropdowns when clicking outside (idempotent)
+        if (!fragmentElement._hasOutsideClickHandler) {
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.sigma-nav-item.has-dropdown')) {
+                    closeAllDropdowns();
+                }
+            });
+            fragmentElement._hasOutsideClickHandler = true;
+        }
     }
 
     /**
@@ -632,14 +638,128 @@
      * Initialize mega menu content for edit mode
      */
     function initializeMegaMenuContent() {
-        // Mega menu functionality placeholder for future implementation
+        // Copy content from mega menu dropzones into the actual dropdown menus
+        const megaDropzones = fragmentElement.querySelectorAll('.sigma-mega-dropzone');
+        
+        megaDropzones.forEach((dropzone, index) => {
+            // Use data attribute if available, fallback to index
+            let menuId = dropzone.getAttribute('data-mega-key');
+            if (!menuId) {
+                // Fallback: extract from label or use index
+                const label = dropzone.querySelector('.sigma-mega-dropzone-label');
+                if (label) {
+                    const labelText = label.textContent.trim();
+                    const menuIdMatch = labelText.match(/Mega Menu (\d+)/);
+                    menuId = menuIdMatch ? menuIdMatch[1] : (index + 1).toString();
+                } else {
+                    menuId = (index + 1).toString();
+                }
+            }
+            
+            copyDropzoneContentToMenu(menuId, dropzone);
+        });
     }
 
     /**
      * Setup mega menu observer for edit mode
      */
     function setupMegaMenuObserver() {
-        // Observer setup placeholder for future implementation
+        // Clean up existing observers
+        if (fragmentElement._megaMenuObservers) {
+            fragmentElement._megaMenuObservers.forEach(observer => observer.disconnect());
+        }
+        fragmentElement._megaMenuObservers = [];
+        
+        // Set up mutation observer to watch for changes in mega menu dropzones
+        const megaDropzones = fragmentElement.querySelectorAll('.sigma-mega-dropzone lfr-drop-zone');
+        
+        megaDropzones.forEach(dropzone => {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList') {
+                        // Content in dropzone changed, update the corresponding dropdown
+                        const megaDropzone = mutation.target.closest('.sigma-mega-dropzone');
+                        if (megaDropzone) {
+                            // Use data attribute if available, fallback to label parsing
+                            let menuId = megaDropzone.getAttribute('data-mega-key');
+                            if (!menuId) {
+                                const label = megaDropzone.querySelector('.sigma-mega-dropzone-label');
+                                if (label) {
+                                    const labelText = label.textContent.trim();
+                                    const menuIdMatch = labelText.match(/Mega Menu (\d+)/);
+                                    menuId = menuIdMatch ? menuIdMatch[1] : null;
+                                }
+                            }
+                            
+                            if (menuId) {
+                                copyDropzoneContentToMenu(menuId, megaDropzone);
+                            }
+                        }
+                    }
+                });
+            });
+            
+            observer.observe(dropzone, {
+                childList: true,
+                subtree: true
+            });
+            
+            // Store observer for cleanup
+            fragmentElement._megaMenuObservers.push(observer);
+        });
+    }
+
+    /**
+     * Copy content from mega menu dropzone to the corresponding dropdown menu
+     */
+    function copyDropzoneContentToMenu(menuId, dropzone) {
+        // Find the navigation item with the matching mega menu ID
+        const navItem = fragmentElement.querySelector(`[data-mega-menu-id="${menuId}"]`);
+        if (!navItem) return;
+        
+        // Get the dropdown menu within this nav item
+        let dropdown = navItem.querySelector('.sigma-dropdown-menu');
+        if (!dropdown) return;
+        
+        // Get content from the dropzone
+        const dropzoneContent = dropzone.querySelector('lfr-drop-zone');
+        if (!dropzoneContent) return;
+        
+        // Clear existing mega menu content (but keep original navigation children)
+        const existingMegaContent = dropdown.querySelector('.sigma-mega-menu-content');
+        if (existingMegaContent) {
+            existingMegaContent.remove();
+        }
+        
+        // Count actual content children (exclude placeholders and empty elements)
+        const contentChildren = Array.from(dropzoneContent.children).filter(child => {
+            // Skip Liferay placeholder elements and empty content
+            return !child.classList.contains('portlet-boundary') ||
+                   child.querySelector('.portlet-content') ||
+                   child.textContent.trim().length > 0;
+        });
+        
+        // Only add mega content if dropzone has actual content
+        if (contentChildren.length > 0) {
+            // Create container for mega menu content
+            const megaContentContainer = document.createElement('div');
+            megaContentContainer.className = 'sigma-mega-menu-content';
+            
+            // Clone the dropzone content (ensure deep clone)
+            contentChildren.forEach(child => {
+                const clonedChild = child.cloneNode(true);
+                megaContentContainer.appendChild(clonedChild);
+            });
+            
+            // Add mega content to the dropdown
+            dropdown.appendChild(megaContentContainer);
+            
+            // Add mega menu class to the dropdown for styling
+            dropdown.classList.add('has-mega-content');
+        } else {
+            // Remove mega menu class if no content
+            dropdown.classList.remove('has-mega-content');
+        }
     }
     
 })();
