@@ -1,0 +1,82 @@
+[#-- Sigma Title Fragment - Full-width pharmaceutical title with configurable icons --]
+
+<div id="${fragmentEntryLinkNamespace}-sigma-title" class="sigma-title-fragment">
+  <div class="sigma-title-container" 
+       data-background="${configuration.backgroundStyle!'gradient-primary'}"
+       data-alignment="${configuration.textAlignment!'left'}"
+       data-compact="${configuration.compactMode?string('true', 'false')}">
+    
+    <div class="sigma-title-content">
+      <!-- Title with Icon -->
+      <div class="sigma-title-wrapper">
+        [#if configuration.titleIcon != "none"]
+          <div class="sigma-title-icon">
+            [#if configuration.titleIcon == "categories"]
+              <!-- Categories Icon - Medical Classification -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L3 7V17L12 22L21 17V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M12 22V12" stroke="currentColor" stroke-width="2"/>
+                <path d="M21 7L12 12L3 7" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="8" r="1.5" fill="currentColor"/>
+                <circle cx="9" cy="12" r="1" fill="currentColor"/>
+                <circle cx="15" cy="12" r="1" fill="currentColor"/>
+              </svg>
+            [#elseif configuration.titleIcon == "specifications"]
+              <!-- Specifications Icon - Document/Checklist -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            [#elseif configuration.titleIcon == "research"]
+              <!-- Research Icon - Laboratory/Science -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 2V8L4.5 20C4.33 20.67 4.61 21.38 5.19 21.71C5.35 21.8 5.53 21.85 5.71 21.85H18.29C19 21.85 19.57 21.28 19.57 20.57C19.57 20.39 19.52 20.21 19.43 20.05L15 8V2H9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 2H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M10 16H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            [#elseif configuration.titleIcon == "pharmaceutical"]
+              <!-- Pharmaceutical Icon - Company/Industry -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 9V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 9V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="1" fill="currentColor"/>
+              </svg>
+            [#else]
+              <!-- Options Icon - Pills/Tablets (Default) -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="12" cy="7" rx="7" ry="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 7V12C5 15.866 8.134 19 12 19S19 15.866 19 12V7" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 19V24" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="7" r="1.5" fill="currentColor"/>
+                <circle cx="9" cy="8" r="1" fill="currentColor"/>
+                <circle cx="15" cy="8" r="1" fill="currentColor"/>
+                <circle cx="10" cy="12" r="1" fill="currentColor"/>
+                <circle cx="14" cy="12" r="1" fill="currentColor"/>
+              </svg>
+            [/#if]
+          </div>
+        [/#if]
+        
+        <!-- Editable Title -->
+        <${configuration.headingLevel!'h1'} 
+          class="sigma-title-heading" 
+          data-lfr-editable-id="titleText" 
+          data-lfr-editable-type="text">
+          Section Title
+        </${configuration.headingLevel!'h1'}>
+      </div>
+      
+      <!-- Optional Bottom Divider -->
+      [#if configuration.showDivider]
+        <div class="sigma-title-divider"></div>
+      [/#if]
+    </div>
+  </div>
+</div>

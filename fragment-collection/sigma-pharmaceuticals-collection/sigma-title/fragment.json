@@ -1,0 +1,11 @@
+{
+  "fragmentEntryKey": "sigma-title",
+  "name": "Sigma Title",
+  "htmlPath": "index.html",
+  "cssPath": "index.css",
+  "jsPath": "index.js",
+  "configurationPath": "configuration.json",
+  "thumbnailPath": "thumbnail.png",
+  "imagePreviewURL": "thumbnail.png",
+  "type": "component"
+}

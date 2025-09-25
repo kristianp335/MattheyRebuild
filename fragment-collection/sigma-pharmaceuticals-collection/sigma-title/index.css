@@ -1,0 +1,274 @@
+/* Sigma Title Fragment - Full-width pharmaceutical title with configurable backgrounds */
+
+/* Title Container - Full Width */
+#wrapper .sigma-title-fragment {
+  width: 100%;
+  margin-bottom: var(--sigma-spacing-xl);
+}
+
+#wrapper .sigma-title-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--sigma-border-radius-lg);
+  transition: all var(--sigma-transition);
+}
+
+/* Background Style Variants */
+#wrapper .sigma-title-container[data-background="gradient-primary"] {
+  background: linear-gradient(135deg, var(--sigma-primary), var(--sigma-primary-dark));
+  color: var(--sigma-white);
+  box-shadow: 0 4px 12px rgba(var(--sigma-primary-rgb), 0.3);
+}
+
+#wrapper .sigma-title-container[data-background="gradient-secondary"] {
+  background: linear-gradient(135deg, var(--sigma-gray-700), var(--sigma-gray-800));
+  color: var(--sigma-white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#wrapper .sigma-title-container[data-background="solid-primary"] {
+  background: var(--sigma-primary);
+  color: var(--sigma-white);
+  box-shadow: 0 2px 8px rgba(var(--sigma-primary-rgb), 0.2);
+}
+
+#wrapper .sigma-title-container[data-background="solid-light"] {
+  background: var(--sigma-gray-100);
+  color: var(--sigma-gray-800);
+  border: 1px solid var(--sigma-gray-200);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#wrapper .sigma-title-container[data-background="transparent"] {
+  background: transparent;
+  color: var(--sigma-gray-800);
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Title Content */
+#wrapper .sigma-title-content {
+  padding: var(--sigma-spacing-xl) var(--sigma-spacing-xxl);
+  position: relative;
+}
+
+/* Compact Mode */
+#wrapper .sigma-title-container[data-compact="true"] .sigma-title-content {
+  padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
+}
+
+/* Title Wrapper - Flex Container */
+#wrapper .sigma-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sigma-spacing-lg);
+  position: relative;
+}
+
+/* Text Alignment */
+#wrapper .sigma-title-container[data-alignment="center"] .sigma-title-wrapper {
+  justify-content: center;
+  text-align: center;
+}
+
+#wrapper .sigma-title-container[data-alignment="right"] .sigma-title-wrapper {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+#wrapper .sigma-title-container[data-alignment="left"] .sigma-title-wrapper {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Title Icon */
+#wrapper .sigma-title-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--sigma-border-radius-lg);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Icon styling for different backgrounds */
+#wrapper .sigma-title-container[data-background="solid-light"] .sigma-title-icon,
+#wrapper .sigma-title-container[data-background="transparent"] .sigma-title-icon {
+  background: var(--sigma-primary);
+  color: var(--sigma-white);
+  border: 1px solid var(--sigma-primary);
+}
+
+#wrapper .sigma-title-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke-width: 1.5;
+}
+
+/* Title Heading */
+#wrapper .sigma-title-heading {
+  flex: 1;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-family: var(--sigma-font-family-heading);
+}
+
+/* Heading Size Variants */
+#wrapper .sigma-title-heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+#wrapper h2.sigma-title-heading {
+  font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+}
+
+#wrapper h3.sigma-title-heading {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+/* Title Divider */
+#wrapper .sigma-title-divider {
+  margin-top: var(--sigma-spacing-lg);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--sigma-border-radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Divider for light backgrounds */
+#wrapper .sigma-title-container[data-background="solid-light"] .sigma-title-divider,
+#wrapper .sigma-title-container[data-background="transparent"] .sigma-title-divider {
+  background: var(--sigma-primary);
+  opacity: 0.3;
+}
+
+/* Animated Divider Effect */
+#wrapper .sigma-title-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #wrapper .sigma-title-content {
+    padding: var(--sigma-spacing-lg) var(--sigma-spacing-xl);
+  }
+  
+  #wrapper .sigma-title-container[data-compact="true"] .sigma-title-content {
+    padding: var(--sigma-spacing-md) var(--sigma-spacing-lg);
+  }
+  
+  #wrapper .sigma-title-wrapper {
+    gap: var(--sigma-spacing-md);
+  }
+  
+  #wrapper .sigma-title-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  #wrapper .sigma-title-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Stack icon above title on very small screens */
+  @media (max-width: 480px) {
+    #wrapper .sigma-title-container[data-alignment="center"] .sigma-title-wrapper {
+      flex-direction: column;
+      gap: var(--sigma-spacing-sm);
+    }
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  #wrapper .sigma-title-container[data-background="solid-light"] {
+    background: var(--sigma-gray-800);
+    color: var(--sigma-white);
+    border-color: var(--sigma-gray-700);
+  }
+  
+  #wrapper .sigma-title-container[data-background="transparent"] {
+    color: var(--sigma-white);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  #wrapper .sigma-title-container {
+    border: 2px solid currentColor;
+  }
+  
+  #wrapper .sigma-title-icon {
+    border: 2px solid currentColor;
+  }
+  
+  #wrapper .sigma-title-divider {
+    background: currentColor;
+    opacity: 1;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  #wrapper .sigma-title-container,
+  #wrapper .sigma-title-divider::after {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Focus Management for Accessibility */
+#wrapper .sigma-title-heading:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+  border-radius: var(--sigma-border-radius-sm);
+}
+
+#wrapper .sigma-title-container[data-background="solid-light"] .sigma-title-heading:focus,
+#wrapper .sigma-title-container[data-background="transparent"] .sigma-title-heading:focus {
+  outline-color: var(--sigma-primary);
+}
+
+/* Print Styles */
+@media print {
+  #wrapper .sigma-title-container {
+    background: none !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+  
+  #wrapper .sigma-title-icon {
+    background: none !important;
+    border: 1px solid #000 !important;
+  }
+  
+  #wrapper .sigma-title-divider::after {
+    display: none;
+  }
+}

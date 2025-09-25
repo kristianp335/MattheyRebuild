@@ -1,0 +1,83 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "name": "headingLevel",
+          "label": "Heading Level",
+          "description": "Choose the heading tag for semantic structure and SEO",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "h1", "label": "H1 - Main Page Title"},
+              {"value": "h2", "label": "H2 - Section Title"},
+              {"value": "h3", "label": "H3 - Subsection Title"}
+            ]
+          },
+          "defaultValue": "h1"
+        },
+        {
+          "name": "titleIcon",
+          "label": "Title Icon",
+          "description": "Select an icon that represents the content area",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "none", "label": "No Icon"},
+              {"value": "options", "label": "Options (Pills/Product Variants)"},
+              {"value": "categories", "label": "Categories (Medical Classification)"},
+              {"value": "specifications", "label": "Specifications (Product Details)"},
+              {"value": "research", "label": "Research (Laboratory/Science)"},
+              {"value": "pharmaceutical", "label": "Pharmaceutical (Company/Industry)"}
+            ]
+          },
+          "defaultValue": "pharmaceutical"
+        },
+        {
+          "name": "backgroundStyle",
+          "label": "Background Style",
+          "description": "Visual style for the title background",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "gradient-primary", "label": "Primary Gradient (Blue)"},
+              {"value": "gradient-secondary", "label": "Secondary Gradient (Gray)"},
+              {"value": "solid-primary", "label": "Solid Primary (Blue)"},
+              {"value": "solid-light", "label": "Solid Light (Gray)"},
+              {"value": "transparent", "label": "Transparent (No Background)"}
+            ]
+          },
+          "defaultValue": "gradient-primary"
+        },
+        {
+          "name": "textAlignment",
+          "label": "Text Alignment",
+          "description": "Horizontal alignment of title and icon",
+          "type": "select",
+          "typeOptions": {
+            "validValues": [
+              {"value": "left", "label": "Left Aligned"},
+              {"value": "center", "label": "Center Aligned"},
+              {"value": "right", "label": "Right Aligned"}
+            ]
+          },
+          "defaultValue": "left"
+        },
+        {
+          "name": "showDivider",
+          "label": "Show Bottom Divider",
+          "description": "Display a decorative line below the title",
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        {
+          "name": "compactMode",
+          "label": "Compact Mode",
+          "description": "Reduce padding for smaller title sections",
+          "type": "checkbox",
+          "defaultValue": false
+        }
+      ]
+    }
+  ]
+}
