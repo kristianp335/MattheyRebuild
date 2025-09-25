@@ -3,15 +3,49 @@
     'use strict';
     
     try {
-        // Defensive fragment element detection
+        // Defensive fragment element detection with multiple fallbacks
         let root;
         try {
-            root = (typeof fragmentElement !== 'undefined' && fragmentElement) || 
-                   (document.currentScript && document.currentScript.closest('.lfr-fragment-entry-link')) || 
-                   null;
+            root = (typeof fragmentElement !== 'undefined' && fragmentElement) || null;
         } catch (e) {
-            console.log('🎯 SIGMA HEADER: Fragment element access error, trying fallback:', e.message);
-            root = (document.currentScript && document.currentScript.closest('.lfr-fragment-entry-link')) || null;
+            console.log('🎯 SIGMA HEADER: Fragment element access error, trying fallbacks:', e.message);
+            root = null;
+        }
+        
+        // Fallback 1: Try document.currentScript approach
+        if (!root && document.currentScript) {
+            root = document.currentScript.closest('.lfr-fragment-entry-link');
+            console.log('🎯 SIGMA HEADER: Trying document.currentScript fallback:', !!root);
+        }
+        
+        // Fallback 2: Look for sigma header fragments in DOM
+        if (!root) {
+            const sigmaHeaders = document.querySelectorAll('[data-fragment-entry-key*="sigma-header"]');
+            if (sigmaHeaders.length > 0) {
+                root = sigmaHeaders[0];
+                console.log('🎯 SIGMA HEADER: Found via data-fragment-entry-key:', !!root);
+            }
+        }
+        
+        // Fallback 3: Look for elements containing sigma header classes
+        if (!root) {
+            const headerElements = document.querySelectorAll('.sigma-header-container, .sigma-header');
+            if (headerElements.length > 0) {
+                root = headerElements[0].closest('.lfr-fragment-entry-link') || headerElements[0];
+                console.log('🎯 SIGMA HEADER: Found via sigma header classes:', !!root);
+            }
+        }
+        
+        // Fallback 4: Look for any fragment entry link containing header elements
+        if (!root) {
+            const allFragments = document.querySelectorAll('.lfr-fragment-entry-link');
+            for (const fragment of allFragments) {
+                if (fragment.querySelector('.sigma-nav, .sigma-logo, .sigma-header-container')) {
+                    root = fragment;
+                    console.log('🎯 SIGMA HEADER: Found via header element search:', !!root);
+                    break;
+                }
+            }
         }
         
         console.log('🎯 SIGMA HEADER: Fragment element check:', {
