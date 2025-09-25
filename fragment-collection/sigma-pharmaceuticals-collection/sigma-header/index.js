@@ -5,12 +5,21 @@
     console.log('📦 SIGMA HEADER SCRIPT LOADED - Finding fragment root...');
     
     // Resilient fragment root detection - works in Liferay and static environments
-    const root = (typeof window.fragmentElement !== 'undefined' && window.fragmentElement) || 
-                 (typeof fragmentElement !== 'undefined' && fragmentElement) ||
-                 document.querySelector('[data-fragment="sigma-header"]') || 
-                 document.querySelector('.sigma-header-fragment') ||
-                 document.querySelector('.sigma-header') ||
-                 document.currentScript?.closest('.sigma-header-root');
+    let root;
+    try {
+        root = (typeof window.fragmentElement !== 'undefined' && window.fragmentElement) || 
+               (typeof fragmentElement !== 'undefined' && fragmentElement) ||
+               document.querySelector('[data-fragment="sigma-header"]') || 
+               document.querySelector('.sigma-header-fragment') ||
+               document.querySelector('.sigma-header') ||
+               document.currentScript?.closest('.sigma-header-root');
+    } catch (e) {
+        // Handle case where fragmentElement is not yet defined
+        root = document.querySelector('[data-fragment="sigma-header"]') || 
+               document.querySelector('.sigma-header-fragment') ||
+               document.querySelector('.sigma-header') ||
+               document.currentScript?.closest('.sigma-header-root');
+    }
     
     if (!root) {
         console.warn('⚠️ Sigma Header: No fragment root found; not initializing');
