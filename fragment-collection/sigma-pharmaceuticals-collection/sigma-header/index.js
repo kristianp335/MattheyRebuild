@@ -423,7 +423,19 @@
             
             // Hover events
             item.addEventListener('mouseenter', () => {
-                closeAllDropdowns();
+                // Close other dropdowns, but not this one
+                const otherItems = fragmentElement.querySelectorAll('.sigma-nav-item.has-dropdown.show');
+                otherItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('show');
+                        const otherDropdown = otherItem.querySelector('.sigma-dropdown-menu');
+                        if (otherDropdown) {
+                            otherDropdown.classList.remove('show');
+                        }
+                    }
+                });
+                
+                // Show this dropdown
                 item.classList.add('show');
                 dropdown.classList.add('show');
             });
