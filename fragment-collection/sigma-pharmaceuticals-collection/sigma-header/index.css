@@ -588,6 +588,16 @@ body.has-edit-mode-menu .sigma-dropdown-menu .sigma-mega-dropzone,
   display: none !important;
 }
 
+/* Force edit mode dropzone visibility */
+body.has-edit-mode-menu .sigma-mega-menu-dropzones,
+#wrapper .is-edit-mode .sigma-mega-menu-dropzones,
+[data-editor-enabled="true"] .sigma-mega-menu-dropzones {
+  display: block !important;
+  position: relative;
+  z-index: 10000;
+  margin-top: var(--sigma-spacing-md);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   #wrapper .sigma-nav {

@@ -2,19 +2,26 @@
 (function() {
     'use strict';
     
-    // Use the fragmentElement provided by Liferay instead of document.currentScript
-    // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
-    console.log('🎯 SIGMA HEADER: Fragment element check:', {
-        fragmentElement: fragmentElement,
-        fragmentElementExists: !!fragmentElement,
-        fragmentElementId: fragmentElement ? fragmentElement.id : 'N/A',
-        fragmentElementClass: fragmentElement ? fragmentElement.className : 'N/A'
-    });
-    
-    if (!fragmentElement) {
-        console.error('🎯 SIGMA HEADER: No fragmentElement found - exiting');
-        return;
-    }
+    try {
+        // Defensive fragment element detection
+        const root = (typeof fragmentElement !== 'undefined' && fragmentElement) || 
+                     (document.currentScript && document.currentScript.closest('.lfr-fragment-entry-link')) || 
+                     null;
+        
+        console.log('🎯 SIGMA HEADER: Fragment element check:', {
+            fragmentElement: root,
+            fragmentElementExists: !!root,
+            fragmentElementId: root ? root.id : 'N/A',
+            fragmentElementClass: root ? root.className : 'N/A'
+        });
+        
+        if (!root) {
+            console.warn('🎯 SIGMA HEADER: no root/fragmentElement found - exiting');
+            return;
+        }
+        
+        // Use root instead of fragmentElement throughout
+        const fragmentElement = root;
     
     // Initialize on DOM ready and SPA navigation events
     function ready(fn) {
@@ -25,8 +32,27 @@
         }
     }
     
+    // Add idempotency to prevent duplicate initialization
+    let isInitialized = false;
+    
+    function safeInitializeHeader() {
+        if (isInitialized) return;
+        initializeHeader();
+        isInitialized = true;
+        fragmentElement.setAttribute('data-sigma-initialized', 'true');
+    }
+    
     // Initial load
-    ready(initializeHeader);
+    ready(safeInitializeHeader);
+    
+    // Handle Liferay SPA navigation
+    if (typeof Liferay !== 'undefined' && Liferay.on) {
+        Liferay.on('endNavigate', function() {
+            // Reset initialization flag for SPA navigation
+            isInitialized = false;
+            setTimeout(safeInitializeHeader, 100);
+        });
+    }
     
     function initializeHeader() {
         console.log('🎯 SIGMA HEADER: Starting initialization', {
@@ -662,7 +688,7 @@
     function initializeMegaMenuContent() {
         console.log('🎯 SIGMA HEADER: Initializing mega menu content');
         
-        const editModeStatus = isEditMode();
+        const editModeStatus = isInEditMode();
         console.log('🎯 SIGMA HEADER: Current edit mode status:', editModeStatus);
         
         // Show mega menu dropzones in edit mode
@@ -836,4 +862,8 @@
         return result;
     }
     
+    } catch (e) {
+        console.error('🎯 SIGMA HEADER fatal error:', e);
+        return;
+    }
 })();
