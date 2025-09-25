@@ -433,12 +433,10 @@
                 dropdown.classList.remove('show');
             });
             
-            // Click events for mobile
+            // Click events for all devices
             link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    toggleDropdown(item);
-                }
+                e.preventDefault();
+                toggleDropdown(item);
             });
         });
         
