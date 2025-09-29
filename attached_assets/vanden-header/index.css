@@ -970,7 +970,7 @@
 
 /* Override Liferay's specific dropdown menu z-index */
 .dropdown-menu.search-bar-suggestions-dropdown-menu {
-    z-index: 99999 !important;
+    z-index: 2147483647 !important;
     background: white !important;
     border: none !important;
     border-radius: 0 !important;
@@ -980,7 +980,7 @@
 }
 
 .dropdown-menu.search-bar-suggestions-dropdown-menu.show {
-    z-index: 99999 !important;
+    z-index: 2147483647 !important;
 }
 
 /* Style dropdown items with Vanden theme */

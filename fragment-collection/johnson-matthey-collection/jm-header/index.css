@@ -541,6 +541,44 @@ body.has-edit-mode-menu .jm-header-dropzone lfr-drop-zone:before {
   }
 }
 
+/* Override Liferay's specific dropdown menu z-index */
+.dropdown-menu.search-bar-suggestions-dropdown-menu {
+    z-index: 2147483647 !important;
+    background: white !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+.dropdown-menu.search-bar-suggestions-dropdown-menu.show {
+    z-index: 2147483647 !important;
+}
+
+/* Style dropdown items with JM theme */
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item {
+    padding: 12px 16px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    color: #333 !important;
+    font-size: 0.95rem !important;
+    display: block !important;
+    text-decoration: none !important;
+}
+
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item:hover,
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item:focus,
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item.active {
+    background-color: rgba(11, 95, 255, 0.08) !important;
+    color: var(--jm-primary) !important;
+}
+
+.dropdown-menu.search-bar-suggestions-dropdown-menu .dropdown-item:last-child {
+    border-bottom: none !important;
+}
+
 /* Mega Menu Dropzones - Edit Mode Only */
 #wrapper .jm-mega-menu-dropzones {
   display: none;
