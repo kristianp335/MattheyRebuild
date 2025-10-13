@@ -1,0 +1,17 @@
+assemble:
+  - from: assets
+    into: static
+
+ybs-global-css:
+  name: Yorkshire Building Society Global CSS
+  type: globalCSS
+  url: global.css
+
+ybs-global-js:
+  name: Yorkshire Building Society Global JavaScript
+  type: globalJS
+  scriptLocation: head
+  url: global.js
+  scriptElementAttributes:
+    data-senna-track: "permanent"
+    fetchpriority: "high"

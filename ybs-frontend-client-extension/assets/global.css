@@ -1,0 +1,474 @@
+/* Yorkshire Building Society Global CSS - Performance Optimized */
+/* Version: 1.5.0 - Focused on critical rendering path */
+
+/* PERFORMANCE STRATEGY: Minimize CSS, prioritize critical rendering path */
+
+/* CRITICAL ONLY: Essential CSS custom properties */
+#wrapper {
+  /* Core brand colors - highest priority */
+  --ybs-primary: var(--brand-color-1, #00693E);
+  --ybs-gray-700: var(--gray-700, #495057);
+  --ybs-white: var(--white, #fff);
+  --ybs-dark: var(--brand-color-4, #30313f);
+  
+  /* Layout & typography essentials */
+  --ybs-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ybs-spacing-lg: 1.5rem;
+  --ybs-spacing-xl: 2rem;
+  --ybs-spacing-xxl: 3rem;
+  
+  /* Secondary brand colors - lower priority */
+  --ybs-secondary: var(--brand-color-2, #6b6c7e);
+  --ybs-accent: var(--brand-color-3, #008551);
+  --ybs-light: var(--light, #f1f2f5);
+  --ybs-gray-100: var(--gray-100, #f7f8f9);
+  --ybs-gray-200: var(--gray-200, #f1f2f5);
+  --ybs-gray-300: var(--gray-300, #e7e7ed);
+  --ybs-gray-400: var(--gray-400, #cdced9);
+  --ybs-gray-500: var(--gray-500, #a7a9bc);
+  --ybs-gray-600: var(--gray-600, #6b6c7e);
+  --ybs-gray-800: var(--gray-800, #393a4a);
+  --ybs-gray-900: var(--gray-900, #272833);
+  --ybs-success: var(--success, #287d3c);
+  --ybs-warning: var(--warning, #b95000);
+  --ybs-danger: var(--danger, #da1414);
+  --ybs-info: var(--info, #008551);
+  
+  /* Spacing system - ordered by usage frequency */
+  --ybs-spacing-xs: 0.25rem;
+  --ybs-spacing-sm: 0.5rem;
+  --ybs-spacing-md: 1rem;
+  
+  /* Typography scale */
+  --ybs-font-size-sm: 0.875rem;
+  --ybs-font-size-base: 1rem;
+  --ybs-font-size-lg: 1.125rem;
+  --ybs-font-size-xl: 1.25rem;
+  --ybs-font-size-xxl: 1.5rem;
+  --ybs-font-size-xxxl: 2rem;
+  
+  /* Effects - non-critical, loaded last */
+  --ybs-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --ybs-box-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --ybs-transition: all 0.3s ease;
+  --ybs-border-radius: 4px;
+  --ybs-border-radius-lg: 8px;
+}
+
+/* CRITICAL: Base typography for LCP */
+#wrapper {
+  font-family: var(--ybs-font-family);
+  color: var(--ybs-gray-800);
+  /* Performance optimizations */
+  contain: layout style;
+  font-display: swap;
+}
+
+/* Critical headings */
+#wrapper h1,
+#wrapper h2,
+#wrapper h3,
+#wrapper h4,
+#wrapper h5,
+#wrapper h6 {
+  color: var(--ybs-dark);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--ybs-spacing-md);
+  /* Font optimization */
+  font-display: swap;
+}
+
+#wrapper h1 {
+  font-size: var(--ybs-font-size-xxxl);
+}
+
+#wrapper h2 {
+  font-size: var(--ybs-font-size-xxl);
+}
+
+#wrapper h3 {
+  font-size: var(--ybs-font-size-xl);
+}
+
+#wrapper p {
+  margin-bottom: var(--ybs-spacing-md);
+  line-height: 1.6;
+}
+
+#wrapper a {
+  color: var(--ybs-primary);
+  text-decoration: none;
+  transition: var(--ybs-transition);
+}
+
+#wrapper a:hover,
+#wrapper a:focus {
+  color: var(--ybs-accent);
+  text-decoration: underline;
+}
+
+/* CRITICAL: Button styles for hero CTA */
+#wrapper .ybs-btn {
+  display: inline-block;
+  padding: var(--ybs-spacing-sm) var(--ybs-spacing-lg);
+  background-color: var(--ybs-primary);
+  color: var(--ybs-white);
+  border: 2px solid var(--ybs-primary);
+  border-radius: var(--ybs-border-radius);
+  font-size: var(--ybs-font-size-base);
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--ybs-transition);
+  /* Performance optimization */
+  contain: layout style;
+  will-change: transform;
+}
+
+#wrapper .ybs-btn:hover,
+#wrapper .ybs-btn:focus {
+  background-color: var(--ybs-accent);
+  border-color: var(--ybs-accent);
+  color: var(--ybs-white);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--ybs-box-shadow);
+}
+
+#wrapper .ybs-btn-secondary {
+  background-color: transparent;
+  color: var(--ybs-primary);
+  border-color: var(--ybs-primary);
+}
+
+#wrapper .ybs-btn-secondary:hover,
+#wrapper .ybs-btn-secondary:focus {
+  background-color: var(--ybs-primary);
+  color: var(--ybs-white);
+}
+
+#wrapper .ybs-btn-sm {
+  padding: var(--ybs-spacing-xs) var(--ybs-spacing-sm);
+  font-size: var(--ybs-font-size-sm);
+}
+
+#wrapper .ybs-btn-lg {
+  padding: var(--ybs-spacing-md) var(--ybs-spacing-xl);
+  font-size: var(--ybs-font-size-lg);
+}
+
+/* Card Components */
+#wrapper .ybs-card {
+  background: var(--ybs-white);
+  border-radius: var(--ybs-border-radius-lg);
+  box-shadow: var(--ybs-box-shadow);
+  overflow: hidden;
+  transition: var(--ybs-transition);
+}
+
+#wrapper .ybs-card:hover {
+  box-shadow: var(--ybs-box-shadow-lg);
+  transform: translateY(-2px);
+}
+
+#wrapper .ybs-card-header {
+  padding: var(--ybs-spacing-lg);
+  background: var(--ybs-gray-100);
+  border-bottom: 1px solid var(--ybs-gray-300);
+}
+
+#wrapper .ybs-card-body {
+  padding: var(--ybs-spacing-lg);
+}
+
+#wrapper .ybs-card-footer {
+  padding: var(--ybs-spacing-lg);
+  background: var(--ybs-gray-100);
+  border-top: 1px solid var(--ybs-gray-300);
+}
+
+/* Grid System */
+#wrapper .ybs-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--ybs-spacing-lg);
+}
+
+#wrapper .ybs-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(-1 * var(--ybs-spacing-md));
+}
+
+#wrapper .ybs-col {
+  flex: 1;
+  padding: 0 var(--ybs-spacing-md);
+}
+
+#wrapper .ybs-col-12 { flex: 0 0 100%; }
+#wrapper .ybs-col-6 { flex: 0 0 50%; }
+#wrapper .ybs-col-4 { flex: 0 0 33.333333%; }
+#wrapper .ybs-col-3 { flex: 0 0 25%; }
+
+/* Utility Classes */
+#wrapper .ybs-text-center { text-align: center; }
+#wrapper .ybs-text-left { text-align: left; }
+#wrapper .ybs-text-right { text-align: right; }
+
+#wrapper .ybs-mb-0 { margin-bottom: 0; }
+#wrapper .ybs-mb-1 { margin-bottom: var(--ybs-spacing-xs); }
+#wrapper .ybs-mb-2 { margin-bottom: var(--ybs-spacing-sm); }
+#wrapper .ybs-mb-3 { margin-bottom: var(--ybs-spacing-md); }
+#wrapper .ybs-mb-4 { margin-bottom: var(--ybs-spacing-lg); }
+#wrapper .ybs-mb-5 { margin-bottom: var(--ybs-spacing-xl); }
+
+#wrapper .ybs-mt-0 { margin-top: 0; }
+#wrapper .ybs-mt-1 { margin-top: var(--ybs-spacing-xs); }
+#wrapper .ybs-mt-2 { margin-top: var(--ybs-spacing-sm); }
+#wrapper .ybs-mt-3 { margin-top: var(--ybs-spacing-md); }
+#wrapper .ybs-mt-4 { margin-top: var(--ybs-spacing-lg); }
+#wrapper .ybs-mt-5 { margin-top: var(--ybs-spacing-xl); }
+
+#wrapper .ybs-p-0 { padding: 0; }
+#wrapper .ybs-p-1 { padding: var(--ybs-spacing-xs); }
+#wrapper .ybs-p-2 { padding: var(--ybs-spacing-sm); }
+#wrapper .ybs-p-3 { padding: var(--ybs-spacing-md); }
+#wrapper .ybs-p-4 { padding: var(--ybs-spacing-lg); }
+#wrapper .ybs-p-5 { padding: var(--ybs-spacing-xl); }
+
+/* Modal Styles */
+#wrapper .ybs-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1050 !important;
+  display: none;
+}
+
+#wrapper .ybs-modal-backdrop.show {
+  display: block;
+}
+
+#wrapper .ybs-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--ybs-white);
+  border-radius: var(--ybs-border-radius-lg);
+  box-shadow: var(--ybs-box-shadow-lg);
+  z-index: 1050 !important;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: none;
+}
+
+#wrapper .ybs-modal.show {
+  display: block;
+}
+
+#wrapper .ybs-modal-header {
+  padding: var(--ybs-spacing-lg);
+  border-bottom: 1px solid var(--ybs-gray-300);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#wrapper .ybs-modal-title {
+  margin: 0;
+  font-size: var(--ybs-font-size-xl);
+}
+
+#wrapper .ybs-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--ybs-gray-600);
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#wrapper .ybs-modal-close:hover {
+  color: var(--ybs-gray-800);
+}
+
+#wrapper .ybs-modal-body {
+  padding: var(--ybs-spacing-lg);
+  min-height: 200px;
+}
+
+/* Dropdown Styles */
+#wrapper .ybs-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#wrapper .ybs-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--ybs-white);
+  border: 1px solid var(--ybs-gray-300);
+  border-radius: var(--ybs-border-radius);
+  box-shadow: var(--ybs-box-shadow);
+  min-width: 200px;
+  z-index: 1060 !important;
+  display: none;
+  padding: var(--ybs-spacing-sm) 0;
+}
+
+#wrapper .ybs-dropdown-menu.show {
+  display: block;
+}
+
+#wrapper .ybs-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: var(--ybs-spacing-sm) var(--ybs-spacing-md);
+  color: var(--ybs-gray-800);
+  text-decoration: none;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--ybs-transition);
+}
+
+#wrapper .ybs-dropdown-item:hover,
+#wrapper .ybs-dropdown-item:focus {
+  background-color: var(--ybs-gray-100);
+  color: var(--ybs-primary);
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #wrapper .ybs-container {
+    padding: 0 var(--ybs-spacing-md);
+  }
+  
+  #wrapper .ybs-row {
+    margin: 0 calc(-1 * var(--ybs-spacing-sm));
+  }
+  
+  #wrapper .ybs-col {
+    padding: 0 var(--ybs-spacing-sm);
+  }
+  
+  #wrapper .ybs-col-12,
+  #wrapper .ybs-col-6,
+  #wrapper .ybs-col-4,
+  #wrapper .ybs-col-3 {
+    flex: 0 0 100%;
+    margin-bottom: var(--ybs-spacing-md);
+  }
+  
+  #wrapper .ybs-modal {
+    margin: var(--ybs-spacing-md);
+    max-width: calc(100vw - 2rem);
+    top: var(--ybs-spacing-md);
+    left: var(--ybs-spacing-md);
+    transform: none;
+  }
+}
+
+/* Custom Scrollbars */
+#wrapper ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#wrapper ::-webkit-scrollbar-track {
+  background: var(--ybs-gray-200);
+  border-radius: var(--ybs-border-radius);
+}
+
+#wrapper ::-webkit-scrollbar-thumb {
+  background: var(--ybs-gray-400);
+  border-radius: var(--ybs-border-radius);
+}
+
+#wrapper ::-webkit-scrollbar-thumb:hover {
+  background: var(--ybs-gray-500);
+}
+
+/* Form Styles for Modal Portlets */
+#wrapper .login-content .form-control,
+#wrapper .login-content input.field,
+#wrapper .login-content .clearable.form-control {
+  border: 2px solid var(--ybs-gray-300) !important;
+  border-radius: var(--ybs-border-radius) !important;
+  padding: var(--ybs-spacing-sm) var(--ybs-spacing-md) !important;
+  font-size: var(--ybs-font-size-base) !important;
+  transition: var(--ybs-transition) !important;
+}
+
+#wrapper .login-content .form-control:focus,
+#wrapper .login-content input.field:focus,
+#wrapper .login-content .clearable.form-control:focus {
+  border-color: var(--ybs-primary) !important;
+  box-shadow: 0 0 0 0.2rem rgba(11, 95, 255, 0.25) !important;
+  outline: none !important;
+}
+
+#wrapper .login-content .control-label {
+  color: var(--ybs-gray-800) !important;
+  font-weight: 500 !important;
+  margin-bottom: var(--ybs-spacing-xs) !important;
+}
+
+#wrapper .login-content .btn-primary {
+  background-color: var(--ybs-primary) !important;
+  border-color: var(--ybs-primary) !important;
+  color: var(--ybs-white) !important;
+  padding: var(--ybs-spacing-sm) var(--ybs-spacing-lg) !important;
+  border-radius: var(--ybs-border-radius) !important;
+  font-weight: 500 !important;
+  transition: var(--ybs-transition) !important;
+}
+
+#wrapper .login-content .btn-primary:hover,
+#wrapper .login-content .btn-primary:focus {
+  background-color: var(--ybs-accent) !important;
+  border-color: var(--ybs-accent) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--ybs-box-shadow) !important;
+}
+
+#wrapper .login-content .lfr-btn-label {
+  color: var(--ybs-white) !important;
+}
+
+#wrapper .login-content .taglib-text a {
+  color: var(--ybs-primary) !important;
+  text-decoration: none !important;
+  transition: var(--ybs-transition) !important;
+}
+
+#wrapper .login-content .taglib-text a:hover,
+#wrapper .login-content .taglib-text a:focus {
+  color: var(--ybs-accent) !important;
+  text-decoration: underline !important;
+}
+
+#wrapper .login-content .portlet,
+#wrapper .login-content .portlet-content,
+#wrapper .login-content .portlet-body {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
