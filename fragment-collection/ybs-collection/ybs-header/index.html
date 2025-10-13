@@ -1,0 +1,148 @@
+<div class="ybs-header-fragment">
+  <header class="ybs-header">
+    <div class="ybs-container">
+      <div class="ybs-header-content">
+        <!-- Logo -->
+        <div class="ybs-header-logo">
+          <a href="/" class="ybs-logo-link">
+            <svg width="200" height="40" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" class="ybs-logo" data-lfr-editable-id="logo" data-lfr-editable-type="image">
+              <rect x="0" y="8" width="40" height="24" rx="2" fill="#00693E"/>
+              <text x="48" y="28" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#00693E">Yorkshire Building Society</text>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="ybs-nav" role="navigation" aria-label="Main navigation">
+          <ul class="ybs-nav-list" id="ybs-main-nav">
+            <!-- Navigation will be populated by JavaScript -->
+          </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="ybs-header-actions">
+          <!-- Mobile Menu Toggle -->
+          <button class="ybs-mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span class="ybs-hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+
+          <!-- Search Button -->
+          <button class="ybs-header-action-btn ybs-search-btn" aria-label="Open search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+              <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+
+          <!-- Login/User Button -->
+          [#if themeDisplay.isSignedIn()]
+            <div class="ybs-user-profile-widget">
+              [@liferay.user_personal_bar /]
+            </div>
+          [#else]
+            <button class="ybs-header-action-btn ybs-login-btn" aria-label="Sign in">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke="currentColor" stroke-width="2"/>
+                <polyline points="10,17 15,12 10,7" stroke="currentColor" stroke-width="2"/>
+                <line x1="15" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <span>Sign In</span>
+            </button>
+          [/#if]
+
+          <!-- Language Selector Dropzone -->
+          <div class="ybs-language-selector-dropzone">
+            <lfr-drop-zone data-lfr-drop-zone-id="language-selector">
+            </lfr-drop-zone>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mega Menu Dropzones (Edit Mode Only) -->
+      <div class="ybs-mega-menu-dropzones ybs-edit-mode-only">
+        <div class="ybs-mega-dropzone">
+          <h4 class="ybs-mega-dropzone-label">Mega Menu Content 1</h4>
+          <div id="dropzone-mega-menu-1">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-1">
+            </lfr-drop-zone>
+          </div>
+        </div>
+        <div class="ybs-mega-dropzone">
+          <h4 class="ybs-mega-dropzone-label">Mega Menu Content 2</h4>
+          <div id="dropzone-mega-menu-2">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-2">
+            </lfr-drop-zone>
+          </div>
+        </div>
+        <div class="ybs-mega-dropzone">
+          <h4 class="ybs-mega-dropzone-label">Mega Menu Content 3</h4>
+          <div id="dropzone-mega-menu-3">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-3">
+            </lfr-drop-zone>
+          </div>
+        </div>
+        <div class="ybs-mega-dropzone">
+          <h4 class="ybs-mega-dropzone-label">Mega Menu Content 4</h4>
+          <div id="dropzone-mega-menu-4">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-4">
+            </lfr-drop-zone>
+          </div>
+        </div>
+        <div class="ybs-mega-dropzone">
+          <h4 class="ybs-mega-dropzone-label">Mega Menu Content 5</h4>
+          <div id="dropzone-mega-menu-5">
+            <lfr-drop-zone data-lfr-drop-zone-id="mega-menu-5">
+            </lfr-drop-zone>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="ybs-mobile-nav" id="ybs-mobile-nav">
+        <ul class="ybs-mobile-nav-list">
+          <!-- Mobile navigation will be populated by JavaScript -->
+        </ul>
+        <div class="ybs-mobile-nav-actions">
+          [#if !themeDisplay.isSignedIn()]
+            <button class="ybs-btn ybs-mobile-login-btn">Sign In</button>
+          [#else]
+            <a href="/c/portal/logout" class="ybs-btn ybs-btn-secondary">Sign Out</a>
+          [/#if]
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Modal -->
+  <div id="ybs-search-overlay" class="ybs-search-overlay" style="display: none;">
+    <div class="ybs-search-modal">
+      <div class="ybs-modal-header">
+        <h3 class="ybs-modal-title" data-lfr-editable-id="search-title" data-lfr-editable-type="text">Search YBS</h3>
+        <button id="ybs-close-search" class="ybs-modal-close" aria-label="Close search">&times;</button>
+      </div>
+      <div class="ybs-modal-body search-content">
+        <lfr-drop-zone data-lfr-drop-zone-id="search">
+        </lfr-drop-zone>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  [#if !themeDisplay.isSignedIn()]
+    <div id="ybs-login-overlay" class="ybs-login-overlay" style="display: none;">
+      <div class="ybs-login-modal">
+        <div class="ybs-modal-header">
+          <h3 class="ybs-modal-title" data-lfr-editable-id="login-title" data-lfr-editable-type="text">Sign In to YBS</h3>
+          <button id="ybs-close-login" class="ybs-modal-close" aria-label="Close login">&times;</button>
+        </div>
+        <div class="ybs-modal-body login-content">
+          [@liferay_portlet["runtime"] portletName="com_liferay_login_web_portlet_LoginPortlet" /]
+        </div>
+      </div>
+    </div>
+  [/#if]
+</div>
