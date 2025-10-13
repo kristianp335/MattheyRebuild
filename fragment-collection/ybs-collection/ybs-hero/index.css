@@ -179,8 +179,11 @@
 .ybs-hero-img {
   width: 100%;
   height: auto;
+  aspect-ratio: 3/2;
+  object-fit: cover;
   border-radius: 8px;
   display: block;
+  contain: layout style;
 }
 
 .ybs-image-background .ybs-hero-img {
