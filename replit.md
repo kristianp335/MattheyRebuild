@@ -1,148 +1,64 @@
 # Sigma Pharmaceuticals B2B Commerce System
 
 ## Overview
-This project delivers a comprehensive B2B pharmaceutical commerce system for Sigma Pharmaceuticals using Liferay Commerce Headless APIs. It provides a complete product catalog with authentic pharmaceutical branding, proper SKU variants for pack sizes, pharmaceutical categorization system, and working product specifications. The system focuses on creating products with multiple SKUs linked to product options, proper taxonomies for therapeutic areas and product types, and specifications that provide informational product details.
+This project aims to establish a comprehensive B2B pharmaceutical commerce system for Sigma Pharmaceuticals. Leveraging Liferay Commerce Headless APIs, the system offers a complete product catalog featuring authentic pharmaceutical branding, precise SKU variants for pack sizes, a robust pharmaceutical categorization system, and detailed product specifications. The core objective is to manage products effectively, including multiple SKUs linked to product options, proper taxonomies for therapeutic areas and product types, and informational specifications. The system also includes advanced data visualization tools for sales trends and order management, alongside a versatile fragment collection for Liferay-based frontends, demonstrated through both Sigma's own branding and adaptable templates for other corporate identities like Yorkshire Building Society and Johnson Matthey. The business vision is to streamline B2B pharmaceutical transactions, enhance product visibility, and provide valuable insights into sales data.
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
 Preferred name: Call user "Kris".
 
-## Recent Changes
-
-**September 25, 2025 - Data Visualization Fragment Suite & Mega Menu Dropzones**
-- Created sophisticated sigma-bar-chart fragment with therapeutic category sales comparison and A/B dataset switching (Current Quarter vs Previous Quarter)
-- Developed sigma-line-graph fragment with 12-month sales trends, seasonal analysis, and insights cards showing peak months and growth rates
-- Built sigma-orders-table fragment with detailed order history, search/sort/pagination functionality, and customer segmentation (Hospital vs Pharmacy orders)
-- Implemented Chart.js integration with dynamic loading and proper chart lifecycle management
-- Added realistic pharmaceutical data using actual Sigma products (Amlodipine, Salbutamol, Paracetamol, etc.) with authentic B2B pricing and volumes
-- Fixed fragmentElement scoping issues and eliminated ID collisions by using data attributes instead of fragment-specific IDs
-- Ensured dataset toggle state synchronization with fragment configuration defaults
-- **Completed mega menu dropzone functionality**: 8 mega menu dropzones with proper position-based mapping to navigation dropdown menus
-- **Technical Achievement**: Resolved complex JavaScript timing issues, fragment element detection, and navigation structure mapping
-- **Fragment Collection Status**: Now contains 8 total fragments (5 existing + 3 new data visualization) with working mega menu system
-
-**Previous Updates:**
-- Enhanced header fragment with visual improvements including soft box-shadows, gradient overlays, and brand-colored border treatments
-- Successfully resolved critical dropdown functionality issue on live site through CSS scoping fixes and timing adjustments
-- Fixed dropdown hover/click behavior by adding fallback CSS rules that work without #wrapper requirement
-- Identified and resolved initialization timing issue where dropdown handlers ran before navigation was rendered
-- Created sigma-title, sigma-panel, and sigma-header fragments with configurable padding using proper Sigma spacing tokens
-
 ## System Architecture
-The project employs a Liferay Commerce-based architecture using headless APIs for comprehensive product management. All products are created with enhanced descriptions, proper categorization, SKU variants, and working specifications system.
+The system is built on a Liferay Commerce-based architecture utilizing headless APIs for all product management functions.
 
-**Key Architectural Decisions:**
-- **Product Creation Workflow**: Three-step process - create basic product first, then add options/SKUs via PATCH, then attach specifications via dedicated endpoint.
-- **SKU Option Linkage**: PATCH to `/products/{id}` with productOptions and skus arrays AFTER product creation (not in initial POST).
-- **Product ID Resolution**: Use product ID from actions.get.href URL (not internal ID) for all subsequent API calls.
-- **Specification System**: POST to `/products/{id}/productSpecifications` with localized value maps after product creation.
-- **Category System**: PATCH to `/products/{id}/categories` with simplified [{"id": categoryId}] payload structure.
-- **Option Templates**: Reusable across products - pack-size (ID: 62686), dosage-strength (ID: 63140), inhaler-doses (ID: 63141).
-- **Image Management**: POST to `/products/{id}/images` with localized title maps and fileEntryId from uploaded documents.
+**UI/UX Decisions:**
+- **Fragment-based Design:** Employs reusable Liferay fragments for modular and consistent UI development across different brand identities (Sigma, YBS, Johnson Matthey).
+- **Branding Integration:** Each fragment collection (Sigma, YBS, JM) incorporates specific brand guidelines, including primary/secondary colors, typography, and messaging, managed via dedicated frontend client extensions.
+- **Data Visualization:** Integration of Chart.js for dynamic and interactive data representation (bar charts for sales comparison, line graphs for sales trends).
+- **Responsive Design:** Fragments are designed to be mobile-responsive, ensuring accessibility across various devices.
+- **Mega Menu Functionality:** Header fragments include sophisticated mega menu dropzones with proper position-based mapping for enhanced navigation.
 
-**Working API Structure:**
-- **Step 1 - Products**: POST `/products` with basic fields (name, description, catalogId, productType, externalReferenceCode)
-- **Step 2 - Options/SKUs**: PATCH `/products/{id}` with productOptions and skus arrays 
-- **Step 3 - Specifications**: POST `/products/{id}/productSpecifications` with {"specificationKey": "key", "value": {"en_US": "value"}, "priority": number}
-- **Step 4 - Categories**: PATCH `/products/{id}/categories` with [{"id": categoryId}, {"id": categoryId}] payload
-- **Step 5 - Images**: POST `/products/{id}/images` with {"fileEntryId": id, "title": {"en_US": "title"}, "priority": number}
+**Technical Implementations & Feature Specifications:**
+- **Product Catalog:** Supports a detailed product portfolio of 25 pharmaceutical products across various therapeutic areas.
+- **SKU Management:** Products are configured with multiple SKUs linked to options like pack size, dosage strength, and inhaler doses using reusable option templates.
+- **Specification System:** A working system for attaching localized product specifications (e.g., Active Ingredient, Strength, Storage Conditions) to products.
+- **Categorization:** Products are categorized using taxonomies for therapeutic areas and product types (e.g., POM, P Medicine).
+- **Image Management:** Supports uploading and attaching multiple professional images per product, categorized by priority (Packaging, Product Photo, Medical Consultation).
+- **Data Visualization Fragments:**
+    - `sigma-bar-chart`: Compares therapeutic category sales with A/B dataset switching (Current vs. Previous Quarter).
+    - `sigma-line-graph`: Displays 12-month sales trends with seasonal analysis and insights cards.
+    - `sigma-orders-table`: Provides detailed order history with search, sort, pagination, and customer segmentation (Hospital vs. Pharmacy).
+- **Automated Builds:** Python scripts are used to automate the creation of deployment-ready ZIP files for fragment collections and client extensions.
 
-**Complete Product Portfolio (25 Products):**
+**System Design Choices:**
+- **Liferay Commerce Headless API Workflow:** A structured three-step process for product creation:
+    1. Basic product creation (POST `/products`).
+    2. Adding options/SKUs via PATCH to `/products/{id}`.
+    3. Attaching specifications via POST to `/products/{id}/productSpecifications`.
+- **API Call Sequencing:** Strict adherence to API call order and specific payload structures for product, SKU, specification, category, and image management.
+- **Reusable Templates:** Utilizes reusable option templates for consistent product option configuration.
+- **Fragment Collection Structure:** Organized directory structure for fragment collections and client extensions, enabling modular development and deployment.
 
-**Cardiovascular Products (6 total):**
-1. **Amlodipine 5mg Tablets (ID: 66518)** - Cardiovascular/POM with 3 pack sizes (28/56/84 tablets)
-2. **Lisinopril 10mg Tablets (ID: 66607)** - Cardiovascular/POM with 2 pack sizes (30/90 tablets)
-3. **Atorvastatin 20mg Tablets (ID: 66628)** - Cardiovascular/POM with 3 pack sizes (28/56/84 tablets)
-4. **Metoprolol 50mg Tablets (ID: 66654)** - Cardiovascular/POM with 2 pack sizes (56/112 tablets)
-5. **Aspirin 75mg Tablets (ID: 66675)** - Cardiovascular/P Medicine with 3 pack sizes (28/56/100 tablets)
-6. **Nitroglycerin Sublingual Spray (ID: 66701)** - Cardiovascular/POM with 2 dose strengths (400mcg/800mcg)
-
-**Pain Relief & Anti-inflammatories Products (3 total):**
-1. **Paracetamol 500mg Tablets (ID: 69267)** - Pain Relief/P Medicine with 2 pack sizes (16/32 tablets)
-2. **Ibuprofen 200mg Tablets (ID: 69277)** - Pain Relief/P Medicine with 2 pack sizes (24/48 tablets)
-3. **Naproxen 250mg Tablets (ID: 69287)** - Pain Relief/POM with 2 pack sizes (28/56 tablets)
-
-**Respiratory Products (6 total):**
-1. **Salbutamol Inhaler 100mcg (ID: 66544)** - Respiratory/POM with 2 dose options (100/200 doses)
-2. **Beclometasone Inhaler 250mcg (ID: 66722)** - Respiratory/POM with 2 dose options (120/200 doses)
-3. **Montelukast 10mg Tablets (ID: 66743)** - Respiratory/POM with 2 pack sizes (28/84 tablets)
-4. **Ipratropium Inhaler 20mcg (ID: 66764)** - Respiratory/POM with 2 dose options (200/400 doses)
-5. **Loratadine 10mg Tablets (ID: 66785)** - Respiratory/P Medicine with 2 pack sizes (30/60 tablets)
-6. **Budesonide Inhaler 200mcg (ID: 66806)** - Respiratory/POM with 2 dose options (100/200 doses)
-
-**Gastrointestinal Products (3 total):**
-1. **Omeprazole 20mg Capsules (ID: 69297)** - Gastrointestinal/POM with 1 pack size (28 capsules)
-2. **Loperamide 2mg Tablets (ID: 69307)** - Gastrointestinal/P Medicine with 1 pack size (30 tablets)
-3. **Domperidone 10mg Tablets (ID: 69317)** - Gastrointestinal/POM with 1 pack size (30 tablets)
-
-**Dermatological Products (3 total):**
-1. **Hydrocortisone 1% Cream (ID: 69327)** - Dermatological/P Medicine with 1 pack size (15g tube)
-2. **Clotrimazole 1% Cream (ID: 69337)** - Dermatological/P Medicine with 1 pack size (20g tube)
-3. **Betamethasone 0.1% Ointment (ID: 69347)** - Dermatological/POM with 1 pack size (30g tube)
-
-**Antibiotics & Anti-infectives Products (3 total):**
-1. **Amoxicillin 500mg Capsules (ID: 67457)** - Antibiotics/POM with 2 pack sizes (28/56 capsules)
-2. **Ciprofloxacin 500mg Tablets (ID: 67467)** - Antibiotics/POM with 2 pack sizes (28/56 tablets)
-3. **Azithromycin 250mg Tablets (ID: 67477)** - Antibiotics/POM with 2 pack sizes (28/84 tablets)
-
-**Specification System (Working):**
-- **Active Ingredient Spec (ID: 66585)**: Primary pharmaceutical ingredient (key: "active-ingredient")
-- **Strength Spec (ID: 66409)**: Dosage strength information (key: "strength")
-- **Storage Conditions Spec (ID: 66410)**: Required storage conditions (key: "storage-conditions")
-- Each product has 3 specifications properly attached using localized value maps
-
-**Taxonomy Structure:**
-- **Therapeutic Areas Vocabulary (ID: 62442)**: Cardiovascular (62443), Respiratory (62452), Antibiotics & Anti-infectives (62446), Pain Relief & Anti-inflammatories (62449), Gastrointestinal (62455), Dermatological (62458)
-- **Product Types Vocabulary (ID: 62461)**: POM (62462), P Medicine (62465), GSL (62468), Medical Devices (62471), Controlled Substances (62474)
-
-**Option Templates (Reusable):**
-- **pack-size (ID: 62686)**: For tablet pack variants (28, 56, 84, 24, 48 tablets)
-- **dosage-strength (ID: 63140)**: Ready for future dosage variants
-- **inhaler-doses (ID: 63141)**: For inhaler dose counts (100, 200 doses)
-
-**B2B Pricing Structure:**
-- Professional pricing with cost margins for wholesale pharmaceutical distribution
-- Varied pricing by pack size and therapeutic category
-- All products have purchasable SKUs with proper cost/price ratios
+**Product Portfolio Summary (25 Products):**
+- **Cardiovascular (6 products)**: Amlodipine, Lisinopril, Atorvastatin, Metoprolol, Aspirin, Nitroglycerin.
+- **Pain Relief & Anti-inflammatories (3 products)**: Paracetamol, Ibuprofen, Naproxen.
+- **Respiratory (6 products)**: Salbutamol, Beclometasone, Montelukast, Ipratropium, Loratadine, Budesonide.
+- **Gastrointestinal (3 products)**: Omeprazole, Loperamide, Domperidone.
+- **Dermatological (3 products)**: Hydrocortisone, Clotrimazole, Betamethasone.
+- **Antibiotics & Anti-infectives (3 products)**: Amoxicillin, Ciprofloxacin, Azithromycin.
+- All products include professional B2B pricing, unique external reference codes, and a set of 3 images.
 
 ## External Dependencies
-
-**Liferay Commerce Platform:**
-- **Liferay Commerce Headless APIs**: Core API for product, catalog, and specification management
-- **Headless Commerce Admin Catalog v1.0**: Primary API endpoints for all commerce operations
-- **Headless Admin Taxonomy API**: For category and vocabulary management
-- **Headless Delivery API**: For document and image upload
-
-**Commerce API Endpoints:**
-- **Products**: `/o/headless-commerce-admin-catalog/v1.0/products`
-- **Product Specifications**: `/o/headless-commerce-admin-catalog/v1.0/products/{id}/productSpecifications`
-- **Product Categories**: `/o/headless-commerce-admin-catalog/v1.0/products/{id}/categories`
-- **Product Images**: `/o/headless-commerce-admin-catalog/v1.0/products/{id}/images`
-- **Specifications**: `/o/headless-commerce-admin-catalog/v1.0/specifications`
-- **Taxonomies**: `/o/headless-admin-taxonomy/v1.0/taxonomy-vocabularies/{id}/taxonomy-categories`
-
-**Authentication:**
-- Basic Auth credentials configured securely via environment variables
-- Site ID: 20123, Catalog ID: 33181
-
-**Generated Assets:**
-- Professional pharmaceutical product images via AI generation
-- Complete 3-image systems for all 25 products
-- Packaging, product photos, and consultation scenes for each therapeutic category
-- Total: 75 professional pharmaceutical images with working src URLs
-
-**Three-Image Solution Workflow:**
-- **Step 1**: Generate professional pharmaceutical images (packaging, product photo, consultation context)
-- **Step 2**: Upload images via Headless Delivery API: POST `/sites/{siteId}/documents`
-- **Step 3**: Attach images via Commerce API: POST `/products/{id}/images` with fileEntryId, title, priority
-- **Priority System**: 0=Packaging, 1=Product Photo, 2=Medical Consultation
-- **Complete Coverage**: All 25 products have 3 professional images with working src URLs
-- **API Statistics**: 75 uploads + 75 attachments = 150 successful API calls total
-
-**External Reference Codes (All 25 Products):**
-**Cardiovascular**: AMLO-5MG-SIGMA, LISIN-10MG-SIGMA, ATOR-20MG-SIGMA, METO-50MG-SIGMA, ASP-75MG-SIGMA, NITRO-SUBLIN-SIGMA
-**Respiratory**: SALB-100MCG-SIGMA, BECLO-250MCG-SIGMA, MONTE-10MG-SIGMA, IPRA-20MCG-SIGMA, LORAT-10MG-SIGMA, BUDE-200MCG-SIGMA
-**Antibiotics**: AMOXI-500MG-SIGMA, CIPRO-500MG-SIGMA, AZITH-250MG-SIGMA
-**Pain Relief**: PARA-500MG-SIGMA, IBU-200MG-SIGMA, NAPX-250MG-SIGMA
-**Gastrointestinal**: OMEP-20MG-SIGMA, LOPER-2MG-SIGMA, DOMP-10MG-SIGMA
-**Dermatological**: HYDRO-1PC-SIGMA, CLOT-1PC-SIGMA, BETA-01PC-SIGMA
+- **Liferay Commerce Platform:**
+    - Liferay Commerce Headless APIs (v1.0 for Catalog and Taxonomy)
+    - Headless Delivery API (for document/image uploads)
+- **API Endpoints Utilized:**
+    - `/o/headless-commerce-admin-catalog/v1.0/products`
+    - `/o/headless-commerce-admin-catalog/v1.0/products/{id}/productSpecifications`
+    - `/o/headless-commerce-admin-catalog/v1.0/products/{id}/categories`
+    - `/o/headless-commerce-admin-catalog/v1.0/products/{id}/images`
+    - `/o/headless-commerce-admin-catalog/v1.0/specifications`
+    - `/o/headless-admin-taxonomy/v1.0/taxonomy-vocabularies/{id}/taxonomy-categories`
+    - `/sites/{siteId}/documents` (for image uploads)
+- **Authentication:** Basic Auth credentials (configured via environment variables), Site ID: 20123, Catalog ID: 33181.
+- **Chart.js:** JavaScript charting library integrated for data visualization fragments.
+- **AI Image Generation:** Used for creating professional pharmaceutical product images (75 images total across all products).
