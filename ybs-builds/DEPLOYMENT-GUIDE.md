@@ -116,12 +116,25 @@ All fragments are fully editable through Liferay's fragment editor:
 ✓ This deployment guide
 
 ## Troubleshooting
-**Issue**: ZIP upload fails with "HTML content must not be empty"
+
+### Issue 1: ZIP Upload - Empty Thumbnails
+**Error**: "HTML content must not be empty"
 **Cause**: Empty thumbnail files (0 bytes)
 **Solution**: All fragments must have valid thumbnail.png files (70+ bytes minimum)
 **Status**: ✓ Fixed - All YBS thumbnails are valid (172KB header, 584KB footer, 399KB hero)
 
+### Issue 2: Database Error - Emojis in CSS
+**Error**: `Incorrect string value: '\xF0\x9F\x8E\xAF E...' for column 'css'`
+**Cause**: Liferay's MySQL database uses utf8mb3 charset which doesn't support 4-byte UTF-8 characters (emojis)
+**Solution**: Removed all emojis from CSS files and replaced with ASCII text:
+- `🎯 Edit Mode` → `>> Edit Mode`
+- `🌐 Language Selector` → `[Language Selector]`
+**Status**: ✓ Fixed - All emojis removed from CSS content properties
+
 ---
-Built: October 13, 2025
-Based on proven Johnson Matthey collection architecture
-Fixed: October 13, 2025 - Resolved empty thumbnail issue
+**Build History:**
+- Initial build: October 13, 2025
+- Fixed empty thumbnail issue: October 13, 2025 09:37
+- Fixed emoji/UTF-8 encoding issue: October 13, 2025 09:55
+- Based on proven Johnson Matthey collection architecture
+- **Current version**: 1.2MB (emoji-free, database compatible)

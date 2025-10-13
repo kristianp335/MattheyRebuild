@@ -62,3 +62,16 @@ The system is built on a Liferay Commerce-based architecture utilizing headless 
 - **Authentication:** Basic Auth credentials (configured via environment variables), Site ID: 20123, Catalog ID: 33181.
 - **Chart.js:** JavaScript charting library integrated for data visualization fragments.
 - **AI Image Generation:** Used for creating professional pharmaceutical product images (75 images total across all products).
+
+## Critical Liferay Platform Constraints
+
+### UTF-8 Encoding Limitation (CRITICAL)
+**Issue**: Liferay's MySQL database uses `utf8mb3` charset which does NOT support 4-byte UTF-8 characters (emojis)
+**Impact**: Fragment CSS/HTML/JS containing emojis will fail with database error: `Incorrect string value: '\xF0\x9F...' for column 'css'`
+**Solution**: Never use emojis in fragment code - use ASCII text only (e.g., `>>` instead of 🎯, `[text]` instead of 🌐)
+**Affected**: All fragment collections must be emoji-free for successful deployment
+
+### Thumbnail Requirements
+**Minimum Size**: All fragment thumbnail.png files must be at least 70 bytes
+**Validation**: Empty (0 byte) thumbnails cause "HTML content must not be empty" upload errors
+**Best Practice**: Use actual screenshot thumbnails (100KB+ recommended)

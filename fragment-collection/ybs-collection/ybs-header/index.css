@@ -814,7 +814,7 @@ body.has-edit-mode-menu .ybs-header-dropzone lfr-drop-zone:before {
 }
 
 #wrapper .ybs-search-overlay.ybs-edit-mode::before {
-  content: "🎯 Edit Mode: Drop Search Portlet Here";
+  content: ">> Edit Mode: Drop Search Portlet Here";
   display: block;
   text-align: center;
   padding: 10px;
@@ -844,7 +844,7 @@ body.has-edit-mode-menu .ybs-header-dropzone lfr-drop-zone:before {
 }
 
 #wrapper .ybs-login-overlay.ybs-edit-mode::before {
-  content: "🎯 Edit Mode: Login Modal Configuration";
+  content: ">> Edit Mode: Login Modal Configuration";
   display: block;
   text-align: center;
   padding: 10px;
@@ -911,7 +911,7 @@ body.has-edit-mode-menu .ybs-header-dropzone lfr-drop-zone:before {
 }
 
 #wrapper .ybs-language-selector-dropzone.ybs-edit-mode lfr-drop-zone:before {
-  content: "🌐 Language Selector";
+  content: "[Language Selector]";
   color: var(--ybs-primary);
   font-size: var(--ybs-font-size-xs);
   font-weight: 600;
