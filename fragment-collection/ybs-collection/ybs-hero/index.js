@@ -1,7 +1,7 @@
 (function() {
-  // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
-  if (!fragmentElement) {
-    console.warn('YBS Hero: fragmentElement not found');
+  // Liferay automatically provides fragmentElement for each fragment instance
+  if (typeof fragmentElement === 'undefined') {
+    console.warn('YBS Hero: fragmentElement not available');
     return;
   }
 

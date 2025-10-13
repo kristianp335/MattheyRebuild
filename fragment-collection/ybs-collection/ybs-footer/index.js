@@ -2,9 +2,10 @@
 (function() {
     'use strict';
     
-    // Use the fragmentElement provided by Liferay instead of document.currentScript
-    // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
-    if (!fragmentElement) {
+    // Use the fragmentElement provided by Liferay
+    // Liferay automatically provides fragmentElement for each fragment instance
+    if (typeof fragmentElement === 'undefined') {
+        console.warn('YBS Footer: fragmentElement not available');
         return;
     }
     

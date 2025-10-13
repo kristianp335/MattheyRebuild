@@ -85,5 +85,15 @@ The system is built on a Liferay Commerce-based architecture utilizing headless 
 ### JavaScript Scope Isolation
 **Rule**: Never redeclare `fragmentElement` - Liferay provides it automatically
 **Error**: "Identifier 'fragmentElement' has already been declared"
-**Solution**: Wrap fragment JavaScript in IIFE without declaring fragmentElement
-**Pattern**: `(function() { /* use fragmentElement here */ })();`
+**Solution**: Wrap fragment JavaScript in IIFE and use proper typeof check for fragmentElement
+**Correct Pattern**: 
+```javascript
+(function() {
+  if (typeof fragmentElement === 'undefined') {
+    console.warn('Fragment: fragmentElement not available');
+    return;
+  }
+  // Use fragmentElement here
+})();
+```
+**Wrong Pattern**: `if (!fragmentElement)` - causes redeclaration errors

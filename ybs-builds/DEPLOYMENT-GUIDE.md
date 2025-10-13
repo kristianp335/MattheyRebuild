@@ -140,9 +140,16 @@ All fragments are fully editable through Liferay's fragment editor:
 
 ### Issue 4: JavaScript Variable Conflict
 **Error**: "Uncaught SyntaxError: Identifier 'fragmentElement' has already been declared"
-**Cause**: ybs-hero fragment was redeclaring `fragmentElement` which Liferay already provides globally
-**Solution**: Wrapped hero fragment JS in IIFE without redeclaring fragmentElement (matching header/footer pattern)
-**Status**: ✓ Fixed - All fragments use Liferay's provided fragmentElement without conflicts
+**Cause**: Improper fragmentElement availability check causing scope conflicts when multiple fragments load
+**Solution**: Changed all fragments from `!fragmentElement` to `typeof fragmentElement === 'undefined'` check
+**Pattern Used**: 
+```javascript
+if (typeof fragmentElement === 'undefined') {
+    console.warn('Fragment: fragmentElement not available');
+    return;
+}
+```
+**Status**: ✓ Fixed - All fragments use proper typeof check to avoid redeclaration errors
 
 ---
 **Build History:**
@@ -150,7 +157,7 @@ All fragments are fully editable through Liferay's fragment editor:
 - Fixed empty thumbnail issue: October 13, 2025 09:37
 - Fixed emoji/UTF-8 encoding issue: October 13, 2025 09:55
 - Fixed editable image validation: October 13, 2025 10:01
-- Fixed JavaScript variable conflict: October 13, 2025 11:40
+- Fixed JavaScript variable conflict: October 13, 2025 11:48
 - Added branded hero SVG image: October 13, 2025 11:43
 - Based on proven Johnson Matthey collection architecture
 - **Current version**: 1.2MB (production-ready, fully validated, branded)
