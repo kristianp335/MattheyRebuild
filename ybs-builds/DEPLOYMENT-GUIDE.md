@@ -6,9 +6,10 @@ Complete YBS fragment collection with 3 professional fragments and global theme 
 ## Build Files
 
 ### 1. Fragment Collection
-- **File**: `ybs-collection.zip` (765KB)
+- **File**: `ybs-collection.zip` (1.2MB)
 - **Contains**: 3 fragments (ybs-header, ybs-footer, ybs-hero)
 - **Collection Key**: `ybs-collection`
+- **Note**: All thumbnails are valid and meet Liferay's 70+ byte requirement
 
 ### 2. Client Extension
 - **File**: `ybs-frontend-client-extension.zip` (5.4KB)
@@ -110,10 +111,17 @@ All fragments are fully editable through Liferay's fragment editor:
 - Dropzones for additional content
 
 ## Files Generated
-✓ ybs-collection.zip (765KB)
+✓ ybs-collection.zip (1.2MB) - All thumbnails validated
 ✓ ybs-frontend-client-extension.zip (5.4KB)
 ✓ This deployment guide
+
+## Troubleshooting
+**Issue**: ZIP upload fails with "HTML content must not be empty"
+**Cause**: Empty thumbnail files (0 bytes)
+**Solution**: All fragments must have valid thumbnail.png files (70+ bytes minimum)
+**Status**: ✓ Fixed - All YBS thumbnails are valid (172KB header, 584KB footer, 399KB hero)
 
 ---
 Built: October 13, 2025
 Based on proven Johnson Matthey collection architecture
+Fixed: October 13, 2025 - Resolved empty thumbnail issue
