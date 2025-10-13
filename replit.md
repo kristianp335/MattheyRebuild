@@ -81,3 +81,9 @@ The system is built on a Liferay Commerce-based architecture utilizing headless 
 **Error**: "Each editable image element must contain an IMG tag"
 **Solution**: Convert SVG graphics to IMG tags with data URLs or use actual image files
 **Example**: `<img src="data:image/svg+xml,..." data-lfr-editable-type="image" />`
+
+### JavaScript Scope Isolation
+**Rule**: Never redeclare `fragmentElement` - Liferay provides it automatically
+**Error**: "Identifier 'fragmentElement' has already been declared"
+**Solution**: Wrap fragment JavaScript in IIFE without declaring fragmentElement
+**Pattern**: `(function() { /* use fragmentElement here */ })();`

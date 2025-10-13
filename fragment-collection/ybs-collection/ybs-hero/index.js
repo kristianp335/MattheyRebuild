@@ -1,6 +1,10 @@
-const fragmentElement = fragmentElement || document.currentScript.closest('.ybs-hero-fragment');
+(function() {
+  // Liferay injects: const fragmentElement = document.querySelector('#fragment-xyz');
+  if (!fragmentElement) {
+    console.warn('YBS Hero: fragmentElement not found');
+    return;
+  }
 
-if (fragmentElement) {
   const isEditMode = typeof layoutMode !== 'undefined' && layoutMode === 'edit';
   
   if (!isEditMode) {
@@ -15,4 +19,4 @@ if (fragmentElement) {
       });
     });
   }
-}
+})();
