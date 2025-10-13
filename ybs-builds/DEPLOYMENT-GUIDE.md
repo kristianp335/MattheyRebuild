@@ -76,6 +76,7 @@ Use the fragments to create YBS-branded pages:
 - Prominent "IT'S ALL ABOUT YOU" headline
 - Member-focused messaging
 - Dual CTA buttons (Compare savings / Find mortgage)
+- Professional branded SVG illustration showing community/members
 - Configurable image placement
 - Fully responsive design
 
@@ -150,5 +151,6 @@ All fragments are fully editable through Liferay's fragment editor:
 - Fixed emoji/UTF-8 encoding issue: October 13, 2025 09:55
 - Fixed editable image validation: October 13, 2025 10:01
 - Fixed JavaScript variable conflict: October 13, 2025 11:40
+- Added branded hero SVG image: October 13, 2025 11:43
 - Based on proven Johnson Matthey collection architecture
-- **Current version**: 1.2MB (production-ready, fully validated)
+- **Current version**: 1.2MB (production-ready, fully validated, branded)
