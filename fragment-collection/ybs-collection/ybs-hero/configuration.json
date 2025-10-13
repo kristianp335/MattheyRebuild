@@ -1,0 +1,80 @@
+{
+  "fieldSets": [
+    {
+      "fields": [
+        {
+          "name": "heroStyle",
+          "label": "Hero Style",
+          "description": "Choose the hero section background style",
+          "type": "select",
+          "defaultValue": "light-gray",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Light Gray Background",
+                "value": "light-gray"
+              },
+              {
+                "label": "White Background",
+                "value": "white"
+              },
+              {
+                "label": "Primary Color Background",
+                "value": "primary"
+              }
+            ]
+          }
+        },
+        {
+          "name": "contentAlignment",
+          "label": "Content Alignment",
+          "description": "Alignment of hero content",
+          "type": "select",
+          "defaultValue": "left",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Left Aligned",
+                "value": "left"
+              },
+              {
+                "label": "Center Aligned",
+                "value": "center"
+              }
+            ]
+          }
+        },
+        {
+          "name": "showImage",
+          "label": "Show Hero Image",
+          "description": "Display hero image on the right side",
+          "type": "checkbox",
+          "defaultValue": true
+        },
+        {
+          "name": "imagePosition",
+          "label": "Image Position",
+          "description": "Position of the hero image",
+          "type": "select",
+          "defaultValue": "right",
+          "typeOptions": {
+            "validValues": [
+              {
+                "label": "Right Side",
+                "value": "right"
+              },
+              {
+                "label": "Left Side",
+                "value": "left"
+              },
+              {
+                "label": "Background",
+                "value": "background"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

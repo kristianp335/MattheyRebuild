@@ -1,0 +1,58 @@
+<div class="ybs-hero-fragment">
+  <section class="ybs-hero ybs-hero-style-${configuration.heroStyle} ybs-content-${configuration.contentAlignment} ybs-image-${configuration.imagePosition}">
+    <div class="ybs-hero-container">
+      <div class="ybs-hero-content-wrapper">
+        <!-- Hero Content -->
+        <div class="ybs-hero-content">
+          <h1 
+            class="ybs-hero-title" 
+            data-lfr-editable-id="hero-title" 
+            data-lfr-editable-type="rich-text"
+          >
+            IT'S ALL ABOUT YOU
+          </h1>
+          
+          <div 
+            class="ybs-hero-subtitle" 
+            data-lfr-editable-id="hero-subtitle" 
+            data-lfr-editable-type="rich-text"
+          >
+            <p>As a member-owned building society, we put our members first, not shareholders. That means better rates, better service, and a better experience for you.</p>
+          </div>
+
+          <div class="ybs-hero-actions">
+            <a 
+              href="#" 
+              class="ybs-btn ybs-btn-primary" 
+              data-lfr-editable-id="primary-button-text" 
+              data-lfr-editable-type="link"
+            >
+              Compare our savings accounts
+            </a>
+            <a 
+              href="#" 
+              class="ybs-btn ybs-btn-secondary" 
+              data-lfr-editable-id="secondary-button-text" 
+              data-lfr-editable-type="link"
+            >
+              Find a mortgage
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Image -->
+        [#if configuration.showImage]
+          <div class="ybs-hero-image">
+            <img 
+              src="data:image/svg+xml,%3Csvg width='600' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='600' height='400' fill='%2300693E' opacity='0.1'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%2300693E' font-size='24' font-family='Arial'%3EHero Image%3C/text%3E%3C/svg%3E"
+              alt="Yorkshire Building Society members"
+              class="ybs-hero-img"
+              data-lfr-editable-id="hero-image"
+              data-lfr-editable-type="image"
+            />
+          </div>
+        [/#if]
+      </div>
+    </div>
+  </section>
+</div>
