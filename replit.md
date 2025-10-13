@@ -75,3 +75,9 @@ The system is built on a Liferay Commerce-based architecture utilizing headless 
 **Minimum Size**: All fragment thumbnail.png files must be at least 70 bytes
 **Validation**: Empty (0 byte) thumbnails cause "HTML content must not be empty" upload errors
 **Best Practice**: Use actual screenshot thumbnails (100KB+ recommended)
+
+### Editable Image Requirements
+**Rule**: Editable images MUST use `<img>` tags - SVG elements are not supported
+**Error**: "Each editable image element must contain an IMG tag"
+**Solution**: Convert SVG graphics to IMG tags with data URLs or use actual image files
+**Example**: `<img src="data:image/svg+xml,..." data-lfr-editable-type="image" />`

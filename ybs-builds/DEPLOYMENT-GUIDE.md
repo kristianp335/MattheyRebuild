@@ -131,10 +131,17 @@ All fragments are fully editable through Liferay's fragment editor:
 - `🌐 Language Selector` → `[Language Selector]`
 **Status**: ✓ Fixed - All emojis removed from CSS content properties
 
+### Issue 3: Editable Image Validation
+**Error**: "Each editable image element must contain an IMG tag"
+**Cause**: SVG element marked as editable image (Liferay requires actual `<img>` tags for editable images)
+**Solution**: Converted SVG logo to IMG tag with data URL containing the SVG graphic
+**Status**: ✓ Fixed - Logo now uses proper IMG element with editable image attributes
+
 ---
 **Build History:**
 - Initial build: October 13, 2025
 - Fixed empty thumbnail issue: October 13, 2025 09:37
 - Fixed emoji/UTF-8 encoding issue: October 13, 2025 09:55
+- Fixed editable image validation: October 13, 2025 10:01
 - Based on proven Johnson Matthey collection architecture
-- **Current version**: 1.2MB (emoji-free, database compatible)
+- **Current version**: 1.2MB (emoji-free, database compatible, Liferay validated)
